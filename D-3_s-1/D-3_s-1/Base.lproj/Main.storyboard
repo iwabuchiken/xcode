@@ -20,9 +20,13 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EnQ-Ap-q7Q">
                                 <rect key="frame" x="146" y="306" width="136" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
+<<<<<<< HEAD
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="0.19527027698354449" blue="0.28415066160963787" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+=======
+                                <state key="normal" title="Button"/>
+>>>>>>> 57abd936519224f1506bcd645671facaddf2dca0
                                 <connections>
                                     <action selector="tapHandler:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1aq-7p-55j"/>
                                 </connections>
@@ -35,9 +39,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+<<<<<<< HEAD
                     <connections>
                         <outlet property="myTextField" destination="lV2-q4-QF0" id="KEZ-jz-u7Y"/>
                     </connections>
+=======
+>>>>>>> 57abd936519224f1506bcd645671facaddf2dca0
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

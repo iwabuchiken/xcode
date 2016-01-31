@@ -10,11 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+<<<<<<< HEAD
     @IBOutlet weak var myTextField: UITextField!
     @IBAction func tapHandler(sender: AnyObject) {
         
         myTextField.text = "Thanks";
         
+=======
+    @IBAction func tapHandler(sender: AnyObject) {
+>>>>>>> 57abd936519224f1506bcd645671facaddf2dca0
     }
     override func viewDidLoad() {
         super.viewDidLoad()
