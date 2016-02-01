@@ -7,6 +7,8 @@
 
 import UIKit
 
+let calcHistoryKey: String = "calcHistoryUserdefaultKey"
+
 class ViewController: UIViewController {
     
     // flags
@@ -68,6 +70,9 @@ class ViewController: UIViewController {
         currentOp = "+"
         
     }
+    
+    @IBOutlet weak var msgLabel: UILabel!
+    
     @IBOutlet weak var displayLabel: UILabel!
     
     @IBAction func getResult(sender: UIButton) {
@@ -83,6 +88,9 @@ class ViewController: UIViewController {
         // display result
         displayLabel.text = String(result)
         
+        // save history
+        saveHistory(result)
+        
         // clear result
         result = 0
         
@@ -93,6 +101,24 @@ class ViewController: UIViewController {
         currentOp = ""
         
     }//@IBAction func getResult(sender: UIButton)
+    
+    // array of result values
+    lazy var calcHistory: Array<Int> = []
+    
+    func saveHistory(result: Int) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        calcHistory.append(result)
+        
+        defaults.setObject(calcHistory, forKey: calcHistoryKey)
+        
+        defaults.synchronize()
+        
+        // message
+        msgLabel.text = "synchronized!"
+        
+    }//saveHistory(result: Int)
     
     override func viewDidLoad() {
         super.viewDidLoad()
