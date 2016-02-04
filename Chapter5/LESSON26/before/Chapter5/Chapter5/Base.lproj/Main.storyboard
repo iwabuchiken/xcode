@@ -213,8 +213,13 @@
                                     <action selector="back:" destination="eRv-hH-SQ4" eventType="touchDragInside" id="RXQ-Lr-98N"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HVd-Vr-FGn">
                                 <rect key="frame" x="-55" y="170" width="560" height="430"/>
+=======
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HVd-Vr-FGn">
+                                <rect key="frame" x="20" y="170" width="560" height="430"/>
+>>>>>>> 4d80cb5f75580e18497b4d4283da3cf6dd558eb8
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="01l-Y4-edw"/>
