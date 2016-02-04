@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044FC0571C63065400D0D969 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044FC0561C63065400D0D969 /* Image.xcassets */; };
 		0495D7C61C5F30C600B2090F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495D7C51C5F30C600B2090F /* HistoryViewController.swift */; };
 		3E1EB50D1BB27146002C65A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1EB50C1BB27146002C65A6 /* AppDelegate.swift */; };
 		3E1EB50F1BB27146002C65A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1EB50E1BB27146002C65A6 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044FC0561C63065400D0D969 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		0495D7C51C5F30C600B2090F /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E1EB5091BB27146002C65A6 /* Chapter5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chapter5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1EB50C1BB27146002C65A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		3E1EB50B1BB27146002C65A6 /* Chapter5 */ = {
 			isa = PBXGroup;
 			children = (
+				044FC0561C63065400D0D969 /* Image.xcassets */,
 				3E1EB50C1BB27146002C65A6 /* AppDelegate.swift */,
 				3E1EB50E1BB27146002C65A6 /* ViewController.swift */,
 				3E1EB5101BB27146002C65A6 /* Main.storyboard */,
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1EB5171BB27146002C65A6 /* LaunchScreen.storyboard in Resources */,
+				044FC0571C63065400D0D969 /* Image.xcassets in Resources */,
 				3E1EB5141BB27146002C65A6 /* Assets.xcassets in Resources */,
 				3E1EB5121BB27146002C65A6 /* Main.storyboard in Resources */,
 			);
