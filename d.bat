@@ -155,7 +155,8 @@ if [ “$aname”==‘Darwin’ ]; then	#=> true
 	echo “DARWIN yes”
 
 	kill_process_2 "Contents/MacOS/Xcode"
-	kill_process_2 "Contents\/MacOS\/Wish"
+	kill_process_2 "Contents\/MacOS\/Wish"	#=> kill gitk
+	kill_process_2 "Contents\/MacOS\/Wish"	#=> kill git gui
 #	kill_process_2 "Contents/MacOS/mscore"
 #	kill_process_2 "MacOS/Google Chrome$"
 #	kill_process_2 "Contents/MacOS/filezilla$"
@@ -185,6 +186,7 @@ echo “done”
 #ps gx | grep -E "xcode"
 #ps gx | grep -E "sqlitebrowser"
 #ps gx | grep -E "eclipse"
+#ps gx | grep -E "Wish"
 
 
 #*/

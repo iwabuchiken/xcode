@@ -130,6 +130,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let historyViewController: HistoryViewController = segue.destinationViewController as! HistoryViewController
+        
+        historyViewController.calcHistory = calcHistory
+        
+    }
 
 }
 
