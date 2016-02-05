@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uee-SY-uFb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uee-SY-uFb">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,7 +19,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1JE-6j-raD">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="pId-QI-3BW"/>
@@ -27,11 +26,10 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1JE-6j-raD" secondAttribute="bottom" id="C0P-W3-ypG"/>
                             <constraint firstItem="1JE-6j-raD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Z8P-m2-pPY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1JE-6j-raD" secondAttribute="bottom" id="gBn-fn-TUf"/>
                             <constraint firstAttribute="trailing" secondItem="1JE-6j-raD" secondAttribute="trailing" id="lrD-Cz-GDR"/>
                             <constraint firstItem="1JE-6j-raD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wwI-HM-cqa"/>
                         </constraints>
@@ -39,17 +37,36 @@
                     <navigationItem key="navigationItem" id="NEJ-GG-m2Y">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="BWD-X6-uue">
                             <connections>
-                                <action selector="add:" destination="BYZ-38-t0r" id="eSU-Gs-9eK"/>
+                                <segue destination="nju-Zy-si7" kind="show" identifier="addSegue" id="fL8-fz-O0F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1JE-6j-raD" id="6Uy-eD-VNa"/>
+                        <segue destination="nju-Zy-si7" kind="show" identifier="cellSegue" id="ceo-MB-Oig"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117" y="375"/>
+        </scene>
+        <!--Input View Controller-->
+        <scene sceneID="KeK-T7-ZXf">
+            <objects>
+                <viewController id="nju-Zy-si7" customClass="InputViewController" customModule="Chapter6" customModuleProvider="target" sceneMemberID="viewController">
+                    <button key="view" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AMN-qm-gJj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.58860373535373578" blue="0.43500313238443344" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.083394035233725614" green="0.0" blue="0.13395778795811519" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pGK-HP-fxn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4" y="602"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W2L-pf-pcu">
@@ -59,7 +76,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nLN-SN-eTK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -71,4 +87,7 @@
             <point key="canvasLocation" x="305" y="1035"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ceo-MB-Oig"/>
+    </inferredMetricsTieBreakers>
 </document>
