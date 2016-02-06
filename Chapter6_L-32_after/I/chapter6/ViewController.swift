@@ -5,6 +5,8 @@
 //  Copyright © 2015年 shoeisha. All rights reserved.
 //
 
+//ref folding http://pinkstone.co.uk/how-to-bring-back-code-folding-in-xcode-7/
+
 import UIKit
 import RealmSwift
 
@@ -35,20 +37,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // segue で画面遷移するに呼ばれる
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        let inputViewController:InputViewController = segue.destinationViewController as! InputViewController
-        
-        if segue.identifier == "cellSegue" {
-            let indexPath = self.tableView.indexPathForSelectedRow
-            inputViewController.diary = dataArray[indexPath!.row]
-        } else {
-            let diary = Diary()
-            diary.title = "タイトル"
-            diary.body = "本文"
-            if dataArray.count != 0 {
-                diary.id = dataArray.max("id")! + 1
-            }
+
+        // sandbox segue?
+        if segue.identifier == "sandboxSegue" {
             
-            inputViewController.diary = diary
+        } else {
+        
+        
+            let inputViewController:InputViewController = segue.destinationViewController as! InputViewController
+        
+            if segue.identifier == "cellSegue" {
+                let indexPath = self.tableView.indexPathForSelectedRow
+                inputViewController.diary = dataArray[indexPath!.row]
+            } else {
+                let diary = Diary()
+                diary.title = "タイトル"
+                diary.body = "本文"
+                if dataArray.count != 0 {
+                        diary.id = dataArray.max("id")! + 1
+                }
+            
+                inputViewController.diary = diary
+            }
         }
     }
     
