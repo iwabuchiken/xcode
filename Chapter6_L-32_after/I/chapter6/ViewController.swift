@@ -23,6 +23,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //test
+        //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view answered Jun 6 '15 at 6:45
+        self.tableView.backgroundColor = UIColor.lightGrayColor()
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         //ref http://swift-salaryman.com/debug.php
@@ -37,14 +43,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        //test
 //        out_Message("abc/def")  // Methods.swift
         
-        //test 
-        Diary.show_ClassName()
+//        //test 
+//        Diary.show_ClassName()
        
         //test
 //        Methods.out_Message("abc/def/ghi")
         
 //        Methods().out_Message("abc/def/ghi")
-        Methods.basename("abc/def/ghi")
+//        Methods.basename("abc/def/ghi")
         
         
     }
@@ -142,6 +148,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 //        cell.detailTextLabel?.text = object.date.description
         cell.detailTextLabel?.text = convertedDate
+        
+        // bg color
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
