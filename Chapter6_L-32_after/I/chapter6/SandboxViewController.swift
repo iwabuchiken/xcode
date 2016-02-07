@@ -53,7 +53,25 @@ class SandboxViewController: UIViewController {
         //main_label.text = NSString(format: "%\(f)f", month)
         
         //main_label.text = String(day) + "/" + String(month)
-        main_label.text = NSDate().description
+//        main_label.text = NSDate().description
+        
+        //ref http://www.appcoda.com/nsdate/
+        let currentDate = NSDate()
+        
+        
+        let dateFormatter = NSDateFormatter()
+
+        dateFormatter.locale = NSLocale.currentLocale()
+
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        let convertedDate = dateFormatter.stringFromDate(currentDate)
+        
+        main_label.text = convertedDate
+        
+//        main_label.text = dateFormatter.locale.description
         
     }
         

@@ -83,7 +83,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Cellに値を設定する.
         let object = dataArray[indexPath.row]
         cell.textLabel?.text = object.title
-        cell.detailTextLabel?.text = object.date.description
+        
+        // date
+//        let currentDate = NSDate()
+        
+        //ref http://www.appcoda.com/nsdate/
+        let currentDate = object.date
+        
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        let convertedDate = dateFormatter.stringFromDate(currentDate)
+
+//        cell.detailTextLabel?.text = object.date.description
+        cell.detailTextLabel?.text = convertedDate
+        
         return cell
     }
     
