@@ -84,11 +84,17 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         
         titleTextField.text = diary.title
         bodyTextView.text = diary.body
+//        titleTextField.text = ""
+//        bodyTextView.text = ""
     
         // delegate
         titleTextField.delegate = self
         
         // Do any additional setup after loading the view.
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary.title => \(diary.title)")
+//        print(Methods.basename(__FILE__))
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary.id => \(diary.id)")
+        
     }
     
     override func didReceiveMemoryWarning() {

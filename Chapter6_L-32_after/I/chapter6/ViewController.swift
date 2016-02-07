@@ -29,10 +29,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        print(self)
         
         //ref https://developer.apple.com/swift/blog/?id=15
-        print("\(self) =>  \(__FILE__):\(__LINE__)")
+//        print("\(self) =>  \(__FILE__):\(__LINE__)")
 
-        // show dir list
-        show_DirList()
+//        // show dir list
+//        show_DirList()
 
 //        //test
 //        out_Message("abc/def")  // Methods.swift
@@ -44,8 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        Methods.out_Message("abc/def/ghi")
         
 //        Methods().out_Message("abc/def/ghi")
-        Methods.out_Message("abc/def/ghi")
-        
+        Methods.basename("abc/def/ghi")
         
         
     }
@@ -95,8 +94,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 inputViewController.diary = dataArray[indexPath!.row]
             } else {
                 let diary = Diary()
-                diary.title = "タイトル"
-                diary.body = "本文"
+//                diary.title = "タイトル"
+//                diary.body = "本文"
+                                diary.title = ""
+                                diary.body = ""
+
                 if dataArray.count != 0 {
                         diary.id = dataArray.max("id")! + 1
                 }

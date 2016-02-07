@@ -17,6 +17,22 @@ class Diary: Object {
     // 本文
     dynamic var body = ""
     
+//    //test
+//    //ref http://stackoverflow.com/questions/24137212/initialize-class-method-for-classes-in-swift
+//    private var once = dispatch_once_t()
+//    
+//    required init () {
+//        dispatch_once(&once) {
+//            // Do stuff
+//            
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] a Diary => inited")
+//            
+//            self.title   = ""
+//            self.body    = ""
+//            
+//        }
+//    }
+    
     /// 最終更新日時
     dynamic var date = NSDate()
     
@@ -32,7 +48,7 @@ class Diary: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(__FILE__):\(__LINE__)] Diary class")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Diary class")
         
     }
     

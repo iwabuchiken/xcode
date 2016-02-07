@@ -25,7 +25,7 @@ class Methods {
         
     }
 
-    static func out_Message(path: String) -> String {
+    static func basename(path: String) -> String {
         
         let tokens = path.componentsSeparatedByString("/")
         
@@ -53,5 +53,18 @@ class Methods {
 //        return ""
         
     }
-    
+
+    static func show_DirList() {
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        let files = filemanager.enumeratorAtPath(NSHomeDirectory())
+        while let file = files?.nextObject() {
+            print(file)
+        }
+        
+        
+        
+    }
+
 }
