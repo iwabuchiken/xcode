@@ -17,7 +17,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let realm = try! Realm()
     
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
-    let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
+    //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
+    let dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+    //let dataArray = try! Realm().objects(Diary).sorted("id", ascending: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        
+        //test
+        //ref http://stackoverflow.com/questions/19640050/custom-uitableviewcell-add-margin-between-each-cell answered Sep 11 '15 at 12:50
+//        tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
+        
     }
     
     // segue で画面遷移するに呼ばれる

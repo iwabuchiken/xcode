@@ -20,6 +20,9 @@ class Diary: Object {
     /// 最終更新日時
     dynamic var date = NSDate()
     
+    //
+    dynamic var created_at = NSDate()
+    
     /**
      id をプライマリーキーとして設定
      */
