@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049246601C67651000B95ACC /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492465F1C67650F00B95ACC /* Methods.swift */; };
 		04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */; };
 		3E16ACD61BC009DF004AE056 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16ACD51BC009DF004AE056 /* AppDelegate.swift */; };
 		3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16ACD71BC009DF004AE056 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0492465F1C67650F00B95ACC /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = chapter6/Methods.swift; sourceTree = SOURCE_ROOT; };
 		04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandboxViewController.swift; path = chapter6/SandboxViewController.swift; sourceTree = SOURCE_ROOT; };
 		08EE451116E278EBBCBD6B3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1682D88BED352843A2E26BF8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
 				3E634A711BC302D600D13685 /* Diary.swift */,
 				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
+				0492465F1C67650F00B95ACC /* Methods.swift */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				3E634A721BC302D600D13685 /* Diary.swift in Sources */,
 				3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */,
 				04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */,
+				049246601C67651000B95ACC /* Methods.swift in Sources */,
 				3E16ACD61BC009DF004AE056 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

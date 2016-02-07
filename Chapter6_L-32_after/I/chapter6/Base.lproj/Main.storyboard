@@ -80,13 +80,13 @@
                                     <action selector="save:" destination="EWV-UN-dOh" eventType="touchUpInside" id="V9o-83-KSI"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="本文" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-l6-Frw">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-l6-Frw">
                                 <rect key="frame" x="20" y="154" width="560" height="220"/>
                                 <color key="backgroundColor" red="1" green="0.92736022353081982" blue="0.60885077431616241" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-Yt-lLj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-Yt-lLj">
                                 <rect key="frame" x="20" y="116" width="560" height="30"/>
                                 <color key="backgroundColor" red="0.7191710822907651" green="1" blue="0.92673421881951057" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -202,8 +202,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0EV-Yt-lLj" firstAttribute="top" secondItem="YiW-pG-nWl" secondAttribute="bottom" constant="12" id="0io-6C-43s"/>
-                            <constraint firstItem="CEa-tc-Eka" firstAttribute="top" secondItem="gUd-l6-Frw" secondAttribute="bottom" constant="162" id="9Gn-Vf-sw6"/>
+                            <constraint firstItem="0EV-Yt-lLj" firstAttribute="top" secondItem="YiW-pG-nWl" secondAttribute="bottom" constant="14" id="0io-6C-43s"/>
+                            <constraint firstItem="CEa-tc-Eka" firstAttribute="top" secondItem="gUd-l6-Frw" secondAttribute="bottom" constant="226" id="9Gn-Vf-sw6"/>
                             <constraint firstItem="0EV-Yt-lLj" firstAttribute="leading" secondItem="PkH-cg-hMs" secondAttribute="leadingMargin" id="Ire-yq-DXz"/>
                             <constraint firstItem="2zp-mL-hZZ" firstAttribute="top" secondItem="gUd-l6-Frw" secondAttribute="bottom" constant="44" id="LDE-Oh-bOI"/>
                             <constraint firstItem="gUd-l6-Frw" firstAttribute="leading" secondItem="PkH-cg-hMs" secondAttribute="leadingMargin" id="S0i-tw-dV8"/>
@@ -243,7 +243,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="411" id="Wnf-Ek-b4T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B10-IZ-E6a">

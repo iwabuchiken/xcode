@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // デフォルトの Realm インスタンスを取得する
     let realm = try! Realm()
-    
+
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
     //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
     let dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
@@ -29,11 +29,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        print(self)
         
         //ref https://developer.apple.com/swift/blog/?id=15
-        print("\(self) =>  \(__FILE__):\(__LINE__)")
+//        print("\(self) =>  \(__FILE__):\(__LINE__)")
 
-        // show dir list
-        show_DirList()
+//        // show dir list
+//        show_DirList()
 
+//        //test
+//        out_Message("abc/def")  // Methods.swift
+        
+        //test 
+        Diary.show_ClassName()
+       
+        //test
+//        Methods.out_Message("abc/def/ghi")
+        
+//        Methods().out_Message("abc/def/ghi")
+        Methods.basename("abc/def/ghi")
+        
+        
         
     }
     
@@ -82,8 +95,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 inputViewController.diary = dataArray[indexPath!.row]
             } else {
                 let diary = Diary()
-                diary.title = "タイトル"
-                diary.body = "本文"
+//                diary.title = "タイトル"
+//                diary.body = "本文"
+                                diary.title = ""
+                                diary.body = ""
+
                 if dataArray.count != 0 {
                         diary.id = dataArray.max("id")! + 1
                 }
