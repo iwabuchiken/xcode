@@ -120,6 +120,9 @@
                                 <state key="normal" title=":end">
                                     <color key="titleColor" red="0.026003325230560977" green="0.052928664921465973" blue="0.025006800206774191" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pattern_End:" destination="EWV-UN-dOh" eventType="touchUpInside" id="KNP-Ub-xzG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTz-la-ceo">
                                 <rect key="frame" x="140" y="481" width="56" height="37"/>
@@ -133,6 +136,9 @@
                                 <state key="normal" title=":start">
                                     <color key="titleColor" red="0.06976365030812029" green="0.069833027990995139" blue="0.071866819371727786" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pattern_Start:" destination="EWV-UN-dOh" eventType="touchUpInside" id="bGd-YE-LlU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

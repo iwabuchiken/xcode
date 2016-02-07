@@ -8,13 +8,30 @@
 import UIKit
 import RealmSwift
 
-class InputViewController: UIViewController {
+//ref https://akira-watson.com/iphone/textfield.html "UITextFieldDelegate をViewControllerに設定して"
+class InputViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     
     let realm = try! Realm()
     var diary: Diary!
     
+    @IBAction func pattern_End(sender: UIButton) {
+        
+        let text = titleTextField.text
+        
+        //        titleTextField.text += ":doing"
+        titleTextField.text = text! + ":end"
+
+    }
+    @IBAction func pattern_Start(sender: UIButton) {
+        
+        let text = titleTextField.text
+        
+        //        titleTextField.text += ":doing"
+        titleTextField.text = text! + ":start"
+        
+    }
     @IBAction func pattern_Doing(sender: UIButton) {
         
         let text = titleTextField.text
@@ -32,6 +49,9 @@ class InputViewController: UIViewController {
         
         titleTextField.text = diary.title
         bodyTextView.text = diary.body
+    
+        // delegate
+        titleTextField.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -39,6 +59,16 @@ class InputViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        
+//        mLabel.text = textField.text
+        
+        // キーボードを閉じる
+        titleTextField.resignFirstResponder()
+        
+        return true
     }
     
     @IBAction func save(sender: UIButton) {
