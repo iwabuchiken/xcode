@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // デフォルトの Realm インスタンスを取得する
     let realm = try! Realm()
-    
+
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
     //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
     let dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
@@ -34,6 +34,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // show dir list
         show_DirList()
 
+//        //test
+//        out_Message("abc/def")  // Methods.swift
+        
+        //test 
+        Diary.show_ClassName()
+       
+        //test
+//        Methods.out_Message("abc/def/ghi")
+        
+//        Methods().out_Message("abc/def/ghi")
+        Methods.out_Message("abc/def/ghi")
+        
+        
         
     }
     

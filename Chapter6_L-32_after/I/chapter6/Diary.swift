@@ -29,4 +29,12 @@ class Diary: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    static func show_ClassName() ->Void {
+        
+        print("[\(__FILE__):\(__LINE__)] Diary class")
+        
+    }
+    
+    
 }

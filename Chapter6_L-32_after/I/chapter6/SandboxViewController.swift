@@ -67,7 +67,33 @@ class SandboxViewController: UIViewController {
         main_label.text = docsPath as String
         
         //debug
+        //ref http://stackoverflow.com/questions/30759158/using-the-split-function-in-swift-2 answered Jun 10 '15 at 14:27
         print("[\(__FILE__)] \(docsPath as String)")
+        
+        let tmp = (__FILE__).componentsSeparatedByString("/")
+  
+        let token_1 = tmp[0]
+        
+        print("[\(__FILE__):\(__LINE__)] file => '\(__FILE__)' || token_1 => '\(token_1)'")
+        
+        //debug
+//        let str = "Hello Bob"
+//        let strSplit = str.characters.split(" ")
+//        String(strSplit.first!)
+//        String(strSplit.last!)
+
+        let str = __FILE__
+//        let sp = str.characters.split("/")
+        let sp = str.characters.split("/")
+        
+        print("first => '\(sp.first!)'")
+        
+        //debug
+                let str_2 = "Hello Bob"
+                let strSplit_2 = str_2.characters.split(" ")
+                print("first! => '\(String(strSplit_2.first!))'")
+//                String(strSplit_2.last!)
+        
         
         //ref http://www.appcoda.com/nsdate/
 //        let currentDate = NSDate()
@@ -86,6 +112,8 @@ class SandboxViewController: UIViewController {
 //        main_label.text = convertedDate
         
 //        main_label.text = dateFormatter.locale.description
+        
+
         
     }
     
