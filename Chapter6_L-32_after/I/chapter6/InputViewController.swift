@@ -15,6 +15,15 @@ class InputViewController: UIViewController {
     let realm = try! Realm()
     var diary: Diary!
     
+    @IBAction func pattern_Doing(sender: UIButton) {
+        
+        let text = titleTextField.text
+        
+//        titleTextField.text += ":doing"
+        titleTextField.text = text! + ":doing"
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
