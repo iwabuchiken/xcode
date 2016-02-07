@@ -28,7 +28,7 @@
 		3E16ACDA1BC009DF004AE056 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E16ACDC1BC009DF004AE056 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E16ACDF1BC009DF004AE056 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3E16ACE11BC009DF004AE056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E16ACE11BC009DF004AE056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Chapter6/Info.plist; sourceTree = "<group>"; };
 		3E634A6F1BC2FAB800D13685 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		3E634A711BC302D600D13685 /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		9073F031E84C5ABB2FE756B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +51,7 @@
 			children = (
 				3E16ACD41BC009DF004AE056 /* Chapter6 */,
 				3E16ACD31BC009DF004AE056 /* Products */,
+				3E16ACE11BC009DF004AE056 /* Info.plist */,
 				3E380AB1BCC02193B67FE466 /* Pods */,
 				EA8DD8465C09B3EFE4584D03 /* Frameworks */,
 			);
@@ -73,7 +74,6 @@
 				3E634A6F1BC2FAB800D13685 /* InputViewController.swift */,
 				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
 				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
-				3E16ACE11BC009DF004AE056 /* Info.plist */,
 				3E634A711BC302D600D13685 /* Diary.swift */,
 				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
 			);

@@ -16,7 +16,42 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     let realm = try! Realm()
     var diary: Diary!
     
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        
+        titleTextField.text = "background tapped"
+        
+        titleTextField.resignFirstResponder()
+        
+        bodyTextView.resignFirstResponder()
+        
+//        firstTextField.resignFirstResponder()
+//        secondTextField.resignFirstResponder()
+//        
+//        // ...more of the same...
+//        
+//        lastTextField.resignFirstResponder()
+    }
+    
+    @IBAction func backTo_ViewController(sender: UIButton) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
+    @IBAction func pattern_Generic(sender: UIButton) {
+
+        let text = titleTextField.text
+        
+        //ref http://stackoverflow.com/questions/26074239/how-to-get-label-name-from-button answered Sep 27 '14 at 11:43
+        //        titleTextField.text += ":doing"
+        titleTextField.text = text! + (sender.titleLabel?.text)!
+
+        
+    }
+    
     @IBAction func pattern_End(sender: UIButton) {
+        
+        
         
         let text = titleTextField.text
         
