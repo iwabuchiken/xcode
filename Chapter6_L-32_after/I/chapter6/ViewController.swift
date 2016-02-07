@@ -24,6 +24,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //ref http://swift-salaryman.com/debug.php
+//        print(self)
+        
+        //ref https://developer.apple.com/swift/blog/?id=15
+        print("\(self) =>  \(__FILE__):\(__LINE__)")
+
+        // show dir list
+        show_DirList()
+
+        
+    }
+    
+    func show_DirList() {
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        let files = filemanager.enumeratorAtPath(NSHomeDirectory())
+        while let file = files?.nextObject() {
+            print(file)
+        }
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

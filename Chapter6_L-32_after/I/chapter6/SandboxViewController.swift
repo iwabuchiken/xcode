@@ -54,27 +54,62 @@ class SandboxViewController: UIViewController {
         
         //main_label.text = String(day) + "/" + String(month)
 //        main_label.text = NSDate().description
+      
+//        main_label.text = get_CurrentDate()
+        
+        // file i/o
+        //ref http://stackoverflow.com/questions/29953612/swift-write-to-file-ios answered Apr 29 '15 at 20:54
+        let docsPath = NSSearchPathForDirectoriesInDomains(
+            NSSearchPathDirectory.DocumentDirectory,
+            NSSearchPathDomainMask.UserDomainMask,
+            true)[0] as! NSString
+        
+        main_label.text = docsPath as String
+        
+        //debug
+        print("[\(__FILE__)] \(docsPath as String)")
         
         //ref http://www.appcoda.com/nsdate/
-        let currentDate = NSDate()
-        
-        
-        let dateFormatter = NSDateFormatter()
-
-        dateFormatter.locale = NSLocale.currentLocale()
-
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        
-        let convertedDate = dateFormatter.stringFromDate(currentDate)
-        
-        main_label.text = convertedDate
+//        let currentDate = NSDate()
+//        
+//        
+//        let dateFormatter = NSDateFormatter()
+//
+//        dateFormatter.locale = NSLocale.currentLocale()
+//
+//        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+//        
+//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+//        
+//        let convertedDate = dateFormatter.stringFromDate(currentDate)
+//        
+//        main_label.text = convertedDate
         
 //        main_label.text = dateFormatter.locale.description
         
     }
+    
+    //ref return type https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID174
+    func get_CurrentDate() ->String {
+
+        let currentDate = NSDate()
         
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(currentDate)
+        
+//        let convertedDate = dateFormatter.stringFromDate(currentDate)
+
+        
+    }
+    
     
     @IBAction func backTo_ViewController(sender: UIButton) {
         
