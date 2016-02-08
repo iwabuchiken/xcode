@@ -159,9 +159,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // bg color
 //        let date_Today = dateFormatter.stringFromDate(NSDate())
-        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
+        let tmp_s = dateFormatter.stringFromDate(NSDate())
+        
+//        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
+        let date_Today = Methods.get_Date(tmp_s)
+        let time_Today = Methods.get_Time(tmp_s)
         
         let date_Diary = Methods.get_Date(convertedDate)
+        let time_Diary = Methods.get_Time(convertedDate)
         
 //        if currentDate < 
         
@@ -173,9 +178,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             // if the date is today
             // if before noon
+            if time_Diary >= "12" {
+                
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+                
+                cell.backgroundColor = CONS.col_green_071000
+                
+            } else {
 
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+
+                cell.backgroundColor = CONS.col_green_soft
+                
+            }
 //            cell.backgroundColor = myRedColor
-            cell.backgroundColor = CONS.col_green_soft
+//            cell.backgroundColor = CONS.col_green_soft
 
             
         } else {

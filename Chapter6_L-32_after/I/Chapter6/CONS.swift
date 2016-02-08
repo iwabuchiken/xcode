@@ -18,7 +18,7 @@ class CONS {
         alpha:1.0)
     
     static var col_green_071000 = UIColor(
-        red:0.2,
+        red:0.7,
         green:1.0,
         blue:0.0,
         alpha:1.0)

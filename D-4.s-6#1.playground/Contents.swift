@@ -29,3 +29,9 @@ tokens.count
 
 tokens[9]
 
+let a = "12:08:43"
+
+let b = "12"
+
+if a >= b { print("yes") } else { print("no") }
+
