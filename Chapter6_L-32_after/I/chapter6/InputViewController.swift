@@ -8,6 +8,8 @@
 import UIKit
 import RealmSwift
 
+import AudioToolbox
+
 //ref https://akira-watson.com/iphone/textfield.html "UITextFieldDelegate をViewControllerに設定して"
 class InputViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
@@ -15,6 +17,11 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     let realm = try! Realm()
     var diary: Diary!
+    
+    //test
+    //ref http://stackoverflow.com/questions/29839069/how-make-vibrate-twice-my-iphone-when-i-click-on-a-button-ios-swift-xcode answered Sep 9 '15 at 16:23
+    var counter = 0
+    var timer : NSTimer?
     
     @IBAction func userTappedBackground(sender: AnyObject) {
         
@@ -46,6 +53,14 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         //        titleTextField.text += ":doing"
         titleTextField.text = text! + (sender.titleLabel?.text)!
 
+        //test: vibrate
+        //ref 	http://stackoverflow.com/questions/26455880/how-to-make-iphone-vibrate-using-swift        answered Nov 13 '15 at 12:45
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        
+//        //test
+//        counter = 0
+//        timer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: "vibratePhone", userInfo: nil, repeats: true)
+        
         
     }
     
@@ -132,5 +147,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     // Pass the selected object to the new view controller.
     }
     */
+
+    func vibratePhone() {
+        counter++
+        switch counter {
+        case 1, 2:
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        default:
+            timer?.invalidate()
+        }
+    }
     
 }
