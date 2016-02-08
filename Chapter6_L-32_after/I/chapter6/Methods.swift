@@ -41,7 +41,7 @@ class Methods {
         // 1 '/'
         if tokens.count == 2 {
             
-            print("path string has 1 '/' char")
+//            print("path string has 1 '/' char")
             
             return tokens[0]
             
@@ -88,7 +88,7 @@ class Methods {
         // 1 '/'
         if tokens.count == 2 {
             
-            print("path string has 1 '/' char")
+//            print("path string has 1 '/' char")
             
             return tokens[0]
             
@@ -156,10 +156,22 @@ class Methods {
         
         defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
         
+        // sync
+        defaults.synchronize()
+        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
         
         
     }
-    
+ 
+    static func get_Defaults(keys : String) -> String {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+        //        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+        return defaults.stringForKey(keys)!   //=> '那覇'
+        
+    }
 }

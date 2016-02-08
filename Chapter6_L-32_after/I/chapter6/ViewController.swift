@@ -29,6 +29,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
     //let dataArray = try! Realm().objects(Diary).sorted("id", ascending: false)
     
+//    //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm() => done")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +39,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view answered Jun 6 '15 at 6:45
         self.tableView.backgroundColor = UIColor.lightGrayColor()
         
+        // get defaults
+        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        
+////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+//        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
+        
+
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -84,6 +100,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        
+        // get defaults
+        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        
+        //        let defaults = NSUserDefaults.standardUserDefaults()
+        //
+        ////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+        ////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+        //        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
+
+        // objects with conditions
+        _test_Realm_Conditions(tmp_s)
+        
+        
         tableView.reloadData()
         
         //test
@@ -91,6 +127,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
         
     }
+    
+    func _test_Realm_Conditions(tmp_s : String) -> Void {
+        
+//        let aPredicate = NSPredicate(format: "color = %@ AND name BEGINSWITH %@", "red", "BMW")
+//        redCars = realm.objects(Car).filter(aPredicate)
+//        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
+        let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+        
+//        redCars = realm.objects(Car).filter(aPredicate)
+        
+//        dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
+        
+    }//_test_Realm_Conditions(tmp_s : String) -> Void
     
     // segue で画面遷移するに呼ばれる
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
@@ -180,13 +233,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // if before noon
             if time_Diary >= "12" {
                 
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
                 
                 cell.backgroundColor = CONS.col_green_071000
                 
             } else {
 
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
 
                 cell.backgroundColor = CONS.col_green_soft
                 
