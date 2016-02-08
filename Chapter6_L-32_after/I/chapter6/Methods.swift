@@ -133,5 +133,21 @@ class Methods {
         
     }//static func get_Date(date_string: String) -> String
 
+    static func get_TimeLable() -> String {
+        
+        // date
+                let currentDate = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(currentDate)
+        
+    }
     
 }

@@ -13,6 +13,17 @@ class SandboxViewController: UIViewController {
     @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
 
+    @IBAction func close_OSKeyboard(sender: UIButton) {
+        
+        main_label.text = Methods.get_TimeLable()
+        
+        //test
+        //ref https://akira-watson.com/iphone/textfield.html "ボタン等でendEditing()"
+        self.view.endEditing(true)
+        
+    }
+    
+
     @IBAction func set_SearchWords(sender: UIButton) {
     
         tf_SearchWords.text = "search words"
