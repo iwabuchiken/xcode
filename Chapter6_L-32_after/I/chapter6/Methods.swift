@@ -149,5 +149,17 @@ class Methods {
         return dateFormatter.stringFromDate(currentDate)
         
     }
+ 
+    static func set_Defaults(tmp_s : String) -> Void {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
+        
+        
+    }
     
 }

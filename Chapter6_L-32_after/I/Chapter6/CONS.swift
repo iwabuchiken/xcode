@@ -23,4 +23,6 @@ class CONS {
         blue:0.0,
         alpha:1.0)
 
+    static var key_SearchWords = "key_SearchWords"
+    
 }

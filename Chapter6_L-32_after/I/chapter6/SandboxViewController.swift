@@ -26,7 +26,23 @@ class SandboxViewController: UIViewController {
 
     @IBAction func set_SearchWords(sender: UIButton) {
     
-        tf_SearchWords.text = "search words"
+//        tf_SearchWords.text = "search words"
+        
+        //ref http://egg-is-world.com/2016/01/29/swift2-uitextfield-text/
+        let tmp_s : String = tf_SearchWords.text ?? ""
+        
+//        // show message
+//        tf_SearchWords.text = "search words are => \(tmp_s)"
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words are => \(tmp_s)")
+        
+        //debug
+print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => Methods.set_Defaults")
+        
+        // set defaults
+        Methods.set_Defaults(tmp_s)
+        
         
     }
     
