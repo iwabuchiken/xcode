@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
 
     //test: colors
+    //ref http://makeapppie.com/2014/10/02/swift-swift-using-color-and-uicolor-in-swift-part-1-rgb/
     let myRedColor = UIColor(
         red:1.0,
         green:0.0,
@@ -167,9 +168,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
 //        cell.backgroundColor = UIColor.clearColor()
 
+        
         if date_Diary >= date_Today {
 
-            cell.backgroundColor = myRedColor
+            // if the date is today
+            // if before noon
+
+//            cell.backgroundColor = myRedColor
+            cell.backgroundColor = CONS.col_green_soft
+
             
         } else {
             

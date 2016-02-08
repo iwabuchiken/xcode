@@ -71,7 +71,8 @@ class Methods {
         "2016/02/08 12:38:09"   => "2016/02/08"
     */
     static func get_Date(date_string: String) -> String {
-        
+ 
+        //ref http://stackoverflow.com/questions/30759158/using-the-split-function-in-swift-2 answered Jun 10 '15 at 14:27
         let tokens = date_string.componentsSeparatedByString(" ")
         
         // no '/' char
