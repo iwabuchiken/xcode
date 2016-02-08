@@ -12,6 +12,13 @@ import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
+
+    //test: colors
+    let myRedColor = UIColor(
+        red:1.0,
+        green:0.0,
+        blue:0.0,
+        alpha:1.0)
     
     // デフォルトの Realm インスタンスを取得する
     let realm = try! Realm()
@@ -150,7 +157,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.detailTextLabel?.text = convertedDate
         
         // bg color
-        cell.backgroundColor = UIColor.clearColor()
+        
+//        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = myRedColor
         
         return cell
     }
