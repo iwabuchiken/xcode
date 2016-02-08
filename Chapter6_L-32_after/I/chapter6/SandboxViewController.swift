@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class SandboxViewController: UIViewController {
 
@@ -43,6 +44,9 @@ class SandboxViewController: UIViewController {
         
         // set defaults
         Methods.set_Defaults(tmp_s)
+        
+        // vibrate
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         
         // back to the original cont
         //self.dismissViewControllerAnimated(true, completion: nil)

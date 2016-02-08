@@ -1,8 +1,8 @@
 D-4
 
-s-8#1
+s-9#2/steps.6
 ---
-1. "タイトル" => remove
-2. get => basename of the dir path
+1. re-build => if the default is ""
+        --> collect all
 
     ==> done
