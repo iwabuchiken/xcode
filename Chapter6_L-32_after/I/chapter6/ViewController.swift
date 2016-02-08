@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
     //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
-    let dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+    var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
     //let dataArray = try! Realm().objects(Diary).sorted("id", ascending: false)
     
 //    //debug
@@ -133,15 +133,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let aPredicate = NSPredicate(format: "color = %@ AND name BEGINSWITH %@", "red", "BMW")
 //        redCars = realm.objects(Car).filter(aPredicate)
 //        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
-        let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+        
+
+        if tmp_s == "" {
+            
+            // if the default is "" --> no filter
+            dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+
+            
+        } else {
+
+            let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+
+            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+
+        }
+        
+//        let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
         
 //        redCars = realm.objects(Car).filter(aPredicate)
         
 //        dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
-        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+//        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
         
     }//_test_Realm_Conditions(tmp_s : String) -> Void
     
