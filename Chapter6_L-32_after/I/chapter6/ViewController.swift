@@ -157,12 +157,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.detailTextLabel?.text = convertedDate
         
         // bg color
+//        let date_Today = dateFormatter.stringFromDate(NSDate())
+        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
         
+        let date_Diary = Methods.get_Date(convertedDate)
+        
+//        if currentDate < 
+        
+        //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
 //        cell.backgroundColor = UIColor.clearColor()
-        cell.backgroundColor = myRedColor
+
+        if date_Diary >= date_Today {
+
+            cell.backgroundColor = myRedColor
+            
+        } else {
+            
+            cell.backgroundColor = UIColor.whiteColor()
+            
+        }
+//        cell.backgroundColor = myRedColor
         
         return cell
-    }
+    }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
     
     // MARK: UITableViewDataSource プロトコルのメソッド
     // Delete ボタンが押された時の処理を行う

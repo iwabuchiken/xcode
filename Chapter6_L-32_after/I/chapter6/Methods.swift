@@ -67,4 +67,34 @@ class Methods {
         
     }
 
+    /*
+        "2016/02/08 12:38:09"   => "2016/02/08"
+    */
+    static func get_Date(date_string: String) -> String {
+        
+        let tokens = date_string.componentsSeparatedByString(" ")
+        
+        // no '/' char
+        if tokens.count == 1 {
+            
+            print("path string has no '/' char")
+            
+            return date_string
+            
+        }
+        
+        // 1 '/'
+        if tokens.count == 2 {
+            
+            print("path string has 1 '/' char")
+            
+            return tokens[0]
+            
+        }
+        
+        // multiple
+        return tokens[tokens.count - 1]
+       
+    }//static func get_Date(date_string: String) -> String
+    
 }
