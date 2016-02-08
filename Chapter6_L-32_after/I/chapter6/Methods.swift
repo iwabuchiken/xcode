@@ -112,8 +112,8 @@ class Methods {
         // no '/' char
         if tokens.count == 1 {
             
-            print("path string has no ' ' char")
-            
+//            print("path string has no ' ' char")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path string has no ' ' char")
             return date_string
             
         }
@@ -121,7 +121,7 @@ class Methods {
         // 1 '/'
         if tokens.count == 2 {
             
-            print("path string has 1 ' ' char")
+//            print("path string has 1 ' ' char")
             
             return tokens[1]
             

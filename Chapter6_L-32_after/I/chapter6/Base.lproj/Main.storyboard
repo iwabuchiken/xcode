@@ -261,10 +261,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF6-wH-fEG">
-                                <rect key="frame" x="113" y="252" width="172" height="61"/>
+                                <rect key="frame" x="32" y="333" width="110" height="61"/>
                                 <color key="backgroundColor" red="0.0021412681186941951" green="1" blue="0.12050162772509454" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="O4T-nB-s5g"/>
+                                    <constraint firstAttribute="width" constant="110" id="O4T-nB-s5g"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="oGg-3O-O0f"/>
                                     <constraint firstAttribute="height" constant="61" id="tkS-gt-G1C"/>
                                 </constraints>
@@ -276,11 +276,34 @@
                                     <action selector="show_Message:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="x1z-fI-XfN"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-iX-ntu">
+                                <rect key="frame" x="25" y="206" width="287" height="79"/>
+                                <color key="backgroundColor" red="1" green="0.76477635653914677" blue="0.76024367421733041" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="99Y-Pt-LPh"/>
+                                    <constraint firstAttribute="width" constant="287" id="ejM-QE-qzZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-h8-USC">
+                                <rect key="frame" x="213" y="333" width="54" height="61"/>
+                                <color key="backgroundColor" red="0.45430489664745433" green="0.93598460573873299" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="7ub-ML-iYk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Set"/>
+                                <connections>
+                                    <action selector="set_SearchWords:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="KbZ-nc-oVo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="main_label" destination="EJe-ST-35d" id="nj7-mZ-A20"/>
+                        <outlet property="tf_SearchWords" destination="hhh-iX-ntu" id="HR9-qe-mA8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpF-3U-MJI" userLabel="First Responder" sceneMemberID="firstResponder"/>

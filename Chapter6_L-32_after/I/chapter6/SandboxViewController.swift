@@ -10,7 +10,14 @@ import UIKit
 
 class SandboxViewController: UIViewController {
 
+    @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
+
+    @IBAction func set_SearchWords(sender: UIButton) {
+    
+        tf_SearchWords.text = "search words"
+        
+    }
     
     
     
