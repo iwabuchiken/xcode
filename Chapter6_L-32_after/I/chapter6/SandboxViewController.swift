@@ -44,6 +44,12 @@ class SandboxViewController: UIViewController {
         // set defaults
         Methods.set_Defaults(tmp_s)
         
+        // back to the original cont
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] popViewControllerAnimated => done")
         
     }
     
