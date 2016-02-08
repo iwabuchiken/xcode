@@ -1,8 +1,10 @@
 D-4
 
-s-9#2/steps.6
+s-9#2/steps.8
 ---
-1. re-build => if the default is ""
-        --> collect all
+1. SandboxView::main_label
+    --> show current search words
 
     ==> done
+
+ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C
