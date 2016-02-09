@@ -200,7 +200,10 @@ class Methods {
             //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
             //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
             //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
+<<<<<<< HEAD
             //ref http://stackoverflow.com/questions/31286711/how-to-set-my-date-into-yesterday answered Jul 8 '15 at 8:07
+=======
+>>>>>>> 3da4fd9cde2463a4e587c190059c23d6db552f4e
             return current.dateByAddingTimeInterval(oneDay)
             
             
