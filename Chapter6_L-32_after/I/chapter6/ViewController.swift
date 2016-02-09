@@ -370,9 +370,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let s_DateLabel_Now = dateFormatter.stringFromDate(ns_Date_Now)
 //            let dateLabel_Now = dateFormatter.stringFromDate(NSDate())
             
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Now)'")
+            // yesterday
+            let ns_Date_Yesterday = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Now, diff: -1)
             
+            
+            let s_DateLabel_Yesterday = dateFormatter.stringFromDate(ns_Date_Yesterday)
+            
+            // X days ago
+            let diff = -5
+            
+            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Now, diff: diff)
+            
+            
+            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Now)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+
             /*
             
                 yesterday

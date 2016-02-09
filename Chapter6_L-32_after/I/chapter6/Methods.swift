@@ -189,6 +189,17 @@ class Methods {
         
     }
 
-
+    static func get_Date_BeforeAfter_ByDate
+        (current : NSDate, diff: Int) -> NSDate {
+            
+            //        var date_Now = NSDate()
+            
+            let oneDay:Double = Double(60 * 60 * 24 * diff)
+            
+            //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
+            return current.dateByAddingTimeInterval(oneDay)
+            
+            
+    }
 
 }
