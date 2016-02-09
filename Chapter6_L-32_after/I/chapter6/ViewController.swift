@@ -352,7 +352,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //ref http://www.appcoda.com/nsdate/
             let ns_CurrentDate = object.date
             
-            let ns_Date_Now = NSDate()
+//            let ns_Date_Today = NSDate()
             
             // formatter
             let dateFormatter = NSDateFormatter()
@@ -367,47 +367,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            let dateLabel_Diary = dateFormatter.stringFromDate(currentDate)
             let s_DateLabel_Diary = Methods.conv_NSDate_2_DateString(ns_CurrentDate)
             
-            let s_DateLabel_Now = dateFormatter.stringFromDate(ns_Date_Now)
+            //
+            let ns_Date_Today = NSDate()
+
+            let s_DateLabel_Today = dateFormatter.stringFromDate(ns_Date_Today)
 //            let dateLabel_Now = dateFormatter.stringFromDate(NSDate())
             
+            let s_DayLabel_Today = Methods.get_Date(s_DateLabel_Today)
+            
             // yesterday
-            let ns_Date_Yesterday = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Now, diff: -1)
+            let ns_Date_Yesterday = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: -1)
             
             
             let s_DateLabel_Yesterday = dateFormatter.stringFromDate(ns_Date_Yesterday)
             
+            let s_DayLabel_Yesterday = Methods.get_Date(s_DateLabel_Yesterday)
+            
             // X days ago
             let diff = -5
             
-            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Now, diff: diff)
+            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: diff)
             
             
             let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Now)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
 
-            /*
+            // change bg color
+            if s_DateLabel_Diary >= s_DayLabel_Today {
+                
+//                cell.backgroundColor = CONS.col_green_071000
+                
+            } else if s_DateLabel_Diary >= s_DayLabel_Yesterday {
+                
+//                cell.backgroundColor = CONS.col_Blue_020510
+                cell.backgroundColor = CONS.col_Blue_020710
+                
+            }
             
-                yesterday
-
-            */
             
-////            //        cell.detailTextLabel?.text = object.date.description
-////            cell.detailTextLabel?.text = convertedDate
-//            
-//            // bg color
-//            //        let date_Today = dateFormatter.stringFromDate(NSDate())
-//            let tmp_s = dateFormatter.stringFromDate(NSDate())
-//            
-//            //        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
-//            let date_Today = Methods.get_Date(tmp_s)
-//            let time_Today = Methods.get_Time(tmp_s)
-//            
-//            let date_Diary = Methods.get_Date(convertedDate)
-//            let time_Diary = Methods.get_Time(convertedDate)
-//            
-//            //        if currentDate <
 //            
 //            //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
 //            //        cell.backgroundColor = UIColor.clearColor()
