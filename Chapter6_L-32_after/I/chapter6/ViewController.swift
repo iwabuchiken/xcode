@@ -213,6 +213,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // bg color
         _tableView__Set_BGColor(cell, object: object)
 
+        _tableView__Set_BGColor_Yesterday(cell, object: object)
+
 //        //ref http://www.appcoda.com/nsdate/
 //        let currentDate = object.date
 //        
@@ -343,7 +345,89 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }//_tableView__Set_BGColor
-    
+
+    func _tableView__Set_BGColor_Yesterday
+        (cell : UITableViewCell, object : Diary) -> Void {
+            
+            //ref http://www.appcoda.com/nsdate/
+            let ns_CurrentDate = object.date
+            
+            let ns_Date_Now = NSDate()
+            
+            // formatter
+            let dateFormatter = NSDateFormatter()
+            
+            dateFormatter.locale = NSLocale.currentLocale()
+            
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            
+//            let convertedDate = dateFormatter.stringFromDate(currentDate)
+//            let dateLabel_Diary = dateFormatter.stringFromDate(currentDate)
+            let s_DateLabel_Diary = Methods.conv_NSDate_2_DateString(ns_CurrentDate)
+            
+            let s_DateLabel_Now = dateFormatter.stringFromDate(ns_Date_Now)
+//            let dateLabel_Now = dateFormatter.stringFromDate(NSDate())
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Now)'")
+            
+            /*
+            
+                yesterday
+
+            */
+            
+////            //        cell.detailTextLabel?.text = object.date.description
+////            cell.detailTextLabel?.text = convertedDate
+//            
+//            // bg color
+//            //        let date_Today = dateFormatter.stringFromDate(NSDate())
+//            let tmp_s = dateFormatter.stringFromDate(NSDate())
+//            
+//            //        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
+//            let date_Today = Methods.get_Date(tmp_s)
+//            let time_Today = Methods.get_Time(tmp_s)
+//            
+//            let date_Diary = Methods.get_Date(convertedDate)
+//            let time_Diary = Methods.get_Time(convertedDate)
+//            
+//            //        if currentDate <
+//            
+//            //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
+//            //        cell.backgroundColor = UIColor.clearColor()
+//            
+//            
+//            if date_Diary >= date_Today {
+//                
+//                // if the date is today
+//                // if before noon
+//                if time_Diary >= "12" {
+//                    
+//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+//                    
+//                    cell.backgroundColor = CONS.col_green_071000
+//                    
+//                } else {
+//                    
+//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+//                    
+//                    cell.backgroundColor = CONS.col_green_soft
+//                    
+//                }
+//                //            cell.backgroundColor = myRedColor
+//                //            cell.backgroundColor = CONS.col_green_soft
+//                
+//                
+//            } else {
+//                
+//                cell.backgroundColor = UIColor.whiteColor()
+//                
+//            }
+            
+    }//_tableView__Set_BGColor
+
     // MARK: UITableViewDataSource プロトコルのメソッド
     // Delete ボタンが押された時の処理を行う
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

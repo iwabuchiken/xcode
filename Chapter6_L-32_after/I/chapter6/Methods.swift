@@ -174,4 +174,21 @@ class Methods {
         return defaults.stringForKey(keys)!   //=> '那覇'
         
     }
+
+    static func conv_NSDate_2_DateString(date : NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(date)
+        
+    }
+
+
+
 }
