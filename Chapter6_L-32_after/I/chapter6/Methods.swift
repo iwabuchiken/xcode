@@ -193,10 +193,13 @@ class Methods {
         (current : NSDate, diff: Int) -> NSDate {
             
             //        var date_Now = NSDate()
-            
+     
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
             let oneDay:Double = Double(60 * 60 * 24 * diff)
             
             //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
             return current.dateByAddingTimeInterval(oneDay)
             
             
