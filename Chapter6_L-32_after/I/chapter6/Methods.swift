@@ -193,10 +193,14 @@ class Methods {
         (current : NSDate, diff: Int) -> NSDate {
             
             //        var date_Now = NSDate()
-            
+     
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
             let oneDay:Double = Double(60 * 60 * 24 * diff)
             
             //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
+            //ref http://stackoverflow.com/questions/31286711/how-to-set-my-date-into-yesterday answered Jul 8 '15 at 8:07
             return current.dateByAddingTimeInterval(oneDay)
             
             
