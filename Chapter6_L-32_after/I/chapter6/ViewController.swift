@@ -10,9 +10,44 @@
 import UIKit
 import RealmSwift
 
+//extension String {
+//    
+//    subscript (i: Int) -> Character {
+//        return self[self.startIndex.advancedBy(i)]
+//    }
+//    
+//    subscript (i: Int) -> String {
+//        return String(self[i] as Character)
+//    }
+//    
+//    subscript (r: Range<Int>) -> String {
+//        let start = startIndex.advancedBy(r.startIndex)
+//        let end = start.advancedBy(r.endIndex - r.startIndex)
+//        return self[Range(start: start, end: end)]
+//    }
+//}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
 
+    //ref http://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language answered Jun 10 '14 at 15:02
+//    extension String {
+//        
+//        subscript (i: Int) -> Character {
+//            return self[self.startIndex.advancedBy(i)]
+//        }
+//        
+//        subscript (i: Int) -> String {
+//            return String(self[i] as Character)
+//        }
+//        
+//        subscript (r: Range<Int>) -> String {
+//            let start = startIndex.advancedBy(r.startIndex)
+//            let end = start.advancedBy(r.endIndex - r.startIndex)
+//            return self[Range(start: start, end: end)]
+//        }
+//    }
+    
     //test: colors
     //ref http://makeapppie.com/2014/10/02/swift-swift-using-color-and-uicolor-in-swift-part-1-rgb/
     let myRedColor = UIColor(
@@ -180,14 +215,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
             
             if tokens.count == 1 {
+                //debug
+//                extension String {
+//                    
+//                    subscript (i: Int) -> Character {
+//                        return self[self.startIndex.advancedBy(i)]
+//                    }
+//                    
+//                    subscript (i: Int) -> String {
+//                        return String(self[i] as Character)
+//                    }
+//                    
+//                    subscript (r: Range<Int>) -> String {
+//                        let start = startIndex.advancedBy(r.startIndex)
+//                        let end = start.advancedBy(r.endIndex - r.startIndex)
+//                        return self[Range(start: start, end: end)]
+//                    }
+//                }
 
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s[0])")    //=> /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/Chapter6/ViewController.swift:236:82: 'subscript' is unavailable: cannot subscript String with an Int, see the documentation comment for discussion
+//aaa
+                
+                //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
+
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(String(tmp_s[tmp_s.startIndex.advancedBy(4)]))")    //=> /Users/mac/Desktop/works/WS/  //=> n.w.//=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
+
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(tmp_s[tmp_s.startIndex.advancedBy(4)])")  //=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
+                
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s.startIndex.advancedBy(4) => \(tmp_s.startIndex.advancedBy(4))")
+                //=> '4'
+                
+                
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => building")
 
 //                let q = "title NOT CONTAINS '\(tmp_s)'"
 //                let q = "NOT title CONTAINS '\(tmp_s)'"   //=> works
               
-                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                if String(tmp_s.characters.first!) == "-" {
+                    
+                    //ref http://stackoverflow.com/questions/32575227/swift-2-0-substringwithrange answered Sep 15 '15 at 2:30
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] substring => \(tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(3)])")   //=> works
+                    
+                    aPredicate = NSPredicate(format: "NOT title CONTAINS %@", tmp_s)
+                    
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] NOT directive")
+                    
+                } else {
+
+                    aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                    
+                }
+                
+//                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
 //                aPredicate = NSPredicate(format: "title NOT CONTAINS %@", tmp_s)
 //                aPredicate = NSPredicate(format: q)
                 
