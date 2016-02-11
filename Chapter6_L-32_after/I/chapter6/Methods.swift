@@ -164,7 +164,23 @@ class Methods {
         
         
     }
- 
+
+    static func set_Defaults(tmp_s : String, key : String) -> Void {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setValue(tmp_s, forKey: key)
+        
+        // sync
+        defaults.synchronize()
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
+        
+        
+    }
+    
+
     static func get_Defaults(keys : String) -> String {
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -174,4 +190,36 @@ class Methods {
         return defaults.stringForKey(keys)!   //=> '那覇'
         
     }
+
+    static func conv_NSDate_2_DateString(date : NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(date)
+        
+    }
+
+    static func get_Date_BeforeAfter_ByDate
+        (current : NSDate, diff: Int) -> NSDate {
+            
+            //        var date_Now = NSDate()
+     
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            let oneDay:Double = Double(60 * 60 * 24 * diff)
+            
+            //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
+ 
+            return current.dateByAddingTimeInterval(oneDay)
+            
+            
+    }
+
 }

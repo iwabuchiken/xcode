@@ -1,7 +1,9 @@
 D-4
 
-s-6#1
+s-10#1/steps.3.1.4
 ---
-1. up to => show current time label
+1. NEW FUNC: _tableView__Set_BGColor_Yesterday
 
     ==> done
+
+ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

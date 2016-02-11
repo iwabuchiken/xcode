@@ -23,6 +23,20 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     var counter = 0
     var timer : NSTimer?
     
+    @IBAction func copy_Title(sender: UIButton) {
+    
+        let title = titleTextField.text!
+        
+        UIPasteboard.generalPasteboard().string = title
+        
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] copied => \(UIPasteboard.generalPasteboard().string!)")
+        
+    }
+    
+    
     @IBAction func userTappedBackground(sender: AnyObject) {
         
         titleTextField.text = "background tapped"

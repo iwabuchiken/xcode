@@ -23,6 +23,18 @@ class CONS {
         blue:0.0,
         alpha:1.0)
 
+    static var col_Blue_020510 = UIColor(
+        red:    0.2,
+        green:  0.5,
+        blue:   1.0,
+        alpha:  1.0)
+
+    static var col_Blue_020710 = UIColor(
+        red:    0.2,
+        green:  0.7,
+        blue:   1.0,
+        alpha:  1.0)
+    
     static var key_SearchWords = "key_SearchWords"
     
 }

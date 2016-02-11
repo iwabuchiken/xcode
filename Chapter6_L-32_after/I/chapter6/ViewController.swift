@@ -103,8 +103,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+
+//        //debug
+//        Methods.set_Defaults("")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => ''")
+
         
         // get defaults
+//        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        //debug
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
         
         //        let defaults = NSUserDefaults.standardUserDefaults()
@@ -134,18 +143,90 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        redCars = realm.objects(Car).filter(aPredicate)
 //        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
         
+//        //debug: defaults string => force to be "" (blank)
+//        tmp_s = ""
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s => forced to be ''")
 
+        //debug
+//        if true     {
         if tmp_s == "" {
-            
+        
             // if the default is "" --> no filter
             dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
 
             
         } else {
 
-            let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            let tokens = tmp_s.componentsSeparatedByString(" ")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            
+            // query
+            var query = ""
+            
+//            var aPredicate = ""
+//            var aPredicate = nil
+            
+            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            
+            if tokens.count == 1 {
+            
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                
+            } else if tokens.count > 1 {
+                
+                query = "title CONTAINS \(tokens[0])"
+                
+                for index in 1...(tokens.count - 1) {
+                    
+                    query += " AND title CONTAINS \(tokens[index])"
+                    
+                }
+                
+//                let aPredicate = NSPredicate(query)
+//                aPredicate = query
+//                aPredicate = NSPredicate(query)
+                aPredicate = NSPredicate(format: query)
+                
+            } else {
+                
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                
+            }
+        
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+            
+            
+            aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
 
-            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+//            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+
+                dataArray = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                
+                
+                
+            }
+            
+//            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
 
         }
         
@@ -210,6 +291,79 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // date
 //        let currentDate = NSDate()
         
+        // bg color
+        _tableView__Set_BGColor(cell, object: object)
+
+        _tableView__Set_BGColor_Yesterday(cell, object: object)
+
+//        //ref http://www.appcoda.com/nsdate/
+//        let currentDate = object.date
+//        
+//        
+//        let dateFormatter = NSDateFormatter()
+//        
+//        dateFormatter.locale = NSLocale.currentLocale()
+//        
+//        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+//        
+//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+//        
+//        let convertedDate = dateFormatter.stringFromDate(currentDate)
+//
+////        cell.detailTextLabel?.text = object.date.description
+//        cell.detailTextLabel?.text = convertedDate
+//        
+//        // bg color
+////        let date_Today = dateFormatter.stringFromDate(NSDate())
+//        let tmp_s = dateFormatter.stringFromDate(NSDate())
+//        
+////        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
+//        let date_Today = Methods.get_Date(tmp_s)
+//        let time_Today = Methods.get_Time(tmp_s)
+//        
+//        let date_Diary = Methods.get_Date(convertedDate)
+//        let time_Diary = Methods.get_Time(convertedDate)
+//        
+////        if currentDate < 
+//        
+//        //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
+////        cell.backgroundColor = UIColor.clearColor()
+//
+//        
+//        if date_Diary >= date_Today {
+//
+//            // if the date is today
+//            // if before noon
+//            if time_Diary >= "12" {
+//                
+////                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+//                
+//                cell.backgroundColor = CONS.col_green_071000
+//                
+//            } else {
+//
+////                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+//
+//                cell.backgroundColor = CONS.col_green_soft
+//                
+//            }
+////            cell.backgroundColor = myRedColor
+////            cell.backgroundColor = CONS.col_green_soft
+//
+//            
+//        } else {
+//            
+//            cell.backgroundColor = UIColor.whiteColor()
+//            
+//        }
+//        cell.backgroundColor = myRedColor
+        
+        return cell
+    }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    
+    func _tableView__Set_BGColor
+    (cell : UITableViewCell, object : Diary) -> Void {
+        
         //ref http://www.appcoda.com/nsdate/
         let currentDate = object.date
         
@@ -223,58 +377,151 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         
         let convertedDate = dateFormatter.stringFromDate(currentDate)
-
-//        cell.detailTextLabel?.text = object.date.description
+        
+        //        cell.detailTextLabel?.text = object.date.description
         cell.detailTextLabel?.text = convertedDate
         
         // bg color
-//        let date_Today = dateFormatter.stringFromDate(NSDate())
+        //        let date_Today = dateFormatter.stringFromDate(NSDate())
         let tmp_s = dateFormatter.stringFromDate(NSDate())
         
-//        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
+        //        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
         let date_Today = Methods.get_Date(tmp_s)
         let time_Today = Methods.get_Time(tmp_s)
         
         let date_Diary = Methods.get_Date(convertedDate)
         let time_Diary = Methods.get_Time(convertedDate)
         
-//        if currentDate < 
+        //        if currentDate <
         
         //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
-//        cell.backgroundColor = UIColor.clearColor()
-
+        //        cell.backgroundColor = UIColor.clearColor()
+        
         
         if date_Diary >= date_Today {
-
+            
             // if the date is today
             // if before noon
             if time_Diary >= "12" {
                 
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
                 
                 cell.backgroundColor = CONS.col_green_071000
                 
             } else {
-
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
-
+                
+                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+                
                 cell.backgroundColor = CONS.col_green_soft
                 
             }
-//            cell.backgroundColor = myRedColor
-//            cell.backgroundColor = CONS.col_green_soft
-
+            //            cell.backgroundColor = myRedColor
+            //            cell.backgroundColor = CONS.col_green_soft
+            
             
         } else {
             
             cell.backgroundColor = UIColor.whiteColor()
             
         }
-//        cell.backgroundColor = myRedColor
         
-        return cell
-    }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-    
+    }//_tableView__Set_BGColor
+
+    func _tableView__Set_BGColor_Yesterday
+        (cell : UITableViewCell, object : Diary) -> Void {
+            
+            //ref http://www.appcoda.com/nsdate/
+            let ns_CurrentDate = object.date
+            
+//            let ns_Date_Today = NSDate()
+            
+            // formatter
+            let dateFormatter = NSDateFormatter()
+            
+            dateFormatter.locale = NSLocale.currentLocale()
+            
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            
+//            let convertedDate = dateFormatter.stringFromDate(currentDate)
+//            let dateLabel_Diary = dateFormatter.stringFromDate(currentDate)
+            let s_DateLabel_Diary = Methods.conv_NSDate_2_DateString(ns_CurrentDate)
+            
+            //
+            let ns_Date_Today = NSDate()
+
+            let s_DateLabel_Today = dateFormatter.stringFromDate(ns_Date_Today)
+//            let dateLabel_Now = dateFormatter.stringFromDate(NSDate())
+            
+            let s_DayLabel_Today = Methods.get_Date(s_DateLabel_Today)
+            
+            // yesterday
+            let ns_Date_Yesterday = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: -1)
+            
+            
+            let s_DateLabel_Yesterday = dateFormatter.stringFromDate(ns_Date_Yesterday)
+            
+            let s_DayLabel_Yesterday = Methods.get_Date(s_DateLabel_Yesterday)
+            
+            // X days ago
+            let diff = -5
+            
+            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: diff)
+            
+            
+            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+
+            // change bg color
+            if s_DateLabel_Diary >= s_DayLabel_Today {
+                
+//                cell.backgroundColor = CONS.col_green_071000
+                
+            } else if s_DateLabel_Diary >= s_DayLabel_Yesterday {
+                
+//                cell.backgroundColor = CONS.col_Blue_020510
+                cell.backgroundColor = CONS.col_Blue_020710
+                
+            }
+            
+            
+//            
+//            //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
+//            //        cell.backgroundColor = UIColor.clearColor()
+//            
+//            
+//            if date_Diary >= date_Today {
+//                
+//                // if the date is today
+//                // if before noon
+//                if time_Diary >= "12" {
+//                    
+//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+//                    
+//                    cell.backgroundColor = CONS.col_green_071000
+//                    
+//                } else {
+//                    
+//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+//                    
+//                    cell.backgroundColor = CONS.col_green_soft
+//                    
+//                }
+//                //            cell.backgroundColor = myRedColor
+//                //            cell.backgroundColor = CONS.col_green_soft
+//                
+//                
+//            } else {
+//                
+//                cell.backgroundColor = UIColor.whiteColor()
+//                
+//            }
+            
+    }//_tableView__Set_BGColor
+
     // MARK: UITableViewDataSource プロトコルのメソッド
     // Delete ボタンが押された時の処理を行う
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

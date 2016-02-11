@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class SandboxViewController: UIViewController {
 
@@ -43,6 +44,9 @@ class SandboxViewController: UIViewController {
         
         // set defaults
         Methods.set_Defaults(tmp_s)
+        
+//        // vibrate
+//        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         
         // back to the original cont
         //self.dismissViewControllerAnimated(true, completion: nil)
@@ -197,4 +201,26 @@ class SandboxViewController: UIViewController {
     }
     */
 
+    // 入力画面から戻ってきた時に TableView を更新させる
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        
+        // get defaults
+        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        
+        //        let defaults = NSUserDefaults.standardUserDefaults()
+        //
+        ////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+        ////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+        //        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
+        // set defaults to the label
+        main_label.text = "'\(tmp_s)'"
+
+        
+    }
+
+    
 }
