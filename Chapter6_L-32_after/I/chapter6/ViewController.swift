@@ -126,7 +126,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
 
         // objects with conditions
-        _test_Realm_Conditions(tmp_s)
+        _test_Realm_Conditions__MultipleKeywords(tmp_s)
+
+        
+//        // objects with conditions
+//        _test_Realm_Conditions(tmp_s)
         
         
         tableView.reloadData()
@@ -135,6 +139,135 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //ref http://stackoverflow.com/questions/19640050/custom-uitableviewcell-add-margin-between-each-cell answered Sep 11 '15 at 12:50
 //        tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
         
+    }
+    
+    func _test_Realm_Conditions__MultipleKeywords(tmp_s : String) -> Void {
+        
+        
+        //        let aPredicate = NSPredicate(format: "color = %@ AND name BEGINSWITH %@", "red", "BMW")
+        //        redCars = realm.objects(Car).filter(aPredicate)
+        //        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
+        
+        //        //debug: defaults string => force to be "" (blank)
+        //        tmp_s = ""
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s => forced to be ''")
+        
+        //debug
+        //        if true     {
+        if tmp_s == "" {
+
+            // if the default is "" --> no filter
+            dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+            
+            
+        } else {
+            
+            
+            
+            let tokens = tmp_s.componentsSeparatedByString(" ")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            
+            // query
+            var query = ""
+            
+            //            var aPredicate = ""
+            //            var aPredicate = nil
+            
+            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            
+            if tokens.count == 1 {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => building")
+
+//                let q = "title NOT CONTAINS '\(tmp_s)'"
+//                let q = "NOT title CONTAINS '\(tmp_s)'"   //=> works
+              
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+//                aPredicate = NSPredicate(format: "title NOT CONTAINS %@", tmp_s)
+//                aPredicate = NSPredicate(format: q)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => built")
+                
+            } else if tokens.count > 1 {
+                
+//                query = "title CONTAINS \(tokens[0])"
+                query = "title CONTAINS '\(tokens[0])'"
+                
+                for index in 1...(tokens.count - 1) {
+                    
+                    query += " AND title CONTAINS '\(tokens[index])'"
+                    
+                }
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+                
+                //                let aPredicate = NSPredicate(query)
+                //                aPredicate = query
+                //                aPredicate = NSPredicate(query)
+                aPredicate = NSPredicate(format: query)
+                
+            } else {
+                
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                
+            }
+            
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+            
+            
+//            aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            
+            //            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+                
+                dataArray = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+                
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                
+                //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                
+            }
+            
+//            } catch let error as NSInvalidArgumentException {
+//
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+//
+//                
+//            }
+            
+            //            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+            
+        }
+        
+        //        let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+        
+        //        redCars = realm.objects(Car).filter(aPredicate)
+        
+        //        dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+        //        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+        
+        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
+
     }
     
     func _test_Realm_Conditions(tmp_s : String) -> Void {
@@ -178,11 +311,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
             } else if tokens.count > 1 {
                 
-                query = "title CONTAINS \(tokens[0])"
+                query = "title CONTAINS '\(tokens[0])'"
                 
                 for index in 1...(tokens.count - 1) {
                     
-                    query += " AND title CONTAINS \(tokens[index])"
+                    query += " AND title CONTAINS '\(tokens[index])'"
                     
                 }
                 
@@ -200,7 +333,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
-            
+
             
             aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
 
@@ -412,8 +545,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
             
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
 
             // change bg color
             if s_DateLabel_Diary >= s_DayLabel_Today {
