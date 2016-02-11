@@ -221,6 +221,9 @@
                                 <state key="normal" title="tommorow">
                                     <color key="titleColor" red="0.03388232525158049" green="0.069552534626062229" blue="0.071764561518324554" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pattern_Generic:" destination="EWV-UN-dOh" eventType="touchUpInside" id="obv-WU-Mbo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIW-mH-UzP">
                                 <rect key="frame" x="189" y="451" width="46" height="30"/>
@@ -229,6 +232,9 @@
                                 <state key="normal" title="prog">
                                     <color key="titleColor" red="0.027522679587116065" green="0.055988403639401448" blue="0.058389234293193759" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pattern_Generic:" destination="EWV-UN-dOh" eventType="touchUpInside" id="HrC-Qg-W6O"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qg8-JZ-R1m">
                                 <rect key="frame" x="27" y="451" width="55" height="30"/>
@@ -237,6 +243,9 @@
                                 <state key="normal" title="today">
                                     <color key="titleColor" red="0.046647339210711167" green="0.09575613986278339" blue="0.098801537958115193" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pattern_Generic:" destination="EWV-UN-dOh" eventType="touchUpInside" id="Yuw-n6-lXc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -69,8 +69,12 @@ class InputViewController: UIViewController, UITextFieldDelegate {
 
         //test: vibrate
         //ref 	http://stackoverflow.com/questions/26455880/how-to-make-iphone-vibrate-using-swift        answered Nov 13 '15 at 12:45
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         
+        if (sender.titleLabel?.text)! == " " {
+            
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            
+        }
 //        //test
 //        counter = 0
 //        timer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: "vibratePhone", userInfo: nil, repeats: true)
