@@ -1,10 +1,9 @@
 D-4
 
-s-9#2/steps.8
+s-10#1/steps.3.1.4
 ---
-1. SandboxView::main_label
-    --> show current search words
+1. NEW FUNC: _tableView__Set_BGColor_Yesterday
 
     ==> done
 
-ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C
+ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
