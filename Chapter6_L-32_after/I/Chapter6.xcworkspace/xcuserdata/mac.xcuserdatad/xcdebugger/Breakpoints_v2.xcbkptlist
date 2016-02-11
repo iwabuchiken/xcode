@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "chapter6/SandboxViewController.swift"
-            timestampString = "476616874.985985"
+            timestampString = "476664381.60688"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "show_Message(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,13 +26,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chapter6/ViewController.swift"
-            timestampString = "476614781.044994"
+            timestampString = "476813340.092077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "_test_Realm_Conditions(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
