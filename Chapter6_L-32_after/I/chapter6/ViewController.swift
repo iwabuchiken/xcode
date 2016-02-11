@@ -103,8 +103,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+
+//        //debug
+//        Methods.set_Defaults("")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => ''")
+
         
         // get defaults
+//        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        //debug
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
         
         //        let defaults = NSUserDefaults.standardUserDefaults()
@@ -134,18 +143,90 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        redCars = realm.objects(Car).filter(aPredicate)
 //        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
         
+//        //debug: defaults string => force to be "" (blank)
+//        tmp_s = ""
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s => forced to be ''")
 
+        //debug
+//        if true     {
         if tmp_s == "" {
-            
+        
             // if the default is "" --> no filter
             dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
 
             
         } else {
 
-            let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            let tokens = tmp_s.componentsSeparatedByString(" ")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            
+            // query
+            var query = ""
+            
+//            var aPredicate = ""
+//            var aPredicate = nil
+            
+            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            
+            if tokens.count == 1 {
+            
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                
+            } else if tokens.count > 1 {
+                
+                query = "title CONTAINS \(tokens[0])"
+                
+                for index in 1...(tokens.count - 1) {
+                    
+                    query += " AND title CONTAINS \(tokens[index])"
+                    
+                }
+                
+//                let aPredicate = NSPredicate(query)
+//                aPredicate = query
+//                aPredicate = NSPredicate(query)
+                aPredicate = NSPredicate(format: query)
+                
+            } else {
+                
+                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                
+            }
+        
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+            
+            
+            aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
 
-            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+//            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+
+                dataArray = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                
+                
+                
+            }
+            
+//            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
 
         }
         
