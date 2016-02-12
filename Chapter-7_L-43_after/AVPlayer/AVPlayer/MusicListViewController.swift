@@ -22,10 +22,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //test
     //ref http://stackoverflow.com/questions/32290126/swift-add-gesture-recognizer-to-object-in-table-cell answered Aug 29 '15 at 21:00
-    var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
+//    var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
+//    self.tableView.addGestureRecognizer(recognizer)
+    
+    let recognizer = UIGestureRecognizer(target: self, action: "didSwipe")
+    
     self.tableView.addGestureRecognizer(recognizer)
-    
-    
     
   }
   
