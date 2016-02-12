@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 //public func out_Message(str: String) ->Void {
 //    
@@ -222,4 +223,41 @@ class Methods {
             
     }
 
+    // iPhone 内から曲情報を取得する
+    static func getSongs() -> Array<MPMediaItem> {
+        
+        var array = Array<MPMediaItem>()
+        
+        // アルバム情報を取得する
+        //        let albumsQuery: MPMediaQuery = MPMediaQuery.albumsQuery()
+        
+        //ref http://stackoverflow.com/questions/26124062/swift-xcode-play-sound-files-from-player-list answered Sep 30 '14 at 18:49
+        let songsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumsQuery.description => \(songsQuery.description)")
+        
+        
+        let albumItems: [MPMediaItemCollection] = songsQuery.collections!
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        
+        
+        // アルバム情報から曲情報を取得する
+        for album in albumItems {
+            let albumItems: [MPMediaItem] = album.items
+            for song in albumItems {
+                array.append( song )
+            }
+        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] array => built")
+        
+        return array
+    }
+
+    
 }
