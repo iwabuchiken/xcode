@@ -1,9 +1,11 @@
-D-4
+D-21
 
-s-11#1/steps.2
+s-8#2
 ---
-1. remove vibration => SandboxView::set_search
+1. [PSoC Creator 101 Lesson 4: Let’s Get an LED to Blink Part 1]
+2. on-board switch
 
     ==> done
+
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

@@ -19,8 +19,33 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     super.viewDidLoad()
     songs = getSongs()
     tableView.reloadData()
+    
+    //test
+    //ref http://stackoverflow.com/questions/32290126/swift-add-gesture-recognizer-to-object-in-table-cell answered Aug 29 '15 at 21:00
+    var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
+    self.tableView.addGestureRecognizer(recognizer)
+    
+    
+    
   }
   
+    func didSwipe(recognizer: UIGestureRecognizer) {
+
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped!")
+        
+//        if recognizer.state == UIGestureRecognizerState.Ended {
+//            let swipeLocation = recognizer.locationInView(self.tableView)
+//            if let swipedIndexPath = tableView.indexPathForRowAtPoint(swipeLocation) {
+//                if let swipedCell = self.tableView.cellForRowAtIndexPath(swipedIndexPath) {
+//                    // Swipe happened. Do stuff!
+//                    //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped! => \(swipedCell.description)")
+//                    
+//                }
+//            }
+//        }
+    }
+    
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
