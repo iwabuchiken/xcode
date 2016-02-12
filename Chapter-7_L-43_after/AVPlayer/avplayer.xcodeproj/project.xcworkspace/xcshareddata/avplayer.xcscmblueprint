@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A61DDC1FAB3CDD96059B17A401476E55DBF75E24",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EA9F31CA57ED155FE828BC455D98C227346552E3" : 0,
+    "A61DDC1FAB3CDD96059B17A401476E55DBF75E24" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5E3E5BE6-BFC9-44C6-94F6-3105E1930F7C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EA9F31CA57ED155FE828BC455D98C227346552E3" : "..",
+    "A61DDC1FAB3CDD96059B17A401476E55DBF75E24" : "xcode\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "avplayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Chapter-7_L-43_after\/AVPlayer\/avplayer.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iwabuchiken\/xcode.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A61DDC1FAB3CDD96059B17A401476E55DBF75E24"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iwabuchiken\/works_MacMini.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EA9F31CA57ED155FE828BC455D98C227346552E3"
+    }
+  ]
+}

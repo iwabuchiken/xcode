@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		048D15E81C6DA0C0009588E8 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15E71C6DA0C0009588E8 /* Methods.swift */; };
-		048D15F41C6DB08E009588E8 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15F31C6DB08E009588E8 /* CONS.swift */; };
+		048D15F11C6DAECB009588E8 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15EF1C6DAECB009588E8 /* Methods.swift */; };
+		048D15F21C6DAECB009588E8 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15F01C6DAECB009588E8 /* CONS.swift */; };
 		3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E230B2B1BC887F9000162A3 /* AppDelegate.swift */; };
 		3E230B301BC887F9000162A3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */; };
 		3E230B331BC887F9000162A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E230B311BC887F9000162A3 /* Main.storyboard */; };
 		3E230B351BC887F9000162A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E230B341BC887F9000162A3 /* Assets.xcassets */; };
 		3E230B381BC887F9000162A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */; };
 		3E7E2E061BCEB1EA005415C3 /* MusicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */; };
+		3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		048D15E71C6DA0C0009588E8 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = "../../../Chapter6_L-32_after/I/chapter6/Methods.swift"; sourceTree = "<group>"; };
-		048D15F31C6DB08E009588E8 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONS.swift; path = "../../../Chapter6_L-32_after/I/chapter6/CONS.swift"; sourceTree = "<group>"; };
+		048D15EF1C6DAECB009588E8 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = "../../../Chapter6_L-32_after/I/chapter6/Methods.swift"; sourceTree = "<group>"; };
+		048D15F01C6DAECB009588E8 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONS.swift; path = "../../../Chapter6_L-32_after/I/chapter6/CONS.swift"; sourceTree = "<group>"; };
 		3E230B281BC887F9000162A3 /* AVPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E230B2B1BC887F9000162A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		3E230B371BC887F9000162A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E230B391BC887F9000162A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicListViewController.swift; sourceTree = "<group>"; };
+		3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +62,12 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				048D15F31C6DB08E009588E8 /* CONS.swift */,
-				048D15E71C6DA0C0009588E8 /* Methods.swift */,
+				048D15EF1C6DAECB009588E8 /* Methods.swift */,
+				048D15F01C6DAECB009588E8 /* CONS.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
 				3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */,
 				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
+				3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */,
 				3E230B311BC887F9000162A3 /* Main.storyboard */,
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
@@ -113,7 +116,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3E230B231BC887F9000162A3 /* Build configuration list for PBXProject "AVPlayer" */;
+			buildConfigurationList = 3E230B231BC887F9000162A3 /* Build configuration list for PBXProject "avplayer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -149,11 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048D15E81C6DA0C0009588E8 /* Methods.swift in Sources */,
 				3E230B301BC887F9000162A3 /* MovieListViewController.swift in Sources */,
+				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
+				048D15F11C6DAECB009588E8 /* Methods.swift in Sources */,
+				048D15F21C6DAECB009588E8 /* CONS.swift in Sources */,
 				3E7E2E061BCEB1EA005415C3 /* MusicListViewController.swift in Sources */,
-				048D15F41C6DB08E009588E8 /* CONS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +272,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AVPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.xcode-player.D-4-s-1-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.xcode-player.D-1-s-1-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -282,7 +286,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AVPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.xcode-player.D-4-s-1-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.xcode-player.D-1-s-1-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -291,7 +295,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E230B231BC887F9000162A3 /* Build configuration list for PBXProject "AVPlayer" */ = {
+		3E230B231BC887F9000162A3 /* Build configuration list for PBXProject "avplayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E230B3A1BC887F9000162A3 /* Debug */,
