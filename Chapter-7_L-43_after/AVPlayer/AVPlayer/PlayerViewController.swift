@@ -28,6 +28,10 @@ class PlayerViewController: AVPlayerViewController {
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
     
+    //  background play
+    UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+    
+    try! AVAudioSession.sharedInstance().setActive(false)
     
     
   }
@@ -48,6 +52,12 @@ class PlayerViewController: AVPlayerViewController {
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] seekTime.value.value => \(seekTime.value.value)")
     
+    // background play
+    try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+    
+    try! AVAudioSession.sharedInstance().setActive(true)
+    
+    UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     
     player?.play()
   }
