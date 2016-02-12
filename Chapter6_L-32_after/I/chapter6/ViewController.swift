@@ -178,19 +178,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func _test_Realm_Conditions__MultipleKeywords(tmp_s : String) -> Void {
         
-        
-        //        let aPredicate = NSPredicate(format: "color = %@ AND name BEGINSWITH %@", "red", "BMW")
-        //        redCars = realm.objects(Car).filter(aPredicate)
-        //        let aPredicate = NSPredicate(format: "title LIKE %@", tmp_s)
-        
-        //        //debug: defaults string => force to be "" (blank)
-        //        tmp_s = ""
-        
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s => forced to be ''")
-        
-        //debug
-        //        if true     {
         if tmp_s == "" {
 
             // if the default is "" --> no filter
@@ -198,8 +186,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
         } else {
-            
-            
             
             let tokens = tmp_s.componentsSeparatedByString(" ")
             
@@ -209,43 +195,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // query
             var query = ""
             
-            //            var aPredicate = ""
-            //            var aPredicate = nil
-            
             var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
             
             if tokens.count == 1 {
-                //debug
-//                extension String {
-//                    
-//                    subscript (i: Int) -> Character {
-//                        return self[self.startIndex.advancedBy(i)]
-//                    }
-//                    
-//                    subscript (i: Int) -> String {
-//                        return String(self[i] as Character)
-//                    }
-//                    
-//                    subscript (r: Range<Int>) -> String {
-//                        let start = startIndex.advancedBy(r.startIndex)
-//                        let end = start.advancedBy(r.endIndex - r.startIndex)
-//                        return self[Range(start: start, end: end)]
-//                    }
-//                }
 
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s[0])")    //=> /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/Chapter6/ViewController.swift:236:82: 'subscript' is unavailable: cannot subscript String with an Int, see the documentation comment for discussion
-//aaa
+                //ref http://stackoverflow.com/questions/24037711/get-the-length-of-a-string answered Jun 4 '14 at 12:41
+//                let len = count(tokens[0])
+                let len = tokens[0].characters.count
+//                if len > 1 {
+
+                    //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
+                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
+
+//                }
                 
-                //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
+//                //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
+////                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
 
 //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(String(tmp_s[tmp_s.startIndex.advancedBy(4)]))")    //=> /Users/mac/Desktop/works/WS/  //=> n.w.//=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
 
 //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(tmp_s[tmp_s.startIndex.advancedBy(4)])")  //=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
                 
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s.startIndex.advancedBy(4) => \(tmp_s.startIndex.advancedBy(4))")
-                //=> '4'
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s.startIndex.advancedBy(4) => \(tmp_s.startIndex.advancedBy(4))")
+//                //=> '4'
                 
                 
                 //debug
@@ -257,9 +231,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if String(tmp_s.characters.first!) == "-" {
                     
                     //ref http://stackoverflow.com/questions/32575227/swift-2-0-substringwithrange answered Sep 15 '15 at 2:30
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] substring => \(tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(3)])")   //=> works
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] substring => \(tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(3)])")   //=> works
                     
-                    aPredicate = NSPredicate(format: "NOT title CONTAINS %@", tmp_s)
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)] => %s", tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)])
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)] => ", tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)])
+                    
+                    aPredicate = NSPredicate(
+                                    format: "NOT title CONTAINS %@",
+                        tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)]
+
+//                                tmp_s[tmp_s.startIndex..<tmp_s.characters.count - 1]
+//                                    tmp_s
+                    )
                     
                     print("[\(Methods.basename(__FILE__)):\(__LINE__)] NOT directive")
                     
@@ -283,7 +266,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 for index in 1...(tokens.count - 1) {
                     
-                    query += " AND title CONTAINS '\(tokens[index])'"
+                    // '-' directive
+                    if String(tokens[index].characters.first!) == "-" {
+                        
+//                        query += " AND NOT title CONTAINS '\(tokens[index])'"
+                        query += " AND NOT title CONTAINS '\(tokens[index][tokens[index].startIndex.advancedBy((1))..<tokens[index].startIndex.advancedBy(tokens[index].characters.count)])'"
+
+                     
+                    } else {
+
+                        query += " AND title CONTAINS '\(tokens[index])'"
+                        
+                    }
+                    
+//                    query += " AND title CONTAINS '\(tokens[index])'"
                     
                 }
                 
@@ -339,15 +335,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         
-        //        let aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
-        
-        //        redCars = realm.objects(Car).filter(aPredicate)
-        
-        //        dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
-        //        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
-        
         //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
 
     }
