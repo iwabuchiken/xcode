@@ -1,0 +1,5 @@
+use_frameworks!
+platform :ios, "9.2"
+pod 'RealmSwift'
+
+xcodeproj '/Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/avplayer.xcodeproj’

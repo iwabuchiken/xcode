@@ -7,14 +7,27 @@
 
 import UIKit
 import MediaPlayer
+import RealmSwift
 
 class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
   
   @IBOutlet var tableView: UITableView!
-  
+
+    var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
+    
+    
   // 曲情報
   var songs = Array<MPMediaItem>()
   
+    // 入力画面から戻ってきた時に TableView を更新させる
+    override func viewWillAppear(animated: Bool) {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        
+        
+    }
+    
     @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
         
         //debug
