@@ -20,9 +20,34 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] long pressed (\(Methods.get_TimeLable()))")
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
         
+        
+        //ref http://stackoverflow.com/questions/30839275/how-to-select-a-table-row-during-a-long-press-in-swift answered Jun 15 '15 at 7:33
+        let touchPoint = sender.locationInView(self.view)
+        
+        let indexPath = tableView.indexPathForRowAtPoint(touchPoint)
+        
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] indexPath?.item => \(indexPath?.item)" ) //=> works
+        
+//        // get item at the index
+//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
+//        
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell => created" ) //=> english title --> "fatal error: unexpectedly found nil while unwrapping an Optional value"
+        
+        
+//        //debug
+////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel!.text)" ) //=> works
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel?.text)" ) //=> works
+//      
+//        //test
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tableView.indexPathForSelectedRow?.row => \(tableView.indexPathForSelectedRow?.row)" ) //=>
+//        
+//        //test
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] songs.count => \(songs.count)" ) //=>
+//        
         
     }
     
@@ -116,6 +141,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   
   // PlayerViewController にURLを渡して再生を開始させる
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
+    
     if let playerViewController = segue.destinationViewController as? PlayerViewController {
       let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
         
