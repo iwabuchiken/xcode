@@ -15,6 +15,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // 曲情報
   var songs = Array<MPMediaItem>()
   
+    @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] long pressed (\(Methods.get_TimeLable()))")
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
+        
+        
+    }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     songs = getSongs()

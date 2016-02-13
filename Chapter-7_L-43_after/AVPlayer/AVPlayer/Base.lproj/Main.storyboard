@@ -27,12 +27,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="9fT-W7-qF3" firstAttribute="leading" secondItem="feD-VR-4hh" secondAttribute="leading" id="8lq-Np-L4p"/>
                             <constraint firstAttribute="trailing" secondItem="9fT-W7-qF3" secondAttribute="trailing" id="CGQ-bG-bqE"/>
                             <constraint firstItem="K4q-fE-81H" firstAttribute="top" secondItem="9fT-W7-qF3" secondAttribute="bottom" id="WbJ-Ob-8Sq"/>
                             <constraint firstItem="9fT-W7-qF3" firstAttribute="top" secondItem="OI8-Og-Oak" secondAttribute="bottom" id="sbp-89-MZ2"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="L0D-EM-zn8" appends="YES" id="InZ-ls-KIn"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Music" image="ico_note" id="oxk-ZR-egh"/>
                     <connections>
@@ -41,6 +45,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="L0D-EM-zn8">
+                    <connections>
+                        <action selector="handle_LongPress:" destination="9pv-A4-QxB" id="26Y-Ch-UPn"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1562" y="-274"/>
         </scene>
@@ -136,6 +145,6 @@
         <image name="ico_video" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="z57-UI-us2"/>
+        <segue reference="Ko8-7N-Kb5"/>
     </inferredMetricsTieBreakers>
 </document>
