@@ -8,6 +8,7 @@
 
 import Foundation
 import MediaPlayer
+import RealmSwift
 
 //public func out_Message(str: String) ->Void {
 //    
@@ -360,6 +361,35 @@ class Methods {
             
             
     }
-    
-    
+ 
+    static func get_RealmInstance(file_name : String) -> Realm {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        
+        //        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
+//        return try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
+        return try! Realm(path: "\(dpath_realm)/\(file_name)")   //=> works
+
+    }
+ 
+    //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
+    static func lastId() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        if let user = realm.objects(BM).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+
 }

@@ -38,5 +38,12 @@ class CONS {
     static var key_SearchWords = "key_SearchWords"
  
     static var s_DirSeparator = "/"
+ 
+    /*
+    
+        realm
+
+    */
+    static var s_Realm_FileName = "abc.realm"
     
 }

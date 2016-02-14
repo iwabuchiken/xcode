@@ -28,6 +28,43 @@ class PlayerViewController: AVPlayerViewController {
     
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
+
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
+
+    /*
+
+        save data
+
+    */
+    // realm
+    let rl_tmp = Methods.get_RealmInstance("abc.realm")
+    
+    // BM instance
+    let bm = BM()
+    
+    bm.title = item_name
+    bm.bm_time = Int((player?.currentTime().seconds)!)
+    let tmp_time = NSDate()
+    
+    bm.created_at = tmp_time
+    bm.modified_at = tmp_time
+    
+    bm.id = Methods.lastId()
+    
+    //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
+    try! rl_tmp.write {
+        
+//        self.realm.add(self.diary, update: true)
+        
+        
+        rl_tmp.add(bm, update: true)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+
+        
+    }
     
     //  background play
     UIApplication.sharedApplication().endReceivingRemoteControlEvents()

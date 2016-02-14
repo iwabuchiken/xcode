@@ -42,6 +42,6 @@ class BM: Object {
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM class")
         
     }
-    
+
     
 }

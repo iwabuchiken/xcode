@@ -40,13 +40,15 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         */
         
-        let realmPath = Realm.Configuration.defaultConfiguration.path
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
+//
+//        let dpath_realm = Methods.dirname(realmPath!)
+//
+//        
+////        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
+//        let rl_tmp = try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
 
-        let dpath_realm = Methods.dirname(realmPath!)
-
-        
-//        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
-        let rl_tmp = try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
+        let rl_tmp = Methods.get_RealmInstance("abc.realm")
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
@@ -56,9 +58,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        //debug
+        if dataArray.count > 0 {
+            
+            let bm = dataArray.first
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(bm?.title) (\(bm?.bm_time))")
+            
+        }
         
         
-        Methods.show_DirList(dpath_realm)
+        
+//        Methods.show_DirList(dpath_realm)
         
 //        //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
