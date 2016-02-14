@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040D66391C7070EF0062799F /* BMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D66381C7070EF0062799F /* BMViewController.swift */; };
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
 		048D15F11C6DAECB009588E8 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15EF1C6DAECB009588E8 /* Methods.swift */; };
 		048D15F21C6DAECB009588E8 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15F01C6DAECB009588E8 /* CONS.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040D66381C7070EF0062799F /* BMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewController.swift; sourceTree = "<group>"; };
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
 		048D15EF1C6DAECB009588E8 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = "../../../Chapter6_L-32_after/I/chapter6/Methods.swift"; sourceTree = "<group>"; };
 		048D15F01C6DAECB009588E8 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONS.swift; path = "../../../Chapter6_L-32_after/I/chapter6/CONS.swift"; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
 				3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */,
 				3E230B311BC887F9000162A3 /* Main.storyboard */,
+				040D66381C7070EF0062799F /* BMViewController.swift */,
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
@@ -237,6 +240,7 @@
 				04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */,
 				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
+				040D66391C7070EF0062799F /* BMViewController.swift in Sources */,
 				048D15F11C6DAECB009588E8 /* Methods.swift in Sources */,
 				043FD3E91C70081700E6C342 /* BM_2.swift in Sources */,
 				048D15F21C6DAECB009588E8 /* CONS.swift in Sources */,
