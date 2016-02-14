@@ -13,6 +13,9 @@ class BM: Object {
     // 管理用 ID。プライマリーキー
     dynamic var id = 0
     
+    // audio id
+    dynamic var audio_id = 0
+    
     // タイトル
     dynamic var title = ""
     
