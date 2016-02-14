@@ -39,12 +39,13 @@ class Methods {
             
         }
         
-        // 1 '/'
+        // 1 '/'    => "/memos.txt" --> ["","memos.txt"]
         if tokens.count == 2 {
             
 //            print("path string has 1 '/' char")
             
-            return tokens[0]
+//            return tokens[0]
+            return tokens[1]
             
         }
         
@@ -57,30 +58,66 @@ class Methods {
 
     static func dirname(path: String) -> String {
         
-        let tokens = path.componentsSeparatedByString("/")
+//        let tokens = path.componentsSeparatedByString("/")
+//        let tokens = path.componentsSeparatedByString(CONS.s_DirSeparator)    //=> works
+        let tokens = path.componentsSeparatedByString(CONS.s_DirSeparator)
         
         // no '/' char
         if tokens.count == 1 {
             
-            print("path string has no '/' char")
+            print("path string has no '\(CONS.s_DirSeparator)' char")
             
             return path
             
         }
         
-        // 1 '/'
+        // 1 '/'    => "/Libray" --> ["","Library"]
         if tokens.count == 2 {
             
             //            print("path string has 1 '/' char")
             
-            return tokens[0]
+//            return tokens[0]
+            return path
             
         }
         
+        // 2 '/'    => "/Libray/path" --> ["","Library","path"]
+        if tokens.count >= 3 {
+            
+            //            print("path string has 1 '/' char")
+            
+            //            return tokens[0]
+//            return path
+            
+//            return tokens[tokens.startIndex.advancedBy((0))..<tokens.startIndex.advancedBy(tokens.count)]
+            
+//            return tokens.map{Array($0)}  //=> /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/chapter6/Methods.swift:93:20: Ambiguous reference to member 'map'
+            
+            //ref http://stackoverflow.com/questions/29874414/cannot-subscript-a-value-of-anyobject-with-an-index-of-type-int answered Apr 26 '15 at 6:44
+//            return tokens[1...(tokens.count - 1)] //=> n.w.
+//            return tokens?[1...(tokens?.count - 1)]
+            
+            let len = tokens.count
+            
+            return tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] len => \(len)")
+//
+//            return ""
+
+        }
+
         // multiple
-        return tokens[tokens.count - 1]
+//        let tmp = tokens[0..(tokens.count - 2)].joinWithSeparator(CONS.s_DirSeparator)
         
-        //        return ""
+//        let tmp = tokens.startIndex
+//        
+//        return path
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => unknown value¥n returning path")
+
+        return path
         
     }
     
@@ -308,5 +345,21 @@ class Methods {
         return array
     }
 
+    static func joinArray
+        (ary : [String], connect : String, start : Int, end : Int) -> String {
+        
+//        var tmp = ""
+//            
+//            for i in start...end {
+//                
+//                
+//                
+//            }
+
+            return ""
+            
+            
+    }
+    
     
 }

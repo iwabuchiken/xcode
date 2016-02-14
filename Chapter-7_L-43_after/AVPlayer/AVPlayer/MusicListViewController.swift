@@ -26,12 +26,26 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // test: realm
         test_Realm()
         
+        //test: subarray
+        test_Subarrays()
 
         
     }
     
     func test_Realm() {
 
+        /*
+
+            new realm file
+
+        */
+//        let rl_tmp = try! Realm(path: "abc.realm")
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
+//        
+        
+        
 //        //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
         
@@ -48,6 +62,18 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // files list
         Methods.show_DirList(realmPath!)
+        
+        // files list
+        let dpath_realm = Methods.dirname(realmPath!)
+
+        Methods.show_DirList(dpath_realm)
+        
+        
+        
+        
+        //        default.realm
+        //        default.realm.lock
+        //        default.realm.note
         
         //        try! realm.write {
         //
@@ -66,6 +92,35 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //            
         //            
         //        }     //=> works
+        
+    }
+    
+    func test_Subarrays() {
+        
+        let tmp = "/Library/abc/def/xyz.txt"
+
+        let tokens = tmp.componentsSeparatedByString(CONS.s_DirSeparator)
+        
+//        let ary_tmp = tokens[2...3]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[2] => \(tokens[2])")
+        
+        let len = tokens.count
+        
+        let s_tmp = tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** s_tmp => \(s_tmp)")
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** Methods.dirname(tmp) => \(Methods.dirname(tmp))")
+        
+        
+//        let tmp2 = Methods.dirname(tmp)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** tmp2 => \(tmp2)")
         
     }
     

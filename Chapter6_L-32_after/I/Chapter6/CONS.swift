@@ -36,5 +36,7 @@ class CONS {
         alpha:  1.0)
     
     static var key_SearchWords = "key_SearchWords"
+ 
+    static var s_DirSeparator = "/"
     
 }
