@@ -26,8 +26,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // test: realm
         test_Realm()
         
-        //test: subarray
-        test_Subarrays()
+//        //test: subarray
+//        test_Subarrays()
 
         
     }
@@ -39,12 +39,26 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             new realm file
 
         */
-//        let rl_tmp = try! Realm(path: "abc.realm")
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
-//        
         
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+
+        let dpath_realm = Methods.dirname(realmPath!)
+
+        
+//        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
+        let rl_tmp = try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
+        
+//        var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
+        var dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
+        
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        
+        
+        Methods.show_DirList(dpath_realm)
         
 //        //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
@@ -54,21 +68,18 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        _ = try! Realm()
         
         //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
-        let realmPath = Realm.Configuration.defaultConfiguration.path
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
-        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
+//        
+//        
+//        // files list
+//        Methods.show_DirList(realmPath!)
         
         // files list
-        Methods.show_DirList(realmPath!)
-        
-        // files list
-        let dpath_realm = Methods.dirname(realmPath!)
+//        let dpath_realm = Methods.dirname(realmPath!)
 
-        Methods.show_DirList(dpath_realm)
-        
-        
         
         
         //        default.realm
