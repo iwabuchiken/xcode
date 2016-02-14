@@ -301,7 +301,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // 各セルを選択した時に実行される
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-    if false {
+
+    
+    
+    //debug
+//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] sw_DebugMode.on => (\(PreferenceViewController().sw_DebugMode.on))")
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.b_DebugMode => (\(CONS.b_DebugMode))")
+
+    let b_flag = CONS.b_DebugMode
+
+    if b_flag {
+
+//    if false {
+//    if PreferenceViewController().sw_DebugMode.on {
 
         performSegueWithIdentifier("bmSegue",sender: nil)
         

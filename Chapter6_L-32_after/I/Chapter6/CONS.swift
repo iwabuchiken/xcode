@@ -46,4 +46,12 @@ class CONS {
     */
     static var s_Realm_FileName = "abc.realm"
     
+    /*
+    
+        preferences
+
+    */
+    static var b_DebugMode = false
+    
+    
 }
