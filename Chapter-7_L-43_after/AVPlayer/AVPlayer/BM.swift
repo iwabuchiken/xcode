@@ -17,7 +17,10 @@ class BM: Object {
     dynamic var title = ""
     
     // 本文
-    dynamic var body = ""
+    dynamic var memo = ""
+    
+    // time
+    dynamic var bm_time = 0
     
     /// 最終更新日時
     dynamic var modified_at = NSDate()

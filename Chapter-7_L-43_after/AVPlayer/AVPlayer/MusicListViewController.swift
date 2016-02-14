@@ -26,6 +26,27 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
         
         
+        //test
+        let realm = try! Realm()
+        
+        try! realm.write {
+
+            //ref https://realm.io/docs/swift/latest/ "You can also delete all objects "
+            realm.deleteAll()
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
+
+//            //test
+//            realm.delete(BM)
+                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
+            
+            
+        }     //=> works
+        
     }
     
     @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
