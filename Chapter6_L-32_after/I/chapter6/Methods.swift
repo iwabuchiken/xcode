@@ -55,6 +55,36 @@ class Methods {
         
     }
 
+    static func dirname(path: String) -> String {
+        
+        let tokens = path.componentsSeparatedByString("/")
+        
+        // no '/' char
+        if tokens.count == 1 {
+            
+            print("path string has no '/' char")
+            
+            return path
+            
+        }
+        
+        // 1 '/'
+        if tokens.count == 2 {
+            
+            //            print("path string has 1 '/' char")
+            
+            return tokens[0]
+            
+        }
+        
+        // multiple
+        return tokens[tokens.count - 1]
+        
+        //        return ""
+        
+    }
+    
+
     static func show_DirList() {
         
         //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
@@ -67,6 +97,25 @@ class Methods {
         
         
     }
+
+    static func show_DirList(path : String) {
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        let files = filemanager.enumeratorAtPath(path)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+
+        
+        while let file = files?.nextObject() {
+            print(file)
+        }
+        
+        
+        
+    }
+    
 
     /*
         "2016/02/08 12:38:09"   => "2016/02/08"

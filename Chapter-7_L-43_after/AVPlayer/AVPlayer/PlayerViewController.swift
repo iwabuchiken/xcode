@@ -34,34 +34,35 @@ class PlayerViewController: AVPlayerViewController {
     
     try! AVAudioSession.sharedInstance().setActive(false)
     
-    // save records
-    save_BM()
+//    // save records
+//    save_BM()
     
   }
     
-    func save_BM() {
-        
-        //ref https://realm.io/docs/swift/latest/ "Adding Objects"
-        let realm = try! Realm()
-        
-        let bm = BM()
-        
-        bm.title = item_name
-        
-        bm.bm_time = Int((player?.currentTime().seconds)!)
-        
-        try! realm.write {
-            
-            realm.add(bm)
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => saved (\(bm.title) / \(bm.bm_time))")
-            
-        }
-        
-        
-    }
-  
+//    func save_BM() {
+//        
+//        //ref https://realm.io/docs/swift/latest/ "Adding Objects"
+//        let realm = try! Realm()
+//        
+////        let bm = BM()
+//        let bm = BM_2()
+//        
+//        bm.title = item_name
+//        
+//        bm.bm_time = Int((player?.currentTime().seconds)!)
+//        
+//        try! realm.write {
+//            
+//            realm.add(bm)
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => saved (\(bm.title) / \(bm.bm_time))")
+//            
+//        }
+//        
+//        
+//    }
+//  
   // 音楽を再生する
   func playMusic(url: NSURL) {
     player = AVPlayer(URL: url)

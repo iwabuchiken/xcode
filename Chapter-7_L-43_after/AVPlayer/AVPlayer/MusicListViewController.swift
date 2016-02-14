@@ -13,7 +13,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   
   @IBOutlet var tableView: UITableView!
 
-    var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
+//    var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
+//    var dataArray = try! Realm().objects(BM_2).sorted("created_at", ascending: false)
     
     
   // 曲情報
@@ -22,30 +23,49 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
 
+        // test: realm
+        test_Realm()
+        
+
+        
+    }
+    
+    func test_Realm() {
+
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        
+        
+//        //test
+//        _ = try! Realm()
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
         
         
-        //test
-        let realm = try! Realm()
+        // files list
+        Methods.show_DirList(realmPath!)
         
-        try! realm.write {
-
-            //ref https://realm.io/docs/swift/latest/ "You can also delete all objects "
-            realm.deleteAll()
-
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
-
-//            //test
-//            realm.delete(BM)
-                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
-            
-            
-        }     //=> works
+        //        try! realm.write {
+        //
+        //            //ref https://realm.io/docs/swift/latest/ "You can also delete all objects "
+        //            realm.deleteAll()
+        //
+        //            //debug
+        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
+        //
+        ////            //test
+        ////            realm.delete(BM)
+        //                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
+        //
+        //            //debug
+        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
+        //            
+        //            
+        //        }     //=> works
         
     }
     
