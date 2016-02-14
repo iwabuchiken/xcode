@@ -45,6 +45,7 @@
                     <connections>
                         <outlet property="tableView" destination="9fT-W7-qF3" id="f5q-Ve-hUQ"/>
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="cellSegue" id="z57-UI-us2"/>
+                        <segue destination="6sp-Ry-9XG" kind="show" identifier="bmSegue" id="OgM-aH-ieb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

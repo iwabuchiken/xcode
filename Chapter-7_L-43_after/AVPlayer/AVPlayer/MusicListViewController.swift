@@ -267,7 +267,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   
   // 各セルを選択した時に実行される
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("cellSegue",sender: nil)
+    
+    if false {
+
+        performSegueWithIdentifier("bmSegue",sender: nil)
+        
+    } else {
+        
+        performSegueWithIdentifier("cellSegue",sender: nil)
+        
+    }
+//    performSegueWithIdentifier("cellSegue",sender: nil)
+    
+    
+    
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   

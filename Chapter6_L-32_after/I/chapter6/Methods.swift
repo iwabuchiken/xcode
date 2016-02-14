@@ -100,6 +100,7 @@ class Methods {
             
             let len = tokens.count
             
+            //ref join http://stackoverflow.com/questions/25827033/how-do-i-convert-a-swift-array-to-a-string answered Sep 13 '14 at 19:54
             return tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
 //            //debug
 //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] len => \(len)")

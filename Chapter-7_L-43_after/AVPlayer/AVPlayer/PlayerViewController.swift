@@ -53,6 +53,7 @@ class PlayerViewController: AVPlayerViewController {
     bm.id = Methods.lastId()
     
     //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
+    //ref https://mynavi-agent.jp/it/geekroid/2015/07/realm-2-realmswift-.html
     try! rl_tmp.write {
         
 //        self.realm.add(self.diary, update: true)
