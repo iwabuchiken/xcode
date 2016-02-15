@@ -57,6 +57,7 @@ class CONS {
     /*
         keys
     */
+    //ref http://stackoverflow.com/questions/28628225/how-do-you-save-local-storage-data-in-a-swift-application answered Feb 20 '15 at 12:15
     enum defaultKeys {
     
         static let key_Set_DebugMode = "key_Set_DebugMode"

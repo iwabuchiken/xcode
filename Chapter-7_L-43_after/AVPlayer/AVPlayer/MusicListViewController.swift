@@ -333,6 +333,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
 
 //    if b_flag {
+    // ref boolValue http://stackoverflow.com/questions/28107051/convert-string-to-bool-in-swift-via-api-or-most-swift-like-approach answered Jan 23 '15 at 10:10
     if dfltVal_DebugMode?.boolValue == true {
 
 //    if false {
@@ -352,6 +353,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
+  // MARK: segue-related methods
   // PlayerViewController にURLを渡して再生を開始させる
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
@@ -396,6 +398,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // set title => for BMView
         vc.song_title = title
         
+        // set: nsurl
+        let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+
+        vc.url = url!
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")

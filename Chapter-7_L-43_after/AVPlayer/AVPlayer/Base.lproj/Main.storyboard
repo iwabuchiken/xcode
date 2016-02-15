@@ -67,7 +67,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2374" y="-274"/>
+            <point key="canvasLocation" x="2378" y="-226"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="CCi-Ti-8Y8">
@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7BP-0Y-ZOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3067" y="-153"/>
+            <point key="canvasLocation" x="3143" y="0.0"/>
         </scene>
         <!--Movie-->
         <scene sceneID="wg7-f3-ORb">
@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="360"/>
+            <point key="canvasLocation" x="2399" y="476"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -207,11 +207,12 @@
                     <connections>
                         <outlet property="lbl_Title" destination="gVH-nc-olA" id="vQQ-J6-rK9"/>
                         <outlet property="tableView" destination="NRT-vP-VJn" id="PWH-Rc-rJg"/>
+                        <segue destination="jiz-rV-vM4" kind="presentation" identifier="bm2play_Segue" id="Cdc-QN-XRJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gh-GR-6QR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268" y="363"/>
+            <point key="canvasLocation" x="346" y="703"/>
         </scene>
         <!--PreferenceView Controller-->
         <scene sceneID="92M-ro-6Tn">
@@ -247,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5d-XS-Rf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="798" y="224"/>
+            <point key="canvasLocation" x="823" y="230"/>
         </scene>
         <!--Music-->
         <scene sceneID="JPr-gs-7GO">
@@ -274,6 +275,6 @@
         <image name="ico_video" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="z57-UI-us2"/>
+        <segue reference="Cdc-QN-XRJ"/>
     </inferredMetricsTieBreakers>
 </document>

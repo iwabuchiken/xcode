@@ -13,6 +13,38 @@ import RealmSwift
 class PlayerViewController: AVPlayerViewController {
 
     var item_name : String!
+
+    var seekTime : CMTime?
+    
+// MARK: View-related methods
+  override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // NavigationBar の戻るボタンを消す
+        self.navigationItem.setHidesBackButton(true, animated:false)
+    
+        // tab bar => hide
+        //ref http://stackoverflow.com/questions/32465415/how-do-you-hide-a-tab-bar-in-xcode-swift answered Sep 9 '15 at 0:11
+    
+//        self.definesPresentationContext = true
+        self.definesPresentationContext = false
+    
+        self.tabBarController?.tabBar.hidden = true
+    
+        // hide => nav bar
+        //ref http://stackoverflow.com/questions/31507676/swift-xcode-hide-navigation-bar-for-specific-view answered Jul 20 '15 at 1:25
+        self.navigationController?.navigationBarHidden = true
+    
+//        // show "done" button
+
+    
+        //ref http://stackoverflow.com/questions/31812142/swift-avplayer-has-no-done-button answered Aug 4 '15 at 14:48
+//        let playerVC = AVPlayerViewController()
+////        playerVC.player = AVPlayer(URL: NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")!)
+//        self.presentViewController(playerVC, animated: true, completion: nil)
+    
+    
+    }
     
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -105,6 +137,17 @@ class PlayerViewController: AVPlayerViewController {
   // 音楽を再生する
   func playMusic(url: NSURL) {
     player = AVPlayer(URL: url)
+    
+//    // show "done" button
+//    let playerVC = AVPlayerViewController()
+//    //        playerVC.player = AVPlayer(URL: NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")!)
+//    playerVC.player = AVPlayer(URL: url)
+//    player = playerVC.player
+//    
+//    self.presentViewController(playerVC, animated: true, completion: nil)
+
+//    self.presentViewController(self, animated: true, completion: nil)
+        //    2016-02-15 18:56:11.585 AVPlayer[6825:2918740] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Application tried to present modal view controller on itself. Presenting controller is <AVPlayer.PlayerViewController: 0x13e846800>.'
     
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
