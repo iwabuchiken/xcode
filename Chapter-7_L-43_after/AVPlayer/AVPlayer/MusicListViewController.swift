@@ -387,8 +387,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     
   func _prepSegue__BMView() {
     
-    //test
-    _test_RealmRecords__BM()
+//    //test
+//    _test_RealmRecords__BM()
     
     let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
         
@@ -418,10 +418,21 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
     do {
         
-        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+
+//        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+        
+//        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+        
+        for item in dataArray {
+            
+            print("title = \(item.title) --> \(item.bm_time)")
+            
+        }
         
 
     } catch is NSException {
