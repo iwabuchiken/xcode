@@ -393,4 +393,36 @@ class Methods {
         }
     }
 
+    static func conv_Seconds_2_ClockLabel(sec : Int) -> String {
+        
+        // seconds
+        let seconds = Int(sec % 60)
+        
+        // minutes
+        var min = 0
+        var hour = 0
+        
+        if sec >= 60 {
+            
+            min = Int(sec / 60)
+            
+            // hour
+            if min >= 60 {
+                
+                hour = Int(min / 60)
+                
+                min = Int(min % 60)
+                
+            }
+
+        }
+        
+        return NSString(format: "%02d:%02d:%02d", hour, min, seconds) as String
+        
+//        let min_tmp = Int(sec / 60)
+        
+        
+        
+    }
+    
 }

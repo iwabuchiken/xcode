@@ -430,7 +430,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         for item in dataArray {
             
-            print("title = \(item.title) --> \(item.bm_time)")
+//            print("title = \(item.title) --> \(item.bm_time)")
+            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
             
         }
         
