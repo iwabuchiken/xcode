@@ -52,6 +52,16 @@ class CONS {
 
     */
     static var b_DebugMode = false
+ 
+    /*
+        keys
+    */
+    enum defaultKeys {
+    
+        static let key_Set_DebugMode = "key_Set_DebugMode"
+    
+    }
+    
     
     
 }
