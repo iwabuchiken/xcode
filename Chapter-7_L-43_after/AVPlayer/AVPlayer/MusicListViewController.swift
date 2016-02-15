@@ -428,6 +428,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
         let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
         
+        var bmArray = Array<BM>()
+        
+        for item in dataArray {
+            
+            bmArray.append(item)
+            
+        }
+        
+        // put value
+        vc.bmArray = bmArray
+        
 //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
         
         //debug

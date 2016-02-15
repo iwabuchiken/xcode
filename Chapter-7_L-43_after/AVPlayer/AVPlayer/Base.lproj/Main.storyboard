@@ -175,6 +175,10 @@
                                     <constraint firstAttribute="height" constant="255" id="FE0-VY-CoY"/>
                                     <constraint firstAttribute="width" constant="240" id="pcS-dL-rfm"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="6sp-Ry-9XG" id="U8J-0a-aZG"/>
+                                    <outlet property="delegate" destination="6sp-Ry-9XG" id="x8b-sm-Rve"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Edit mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF1-NT-Ocr">
                                 <rect key="frame" x="126" y="464" width="105" height="31"/>
@@ -202,6 +206,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="lbl_Title" destination="gVH-nc-olA" id="vQQ-J6-rK9"/>
+                        <outlet property="tableView" destination="NRT-vP-VJn" id="PWH-Rc-rJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gh-GR-6QR" userLabel="First Responder" sceneMemberID="firstResponder"/>
