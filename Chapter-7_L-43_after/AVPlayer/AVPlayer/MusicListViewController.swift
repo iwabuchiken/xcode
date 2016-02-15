@@ -17,17 +17,34 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    var dataArray = try! Realm().objects(BM_2).sorted("created_at", ascending: false)
     
     
+    @IBAction func experiments(sender: UIBarButtonItem) {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments... (realm file = \(CONS.s_Realm_FileName))")
+
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+
+        let dataArray = try! realm.objects(BM).sorted("created_at", ascending: false)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        
+        
+        
+    }
+    
+    
   // 曲情報
   var songs = Array<MPMediaItem>()
   
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
 
-        // test: migration
-        _test_Migration()
+//        // test: migration
+//        _test_Migration()
         
-        // test: realm
-        test_Realm()
+//        // test: realm
+//        test_Realm()
         
 //        //test: subarray
 //        test_Subarrays()
@@ -304,13 +321,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     
     
-    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] sw_DebugMode.on => (\(PreferenceViewController().sw_DebugMode.on))")
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.b_DebugMode => (\(CONS.b_DebugMode))")
+//    //debug
+////    print("[\(Methods.basename(__FILE__)):\(__LINE__)] sw_DebugMode.on => (\(PreferenceViewController().sw_DebugMode.on))")
+//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.b_DebugMode => (\(CONS.b_DebugMode))")
+//
+//    let b_flag = CONS.b_DebugMode
 
-    let b_flag = CONS.b_DebugMode
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
 
-    if b_flag {
+//    if b_flag {
+    if dfltVal_DebugMode?.boolValue == true {
 
 //    if false {
 //    if PreferenceViewController().sw_DebugMode.on {
@@ -346,7 +369,107 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
       playerViewController.playMusic(url!)
+
+    } else if let viewController = segue.destinationViewController as? BMViewController {
+
+        _prepSegue__BMView()
+        
+//        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+
+        
     }
+    
+    
   }
+    
+  func _prepSegue__BMView() {
+    
+    //test
+    _test_RealmRecords__BM()
+    
+    let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+        
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+    
+    /*
+        build: BM list
+
+    */
+    
+//    //debug
+//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title) / title! => \(title!)")  //=> title => Optional("「マイナンバー制度」人民支配へ不可欠な法整備 vol.1") / title! => 「マイナンバー制度」人民支配へ不可欠な法整備 vol.1
+
+    
+//    let query = "title == '\(title!)'"
+    let query = "title CONTAINS '\(title!)'"
+    
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+    
+    
+    let aPredicate = NSPredicate(format: query)
+    
+//    let aPredicate = NSPredicate(format: "title == %@", title!)
+
+//    let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+    do {
+        
+        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+        
+
+    } catch is NSException {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+        
+        //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+    } catch let error as NSError {
+        
+        //debug
+        //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+        
+    }
+  
+  }
+    
+    func _test_RealmRecords__BM() {
+
+        do {
+            
+            let dataArray = try Realm().objects(BM).sorted("created_at", ascending: false)
+            
+            for item in dataArray {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")  //=>
+                
+                
+            }
+            
+        } catch is NSException {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+        } catch let error as NSError {
+            
+            //debug
+            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        }
+
+
+    }
+    
 }
 

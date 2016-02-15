@@ -41,7 +41,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="9vQ-a4-QNg">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="GSf-ey-fOt"/>
+                            <barButtonItem systemItem="action" id="GSf-ey-fOt">
+                                <connections>
+                                    <action selector="experiments:" destination="9pv-A4-QxB" id="ehg-QK-1z7"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="organize" id="4FB-j0-fJS">
                                 <connections>
                                     <segue destination="8Uh-al-Q3i" kind="show" identifier="prefSegue" id="TMh-w6-k60"/>
