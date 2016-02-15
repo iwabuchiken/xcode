@@ -372,7 +372,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     } else if let viewController = segue.destinationViewController as? BMViewController {
 
-        _prepSegue__BMView()
+        _prepSegue__BMView(viewController)
         
 //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
 //
@@ -385,15 +385,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     
   }
     
-  func _prepSegue__BMView() {
+    func _prepSegue__BMView(vc : BMViewController) {
     
 //    //test
 //    _test_RealmRecords__BM()
-    
-    let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+
+        // get title
+        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
         
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        // set title => for BMView
+        vc.song_title = title
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
     
     /*
         build: BM list
