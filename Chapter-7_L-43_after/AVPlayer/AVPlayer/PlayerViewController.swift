@@ -38,7 +38,8 @@ class PlayerViewController: AVPlayerViewController {
 
     */
     // realm
-    let rl_tmp = Methods.get_RealmInstance("abc.realm")
+    let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//    let rl_tmp = Methods.get_RealmInstance("abc.realm")
     
     // BM instance
     let bm = BM()

@@ -39,11 +39,30 @@ class CONS {
  
     static var s_DirSeparator = "/"
  
-    /*
+    /***********************************
     
         realm
 
-    */
+     ***********************************/
     static var s_Realm_FileName = "abc.realm"
+//    static var s_Realm_FileName = "db.realm"
+
+    /*
+
+        preferences
+
+    */
+    static var b_DebugMode = false
+ 
+    /*
+        keys
+    */
+    enum defaultKeys {
+    
+        static let key_Set_DebugMode = "key_Set_DebugMode"
+    
+    }
+    
+    
     
 }
