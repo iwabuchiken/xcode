@@ -154,9 +154,22 @@ class PlayerViewController: AVPlayerViewController {
     
     
     //ref http://dev.digitrick.us/notes/LoopingVideoWithAVFoundation
-    let seekTime : CMTime = CMTimeMake(10, 1)
+    var seekTime : CMTime = CMTimeMake(10, 1)
+  
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.seekTime => \(self.seekTime)")
+    
+    
+    // seek time preset?
+    if self.seekTime != nil {
+        
+        seekTime = self.seekTime!
+        
+    }
+    
     
     player?.seekToTime(seekTime)
+    
     
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] seekTime.value.value => \(seekTime.value.value)")

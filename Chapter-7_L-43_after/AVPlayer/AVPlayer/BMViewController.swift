@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 import RealmSwift
 
 class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -29,9 +31,76 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] label set => \(lbl_Title.text)")
 
+        // build: BM array
+        _build_BMArray()
+        
+        // regresh -> table view
+        self.tableView.reloadData()
         
     }
 
+    func _build_BMArray() {
+        
+        //    let query = "title == '\(title!)'"
+        let query = "title CONTAINS '\(self.song_title!)'"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        do {
+            
+            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+            
+            //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+            let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+            
+//            var bmArray = Array<BM>()
+            
+            self.bmArray.removeAll()
+            
+            for item in dataArray {
+                
+                self.bmArray.append(item)
+                
+            }
+            
+//            // put value
+//            vc.bmArray = bmArray
+            
+            //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+            
+//            for item in dataArray {
+//                
+//                //            print("title = \(item.title) --> \(item.bm_time)")
+//                print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
+//                
+//            }
+            
+            
+        } catch is NSException {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+        } catch let error as NSError {
+            
+            //debug
+            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        }
+
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,6 +144,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     // 各セルを選択した時に実行される
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
         performSegueWithIdentifier("bm2play_Segue",sender: nil)
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -90,8 +160,21 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //            
 //            //debug
 //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-//            
+//
 //            vc.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
+            
+            // get cell text
+            let indexPath = tableView.indexPathForSelectedRow!
+
+            let bm_current = bmArray[indexPath.row]
+            
+//            let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as UITableViewCell
+            
+            //        println(currentCell.textLabel!.text)
+
+            
+            
+            
             // set title
             vc.item_name = self.song_title
             
@@ -100,6 +183,11 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
 //            vc.presentViewController(vc, animated: true, completion: nil)
             
+//            vc.seekTime = CMTimeMake(bm_current.bm_time as Int64, 1)  //=> n.w
+            vc.seekTime = CMTimeMake(Int64(bm_current.bm_time), 1)
+            
+//            player?.seekToTime(seekTime)
+
             vc.playMusic(self.url)
             
         }
