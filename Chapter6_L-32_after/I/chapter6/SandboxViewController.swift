@@ -16,7 +16,7 @@ class SandboxViewController: UIViewController {
 
     @IBAction func close_OSKeyboard(sender: UIButton) {
         
-        main_label.text = Methods.get_TimeLable()
+//        main_label.text = Methods.get_TimeLable()
         
         //test
         //ref https://akira-watson.com/iphone/textfield.html "ボタン等でendEditing()"
@@ -219,6 +219,9 @@ class SandboxViewController: UIViewController {
         // set defaults to the label
         main_label.text = "'\(tmp_s)'"
 
+        // set defaults to textfield
+        self.tf_SearchWords.text = "\(tmp_s)"
+        
         
     }
 

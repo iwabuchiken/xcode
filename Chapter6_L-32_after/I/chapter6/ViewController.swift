@@ -136,6 +136,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+//        //debug
+//        Methods.set_Defaults("", key: CONS.key_SearchWords)
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words => set ''")
+        
+        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
 
