@@ -77,6 +77,11 @@ class PlayerViewController: AVPlayerViewController {
     let bm = BM()
     
     bm.title = item_name
+    
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
+
+    
     bm.bm_time = Int((player?.currentTime().seconds)!)
     let tmp_time = NSDate()
     

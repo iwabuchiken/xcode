@@ -42,7 +42,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func _build_BMArray() {
         
         //    let query = "title == '\(title!)'"
-        let query = "title CONTAINS '\(self.song_title!)'"
+//        let query = "title CONTAINS '\(self.song_title!)'"
+        let query = "title == '\(self.song_title!)'"
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
@@ -127,8 +128,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm_time => \(text)")
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm_time => \(text)")
 
         
         // Cellに値を設定する.
@@ -164,6 +165,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //            vc.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
             
             // get cell text
+            //ref http://stackoverflow.com/questions/26158768/how-to-get-textlabel-of-selected-row-in-swift answered Oct 2 '14 at 10:36
             let indexPath = tableView.indexPathForSelectedRow!
 
             let bm_current = bmArray[indexPath.row]

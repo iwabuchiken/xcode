@@ -29,8 +29,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
         
-        
-        
+
     }
     
     
@@ -316,25 +315,70 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   // 各セルを選択した時に実行される
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+  func tableView
+    (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+    /*
+        if no BMs --> goto PlayerView, directly
+
+    */
+        // get title
+//        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+        let title = songs[(indexPath.row)].title
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+
+//        let query = "title CONTAINS '\(title!)'"
+        let query = "title == '\(title!)'"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+
+        let bmArray = DB.findAll_BM__Filtered(
+            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bmArray.count => \(bmArray.count)")
+
+        // if no BMs --> goto 'cellSegue'
+        if bmArray.count < 1 {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
+            
+            performSegueWithIdentifier("cellSegue",sender: nil)
+            
+            return
+            
+        }
     
-    
-//    //debug
-////    print("[\(Methods.basename(__FILE__)):\(__LINE__)] sw_DebugMode.on => (\(PreferenceViewController().sw_DebugMode.on))")
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.b_DebugMode => (\(CONS.b_DebugMode))")
+        /*
+            debug mode: if on --> count BMs
+
+        */
+        
+//    let defaults = NSUserDefaults.standardUserDefaults()
+//    
+//    //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+//    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
 //
-//    let b_flag = CONS.b_DebugMode
-
-    let defaults = NSUserDefaults.standardUserDefaults()
-    
-    //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode?.description)")
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
+        
+        
 //    if b_flag {
     // ref boolValue http://stackoverflow.com/questions/28107051/convert-string-to-bool-in-swift-via-api-or-most-swift-like-approach answered Jan 23 '15 at 10:10
-    if dfltVal_DebugMode?.boolValue == true {
+//    if dfltVal_DebugMode?.boolValue == true {
+        if dfltVal_DebugMode == true {
 
 //    if false {
 //    if PreferenceViewController().sw_DebugMode.on {
@@ -429,33 +473,50 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
     do {
         
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-
-//        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//
+////        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+//        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+//        
+////        //debug
+////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.description => \(dataArray.description)")
+//        
+//        var bmArray = Array<BM>()
+//        
+//        for item in dataArray {
+//            
+//            bmArray.append(item)
+//            
+//        }
         
-        var bmArray = Array<BM>()
-        
-        for item in dataArray {
-            
-            bmArray.append(item)
-            
-        }
+        // find -> BMs
+//        var bmArray = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "created_at", ascend: false)
+        let bmArray = DB.findAll_BM__Filtered(
+            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
         
         // put value
         vc.bmArray = bmArray
         
 //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-        
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
         
-        for item in dataArray {
-            
-//            print("title = \(item.title) --> \(item.bm_time)")
-            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
-            
-        }
+//        for item in bmArray {
+//            
+//            //            print("title = \(item.title) --> \(item.bm_time)")
+//            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
+//            
+//        }
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+//        
+//        for item in dataArray {
+//            
+////            print("title = \(item.title) --> \(item.bm_time)")
+//            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
+//            
+//        }
         
 
     } catch is NSException {

@@ -425,4 +425,16 @@ class Methods {
         
     }
     
+    static func getDefaults_Boolean(dflt_key : String) -> Bool {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+
+        return (dfltVal_DebugMode?.boolValue)!
+        
+    }
+    
+    
 }
