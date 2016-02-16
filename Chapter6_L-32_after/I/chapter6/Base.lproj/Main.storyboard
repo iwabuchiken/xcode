@@ -331,12 +331,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF6-wH-fEG">
-                                <rect key="frame" x="25" y="256" width="110" height="61"/>
+                                <rect key="frame" x="25" y="256" width="93" height="47"/>
                                 <color key="backgroundColor" red="0.6164148229248454" green="1" blue="0.60754687441239985" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="O4T-nB-s5g"/>
+                                    <constraint firstAttribute="width" constant="93" id="O4T-nB-s5g"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="oGg-3O-O0f"/>
-                                    <constraint firstAttribute="height" constant="61" id="tkS-gt-G1C"/>
+                                    <constraint firstAttribute="height" constant="47" id="tkS-gt-G1C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="close">
@@ -344,6 +344,17 @@
                                 </state>
                                 <connections>
                                     <action selector="close_OSKeyboard:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="keU-Zq-9LZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bA-F8-1B0">
+                                <rect key="frame" x="159" y="256" width="81" height="47"/>
+                                <color key="backgroundColor" red="0.76736790546154832" green="0.57205071244162042" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" red="0.1218472762189844" green="0.09083364143072524" blue="0.15878599476439792" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="clear_TextField:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="qnt-jh-t3A"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -14,6 +14,12 @@ class SandboxViewController: UIViewController {
     @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
 
+    @IBAction func clear_TextField(sender: UIButton) {
+        
+        tf_SearchWords.text = ""
+        
+    }
+
     @IBAction func close_OSKeyboard(sender: UIButton) {
         
 //        main_label.text = Methods.get_TimeLable()

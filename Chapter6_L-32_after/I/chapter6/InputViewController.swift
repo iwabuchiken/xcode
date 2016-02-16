@@ -113,7 +113,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // NavigationBar の戻るボタンを消す
-        self.navigationItem.setHidesBackButton(true, animated:false);
+//        self.navigationItem.setHidesBackButton(true, animated:false);
         
         titleTextField.text = diary.title
         bodyTextView.text = diary.body
