@@ -15,7 +15,7 @@ class BM: Object {
     
     // audio id
 //    dynamic var audio_id = 0
-    dynamic var audio_id = ""   //=> 
+    dynamic var audio_id = ""   //=>
     
     // タイトル
     dynamic var title = ""
@@ -27,10 +27,12 @@ class BM: Object {
     dynamic var bm_time = 0
     
     /// 最終更新日時
-    dynamic var modified_at = NSDate()
+//    dynamic var modified_at = NSDate()
+    dynamic var modified_at = ""
     
     //
-    dynamic var created_at = NSDate()
+//    dynamic var created_at = NSDate()
+    dynamic var created_at = ""
     
     
     

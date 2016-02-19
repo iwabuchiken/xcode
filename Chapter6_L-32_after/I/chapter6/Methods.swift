@@ -396,6 +396,12 @@ class Methods {
         
         let dpath_realm = Methods.dirname(realmPath!)
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)/\(file_name)")
+        
         
         //        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
 //        return try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
@@ -403,6 +409,20 @@ class Methods {
 
     }
  
+    static func get_RealmInstance__Identifier(id_name : String) -> Realm {
+        
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
+//        
+//        let dpath_realm = Methods.dirname(realmPath!)
+        
+        
+        //        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
+        //        return try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
+//        return try! Realm(path: "\(dpath_realm)/\(id_name)")   //=> works
+        return try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: id_name))   //=> works
+        
+    }
+    
     //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
     static func lastId() -> Int {
         

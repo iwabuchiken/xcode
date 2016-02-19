@@ -19,10 +19,16 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // MARK: funcs for experiments
     @IBAction func experiments(sender: UIBarButtonItem) {
 
-        //test
-        Methods.show_DirList__RealmFiles()
+        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
         
-        // D-3.s-1.#1/steps.1-3
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+        
+        
+//        //test
+//        Methods.show_DirList__RealmFiles()
+        
+//        // D-3.s-1.#1/steps.1-3
 //        DB.copy_BMs(CONS.s_Realm_FileName, dbname_new : CONS.s_Realm_FileName__New)
         
         
@@ -481,6 +487,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
 
         vc.url = url!
+        
+        // MPMediaItem
+        vc.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")

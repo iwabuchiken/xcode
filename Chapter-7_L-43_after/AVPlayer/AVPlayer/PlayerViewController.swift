@@ -9,12 +9,15 @@ import UIKit
 import AVKit
 import AVFoundation
 import RealmSwift
+import MediaPlayer
 
 class PlayerViewController: AVPlayerViewController {
 
     var item_name : String!
 
     var seekTime : CMTime?
+    
+    var current_song : MPMediaItem?
     
 // MARK: View-related methods
   override func viewDidLoad() {
@@ -42,6 +45,10 @@ class PlayerViewController: AVPlayerViewController {
 //        let playerVC = AVPlayerViewController()
 ////        playerVC.player = AVPlayer(URL: NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")!)
 //        self.presentViewController(playerVC, animated: true, completion: nil)
+    
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_song?.title => \(self.current_song?.title)")
+
     
     
     }
@@ -85,11 +92,25 @@ class PlayerViewController: AVPlayerViewController {
     bm.bm_time = Int((player?.currentTime().seconds)!)
     let tmp_time = NSDate()
     
-    bm.created_at = tmp_time
-    bm.modified_at = tmp_time
+//    bm.created_at = tmp_time
+//    bm.modified_at = tmp_time
+    bm.created_at = Methods.conv_NSDate_2_DateString(tmp_time)
+    bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
     
     bm.id = Methods.lastId()
     
+    // audio id
+    let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+    
+    
+//    //debug
+//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+
+    bm.audio_id = (url?.absoluteString)!
+
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.audio_id => \(bm.audio_id)")
+
     //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
     //ref https://mynavi-agent.jp/it/geekroid/2015/07/realm-2-realmswift-.html
     try! rl_tmp.write {

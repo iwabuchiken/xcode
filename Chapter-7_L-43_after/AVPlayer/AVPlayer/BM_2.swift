@@ -13,6 +13,8 @@ class BM_2: Object {
     // 管理用 ID。プライマリーキー
     dynamic var id = 0
     
+    dynamic var audio_id = ""   //=>
+    
     // タイトル
     dynamic var title = ""
     
@@ -23,10 +25,11 @@ class BM_2: Object {
     dynamic var bm_time = 0
     
     /// 最終更新日時
-    dynamic var modified_at = NSDate()
+//    dynamic var modified_at = NSDate()
+    dynamic var modified_at = Methods.conv_NSDate_2_DateString(NSDate())
     
     //
-    dynamic var created_at = NSDate()
+    dynamic var created_at = Methods.conv_NSDate_2_DateString(NSDate())
     
     
     

@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import RealmSwift
+import MediaPlayer
 
 class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -22,6 +23,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var bmArray : Array<BM> = []
     
     var url : NSURL!
+    
+    var current_song : MPMediaItem?
 
   // MARK: main methods
     override func viewWillAppear(animated: Bool) {
@@ -196,6 +199,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
 //            player?.seekToTime(seekTime)
 
+            // song instance
+            vc.current_song = self.current_song
+            
             vc.playMusic(self.url)
             
         }
