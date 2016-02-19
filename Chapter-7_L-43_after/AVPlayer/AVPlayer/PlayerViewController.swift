@@ -97,6 +97,10 @@ class PlayerViewController: AVPlayerViewController {
     bm.created_at = Methods.conv_NSDate_2_DateString(tmp_time)
     bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
     
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.modified_at => set")
+
+    
     bm.id = Methods.lastId()
     
     // audio id

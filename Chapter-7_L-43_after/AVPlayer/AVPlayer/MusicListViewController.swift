@@ -25,6 +25,65 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
         
         
+//        /*
+//            remove realm files
+//        */
+//        _experiments__RemoveRealmFiles("db_20160219_164456.realm")
+        
+//        let manager = NSFileManager.defaultManager()
+//        
+////        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+//        
+//        let realmPath2 = Realm.Configuration.defaultConfiguration.path
+//        
+//        let dpath_realm = Methods.dirname(realmPath2!)
+//        
+////        let fname_realm = Methods.basename(realmPath2!)
+//        let fname_realm = "db_20160219_173550.realm"
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+//        
+////        let realmPath = String("dpath_realm" + "/" + fname_realm)
+////        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
+//        
+////        let tmp = NSString()
+////        
+////        tmp.
+//        
+////        let realmPath = tmp.stringByAppendingString("\(dpath_realm)/\(fname_realm)")
+//        let realmPath = "\(dpath_realm)/\(fname_realm)"
+//        
+//        let realmPaths = [
+//            realmPath as String,
+//            "\(realmPath).lock",
+//            "\(realmPath).log_a",
+//            "\(realmPath).log_b",
+//            "\(realmPath).note"
+////            realmPath.stringByAppendingPathExtension("lock")!,
+////            realmPath.stringByAppendingPathExtension("log_a")!,
+////            realmPath.stringByAppendingPathExtension("log_b")!,
+////            realmPath.stringByAppendingPathExtension("note")!
+//        ]
+//        for path in realmPaths {
+//            
+//	        //debug
+//	        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+//            
+//            do {
+//                try manager.removeItemAtPath(path)
+//                
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+//                
+//            } catch {
+//                // handle error
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+//
+//            }
+//        }
+        
 //        //test
 //        Methods.show_DirList__RealmFiles()
         
@@ -51,6 +110,69 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func _experiments__RemoveRealmFiles(fname : String) {
+        
+        let manager = NSFileManager.defaultManager()
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+        
+        let realmPath2 = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath2!)
+        
+        //        let fname_realm = Methods.basename(realmPath2!)
+//        let fname_realm = "db_20160219_173550.realm"
+        let fname_realm = fname
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        
+        //        let realmPath = String("dpath_realm" + "/" + fname_realm)
+        //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
+        
+        //        let tmp = NSString()
+        //
+        //        tmp.
+        
+        //        let realmPath = tmp.stringByAppendingString("\(dpath_realm)/\(fname_realm)")
+        let realmPath = "\(dpath_realm)/\(fname_realm)"
+        
+        let realmPaths = [
+            realmPath as String,
+            "\(realmPath).lock",
+            "\(realmPath).log_a",
+            "\(realmPath).log_b",
+            "\(realmPath).note"
+            //            realmPath.stringByAppendingPathExtension("lock")!,
+            //            realmPath.stringByAppendingPathExtension("log_a")!,
+            //            realmPath.stringByAppendingPathExtension("log_b")!,
+            //            realmPath.stringByAppendingPathExtension("note")!
+        ]
+        for path in realmPaths {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+            
+            do {
+                try manager.removeItemAtPath(path)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+                
+            } catch {
+                // handle error
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+                
+            }
+        }
+
+        /*
+            show dir list
+        */
+        Methods.show_DirList__RealmFiles()
+        
+    }
     
   // 曲情報
   var songs = Array<MPMediaItem>()
@@ -258,7 +380,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     tableView.reloadData()
     
 //    // save songs data
-//    Methods.save_SongsData(songs)
+    Methods.save_SongsData(songs)
 
     
     //test
@@ -454,6 +576,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
       
         playerViewController.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
         
+        // set song
+        playerViewController.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
         
       playerViewController.playMusic(url!)
 
@@ -604,6 +728,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             //debug
             //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        } catch {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] unknown error)")  //=> build succeeded
+
             
         }
 

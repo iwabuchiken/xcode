@@ -27,6 +27,8 @@ class Methods {
         
     }
 
+  // MARK: directory-related
+    
     static func basename(path: String) -> String {
         
         let tokens = path.componentsSeparatedByString("/")
@@ -43,9 +45,9 @@ class Methods {
         // 1 '/'    => "/memos.txt" --> ["","memos.txt"]
         if tokens.count == 2 {
             
-//            print("path string has 1 '/' char")
+            //            print("path string has 1 '/' char")
             
-//            return tokens[0]
+            //            return tokens[0]
             return tokens[1]
             
         }
@@ -53,11 +55,11 @@ class Methods {
         // multiple
         return tokens[tokens.count - 1]
         
-//        return ""
+        //        return ""
         
     }
+    
 
-  // MARK: directory-related
     static func dirname(path: String) -> String {
         
         //        let tokens = path.componentsSeparatedByString("/")
@@ -182,7 +184,7 @@ class Methods {
         
     }
     
-
+  // MARK: time-related
     /*
         "2016/02/08 12:38:09"   => "2016/02/08"
         if the string has more than 1 ' ' char => returns the string
@@ -265,7 +267,74 @@ class Methods {
         return dateFormatter.stringFromDate(currentDate)
         
     }
- 
+
+    static func conv_NSDate_2_DateString(date : NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(date)
+        
+    }
+    
+    static func get_Date_BeforeAfter_ByDate
+        (current : NSDate, diff: Int) -> NSDate {
+            
+            //        var date_Now = NSDate()
+            
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            let oneDay:Double = Double(60 * 60 * 24 * diff)
+            
+            //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
+            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
+            //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
+            
+            return current.dateByAddingTimeInterval(oneDay)
+            
+            
+    }
+    
+    static func conv_Seconds_2_ClockLabel(sec : Int) -> String {
+        
+        // seconds
+        let seconds = Int(sec % 60)
+        
+        // minutes
+        var min = 0
+        var hour = 0
+        
+        if sec >= 60 {
+            
+            min = Int(sec / 60)
+            
+            // hour
+            if min >= 60 {
+                
+                hour = Int(min / 60)
+                
+                min = Int(min % 60)
+                
+            }
+            
+        }
+        
+        return NSString(format: "%02d:%02d:%02d", hour, min, seconds) as String
+        
+        //        let min_tmp = Int(sec / 60)
+        
+        
+        
+    }
+    
+
+    
+    
+  // MARK: defaults
     static func set_Defaults(tmp_s : String) -> Void {
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -307,37 +376,19 @@ class Methods {
         
     }
 
-    static func conv_NSDate_2_DateString(date : NSDate) -> String {
+    static func getDefaults_Boolean(dflt_key : String) -> Bool {
         
-        let dateFormatter = NSDateFormatter()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        dateFormatter.locale = NSLocale.currentLocale()
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
         
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        
-        return dateFormatter.stringFromDate(date)
+        return (dfltVal_DebugMode?.boolValue)!
         
     }
+    
 
-    static func get_Date_BeforeAfter_ByDate
-        (current : NSDate, diff: Int) -> NSDate {
-            
-            //        var date_Now = NSDate()
-     
-            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
-            let oneDay:Double = Double(60 * 60 * 24 * diff)
-            
-            //        return current.dateByAddingTimeInterval(-(Double(oneDay)))
-            //ref http://captaindanko.blogspot.jp/2015/06/getting-daybefore-and-dayafter-from.html
-            //ref https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDate_Class/#//apple_ref/occ/instm/NSDate/dateByAddingTimeInterval: "dateByAddingTimeInterval(_ ti: NSTimeInterval)"
- 
-            return current.dateByAddingTimeInterval(oneDay)
-            
-            
-    }
-
+    
     // iPhone 内から曲情報を取得する
     static func getSongs() -> Array<MPMediaItem> {
         
@@ -374,6 +425,7 @@ class Methods {
         return array
     }
 
+// MARK: basics
     static func joinArray
         (ary : [String], connect : String, start : Int, end : Int) -> String {
         
@@ -390,17 +442,18 @@ class Methods {
             
     }
  
+// MARK: realm-related
     static func get_RealmInstance(file_name : String) -> Realm {
         
         let realmPath = Realm.Configuration.defaultConfiguration.path
         
         let dpath_realm = Methods.dirname(realmPath!)
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm)")
-
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)/\(file_name)")
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm)")
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)/\(file_name)")
         
         
         //        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
@@ -441,49 +494,8 @@ class Methods {
         }
     }
 
-    static func conv_Seconds_2_ClockLabel(sec : Int) -> String {
-        
-        // seconds
-        let seconds = Int(sec % 60)
-        
-        // minutes
-        var min = 0
-        var hour = 0
-        
-        if sec >= 60 {
-            
-            min = Int(sec / 60)
-            
-            // hour
-            if min >= 60 {
-                
-                hour = Int(min / 60)
-                
-                min = Int(min % 60)
-                
-            }
-
-        }
-        
-        return NSString(format: "%02d:%02d:%02d", hour, min, seconds) as String
-        
-//        let min_tmp = Int(sec / 60)
-        
-        
-        
-    }
     
-    static func getDefaults_Boolean(dflt_key : String) -> Bool {
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-        let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-
-        return (dfltVal_DebugMode?.boolValue)!
-        
-    }
- 
+// MARK: others
     //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
     static func save_SongsData( data : [MPMediaItem] ) -> Void {
         

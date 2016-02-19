@@ -17,8 +17,6 @@ class Clip: Object {
     // audio id
     dynamic var audio_id = 0
     
-//    dynamic var created_at = NSDate()
-//    dynamic var modified_at = NSDate()
     dynamic var created_at = ""
     dynamic var modified_at = ""
     
