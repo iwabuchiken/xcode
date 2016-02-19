@@ -12,6 +12,7 @@
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
 		048D15F11C6DAECB009588E8 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15EF1C6DAECB009588E8 /* Methods.swift */; };
 		048D15F21C6DAECB009588E8 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15F01C6DAECB009588E8 /* CONS.swift */; };
+		04C308831C76ED2800E71881 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C308821C76ED2800E71881 /* Clip.swift */; };
 		04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E80F201C6EFDAA00EE4F88 /* BM.swift */; };
 		04FED8051C7286A0004B9022 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FED8041C7286A0004B9022 /* DB.swift */; };
 		3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E230B2B1BC887F9000162A3 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
 		048D15EF1C6DAECB009588E8 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = "../../../Chapter6_L-32_after/I/chapter6/Methods.swift"; sourceTree = "<group>"; };
 		048D15F01C6DAECB009588E8 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONS.swift; path = "../../../Chapter6_L-32_after/I/chapter6/CONS.swift"; sourceTree = "<group>"; };
+		04C308821C76ED2800E71881 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
 		04E80F201C6EFDAA00EE4F88 /* BM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM.swift; sourceTree = "<group>"; };
 		04FED8041C7286A0004B9022 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		3E230B281BC887F9000162A3 /* AVPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 				3E230B391BC887F9000162A3 /* Info.plist */,
 				04E80F201C6EFDAA00EE4F88 /* BM.swift */,
 				043FD3E81C70081700E6C342 /* BM_2.swift */,
+				04C308821C76ED2800E71881 /* Clip.swift */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E230B301BC887F9000162A3 /* MovieListViewController.swift in Sources */,
+				04C308831C76ED2800E71881 /* Clip.swift in Sources */,
 				04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */,
 				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,

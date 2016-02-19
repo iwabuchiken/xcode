@@ -13,6 +13,7 @@ import RealmSwift
 
 class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var lbl_CurrentTime: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbl_Title: UILabel!
     
@@ -106,6 +107,11 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // hide => tab bar
+        self.tabBarController?.tabBar.hidden = true
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

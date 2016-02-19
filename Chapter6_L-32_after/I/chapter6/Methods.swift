@@ -376,23 +376,23 @@ class Methods {
 
     }
  
-//    //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
-//    static func lastId() -> Int {
-//        
-//        // get realm
-//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-//        
-////        if let user = realm.objects(BM).last {
+    //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
+    static func lastId() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
 //        if let user = realm.objects(BM).last {
-//
-//            return user.id + 1
-//            
-//        } else {
-//            
-//            return 1
-//            
-//        }
-//    }
+        if let user = realm.objects(BM).last {
+
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
 
     static func conv_Seconds_2_ClockLabel(sec : Int) -> String {
         
