@@ -19,10 +19,15 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // MARK: funcs for experiments
     @IBAction func experiments(sender: UIBarButtonItem) {
 
-        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
+        // experiments
+//        Methods.experiments()
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+        _experiments__SaveClips()
+        
+//        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
         
         
 //        /*
@@ -110,6 +115,51 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func _experiments__SaveClips() {
+        
+        for item in self.songs {
+            
+	        //debug
+	        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
+            
+            let clip = Clip()
+            
+            clip.id = Methods.lastId_Clip()
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
+            
+            clip.title = item.title!
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+            let str = url?.absoluteString
+            
+            clip.audio_id = str!
+            
+            // created_at, modified_at
+            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            clip.created_at = tmp
+            clip.modified_at = tmp
+            
+            // length
+            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+//            //=> Optional(641.227)
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            //=>
+            
+            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            
+            
+        }
+        
+    }
+    
     func _experiments__RemoveRealmFiles(fname : String) {
         
         let manager = NSFileManager.defaultManager()
@@ -193,187 +243,6 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-    func _test_Migration() {
-        
-        //ref https://realm.io/docs/swift/latest/#adding-objects
-        let config = Realm.Configuration(
-            // Set the new schema version. This must be greater than the previously used
-            // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 1,
-            
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
-            migrationBlock: { migration, oldSchemaVersion in
-                // We haven’t migrated anything yet, so oldSchemaVersion == 0
-                if (oldSchemaVersion < 1) {
-                    // Nothing to do!
-                    // Realm will automatically detect new properties and removed properties
-                    // And will update the schema on disk automatically
-                }
-        })
-        
-        // Tell Realm to use this new configuration object for the default Realm
-        Realm.Configuration.defaultConfiguration = config
-        
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done¥n migration => done")
-
-        
-    }
-    
-    func test_Realm() {
-
-        /*
-
-            new realm file
-
-        */
-        
-//        let realmPath = Realm.Configuration.defaultConfiguration.path
-//
-//        let dpath_realm = Methods.dirname(realmPath!)
-//
-//        
-////        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
-//        let rl_tmp = try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
-
-        let rl_tmp = Methods.get_RealmInstance("abc.realm")
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
-        
-//        var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
-        var dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
-        
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
-        //debug
-        if dataArray.count > 0 {
-            
-            let bm = dataArray.first
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(bm?.title) (\(bm?.bm_time))")
-            
-        }
-        
-        
-        
-//        Methods.show_DirList(dpath_realm)
-        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
-        
-        
-//        //test
-//        _ = try! Realm()
-        
-        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
-//        let realmPath = Realm.Configuration.defaultConfiguration.path
-        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
-//        
-//        
-//        // files list
-//        Methods.show_DirList(realmPath!)
-        
-        // files list
-//        let dpath_realm = Methods.dirname(realmPath!)
-
-        
-        
-        //        default.realm
-        //        default.realm.lock
-        //        default.realm.note
-        
-        //        try! realm.write {
-        //
-        //            //ref https://realm.io/docs/swift/latest/ "You can also delete all objects "
-        //            realm.deleteAll()
-        //
-        //            //debug
-        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
-        //
-        ////            //test
-        ////            realm.delete(BM)
-        //                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
-        //
-        //            //debug
-        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
-        //            
-        //            
-        //        }     //=> works
-        
-    }
-    
-    func test_Subarrays() {
-        
-        let tmp = "/Library/abc/def/xyz.txt"
-
-        let tokens = tmp.componentsSeparatedByString(CONS.s_DirSeparator)
-        
-//        let ary_tmp = tokens[2...3]
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[2] => \(tokens[2])")
-        
-        let len = tokens.count
-        
-        let s_tmp = tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** s_tmp => \(s_tmp)")
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** Methods.dirname(tmp) => \(Methods.dirname(tmp))")
-        
-        
-//        let tmp2 = Methods.dirname(tmp)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** tmp2 => \(tmp2)")
-        
-    }
-    
-    @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] long pressed (\(Methods.get_TimeLable()))")
-        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
-        
-        
-        //ref http://stackoverflow.com/questions/30839275/how-to-select-a-table-row-during-a-long-press-in-swift answered Jun 15 '15 at 7:33
-        let touchPoint = sender.locationInView(self.view)
-        
-        let indexPath = tableView.indexPathForRowAtPoint(touchPoint)
-        
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] indexPath?.item => \(indexPath?.item)" ) //=> works
-        
-//        // get item at the index
-//        let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
-//        
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell => created" ) //=> english title --> "fatal error: unexpectedly found nil while unwrapping an Optional value"
-        
-        
-//        //debug
-////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel!.text)" ) //=> works
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel?.text)" ) //=> works
-//      
-//        //test
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tableView.indexPathForSelectedRow?.row => \(tableView.indexPathForSelectedRow?.row)" ) //=>
-//        
-//        //test
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] songs.count => \(songs.count)" ) //=>
-//        
-        
-    }
-    
   override func viewDidLoad() {
     super.viewDidLoad()
     songs = getSongs()
@@ -411,53 +280,66 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    
 //    }
     
-    func didSwipe(recognizer: UIGestureRecognizer) {
-
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped!")
-        
-//        if recognizer.state == UIGestureRecognizerState.Ended {
-//            let swipeLocation = recognizer.locationInView(self.tableView)
-//            if let swipedIndexPath = tableView.indexPathForRowAtPoint(swipeLocation) {
-//                if let swipedCell = self.tableView.cellForRowAtIndexPath(swipedIndexPath) {
-//                    // Swipe happened. Do stuff!
-//                    //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped! => \(swipedCell.description)")
-//                    
-//                }
-//            }
-//        }
-    }
     
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  
-  // iPhone 内から曲情報を取得する
-  func getSongs() -> Array<MPMediaItem> {
-    
-    var array = Array<MPMediaItem>()
-    
-    // アルバム情報を取得する
-//    let albumsQuery: MPMediaQuery = MPMediaQuery.albumsQuery()
-    let albumsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
 
-    let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
-    
-    //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
-    
-    // アルバム情報から曲情報を取得する
-    for album in albumItems {
-      let albumItems: [MPMediaItem] = album.items
-      for song in albumItems {
-        array.append( song )
-      }
+// MARK: ui-related
+    @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] long pressed (\(Methods.get_TimeLable()))")
+        
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
+        
+        
+        //ref http://stackoverflow.com/questions/30839275/how-to-select-a-table-row-during-a-long-press-in-swift answered Jun 15 '15 at 7:33
+        let touchPoint = sender.locationInView(self.view)
+        
+        let indexPath = tableView.indexPathForRowAtPoint(touchPoint)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] indexPath?.item => \(indexPath?.item)" ) //=> works
+        
+        //        // get item at the index
+        //        let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
+        //
+        //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell => created" ) //=> english title --> "fatal error: unexpectedly found nil while unwrapping an Optional value"
+        
+        
+        //        //debug
+        ////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel!.text)" ) //=> works
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel?.text)" ) //=> works
+        //
+        //        //test
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tableView.indexPathForSelectedRow?.row => \(tableView.indexPathForSelectedRow?.row)" ) //=>
+        //
+        //        //test
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] songs.count => \(songs.count)" ) //=>
+        //        
+        
     }
     
-    return array
-  }
+    func didSwipe(recognizer: UIGestureRecognizer) {
+        
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped!")
+        
+        //        if recognizer.state == UIGestureRecognizerState.Ended {
+        //            let swipeLocation = recognizer.locationInView(self.tableView)
+        //            if let swipedIndexPath = tableView.indexPathForRowAtPoint(swipeLocation) {
+        //                if let swipedCell = self.tableView.cellForRowAtIndexPath(swipedIndexPath) {
+        //                    // Swipe happened. Do stuff!
+        //                    //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped! => \(swipedCell.description)")
+        //
+        //                }
+        //            }
+        //        }
+    }
+
   
   // MARK: UITableViewDataSource プロトコルのメソッド
   // TableView の各セクションのセルの数を返す
@@ -739,6 +621,178 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
 
     }
+
+// MARK: others
+    // iPhone 内から曲情報を取得する
+    func getSongs() -> Array<MPMediaItem> {
+        
+        var array = Array<MPMediaItem>()
+        
+        // アルバム情報を取得する
+        //    let albumsQuery: MPMediaQuery = MPMediaQuery.albumsQuery()
+        let albumsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
+        
+        let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        
+        // アルバム情報から曲情報を取得する
+        for album in albumItems {
+            let albumItems: [MPMediaItem] = album.items
+            for song in albumItems {
+                array.append( song )
+            }
+        }
+        
+        return array
+    }
     
+    func _test_Migration() {
+        
+        //ref https://realm.io/docs/swift/latest/#adding-objects
+        let config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: 1,
+            
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+        })
+        
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done¥n migration => done")
+        
+        
+    }
+    
+    func test_Realm() {
+        
+        /*
+        
+        new realm file
+        
+        */
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path
+        //
+        //        let dpath_realm = Methods.dirname(realmPath!)
+        //
+        //
+        ////        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
+        //        let rl_tmp = try! Realm(path: "\(dpath_realm)/abc.realm")   //=> works
+        
+        let rl_tmp = Methods.get_RealmInstance("abc.realm")
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
+        
+        //        var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
+        var dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        //debug
+        if dataArray.count > 0 {
+            
+            let bm = dataArray.first
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(bm?.title) (\(bm?.bm_time))")
+            
+        }
+        
+        
+        
+        //        Methods.show_DirList(dpath_realm)
+        
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        
+        
+        //        //test
+        //        _ = try! Realm()
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
+        //
+        //
+        //        // files list
+        //        Methods.show_DirList(realmPath!)
+        
+        // files list
+        //        let dpath_realm = Methods.dirname(realmPath!)
+        
+        
+        
+        //        default.realm
+        //        default.realm.lock
+        //        default.realm.note
+        
+        //        try! realm.write {
+        //
+        //            //ref https://realm.io/docs/swift/latest/ "You can also delete all objects "
+        //            realm.deleteAll()
+        //
+        //            //debug
+        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
+        //
+        ////            //test
+        ////            realm.delete(BM)
+        //                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
+        //
+        //            //debug
+        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
+        //
+        //
+        //        }     //=> works
+        
+    }
+    
+    func test_Subarrays() {
+        
+        let tmp = "/Library/abc/def/xyz.txt"
+        
+        let tokens = tmp.componentsSeparatedByString(CONS.s_DirSeparator)
+        
+        //        let ary_tmp = tokens[2...3]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[2] => \(tokens[2])")
+        
+        let len = tokens.count
+        
+        let s_tmp = tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** s_tmp => \(s_tmp)")
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** Methods.dirname(tmp) => \(Methods.dirname(tmp))")
+        
+        
+        //        let tmp2 = Methods.dirname(tmp)
+        //        
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** tmp2 => \(tmp2)")
+        
+    }
+    
+
 }
 

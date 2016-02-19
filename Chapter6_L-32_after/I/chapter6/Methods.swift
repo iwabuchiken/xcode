@@ -494,6 +494,23 @@ class Methods {
         }
     }
 
+    static func lastId_Clip() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Clip).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+    
     
 // MARK: others
     //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
@@ -528,5 +545,14 @@ class Methods {
         
     }
 
+    static func experiments() {
+        
+        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+
+        
+    }
     
 }

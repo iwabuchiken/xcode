@@ -15,7 +15,8 @@ class Clip: Object {
     dynamic var id = 0
     
     // audio id
-    dynamic var audio_id = 0
+//    dynamic var audio_id = 0
+    dynamic var audio_id = ""
     
     dynamic var created_at = ""
     dynamic var modified_at = ""

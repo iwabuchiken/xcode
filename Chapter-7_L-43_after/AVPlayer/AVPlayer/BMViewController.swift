@@ -161,6 +161,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
 
+// MARK: segue-related
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // dispatch
