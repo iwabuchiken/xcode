@@ -10,28 +10,25 @@
 import RealmSwift
 
 class Clip: Object {
+    
     // 管理用 ID。プライマリーキー
     dynamic var id = 0
     
     // audio id
     dynamic var audio_id = 0
     
-    // タイトル
-    dynamic var title = ""
-    
-    // 本文
-    dynamic var memo = ""
-    
-    // time
-    dynamic var bm_time = 0
-    
-    /// 最終更新日時
+    dynamic var created_at = NSDate()
     dynamic var modified_at = NSDate()
     
-    //
-    dynamic var created_at = NSDate()
+    dynamic var title = ""
+    dynamic var memos = ""
+
+    dynamic var current_time    = 0
+    dynamic var length          = 0
+    dynamic var numof_bms       = 0
     
-    
+    dynamic var removed_at      = ""
+    dynamic var last_played_at  = ""
     
     /**
      id をプライマリーキーとして設定
@@ -42,7 +39,7 @@ class Clip: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM class")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Clip class")
         
     }
     

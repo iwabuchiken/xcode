@@ -14,7 +14,8 @@ class BM: Object {
     dynamic var id = 0
     
     // audio id
-    dynamic var audio_id = 0
+//    dynamic var audio_id = 0
+    dynamic var audio_id = ""   //=> 
     
     // タイトル
     dynamic var title = ""

@@ -16,26 +16,40 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
 //    var dataArray = try! Realm().objects(BM_2).sorted("created_at", ascending: false)
     
-    
+  // MARK: funcs for experiments
     @IBAction func experiments(sender: UIBarButtonItem) {
 
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments... (realm file = \(CONS.s_Realm_FileName))")
-
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-
-        let dataArray = try! realm.objects(BM).sorted("created_at", ascending: false)
-
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        //test
+        Methods.show_DirList__RealmFiles()
         
+        // D-3.s-1.#1/steps.1-3
+//        DB.copy_BMs(CONS.s_Realm_FileName, dbname_new : CONS.s_Realm_FileName__New)
+        
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments... (realm file = \(CONS.s_Realm_FileName))")
+//
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//
+//        let dataArray = try! realm.objects(BM).sorted("created_at", ascending: false)
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+//        
+//        // clips
+//        let resOf_Clips = try! realm.objects(Clip).sorted("created_at", ascending: false)
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips => \(resOf_Clips.count)")
 
+        
     }
     
     
   // 曲情報
   var songs = Array<MPMediaItem>()
   
+  // MARK: view-related funcs
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
 
@@ -237,6 +251,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     songs = getSongs()
     tableView.reloadData()
     
+//    // save songs data
+//    Methods.save_SongsData(songs)
+
+    
     //test
     //ref http://stackoverflow.com/questions/32290126/swift-add-gesture-recognizer-to-object-in-table-cell answered Aug 29 '15 at 21:00
 //    var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
@@ -248,6 +266,23 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     
   }
   
+////    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
+//    func save_SongsData( data : [MPMediaItem] ) -> Void {
+//    
+//        let s1 = data[0]
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+//        
+//        
+//        
+//    
+//    
+//    }
+    
     func didSwipe(recognizer: UIGestureRecognizer) {
 
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped!")

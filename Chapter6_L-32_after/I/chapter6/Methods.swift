@@ -57,10 +57,11 @@ class Methods {
         
     }
 
+  // MARK: directory-related
     static func dirname(path: String) -> String {
         
-//        let tokens = path.componentsSeparatedByString("/")
-//        let tokens = path.componentsSeparatedByString(CONS.s_DirSeparator)    //=> works
+        //        let tokens = path.componentsSeparatedByString("/")
+        //        let tokens = path.componentsSeparatedByString(CONS.s_DirSeparator)    //=> works
         let tokens = path.componentsSeparatedByString(CONS.s_DirSeparator)
         
         // no '/' char
@@ -77,7 +78,7 @@ class Methods {
             
             //            print("path string has 1 '/' char")
             
-//            return tokens[0]
+            //            return tokens[0]
             return path
             
         }
@@ -88,37 +89,37 @@ class Methods {
             //            print("path string has 1 '/' char")
             
             //            return tokens[0]
-//            return path
+            //            return path
             
-//            return tokens[tokens.startIndex.advancedBy((0))..<tokens.startIndex.advancedBy(tokens.count)]
+            //            return tokens[tokens.startIndex.advancedBy((0))..<tokens.startIndex.advancedBy(tokens.count)]
             
-//            return tokens.map{Array($0)}  //=> /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/chapter6/Methods.swift:93:20: Ambiguous reference to member 'map'
+            //            return tokens.map{Array($0)}  //=> /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/chapter6/Methods.swift:93:20: Ambiguous reference to member 'map'
             
             //ref http://stackoverflow.com/questions/29874414/cannot-subscript-a-value-of-anyobject-with-an-index-of-type-int answered Apr 26 '15 at 6:44
-//            return tokens[1...(tokens.count - 1)] //=> n.w.
-//            return tokens?[1...(tokens?.count - 1)]
+            //            return tokens[1...(tokens.count - 1)] //=> n.w.
+            //            return tokens?[1...(tokens?.count - 1)]
             
             let len = tokens.count
             
             //ref join http://stackoverflow.com/questions/25827033/how-do-i-convert-a-swift-array-to-a-string answered Sep 13 '14 at 19:54
             return tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] len => \(len)")
-//
-//            return ""
-
+            //            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] len => \(len)")
+            //
+            //            return ""
+            
         }
-
-        // multiple
-//        let tmp = tokens[0..(tokens.count - 2)].joinWithSeparator(CONS.s_DirSeparator)
         
-//        let tmp = tokens.startIndex
-//        
-//        return path
-
+        // multiple
+        //        let tmp = tokens[0..(tokens.count - 2)].joinWithSeparator(CONS.s_DirSeparator)
+        
+        //        let tmp = tokens.startIndex
+        //
+        //        return path
+        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => unknown value¥n returning path")
-
+        
         return path
         
     }
@@ -133,9 +134,35 @@ class Methods {
             print(file)
         }
         
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path
+        //
+        //        let dpath_realm = Methods.dirname(realmPath!)
+ 
+        
+    }
+
+    static func show_DirList__RealmFiles() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        let files = filemanager.enumeratorAtPath(dpath_realm)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)")
+        
+        
+        while let file = files?.nextObject() {
+            print(file)
+        }
+        
         
         
     }
+    
 
     static func show_DirList(path : String) {
         
@@ -436,6 +463,38 @@ class Methods {
         return (dfltVal_DebugMode?.boolValue)!
         
     }
-    
+ 
+    //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
+    static func save_SongsData( data : [MPMediaItem] ) -> Void {
+        
+        let s1 = data[0]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+        
+        //test
+        let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] is in db => \(res)")
+        
+        //debug: url
+        let url = s1.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+        
+        let s_id = url?.absoluteString.componentsSeparatedByString("=")[1]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
+        
+        
+    }
+
     
 }
