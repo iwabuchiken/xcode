@@ -8,8 +8,9 @@
 import UIKit
 import MediaPlayer
 import RealmSwift
+import MessageUI
 
-class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate  {
   
   @IBOutlet var tableView: UITableView!
 
@@ -22,7 +23,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // experiments
 //        Methods.experiments()
         
-        _experiments__SaveClips()
+//        _experiments__SaveClips()
+        Methods.saveClips(self.songs)
+        
+        // backup realm files
+        Methods.realm_BackupFiles(CONS.s_Realm_FileName)
+        
+        // send emails
+        _experiments__SendEmails()
         
 //        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
 //        
@@ -115,7 +123,87 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    
+    func _experiments__SendEmails() {
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            
+        } else {
+            
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["someone@somewhere.com"])
+        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        
+        // attach file
+//        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
+
+//        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
+//        if let filePath = NSBundle.mainBundle().pathForResource(fpath_realm, ofType: "realm") {
+        if let filePath = NSBundle.mainBundle().pathForResource("db_20160220_002443", ofType: "realm") {
+        
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path to attached file => \(filePath)")
+
+//            print("File path loaded.")
+        
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] can't generate path => \(fpath_realm)")
+
+    
+        }
+        
+        // load data
+//        if let fileData = NSData(contentsOfFile: filePath) {
+        if let fileData = NSData(contentsOfFile: fpath_realm) {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
+//            println("File data loaded.")
+            
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => NOT")
+
+        }
+    aaa
+//        mailComposerVC.a
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+//        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+//        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func _experiments__SaveClips() {
+        
+        var count = 0
         
         for item in self.songs {
             
@@ -155,8 +243,23 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
             
+            // is in db
+            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
+            
+            if res_b == true {
+                
+                // save clip info
+                
+                
+                count += 1
+                
+            }
             
         }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(self.songs.count)")
+        
         
     }
     

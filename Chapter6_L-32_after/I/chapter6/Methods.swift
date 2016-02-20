@@ -482,6 +482,7 @@ class Methods {
         // get realm
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
+        
 //        if let user = realm.objects(BM).last {
         if let user = realm.objects(BM).last {
 
@@ -511,6 +512,146 @@ class Methods {
         }
     }
     
+    static func realm_RemoveFiles(fname : String) {
+        
+        let manager = NSFileManager.defaultManager()
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+        
+        let realmPath2 = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath2!)
+        
+        //        let fname_realm = Methods.basename(realmPath2!)
+        //        let fname_realm = "db_20160219_173550.realm"
+        let fname_realm = fname
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        
+        //        let realmPath = String("dpath_realm" + "/" + fname_realm)
+        //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
+        
+        //        let tmp = NSString()
+        //
+        //        tmp.
+        
+        //        let realmPath = tmp.stringByAppendingString("\(dpath_realm)/\(fname_realm)")
+        let realmPath = "\(dpath_realm)/\(fname_realm)"
+        
+        let realmPaths = [
+            realmPath as String,
+            "\(realmPath).lock",
+            "\(realmPath).log_a",
+            "\(realmPath).log_b",
+            "\(realmPath).note"
+            //            realmPath.stringByAppendingPathExtension("lock")!,
+            //            realmPath.stringByAppendingPathExtension("log_a")!,
+            //            realmPath.stringByAppendingPathExtension("log_b")!,
+            //            realmPath.stringByAppendingPathExtension("note")!
+        ]
+        for path in realmPaths {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+            
+            do {
+                try manager.removeItemAtPath(path)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+                
+            } catch {
+                // handle error
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+                
+            }
+        }
+        
+        /*
+        show dir list
+        */
+        Methods.show_DirList__RealmFiles()
+        
+    }
+    
+    static func realm_BackupFiles(fname : String) {
+        
+        let manager = NSFileManager.defaultManager()
+        
+        //        let realmPath = Realm.Configuration.defaultConfiguration.path as! NSString
+        
+        let realmPath2 = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath2!)
+        
+        //        let fname_realm = Methods.basename(realmPath2!)
+        //        let fname_realm = "db_20160219_173550.realm"
+        let fname_realm = fname
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        
+        //        let realmPath = String("dpath_realm" + "/" + fname_realm)
+        //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
+        
+        //        let tmp = NSString()
+        //
+        //        tmp.
+        
+        //        let realmPath = tmp.stringByAppendingString("\(dpath_realm)/\(fname_realm)")
+        let realmPath = "\(dpath_realm)/\(fname_realm)"
+        
+        let realmPaths = [
+            realmPath as String,
+            "\(realmPath).lock",
+            "\(realmPath).log_a",
+            "\(realmPath).log_b",
+            "\(realmPath).note"
+            //            realmPath.stringByAppendingPathExtension("lock")!,
+            //            realmPath.stringByAppendingPathExtension("log_a")!,
+            //            realmPath.stringByAppendingPathExtension("log_b")!,
+            //            realmPath.stringByAppendingPathExtension("note")!
+        ]
+
+        let realmPaths_backup = [
+            "\(realmPath as String).backup",
+            "\(realmPath).lock.backup",
+            "\(realmPath).log_a.backup",
+            "\(realmPath).log_b.backup",
+            "\(realmPath).note.backup"
+            //            realmPath.stringByAppendingPathExtension("lock")!,
+            //            realmPath.stringByAppendingPathExtension("log_a")!,
+            //            realmPath.stringByAppendingPathExtension("log_b")!,
+            //            realmPath.stringByAppendingPathExtension("note")!
+        ]
+
+        for path in realmPaths {
+
+            let res_b = manager.fileExistsAtPath(path)
+            
+            if res_b == true {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file exists => \(path)")
+
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file NOT exists => \(path)")
+
+            }
+            
+        }
+        
+        /*
+        show dir list
+        */
+        Methods.show_DirList__RealmFiles()
+        
+    }
+
     
 // MARK: others
     //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
@@ -554,5 +695,69 @@ class Methods {
 
         
     }
+ 
+    static func saveClips(songs : [MPMediaItem]) {
+        
+        var count = 0
+        
+//        for item in self.songs {
+        for item in songs {
+        
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
+            
+            let clip = Clip()
+            
+            clip.id = Methods.lastId_Clip()
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
+            
+            clip.title = item.title!
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+            let str = url?.absoluteString
+            
+            clip.audio_id = str!
+            
+            // created_at, modified_at
+            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            clip.created_at = tmp
+            clip.modified_at = tmp
+            
+            // length
+            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+            //            //=> Optional(641.227)
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            //=>
+            
+            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            
+            // is in db
+            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
+            
+            if res_b == false {
+                
+                // save clip info
+                
+                
+                count += 1
+                
+            }
+            
+        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
+        
+        
+    }
+
     
 }
