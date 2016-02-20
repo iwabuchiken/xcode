@@ -31,6 +31,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // send emails
         _experiments__SendEmails()
+
+//        // file i/o
+//        _experiments__FileIO()
         
 //        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
 //        
@@ -123,6 +126,34 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func _experiments__FileIO() {
+        
+        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+
+        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        
+        do {
+
+            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+
+            // report
+            Methods.show_DirList__RealmFiles()
+            
+        } catch {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred")
+
+            
+        }
+        
+    }
     
     func _experiments__SendEmails() {
         
@@ -143,7 +174,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients(["someone@somewhere.com"])
-        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+//        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+
+        mailComposerVC.setSubject("myself] xcode_Player \(Methods.get_TimeLable())")
+        
         mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
         
         // attach file
@@ -152,7 +186,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let dpath_realm = Methods.dirname(realmPath!)
         
-        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
+//        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
+        let fpath_realm = "\(dpath_realm)/realm_data_20160220_155221.csv"
 
 //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
 //        if let filePath = NSBundle.mainBundle().pathForResource(fpath_realm, ofType: "realm") {
@@ -176,16 +211,22 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         if let fileData = NSData(contentsOfFile: fpath_realm) {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created")
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
 //            println("File data loaded.")
-            
+
+            // attach data
+            //ref http://kellyegan.net/sending-files-using-swift/
+            mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: "swifts")
+
         } else {
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => NOT")
 
         }
-    aaa
+    
+        
 //        mailComposerVC.a
         
         return mailComposerVC

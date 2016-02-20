@@ -268,6 +268,23 @@ class Methods {
         
     }
 
+    static func get_TimeLabel__Serial() -> String {
+        
+        // date
+        let currentDate = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        
+        dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
+        
+        return dateFormatter.stringFromDate(currentDate)
+        
+    }
+
     static func conv_NSDate_2_DateString(date : NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()
@@ -657,13 +674,15 @@ class Methods {
     //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
     static func save_SongsData( data : [MPMediaItem] ) -> Void {
         
+        do {
+            
         let s1 = data[0]
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
         
         //test
         let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
@@ -683,6 +702,13 @@ class Methods {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
         
+        } catch {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error")
+            
+            
+        }
         
     }
 
@@ -713,7 +739,16 @@ class Methods {
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
             
-            clip.title = item.title!
+//            clip.title = item.title!
+            var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
+            //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
+            s_tmp = item.title!.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            clip.title = s_tmp
+            
+//            clip.title = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
             let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
             
