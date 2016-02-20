@@ -10,8 +10,8 @@
 		040D66391C7070EF0062799F /* BMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D66381C7070EF0062799F /* BMViewController.swift */; };
 		040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D663C1C70A76E0062799F /* PreferenceViewController.swift */; };
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
-		048D15F11C6DAECB009588E8 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15EF1C6DAECB009588E8 /* Methods.swift */; };
-		048D15F21C6DAECB009588E8 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D15F01C6DAECB009588E8 /* CONS.swift */; };
+		046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D21C784C1C0049DB74 /* CONS.swift */; };
+		046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D31C784C1C0049DB74 /* Methods.swift */; };
 		04C308831C76ED2800E71881 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C308821C76ED2800E71881 /* Clip.swift */; };
 		04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E80F201C6EFDAA00EE4F88 /* BM.swift */; };
 		04FED8051C7286A0004B9022 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FED8041C7286A0004B9022 /* DB.swift */; };
@@ -29,8 +29,8 @@
 		040D66381C7070EF0062799F /* BMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewController.swift; sourceTree = "<group>"; };
 		040D663C1C70A76E0062799F /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
-		048D15EF1C6DAECB009588E8 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = "../../../Chapter6_L-32_after/I/chapter6/Methods.swift"; sourceTree = "<group>"; };
-		048D15F01C6DAECB009588E8 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONS.swift; path = "../../../Chapter6_L-32_after/I/chapter6/CONS.swift"; sourceTree = "<group>"; };
+		046CF6D21C784C1C0049DB74 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
+		046CF6D31C784C1C0049DB74 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		04C308821C76ED2800E71881 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
 		04E80F201C6EFDAA00EE4F88 /* BM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM.swift; sourceTree = "<group>"; };
 		04FED8041C7286A0004B9022 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
@@ -89,10 +89,10 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				046CF6D21C784C1C0049DB74 /* CONS.swift */,
+				046CF6D31C784C1C0049DB74 /* Methods.swift */,
 				04FED8031C728683004B9022 /* utils */,
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
-				048D15EF1C6DAECB009588E8 /* Methods.swift */,
-				048D15F01C6DAECB009588E8 /* CONS.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
 				3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */,
 				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
@@ -254,16 +254,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E230B301BC887F9000162A3 /* MovieListViewController.swift in Sources */,
+				046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */,
 				04C308831C76ED2800E71881 /* Clip.swift in Sources */,
 				04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */,
+				046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */,
 				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
 				040D66391C7070EF0062799F /* BMViewController.swift in Sources */,
 				040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */,
-				048D15F11C6DAECB009588E8 /* Methods.swift in Sources */,
 				043FD3E91C70081700E6C342 /* BM_2.swift in Sources */,
 				04FED8051C7286A0004B9022 /* DB.swift in Sources */,
-				048D15F21C6DAECB009588E8 /* CONS.swift in Sources */,
 				3E7E2E061BCEB1EA005415C3 /* MusicListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

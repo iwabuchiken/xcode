@@ -50,6 +50,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046CF6D71C784F400049DB74 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				0492465F1C67650F00B95ACC /* Methods.swift */,
+				04D0EE721C6848C200268C68 /* CONS.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		046CF6D81C784F530049DB74 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3E634A711BC302D600D13685 /* Diary.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		3E16ACC91BC009DF004AE056 = {
 			isa = PBXGroup;
 			children = (
@@ -78,10 +95,9 @@
 				3E634A6F1BC2FAB800D13685 /* InputViewController.swift */,
 				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
 				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
-				3E634A711BC302D600D13685 /* Diary.swift */,
 				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
-				0492465F1C67650F00B95ACC /* Methods.swift */,
-				04D0EE721C6848C200268C68 /* CONS.swift */,
+				046CF6D81C784F530049DB74 /* models */,
+				046CF6D71C784F400049DB74 /* utils */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";

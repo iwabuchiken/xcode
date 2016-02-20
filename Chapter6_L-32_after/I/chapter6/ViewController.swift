@@ -67,53 +67,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm() => done")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //test
-        //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view answered Jun 6 '15 at 6:45
-        self.tableView.backgroundColor = UIColor.lightGrayColor()
-        
-        // get defaults
-        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
-        
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        
-////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
-////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
-//        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
-        
-
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //ref http://swift-salaryman.com/debug.php
-//        print(self)
-        
-        //ref https://developer.apple.com/swift/blog/?id=15
-//        print("\(self) =>  \(__FILE__):\(__LINE__)")
-
-//        // show dir list
-//        show_DirList()
-
-//        //test
-//        out_Message("abc/def")  // Methods.swift
-        
-//        //test 
-//        Diary.show_ClassName()
-       
-        //test
-//        Methods.out_Message("abc/def/ghi")
-        
-//        Methods().out_Message("abc/def/ghi")
-//        Methods.basename("abc/def/ghi")
-        
-        
-    }
-    
     func show_DirList() {
         
         //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
@@ -132,6 +85,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
+// MARK: view-related
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //test
+        //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view answered Jun 6 '15 at 6:45
+        self.tableView.backgroundColor = UIColor.lightGrayColor()
+        
+        // get defaults
+        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
+        
+        //        let defaults = NSUserDefaults.standardUserDefaults()
+        //
+        ////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
+        ////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+        //        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
+        
+        
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //ref http://swift-salaryman.com/debug.php
+        //        print(self)
+        
+        //ref https://developer.apple.com/swift/blog/?id=15
+        //        print("\(self) =>  \(__FILE__):\(__LINE__)")
+        
+        //        // show dir list
+        //        show_DirList()
+        
+        //        //test
+        //        out_Message("abc/def")  // Methods.swift
+        
+        //        //test
+        //        Diary.show_ClassName()
+        
+        //test
+        //        Methods.out_Message("abc/def/ghi")
+        
+        //        Methods().out_Message("abc/def/ghi")
+        //        Methods.basename("abc/def/ghi")
+        
+        
+    }
+    
+
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -182,6 +184,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+// MARK: realm-related
     func _test_Realm_Conditions__MultipleKeywords(tmp_s : String) -> Void {
         
         //debug
@@ -452,6 +455,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }//_test_Realm_Conditions(tmp_s : String) -> Void
     
+// MARK: segue-related
     // segue で画面遷移するに呼ばれる
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
 
@@ -691,5 +695,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("cellSegue",sender: nil)
     }
+
+// MARK: navigation buttons
+    @IBAction func experiments(sender: UIBarButtonItem) {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+
+        // build csv
+        _experiments__BuildCSV()
+        
+//        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+
+        
+//        // dir list
+//        let ary = Methods.show_DirList__RealmFiles()
+        
+    }
+
+    func _experiments__BuildCSV() {
+    
+        let r = try! Realm()
+        
+//        let resOf_Diaries = try! r.objects(Diary).sorted("created_at", ascending: false)
+        let resOf_Diaries = r.objects(Diary).sorted("created_at", ascending: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries.count => \(resOf_Diaries.count)")
+
+        // convert Diaries --> csv
+        let linesOf_Diaries = Methods.conv_Diaries_2_CSV(resOf_Diaries)
+
+        
+        
+    }
+
+
 }
 

@@ -211,8 +211,8 @@ class SandboxViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
         
         // get defaults
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)

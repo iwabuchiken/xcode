@@ -493,41 +493,41 @@ class Methods {
         
     }
     
-//    //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
-//    static func lastId() -> Int {
-//        
-//        // get realm
-//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-//        
-//        
-////        if let user = realm.objects(BM).last {
+    //ref http://qiita.com/_ha1f/items/f6318e326434dbf83037
+    static func lastId() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        
 //        if let user = realm.objects(BM).last {
-//
-//            return user.id + 1
-//            
-//        } else {
-//            
-//            return 1
-//            
-//        }
-//    }
-//
-//    static func lastId_Clip() -> Int {
-//        
-//        // get realm
-//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-//        
-//        //        if let user = realm.objects(BM).last {
-//        if let user = realm.objects(Clip).last {
-//            
-//            return user.id + 1
-//            
-//        } else {
-//            
-//            return 1
-//            
-//        }
-//    }
+        if let user = realm.objects(BM).last {
+
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+
+    static func lastId_Clip() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Clip).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
     
     static func realm_RemoveFiles(fname : String) {
         
@@ -669,213 +669,130 @@ class Methods {
         
     }
 
-    static func conv_Diaries_2_CSV
-//    (resOf_Diaries : [Results<Diary>]) -> [String] {
-    (resOf_Diaries : Results<Diary>) -> [String] {
-
-//        let obj = resOf_Diaries[0]
+    
+// MARK: others
+    //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
+    static func save_SongsData( data : [MPMediaItem] ) -> Void {
         
-        // vars
-        var lines = Array<String>()
+        do {
+            
+        let s1 = data[0]
         
         //debug
-        let limit = 10
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+        
+        //test
+        let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] is in db => \(res)")
+        
+        //debug: url
+        let url = s1.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+        
+        let s_id = url?.absoluteString.componentsSeparatedByString("=")[1]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
+        
+        } catch {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error")
+            
+            
+        }
+        
+    }
+
+    static func experiments() {
+        
+        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+
+        
+    }
+ 
+    static func saveClips(songs : [MPMediaItem]) {
         
         var count = 0
         
-        // iterate
-        for item in resOf_Diaries {
-
-            // title
-            let title = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+//        for item in self.songs {
+        for item in songs {
+        
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
             
-//            // ',' contained?
-//            if (title.rangeOfString(",") != nil) {
-//                
-//                title = "\"\(title)\""
-//                
-//            }
+            let clip = Clip()
             
-            // body
-            let body = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
-
-//            // ',' contained?
-//            if (body.rangeOfString(",") != nil) {
-//                
-//                body = "\"\(body)\""
-//                
-//            }
-
-//            let str_1 = "\(item.id),\(item.title),\(item.body)"
-            let str_1 = "\(item.id),\(title),\(body)"
-
-            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.date))\",\"\(Methods.conv_NSDate_2_DateString(item.created_at))\""
-            
-            let line = "\(str_1),\(str_2)"
+            clip.id = Methods.lastId_Clip()
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
-
-            // append
-            lines.append(line)
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
             
-//            //debug
-//            count += 1
-//            
-//            if count > limit {
-//                
-//                break
-//                
-//            }
-
+//            clip.title = item.title!
+            var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
+            //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
+            s_tmp = item.title!.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            clip.title = s_tmp
+            
+//            clip.title = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+            let str = url?.absoluteString
+            
+            clip.audio_id = str!
+            
+            // created_at, modified_at
+            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            clip.created_at = tmp
+            clip.modified_at = tmp
+            
+            // length
+            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+            //            //=> Optional(641.227)
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            //=>
+            
+            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            
+            // is in db
+            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
+            
+            if res_b == false {
+                
+                // save clip info
+                
+                
+                count += 1
+                
+            }
+            
         }
-
+        
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(resOf_Diaries.count) / lines => \(lines.count)")
-
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
         
-//        return Array<String>()
-        return lines
         
     }
-    
-// MARK: others
-    
-    static func conv_String_2_EscapedString(str : String) -> String {
-        
-        
-        let s_tmp = str.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
-        //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
-
-        return s_tmp.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
-
-        
-    }
-    
-    //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
-//    static func save_SongsData( data : [MPMediaItem] ) -> Void {
-//        
-//        do {
-//            
-//        let s1 = data[0]
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
-//        
-////        //debug
-////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
-//        
-//        //test
-//        let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] is in db => \(res)")
-//        
-//        //debug: url
-//        let url = s1.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//        
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-//        
-//        let s_id = url?.absoluteString.componentsSeparatedByString("=")[1]
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
-//        
-//        } catch {
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error")
-//            
-//            
-//        }
-//        
-//    }
-
-//    static func experiments() {
-//        
-//        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
-//
-//        
-//    }
- 
-//    static func saveClips(songs : [MPMediaItem]) {
-//        
-//        var count = 0
-//        
-////        for item in self.songs {
-//        for item in songs {
-//        
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
-//            
-//            let clip = Clip()
-//            
-//            clip.id = Methods.lastId_Clip()
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
-//            
-////            clip.title = item.title!
-//            var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
-//            //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
-//            s_tmp = item.title!.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            clip.title = s_tmp
-//            
-////            clip.title = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//            
-//            let str = url?.absoluteString
-//            
-//            clip.audio_id = str!
-//            
-//            // created_at, modified_at
-//            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
-//            
-//            clip.created_at = tmp
-//            clip.modified_at = tmp
-//            
-//            // length
-//            //debug
-//            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
-//            //            //=> Optional(641.227)
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
-//            //=>
-//            
-//            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
-//            
-//            // is in db
-//            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
-//            
-//            if res_b == false {
-//                
-//                // save clip info
-//                
-//                
-//                count += 1
-//                
-//            }
-//            
-//        }
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
-//        
-//        
-//    }
 
     
 }
