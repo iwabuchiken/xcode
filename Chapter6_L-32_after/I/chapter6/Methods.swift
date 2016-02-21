@@ -686,6 +686,7 @@ class Methods {
         // iterate
         let numOf_items = resOf_Diaries.count
         
+        //ref http://www.raywenderlich.com/117456/swift-tutorial-repeating-steps-with-loops
 //        for item in resOf_Diaries {
         for var i = 0; i < numOf_items; i++ {
 
@@ -717,7 +718,8 @@ class Methods {
 //            let str_1 = "\(item.id),\(item.title),\(item.body)"
             let str_1 = "\(item.id),\(title),\(body)"
 
-            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.date))\",\"\(Methods.conv_NSDate_2_DateString(item.created_at))\""
+//            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.date))\",\"\(Methods.conv_NSDate_2_DateString(item.created_at))\""
+            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.created_at))\",\"\(Methods.conv_NSDate_2_DateString(item.date))\""
             
             let line = "\(str_1),\(str_2)"
             

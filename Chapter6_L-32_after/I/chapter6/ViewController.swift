@@ -674,9 +674,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 // MARK: navigation buttons
     @IBAction func experiments(sender: UIBarButtonItem) {
 
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+//
+//        // build csv
+//        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
+//        
+//        let dpath_realm = Methods.dirname(realmPath!)
+//        
+//        let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+//        
+//        let fpath_full = "\(dpath_realm)/\(fname)"
+////        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+//
+//        // build => CSV
+////        _experiments__BuildCSV()
+//        _experiments__BuildCSV(fpath_full)
+//
+//        // email
+//        self.fpath_realm_csv = fpath_full
+//        self.fname_realm_csv = fname
+//        
+//        _experiments__SendEmails()
+//        
+////        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+//
+//        
+////        // dir list
+////        let ary = Methods.show_DirList__RealmFiles()
+        
+    }
+
+    @IBAction func backupDiaries_ViaEmail(sender: UIBarButtonItem) {
+      
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
-
+        
         // build csv
         //ref http://www.learncoredata.com/how-to-save-files-to-disk/
         let realmPath = Realm.Configuration.defaultConfiguration.path
@@ -686,27 +724,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
         
         let fpath_full = "\(dpath_realm)/\(fname)"
-//        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
-
         
-//        _experiments__BuildCSV()
+        // build => CSV
+        //        _experiments__BuildCSV()
         _experiments__BuildCSV(fpath_full)
-
+        
         // email
         self.fpath_realm_csv = fpath_full
         self.fname_realm_csv = fname
         
         _experiments__SendEmails()
         
-//        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+        //        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+        
+        
+        //        // dir list
+        //        let ary = Methods.show_DirList__RealmFiles()
 
-        
-//        // dir list
-//        let ary = Methods.show_DirList__RealmFiles()
-        
     }
 
     func _experiments__BuildCSV(fpath_full : String) {
@@ -853,6 +891,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
     
     
 

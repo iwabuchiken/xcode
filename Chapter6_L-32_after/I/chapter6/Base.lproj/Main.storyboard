@@ -48,9 +48,14 @@
                                     <segue destination="UV6-TK-gWJ" kind="show" identifier="sandboxSegue" id="RcJ-NE-8PO"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="action" id="UcJ-bX-lK4">
+                                <connections>
+                                    <action selector="backupDiaries_ViaEmail:" destination="BYZ-38-t0r" id="xl1-6a-03h"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="compose" id="UCY-X5-nT0">
                                 <connections>
-                                    <action selector="experiments:" destination="BYZ-38-t0r" id="4A5-hr-F0a"/>
+                                    <action selector="experiments:" destination="BYZ-38-t0r" id="OLm-M4-YMt"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
