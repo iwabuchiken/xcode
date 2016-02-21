@@ -678,18 +678,25 @@ class Methods {
         // vars
         var lines = Array<String>()
         
-        //debug
-        let limit = 10
-        
-        var count = 0
+//        //debug
+//        let limit = 10
+//        
+//        var count = 0
         
         // iterate
-        for item in resOf_Diaries {
+        let numOf_items = resOf_Diaries.count
+        
+//        for item in resOf_Diaries {
+        for var i = 0; i < numOf_items; i++ {
 
+            // item
+            let item = resOf_Diaries[i]
+            
             // title
             let title = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
             
 //            // ',' contained?
+            // ref http://stackoverflow.com/questions/24034043/how-do-i-check-if-a-string-contains-another-string-in-swift answered Jun 11 '14 at 11:34
 //            if (title.rangeOfString(",") != nil) {
 //                
 //                title = "\"\(title)\""
@@ -697,7 +704,8 @@ class Methods {
 //            }
             
             // body
-            let body = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+//            let body = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+            let body = "\"\(Methods.conv_String_2_EscapedString(item.body))\""
 
 //            // ',' contained?
 //            if (body.rangeOfString(",") != nil) {
@@ -754,128 +762,113 @@ class Methods {
         
     }
     
-    //    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
-//    static func save_SongsData( data : [MPMediaItem] ) -> Void {
+//    static func _experiments__FileIO() {
+    static func writeTo_File
+    (fpath_full : String, content : String) -> Void {
+    
+//        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
 //        
-//        do {
-//            
-//        let s1 = data[0]
+//        let dpath_realm = Methods.dirname(realmPath!)
 //        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
-//        
-////        //debug
-////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
-//        
-//        //test
-//        let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] is in db => \(res)")
-//        
-//        //debug: url
-//        let url = s1.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//        
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-//        
-//        let s_id = url?.absoluteString.componentsSeparatedByString("=")[1]
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
-//        
-//        } catch {
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error")
-//            
-//            
-//        }
-//        
-//    }
+//        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        
+        do {
+            
+//            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+            try content.writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+            
+//            // report
+//            Methods.show_DirList__RealmFiles()
+            
+        } catch {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred")
+            
+            
+        }
+        
+    }
 
-//    static func experiments() {
-//        
-//        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
-//
-//        
-//    }
- 
-//    static func saveClips(songs : [MPMediaItem]) {
-//        
-//        var count = 0
-//        
-////        for item in self.songs {
-//        for item in songs {
-//        
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
-//            
-//            let clip = Clip()
-//            
-//            clip.id = Methods.lastId_Clip()
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
-//            
-////            clip.title = item.title!
-//            var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
-//            //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
-//            s_tmp = item.title!.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            clip.title = s_tmp
-//            
-////            clip.title = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//            
-//            let str = url?.absoluteString
-//            
-//            clip.audio_id = str!
-//            
-//            // created_at, modified_at
-//            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
-//            
-//            clip.created_at = tmp
-//            clip.modified_at = tmp
-//            
-//            // length
-//            //debug
-//            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
-//            //            //=> Optional(641.227)
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
-//            //=>
-//            
-//            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
-//            
-//            // is in db
-//            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
-//            
-//            if res_b == false {
-//                
-//                // save clip info
-//                
-//                
+    static func writeTo_File__CSV
+        (fpath_full : String, lines : [String]) -> Void {
+
+            //debug
+            let max = 10
+            var count = 0
+            
+            var content = ""
+            
+            // build: content
+            let numOf_items = lines.count
+            
+            
+//            for line in lines {
+            for var i = 0; i < numOf_items; i++ {
+            
+                // line
+                let line = lines[i]
+                
+                content += "\(line)\n"
+                
+//                // count
 //                count += 1
 //                
+//                if count > max { break }
+                
+            }
+            
+            do {
+            
+                //            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+                try "\(content)".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+            
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+            
+            } catch {
+            
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(fpath_full)")
+                                
+                                
+            }
+            
+//            // write
+//            for line in lines {
+//
+//                do {
+//                    
+//                    //            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+//                    try "\(line)\n".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+//                    
+//                    //debug
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+//                    
+//                    //            // report
+//                    //            Methods.show_DirList__RealmFiles()
+//                    
+//                    // count
+//                    count += 1
+//                    
+//                    if count > max { break }
+//                    
+//                } catch {
+//                    
+//                    //debug
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(line)")
+//                    
+//                    
+//                }
+//
 //            }
-//            
-//        }
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
-//        
-//        
-//    }
+            
+            
+    }
 
     
 }

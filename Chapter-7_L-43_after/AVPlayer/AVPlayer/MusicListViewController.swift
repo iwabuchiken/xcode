@@ -155,6 +155,15 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    /*
+        _experiments__SendEmails
+    
+        <dependencies>
+        configuredMailComposeViewController
+        showSendMailErrorAlert
+        mailComposeController
+    
+    */
     func _experiments__SendEmails() {
         
         let mailComposeViewController = configuredMailComposeViewController()

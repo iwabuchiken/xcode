@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chapter6/ViewController.swift"
-            timestampString = "477646566.800671"
+            timestampString = "477713785.808464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "_test_Realm_Conditions(_:)"
             landmarkType = "5">
          </BreakpointContent>

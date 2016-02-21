@@ -9,45 +9,20 @@
 
 import UIKit
 import RealmSwift
+import MessageUI
 
-//extension String {
-//    
-//    subscript (i: Int) -> Character {
-//        return self[self.startIndex.advancedBy(i)]
-//    }
-//    
-//    subscript (i: Int) -> String {
-//        return String(self[i] as Character)
-//    }
-//    
-//    subscript (r: Range<Int>) -> String {
-//        let start = startIndex.advancedBy(r.startIndex)
-//        let end = start.advancedBy(r.endIndex - r.startIndex)
-//        return self[Range(start: start, end: end)]
-//    }
-//}
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    /*
+        vars
+    */
+    var message_email = ""
+    
+    var fpath_realm_csv = ""
+    var fname_realm_csv = ""
+    
     @IBOutlet weak var tableView: UITableView!
 
-    //ref http://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language answered Jun 10 '14 at 15:02
-//    extension String {
-//        
-//        subscript (i: Int) -> Character {
-//            return self[self.startIndex.advancedBy(i)]
-//        }
-//        
-//        subscript (i: Int) -> String {
-//            return String(self[i] as Character)
-//        }
-//        
-//        subscript (r: Range<Int>) -> String {
-//            let start = startIndex.advancedBy(r.startIndex)
-//            let end = start.advancedBy(r.endIndex - r.startIndex)
-//            return self[Range(start: start, end: end)]
-//        }
-//    }
-    
     //test: colors
     //ref http://makeapppie.com/2014/10/02/swift-swift-using-color-and-uicolor-in-swift-part-1-rgb/
     let myRedColor = UIColor(
@@ -703,7 +678,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
 
         // build csv
-        _experiments__BuildCSV()
+        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        
+        let fpath_full = "\(dpath_realm)/\(fname)"
+//        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+
+        
+//        _experiments__BuildCSV()
+        _experiments__BuildCSV(fpath_full)
+
+        // email
+        self.fpath_realm_csv = fpath_full
+        self.fname_realm_csv = fname
+        
+        _experiments__SendEmails()
         
 //        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
 
@@ -713,7 +709,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
-    func _experiments__BuildCSV() {
+    func _experiments__BuildCSV(fpath_full : String) {
     
         let r = try! Realm()
         
@@ -723,13 +719,142 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries.count => \(resOf_Diaries.count)")
 
-        // convert Diaries --> csv
+        // convert Diaries --> csv : [String]
         let linesOf_Diaries = Methods.conv_Diaries_2_CSV(resOf_Diaries)
 
+        
+        // write to file
+//                //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+//                let realmPath = Realm.Configuration.defaultConfiguration.path
+//        
+//                let dpath_realm = Methods.dirname(realmPath!)
+//        
+//                let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+
+        Methods.writeTo_File__CSV(fpath_full, lines: linesOf_Diaries)
+        
+        // report
+        Methods.show_DirList__RealmFiles()
+
+        // email
+        
         
         
     }
 
+    // MARK: email-related
+    /*
+    _experiments__SendEmails
+    
+    <dependencies>
+    configuredMailComposeViewController
+    showSendMailErrorAlert
+    mailComposeController
+    
+    */
+    //ref http://kellyegan.net/sending-files-using-swift/
+    func _experiments__SendEmails() {
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            
+        } else {
+            
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController()
+        -> MFMailComposeViewController {
+            
+            let mailComposerVC = MFMailComposeViewController()
+            
+            mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+            
+////            mailComposerVC.setToRecipients(["someone@somewhere.com"])
+//            mailComposerVC.setToRecipients([""])
+
+            //        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+            
+            mailComposerVC.setSubject("myself] xcode_Memo \(Methods.get_TimeLable())")
+            
+//            mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+            mailComposerVC.setMessageBody(self.message_email, isHTML: false)
+            
+            // attach file
+            //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
+            let realmPath = Realm.Configuration.defaultConfiguration.path
+            
+            let dpath_realm = Methods.dirname(realmPath!)
+            
+            //        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
+//            let fpath_realm = "\(dpath_realm)/realm_data_20160221_093611.csv"
+            let fpath_realm = "\(self.fpath_realm_csv)"
+            
+            //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
+            //        if let filePath = NSBundle.mainBundle().pathForResource(fpath_realm, ofType: "realm") {
+//            if let filePath = NSBundle.mainBundle().pathForResource("db_20160220_002443", ofType: "realm") {
+//                
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path to attached file => \(filePath)")
+//                
+//                //            print("File path loaded.")
+//                
+//            } else {
+//                
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] can't generate path => \(fpath_realm)")
+//                
+//                
+//            }
+            
+            // load data
+            //        if let fileData = NSData(contentsOfFile: filePath) {
+            if let fileData = NSData(contentsOfFile: fpath_realm) {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created")
+                //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
+                //            println("File data loaded.")
+                
+                // attach data
+                //ref http://kellyegan.net/sending-files-using-swift/
+//                mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: "realm_data_20160221_093611.csv")
+                mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: self.fname_realm_csv)
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => NOT")
+                
+            }
+            
+            
+            //        mailComposerVC.a
+            
+            return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        //        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        //        sendMailErrorAlert.show()
+    }
+    
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] mailComposeController => called")
+
+        
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
 
 }
 
