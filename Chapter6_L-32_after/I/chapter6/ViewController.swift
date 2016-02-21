@@ -674,42 +674,130 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 // MARK: navigation buttons
     @IBAction func experiments(sender: UIBarButtonItem) {
 
+//        _experiments__Get_LastBackupAt()
         
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
-//
-//        // build csv
-//        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
-//        let realmPath = Realm.Configuration.defaultConfiguration.path
-//        
-//        let dpath_realm = Methods.dirname(realmPath!)
-//        
-//        let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
-//        
-//        let fpath_full = "\(dpath_realm)/\(fname)"
-////        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
-//
-//        // build => CSV
-////        _experiments__BuildCSV()
-//        _experiments__BuildCSV(fpath_full)
-//
-//        // email
-//        self.fpath_realm_csv = fpath_full
-//        self.fname_realm_csv = fname
-//        
-//        _experiments__SendEmails()
-//        
-////        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
-//
-//        
-////        // dir list
-////        let ary = Methods.show_DirList__RealmFiles()
+        _experiments__RegEx_Matching()
+        
+    }
+    
+    func _experiments__RegEx_Matching() {
+        
+        do {
+//            let regex = try NSRegularExpression(pattern: "(<img.*?src=\")(.*?)(\".*?>)", options: [])
+            
+            //ref http://stackoverflow.com/questions/31406706/how-to-use-nsregularexpression-in-swift-2-0-in-xcode-7 answered Jul 14 '15 at 13:36
+            let realmPath = Realm.Configuration.defaultConfiguration.path
+            
+            let dpath_realm = Methods.dirname(realmPath!)
+            
+            let fname = "realm_data_20160221_151229.csv"
+            
+            let fpath_full = "\(dpath_realm)/\(fname)"
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+            
+            //        //debug
+            //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            
+            
+            //        let lines = NSString(string: fpath_full)
+            //        let content = NSString(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding, error: nil)
+            //        let content = String(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding, error: nil)
+            //ref https://www.hackingwithswift.com/read/5/2/reading-from-disk-contentsoffile
+            let content = try? String(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding)
+            
+            
+            if content != nil {
+
+//                let str = Methods.conv_String_2_EscapedString(<#T##str: String##String#>)
+                
+                let regex = try NSRegularExpression(pattern: "¥d¥d¥d¥d/¥d¥d/¥d¥d ¥d¥d:¥d¥d:¥d¥d", options: [])
+                
+//                let res = regex.firstMatchInString(content, options:[],
+//                    range: NSMakeRange(0, utf16.count)) != nil
+                let res = regex.description
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] res => \(res)")
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+
+            }
+            
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
         
     }
 
+    func _experiments__Get_LastBackupAt() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+
+        let fname = "realm_data_20160221_151229.csv"
+        
+        let fpath_full = "\(dpath_realm)/\(fname)"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+        
+        
+//        let lines = NSString(string: fpath_full)
+//        let content = NSString(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding, error: nil)
+//        let content = String(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding, error: nil)
+        //ref https://www.hackingwithswift.com/read/5/2/reading-from-disk-contentsoffile
+        let content = try? String(contentsOfFile: fpath_full, encoding: NSUTF8StringEncoding)
+
+        
+        if content != nil {
+
+//            let tokens = content!.componentsSeparatedByString("\n")
+            let tokens = content!.componentsSeparatedByString("\n")
+
+//            if tokens != nil {
+            
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[0] => \(tokens[0])")
+
+//            }
+            
+        } else {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+
+        }
+        
+//        let tokens = content.componentsSeparatedByString("\n")
+        
+        
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+
+        
+//        let tokens = content        
+//        let tokens = lines.componentsSeparatedByString("\n")
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+
+    }
+    
     @IBAction func backupDiaries_ViaEmail(sender: UIBarButtonItem) {
       
         //debug

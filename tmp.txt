@@ -1,11 +1,13 @@
-D-21
+xcode_Memo
+D-2
 
-s-8#2
+s-1#1/steps.~5
 ---
-1. [PSoC Creator 101 Lesson 4: Let’s Get an LED to Blink Part 1]
-2. on-board switch
+1. all lines
+2. email
 
     ==> done
+
 
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
