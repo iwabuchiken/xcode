@@ -673,6 +673,8 @@ class Methods {
 //    (resOf_Diaries : [Results<Diary>]) -> [String] {
     (resOf_Diaries : Results<Diary>) -> [String] {
 
+
+        
 //        let obj = resOf_Diaries[0]
         
         // vars
@@ -799,9 +801,9 @@ class Methods {
     static func writeTo_File__CSV
         (fpath_full : String, lines : [String]) -> Void {
 
-            //debug
-            let max = 10
-            var count = 0
+//            //debug
+//            let max = 10
+//            var count = 0
             
             var content = ""
             
@@ -872,5 +874,93 @@ class Methods {
             
     }
 
+    static func writeTo_File__CSV_ForBackup
+        (fpath_full : String, lines : [String]) -> Void {
+            
+            //            //debug
+            //            let max = 10
+            //            var count = 0
+            
+            var content = ""
+            
+            // build: content
+            let numOf_items = lines.count
+            
+            // write => meta info
+            let date_label = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            let latest_diary = CONS.s_Latest_Diary_at
+            
+            content += "created_at=\(date_label),num_of_diaries=\(numOf_items),latest_diary_at=\(CONS.s_Latest_Diary_at)"
+            
+            content += "\n"
+            
+            // write => header
+            content += "id,titile,body,created_at,modified_at"
+
+            content += "\n"
+
+            //            for line in lines {
+            for var i = 0; i < numOf_items; i++ {
+                
+                // line
+                let line = lines[i]
+                
+                content += "\(line)\n"
+                
+                //                // count
+                //                count += 1
+                //
+                //                if count > max { break }
+                
+            }
+            
+            do {
+                
+                //            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+                try "\(content)".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+                
+            } catch {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(fpath_full)")
+                
+                
+            }
+            
+            //            // write
+            //            for line in lines {
+            //
+            //                do {
+            //
+            //                    //            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+            //                    try "\(line)\n".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+            //
+            //                    //debug
+            //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+            //
+            //                    //            // report
+            //                    //            Methods.show_DirList__RealmFiles()
+            //
+            //                    // count
+            //                    count += 1
+            //
+            //                    if count > max { break }
+            //
+            //                } catch {
+            //                    
+            //                    //debug
+            //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(line)")
+            //                    
+            //                    
+            //                }
+            //
+            //            }
+            
+            
+    }
     
 }

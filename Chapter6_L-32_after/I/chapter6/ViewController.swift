@@ -821,6 +821,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //        _experiments__BuildCSV()
         _experiments__BuildCSV(fpath_full)
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+        
+        
         // email
         self.fpath_realm_csv = fpath_full
         self.fname_realm_csv = fname
@@ -842,6 +846,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let resOf_Diaries = try! r.objects(Diary).sorted("created_at", ascending: false)
         let resOf_Diaries = r.objects(Diary).sorted("created_at", ascending: false)
         
+        // latest diary
+        let tmp_Diaries = r.objects(Diary).sorted("date", ascending: false)
+        let latest_diary = tmp_Diaries[0]
+        
+        CONS.s_Latest_Diary_at = Methods.conv_NSDate_2_DateString(latest_diary.date)
+        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries.count => \(resOf_Diaries.count)")
 
@@ -857,7 +867,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        
 //                let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
 
-        Methods.writeTo_File__CSV(fpath_full, lines: linesOf_Diaries)
+        // write to csv
+        Methods.writeTo_File__CSV_ForBackup(fpath_full, lines: linesOf_Diaries)
         
         // report
         Methods.show_DirList__RealmFiles()

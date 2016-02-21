@@ -58,6 +58,10 @@ class CONS {
 //    static var s_Realm_FileName__New = "db_20160219_164456.realm"
 //    static var s_Realm_FileName__New = "db_20160219_173550.realm"
     
+    /* *************************************
+        others
+    ************************************* */
+    static var s_Latest_Diary_at = ""
     
     
     /*
