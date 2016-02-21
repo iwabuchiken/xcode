@@ -176,4 +176,13 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+// MARK: - others
+    @IBAction func dup_Diary(sender: UIButton) {
+        
+//        self.realm.add(self.diary, update: true)
+        
+        
+    }
+
+    
 }
