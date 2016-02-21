@@ -676,7 +676,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 //        _experiments__Get_LastBackupAt()
         
-        _experiments__RegEx_Matching()
+//        _experiments__RegEx_Matching()
+        
+        _experiments__UIAlert()
+        
+    }
+    
+    func _experiments__UIAlert() {
+    
+        //ref http://stackoverflow.com/questions/25511945/swift-alert-view-ios8-with-ok-and-cancel-button-which-button-tapped answered Aug 26 '14 at 17:51
+        // ref handler http://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift answered Jun 3 '14 at 18:48
+        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
         
     }
     
@@ -800,8 +824,73 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func backupDiaries_ViaEmail(sender: UIBarButtonItem) {
       
+        /*
+            confirm dialog
+
+        */
+        let title = "Send data via email"
+        let message = "Diary data in csv format"
+        
+//        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        var refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            
+            // start email
+            self.backupDiaries_ViaEmail__Ok()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+        
+//        // build csv
+//        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+//        let realmPath = Realm.Configuration.defaultConfiguration.path
+//        
+//        let dpath_realm = Methods.dirname(realmPath!)
+//        
+//        let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+//        
+//        let fpath_full = "\(dpath_realm)/\(fname)"
+//        //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+//        
+//        // build => CSV
+//        //        _experiments__BuildCSV()
+//        _experiments__BuildCSV(fpath_full)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+//        
+//        
+//        // email
+//        self.fpath_realm_csv = fpath_full
+//        self.fname_realm_csv = fname
+//        
+//        _experiments__SendEmails()
+//        
+//        //        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+//        
+//        
+//        //        // dir list
+//        //        let ary = Methods.show_DirList__RealmFiles()
+
+    }
+
+    func backupDiaries_ViaEmail__Ok() {
         
         // build csv
         //ref http://www.learncoredata.com/how-to-save-files-to-disk/
@@ -836,9 +925,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //        // dir list
         //        let ary = Methods.show_DirList__RealmFiles()
-
     }
-
+    
     func _experiments__BuildCSV(fpath_full : String) {
     
         let r = try! Realm()
