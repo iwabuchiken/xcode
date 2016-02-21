@@ -179,10 +179,52 @@ class InputViewController: UIViewController, UITextFieldDelegate {
 // MARK: - others
     @IBAction func dup_Diary(sender: UIButton) {
         
-//        self.realm.add(self.diary, update: true)
+        let s_title = "Duplicate Diary instance"
         
+        let s_message = "same Diary instance"
+        
+//        self.realm.add(self.diary, update: true)
+        var refreshAlert = UIAlertController(title: "\(s_title)", message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            
+            self.dup_Diary__OK()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
         
     }
 
+    func dup_Diary__OK() {
+
+//        self.diary.title = self.titleTextField.text!
+//        self.diary.body = self.bodyTextView.text
+//        self.diary.date = NSDate()
+//        self.diary.created_at = NSDate()
+//        
+//        self.realm.add(self.diary, update: false)
+
+        try! realm.write {
+//            self.diary.title = self.titleTextField.text!
+//            self.diary.body = self.bodyTextView.text
+            self.diary.date = NSDate()
+            self.diary.created_at = NSDate()
+            
+            self.realm.add(self.diary, update: false)
+            
+        }
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
     
 }
