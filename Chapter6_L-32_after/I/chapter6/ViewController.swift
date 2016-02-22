@@ -185,7 +185,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 //ref http://stackoverflow.com/questions/24037711/get-the-length-of-a-string answered Jun 4 '14 at 12:41
 //                let len = count(tokens[0])
-                let len = tokens[0].characters.count
+//                let len = tokens[0].characters.count
 //                if len > 1 {
 
                     //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
@@ -515,7 +515,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //        let date_Today = Methods.get_Date(dateFormatter.stringFromDate(NSDate()))
         let date_Today = Methods.get_Date(tmp_s)
-        let time_Today = Methods.get_Time(tmp_s)
+//        let time_Today = Methods.get_Time(tmp_s)
         
         let date_Diary = Methods.get_Date(convertedDate)
         let time_Diary = Methods.get_Time(convertedDate)
@@ -593,12 +593,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let s_DayLabel_Yesterday = Methods.get_Date(s_DateLabel_Yesterday)
             
             // X days ago
-            let diff = -5
+//            let diff = -5
             
-            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: diff)
+//            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: diff)
             
             
-            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
+//            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
             
 //            //debug
 //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
@@ -689,7 +689,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let choice_1 = "(1) Show realm files list\n"
         let choice_2 = "(2) Delete csv files\n"
-        let choice_3 = "(3) "
+        let choice_3 = "(3) Send email"
 
 //        let s_message = "(1) show realm files list (2) B (3) C"
         let s_message = "\(choice_1) \(choice_2) \(choice_3)"
@@ -720,7 +720,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
-            
+
+            // start function
+            self._experiments__Choices__3()
+
         }))
 
         // show view
@@ -737,8 +740,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func _experiments__Choices__2() {
         
-        // show list
+        // confirm
+        let s_title = "!!!"
+        
+        let choice_1 = "Delete csv files?"
+//        let choice_2 = "(2) Delete csv files\n"
+//        let choice_3 = "(3) Send email"
+        
+        //        let s_message = "(1) show realm files list (2) B (3) C"
+//        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+        let s_message = "\(choice_1)"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let lbl_Choice_1 = "OK"
+        let lbl_Choice_2 = "Cancel"
+        
+        refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+            // start function
+            self._experiments__Choices__2__OK()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: lbl_Choice_2, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            // start function
+//            self._experiments__Choices__2__OK()
+            
+        }))
+        
+
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+//        // delete files
+//        Methods.delete_Diary_CSVFiles()
+        
+    }
+    
+    func _experiments__Choices__2__OK() {
+
+        // delete files
         Methods.delete_Diary_CSVFiles()
+
+    }
+    
+    func _experiments__Choices__3() {
+        
+        // show list
+//        Methods.delete_Diary_CSVFiles()
+
+        self.backupDiaries_ViaEmail__Delegate()
         
     }
     
@@ -746,7 +805,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
         //ref http://stackoverflow.com/questions/25511945/swift-alert-view-ios8-with-ok-and-cancel-button-which-button-tapped answered Aug 26 '14 at 17:51
         // ref handler http://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift answered Jun 3 '14 at 18:48
-        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
@@ -888,32 +947,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             confirm dialog
 
         */
-        let title = "Send data via email"
-        let message = "Diary data in csv format"
-        
-//        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
-        var refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
-            
-            // start email
-            self.backupDiaries_ViaEmail__Ok()
-            
-        }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
-        }))
-        
-        presentViewController(refreshAlert, animated: true, completion: nil)
+        backupDiaries_ViaEmail__Delegate()
 
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
-        
+//        let title = "Send data via email"
+//        let message = "Diary data in csv format"
+//        
+////        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+//        var refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+//            print("Handle Ok logic here")
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+//            
+//            // start email
+//            self.backupDiaries_ViaEmail__Ok()
+//            
+//        }))
+//        
+//        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+//            print("Handle Cancel Logic here")
+//        }))
+//        
+//        presentViewController(refreshAlert, animated: true, completion: nil)
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+//        
 //        // build csv
 //        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
 //        let realmPath = Realm.Configuration.defaultConfiguration.path
@@ -950,6 +1011,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
 
+    func backupDiaries_ViaEmail__Delegate() {
+        
+        let title = "Send data via email"
+        let message = "Diary data in csv format"
+        
+        //        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            
+            // start email
+            self.backupDiaries_ViaEmail__Ok()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+        
+    }
+    
     func backupDiaries_ViaEmail__Ok() {
         
         // build csv
@@ -1071,9 +1162,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // attach file
             //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
-            let realmPath = Realm.Configuration.defaultConfiguration.path
+//            let realmPath = Realm.Configuration.defaultConfiguration.path
             
-            let dpath_realm = Methods.dirname(realmPath!)
+//            let dpath_realm = Methods.dirname(realmPath!)
             
             //        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
 //            let fpath_realm = "\(dpath_realm)/realm_data_20160221_093611.csv"
@@ -1134,12 +1225,74 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] mailComposeController => called")
 
+        //ref http://stackoverflow.com/questions/24311073/mfmailcomposeviewcontroller-in-swift answered Aug 26 '15 at 17:04
+        switch result.rawValue {
+
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+            
+            break
+            
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+            
+            // confirm
+            let s_title = "Reminder"
+            
+            let choice_1 = "last_backup_at => will not be recorded"
+            //        let choice_2 = "(2) Delete csv files\n"
+            //        let choice_3 = "(3) Send email"
+            
+            //        let s_message = "(1) show realm files list (2) B (3) C"
+            //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+            let s_message = "\(choice_1)"
+            
+            let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let lbl_Choice_1 = "OK"
+//            let lbl_Choice_2 = "Cancel"
+            
+            refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                
+//                // start function
+//                self._experiments__Choices__2__OK()
+                
+                // dismiss view
+                self.mailComposeController__DismissView()
+                
+                
+            }))
+            
+            // show view
+//            presentViewController(refreshAlert, animated: true, completion: nil)
+            controller.presentViewController(refreshAlert, animated: true, completion: nil)
+            
+            return
+//            break
+
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: \(error!.localizedDescription)")
+        default:
+            break
+        }
         
+        // dismiss view
         controller.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
     
+    func mailComposeController__DismissView() {
+        
+        // dismiss view
+        self.dismissViewControllerAnimated(true, completion: nil)
+
+    }
     
 
 }

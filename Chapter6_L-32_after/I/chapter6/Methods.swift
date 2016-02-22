@@ -632,17 +632,17 @@ class Methods {
             //            realmPath.stringByAppendingPathExtension("note")!
         ]
 
-        let realmPaths_backup = [
-            "\(realmPath as String).backup",
-            "\(realmPath).lock.backup",
-            "\(realmPath).log_a.backup",
-            "\(realmPath).log_b.backup",
-            "\(realmPath).note.backup"
-            //            realmPath.stringByAppendingPathExtension("lock")!,
-            //            realmPath.stringByAppendingPathExtension("log_a")!,
-            //            realmPath.stringByAppendingPathExtension("log_b")!,
-            //            realmPath.stringByAppendingPathExtension("note")!
-        ]
+//        let realmPaths_backup = [
+//            "\(realmPath as String).backup",
+//            "\(realmPath).lock.backup",
+//            "\(realmPath).log_a.backup",
+//            "\(realmPath).log_b.backup",
+//            "\(realmPath).note.backup"
+//            //            realmPath.stringByAppendingPathExtension("lock")!,
+//            //            realmPath.stringByAppendingPathExtension("log_a")!,
+//            //            realmPath.stringByAppendingPathExtension("log_b")!,
+//            //            realmPath.stringByAppendingPathExtension("note")!
+//        ]
 
         for path in realmPaths {
 
@@ -725,8 +725,8 @@ class Methods {
             
             let line = "\(str_1),\(str_2)"
             
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
 
             // append
             lines.append(line)
@@ -889,7 +889,7 @@ class Methods {
             // write => meta info
             let date_label = Methods.conv_NSDate_2_DateString(NSDate())
             
-            let latest_diary = CONS.s_Latest_Diary_at
+//            let latest_diary = CONS.s_Latest_Diary_at
             
             content += "created_at=\(date_label),num_of_diaries=\(numOf_items),latest_diary_at=\(CONS.s_Latest_Diary_at)"
             

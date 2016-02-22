@@ -113,7 +113,7 @@ class SandboxViewController: UIViewController {
         let docsPath = NSSearchPathForDirectoriesInDomains(
             NSSearchPathDirectory.DocumentDirectory,
             NSSearchPathDomainMask.UserDomainMask,
-            true)[0] as! NSString
+            true)[0] as NSString
         
         main_label.text = docsPath as String
         

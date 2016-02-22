@@ -184,7 +184,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         let s_message = "same Diary instance"
         
 //        self.realm.add(self.diary, update: true)
-        var refreshAlert = UIAlertController(title: "\(s_title)", message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "\(s_title)", message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
