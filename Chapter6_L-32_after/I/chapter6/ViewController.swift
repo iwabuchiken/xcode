@@ -1065,10 +1065,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
         
         
-        // email
+        // email: setup vars
         self.fpath_realm_csv = fpath_full
         self.fname_realm_csv = fname
         
+        //test
+        self.mailComposeController__MailSent()
+        
+        // send email
         _experiments__SendEmails()
         
         //        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
@@ -1229,13 +1233,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         switch result.rawValue {
 
         case MFMailComposeResultSent.rawValue:
+            
             print("Mail sent")
+            
+            // after sending mail => save latest backup time
+//            self.mailComposeController__MailSent()
             
             break
             
         case MFMailComposeResultCancelled.rawValue:
+            
             print("Mail cancelled")
+            
         case MFMailComposeResultSaved.rawValue:
+            
             print("Mail saved")
             
             // confirm
@@ -1286,6 +1297,84 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    
+    func mailComposeController__MailSent() {
+        
+        let content = try? String(contentsOfFile: self.fpath_realm_csv, encoding: NSUTF8StringEncoding)
+        
+        //test
+        let val : String = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+        
+        //debug
+        do {
+
+            //debug
+            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+
+        } catch let e as NSError {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description)")
+            
+            
+        }
+        
+//        if val == nil {
+//            
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//
+//        } else {
+//            
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => nil")
+//            
+//        }
+        
+        if content != nil {
+            
+            let tokens_lines = content!.componentsSeparatedByString("\n")
+
+            if tokens_lines.count > 0 {
+
+                let tokens_lines_0 = tokens_lines[0].componentsSeparatedByString(",")
+                
+                if tokens_lines_0.count > 0 {
+                    
+                    let tokens_lines_0_2 = tokens_lines_0[2].componentsSeparatedByString("=")
+                    
+                    if tokens_lines_0_2.count > 0 {
+                        
+                        //debug
+                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0_2[1] => \(tokens_lines_0_2[1])")
+                        
+                    } else {
+
+                        //debug
+                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0_2.count => =< 0")
+
+                    }
+                    
+                } else {
+
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0.count => =< 0")
+
+                }
+
+            } else {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines.count => =< 0")
+
+            }
+            
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+            
+        }
+        
+    }
     
     func mailComposeController__DismissView() {
         
