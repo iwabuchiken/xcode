@@ -962,5 +962,51 @@ class Methods {
             
             
     }
-    
+ 
+    static func delete_Diary_CSVFiles() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+ 
+        let filemanager:NSFileManager = NSFileManager()
+        let files = filemanager.enumeratorAtPath(dpath_realm)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)")
+        
+        
+        while let file = files?.nextObject() {
+
+            //ref prefix http://stackoverflow.com/questions/24034043/how-do-i-check-if-a-string-contains-another-string-in-swift Oct 14 '15 at 14:19
+            if String(file).hasPrefix("realm") && String(file).hasSuffix("csv") {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(String(file))")
+
+                do {
+
+                    try filemanager.removeItemAtPath("\(dpath_realm)/\(String(file))")
+
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file removed => (\(file))")
+
+                } catch let e as NSError! {
+                    
+                    // handle error
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) (\(file))")
+
+                    
+                    
+                }
+                
+//            print("\(file) (\(files?.description))")
+//            
+//            print("file.name => \(file.name)")
+            }
+            
+        }
+
+    }
 }

@@ -1,13 +1,6 @@
-xcode_Memo
-D-2
+m
 
-s-1#1/steps.~5
----
-1. all lines
-2. email
-
-    ==> done
-
+just committing
 
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

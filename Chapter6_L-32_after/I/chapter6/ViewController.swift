@@ -678,7 +678,67 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        _experiments__RegEx_Matching()
         
-        _experiments__UIAlert()
+//        _experiments__UIAlert()
+        _experiments__Choices()
+        
+    }
+    
+    func _experiments__Choices() {
+        
+        let s_title = "Choices"
+        
+        let choice_1 = "(1) Show realm files list\n"
+        let choice_2 = "(2) Delete csv files\n"
+        let choice_3 = "(3) "
+
+//        let s_message = "(1) show realm files list (2) B (3) C"
+        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "1", style: .Default, handler: { (action: UIAlertAction!) in
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+         
+            // start function
+            self._experiments__Choices__1()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "2", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            // start function
+            self._experiments__Choices__2()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "3", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+            
+        }))
+
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+    
+    func _experiments__Choices__1() {
+    
+        // show list
+        Methods.show_DirList__RealmFiles()
+        
+    }
+    
+    func _experiments__Choices__2() {
+        
+        // show list
+        Methods.delete_Diary_CSVFiles()
         
     }
     
