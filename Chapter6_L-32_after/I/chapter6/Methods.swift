@@ -389,6 +389,10 @@ class Methods {
         
         //        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
         //        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => stringForKey")
+
         return defaults.stringForKey(keys)!   //=> '那覇'
         
     }

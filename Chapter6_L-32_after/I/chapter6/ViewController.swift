@@ -1219,8 +1219,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func showSendMailErrorAlert() {
-        //        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-        //        sendMailErrorAlert.show()
+                let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+                sendMailErrorAlert.show()
     }
     
     
@@ -1237,7 +1237,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Mail sent")
             
             // after sending mail => save latest backup time
-//            self.mailComposeController__MailSent()
+            self.mailComposeController__MailSent()
             
             break
             
@@ -1303,13 +1303,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let content = try? String(contentsOfFile: self.fpath_realm_csv, encoding: NSUTF8StringEncoding)
         
         //test
-        let val : String = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+//        let val : String = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+        let val : String? = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Methods.get_Defaults => done")
+        
+        
+        //test
+        if val == nil {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] val => nil")
+
+            
+        }
         
         //debug
         do {
 
             //debug
-            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
 
         } catch let e as NSError {
             
