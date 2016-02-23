@@ -1,6 +1,10 @@
-m
+xcode_Memo
+D-2
 
-just committing
+s-3#1/steps.2.4
+---
+1. after sending mail => save latest backup time
 
+    ==> done
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

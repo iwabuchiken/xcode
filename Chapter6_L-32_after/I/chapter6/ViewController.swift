@@ -690,9 +690,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_1 = "(1) Show realm files list\n"
         let choice_2 = "(2) Delete csv files\n"
         let choice_3 = "(3) Send email"
+        let choice_4 = "(4) Copy db (Diary)"
 
 //        let s_message = "(1) show realm files list (2) B (3) C"
-        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+//        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -724,6 +726,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // start function
             self._experiments__Choices__3()
 
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "4", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+            
+            // start function
+            self._experiments__Choices__4()
+            
         }))
 
         // show view
@@ -798,6 +810,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        Methods.delete_Diary_CSVFiles()
 
         self.backupDiaries_ViaEmail__Delegate()
+        
+    }
+    
+    func _experiments__Choices__4() {
+
+        Proj.copy_DB__Diaries__FromDefault(CONS.s_Realm_FileName__Admin)
         
     }
     
@@ -1135,6 +1153,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //ref http://kellyegan.net/sending-files-using-swift/
     func _experiments__SendEmails() {
         
+        //test
+        let res = Proj.get_LastUploaded_At()
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.get_LastUploaded_At::res => \(res)")
+
         let mailComposeViewController = configuredMailComposeViewController()
         
         if MFMailComposeViewController.canSendMail() {
@@ -1303,36 +1327,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let content = try? String(contentsOfFile: self.fpath_realm_csv, encoding: NSUTF8StringEncoding)
         
         //test
-//        let val : String = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
-        let val : String? = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+        let last_updated = Proj.get_LastUploaded_At()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Methods.get_Defaults => done")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_updated => \(last_updated)")
         
         
-        //test
-        if val == nil {
-
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] val => nil")
-
-            
-        }
-        
-        //debug
-        do {
-
-            //debug
-//            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
-
-        } catch let e as NSError {
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description)")
-            
-            
-        }
+//        //test
+////        let val : String = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+//        let val : String? = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Methods.get_Defaults => done")
+//        
+//        
+//        //test
+//        if val == nil {
+//
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] val => nil")
+//
+//            
+//        }
+//        
+//        //debug
+//        do {
+//
+//            //debug
+////            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//
+//        } catch let e as NSError {
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description)")
+//            
+//            
+//        }
         
 //        if val == nil {
 //            
