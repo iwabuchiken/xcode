@@ -34,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // デフォルトの Realm インスタンスを取得する
     let realm = try! Realm()
 
+    let realm_admin = try! Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+    
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
     //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
     var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
@@ -692,9 +694,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_3 = "(3) Send email"
         let choice_4 = "(4) Copy db (Diary)"
 
+        let choice_5 = "(5) Update Data"
+
+        let choice_9 = "(9) Cancel"
+
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
-        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4)"
+        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_9)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -731,13 +737,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: "4", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
             
             // start function
             self._experiments__Choices__4()
             
         }))
 
+        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+            
+            // start function
+            self._experiments__Choices__5()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "9", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+            
+            // execute  => close dialog
+
+            
+        }))
+        
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -816,6 +842,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func _experiments__Choices__4() {
 
         Proj.copy_DB__Diaries__FromDefault(CONS.s_Realm_FileName__Admin)
+        
+    }
+    
+    func _experiments__Choices__5() {
+        
+        let tmp_s = "2016/01/01 00:00:00"
+        
+//        self.updateData_Data__Latest_Diary_at(tmp_s)
+        self.insertData_Data_Latest_Diary_at(tmp_s)
         
     }
     
@@ -961,6 +996,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func backupDiaries_ViaEmail(sender: UIBarButtonItem) {
       
+//        //test => Data
+//        let tmp_s = "2016/01/01 00:00:00"
+//        self.updateData_Data__Latest_Diary_at(tmp_s)
+        
         /*
             confirm dialog
 
@@ -1106,7 +1145,76 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        let resOf_Diaries = try! r.objects(Diary).sorted("created_at", ascending: false)
         let resOf_Diaries = r.objects(Diary).sorted("created_at", ascending: false)
+
+        // last upload date
+        var s_last_uploaded_at = Proj.get_LastUploaded_At()
+
+        if s_last_uploaded_at == "-1" {
+           
+            s_last_uploaded_at = "0000/00/00 00:00:00"
+//            s_last_uploaded_at = "2016/02/20 00:00:00"
+            
+        }
+
+        //debug0
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => \(s_last_uploaded_at)")
+
+        // build list of diaries
+        var aryOf_Diaries = Array<Diary>()
         
+        let lenOf_ResOf_Diaries = resOf_Diaries.count
+        
+        var i_count = 0
+        
+        for var i = 0; i < lenOf_ResOf_Diaries; i++ {
+            
+            let d = resOf_Diaries[i]
+            
+            let modified_at = Methods.conv_NSDate_2_DateString(d.date)
+
+            if modified_at > s_last_uploaded_at {
+            
+                aryOf_Diaries.append(d)
+                
+                i_count += 1
+                
+            }
+            
+            
+            
+        }
+        
+        //debug0
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
+
+//        //test
+//        let s_time_label = "2016/01/23 12:34:56"
+////        let s_time_label = ""
+//
+//        let s_tmp = Methods.conv_DateString_2_NSDate(s_time_label, format: "yyyy/MM/dd HH:mm:ss")
+
+//        let s_tmp = Methods.conv_DateString_2_NSDate(Methods.conv_NSDate_2_DateString(NSDate()), format: "yyyy/MM/dd HH:mm:ss")
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_label => \(s_time_label) *** s_tmp.description => \(s_tmp.description) *** s_tmp(converted) => \(Methods.conv_NSDate_2_DateString(s_tmp))")
+
+        
+        
+        
+//        let s_last_uploaded_at = Proj.get_LastUploaded_At()
+        
+//        var d = NSDate()
+//        
+//        d.
+//
+        
+//        let query = "modified_at > \(s_last_uploaded_at)"
+//        let query = "date > \(s_tmp)"
+//        
+//        let aPredicate = NSPredicate(format: query)
+//        
+//        let resOf_Diaries =  r.objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+
         // latest diary
         let tmp_Diaries = r.objects(Diary).sorted("date", ascending: false)
         let latest_diary = tmp_Diaries[0]
@@ -1117,7 +1225,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries.count => \(resOf_Diaries.count)")
 
         // convert Diaries --> csv : [String]
-        let linesOf_Diaries = Methods.conv_Diaries_2_CSV(resOf_Diaries)
+//        let linesOf_Diaries = Methods.conv_Diaries_2_CSV(resOf_Diaries)
+        let linesOf_Diaries = Methods.conv_Diaries_2_CSV(aryOf_Diaries)
 
         
         // write to file
@@ -1324,13 +1433,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func mailComposeController__MailSent() {
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+        
+        /*
+            update value
+        */
+////        Proj.updateData_Data__Latest_Diary_at(CONS.s_Latest_Diary_at)
+//        self.updateData_Data__Latest_Diary_at(CONS.s_Latest_Diary_at)
+        
         let content = try? String(contentsOfFile: self.fpath_realm_csv, encoding: NSUTF8StringEncoding)
         
-        //test
-        let last_updated = Proj.get_LastUploaded_At()
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_updated => \(last_updated)")
+//        //test
+//        let last_updated = Proj.get_LastUploaded_At()
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_updated => \(last_updated)")
         
         
 //        //test
@@ -1429,6 +1547,107 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
+    func insertData_Data_Latest_Diary_at(value : String) {
+        
+        let data = Data()
+
+        let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+
+        data.id = Proj.lastId_Data()
+        
+        data.created_at = time_label
+        data.modified_at = time_label
+
+        data.name = CONS.s_AdminKey__Latest_Diary_at
+
+        data.s_1 = value
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+
+
+        try! realm_admin.write {
+
+            self.realm_admin.add(data, update: false)
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+
+        }
+
+        
+    }
+    
+    func updateData_Data__Latest_Diary_at(value : String) {
+        
+////                let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+//        
+//                // already in db?
+//                var query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
+//        
+//                //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+//                var aPredicate = NSPredicate(format: query)
+//        
+//                let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => \(res.count)")
+//
+//        
+//                if res.count < 1 {
+//        
+//                    let data = Data()
+//        
+//                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+//        
+//                    data.created_at = time_label
+//                    data.modified_at = time_label
+//        
+//                    data.name = CONS.s_AdminKey__Latest_Diary_at
+//        
+//                    data.s_1 = value
+//        
+//                    //debug
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+//                    
+//                    
+//                    try! realm_admin.write {
+//        
+//                        self.realm_admin.add(data, update: false)
+//        
+//                        //debug
+//                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+//        
+//                    }
+//        
+//                } else {
+//
+//                    //debug
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => more than 1")
+//	
+//                    let data = res[0]
+//        
+//                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+//        
+//                    data.modified_at = time_label
+//        
+//                    data.s_1 = value
+//        
+//                    //debug
+//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+//
+//                    try! realm_admin.write {
+//                        
+//                        self.realm_admin.add(data, update: true)
+//                        
+//                        //debug
+//                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
+//                        
+//                    }
+//                    
+//                    
+//                }
+    }
 
 }
 

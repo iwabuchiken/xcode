@@ -79,5 +79,47 @@ class DB {
             
     }
 
+    static func findAll_Data
+        (dbfile_name : String,
+        sort_key : String = "created_at",
+        ascend : Bool = true) -> Array<Data> {
+            
+            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+            
+            let resOf_Data =  try! realm.objects(Data).sorted(sort_key, ascending: ascend)
+            
+            var aryOf_Data = Array<Data>()
+            
+            for item in resOf_Data {
+                
+                aryOf_Data.append(item)
+                
+            }
+            
+            return aryOf_Data
+            
+    }
+
+    static func findAll_Data__Filtered
+        (dbfile_name : String,
+        predicate : NSPredicate,
+        sort_key : String = "created_at",
+        ascend : Bool) -> Array<Data> {
+            
+            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+            
+            let dataArray =  try! realm.objects(Data).filter(predicate).sorted(sort_key, ascending: ascend)
+            
+            var adminArray = Array<Data>()
+            
+            for item in dataArray {
+                
+                adminArray.append(item)
+                
+            }
+            
+            return adminArray
+            
+    }
 
 }

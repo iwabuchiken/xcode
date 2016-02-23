@@ -754,7 +754,90 @@ class Methods {
         return lines
         
     }
+
+    static func conv_Diaries_2_CSV
+        //    (resOf_Diaries : [Results<Diary>]) -> [String] {
+        (resOf_Diaries : Array<Diary>) -> [String] {
+            
+            
+            
+            //        let obj = resOf_Diaries[0]
+            
+            // vars
+            var lines = Array<String>()
+            
+            //        //debug
+            //        let limit = 10
+            //
+            //        var count = 0
+            
+            // iterate
+            let numOf_items = resOf_Diaries.count
+            
+            //ref http://www.raywenderlich.com/117456/swift-tutorial-repeating-steps-with-loops
+            //        for item in resOf_Diaries {
+            for var i = 0; i < numOf_items; i++ {
+                
+                // item
+                let item = resOf_Diaries[i]
+                
+                // title
+                let title = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+                
+                //            // ',' contained?
+                // ref http://stackoverflow.com/questions/24034043/how-do-i-check-if-a-string-contains-another-string-in-swift answered Jun 11 '14 at 11:34
+                //            if (title.rangeOfString(",") != nil) {
+                //
+                //                title = "\"\(title)\""
+                //
+                //            }
+                
+                // body
+                //            let body = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+                let body = "\"\(Methods.conv_String_2_EscapedString(item.body))\""
+                
+                //            // ',' contained?
+                //            if (body.rangeOfString(",") != nil) {
+                //
+                //                body = "\"\(body)\""
+                //
+                //            }
+                
+                //            let str_1 = "\(item.id),\(item.title),\(item.body)"
+                let str_1 = "\(item.id),\(title),\(body)"
+                
+                //            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.date))\",\"\(Methods.conv_NSDate_2_DateString(item.created_at))\""
+                let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.created_at))\",\"\(Methods.conv_NSDate_2_DateString(item.date))\""
+                
+                let line = "\(str_1),\(str_2)"
+                
+                //            //debug
+                //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
+                
+                // append
+                lines.append(line)
+                
+                //            //debug
+                //            count += 1
+                //            
+                //            if count > limit {
+                //                
+                //                break
+                //                
+                //            }
+                
+            }
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(resOf_Diaries.count) / lines => \(lines.count)")
+            
+            
+            //        return Array<String>()
+            return lines
+            
+    }
     
+
 // MARK: others
     
     static func conv_String_2_EscapedString(str : String) -> String {
@@ -1013,4 +1096,21 @@ class Methods {
         }
 
     }
+
+    static func conv_DateString_2_NSDate(label : String, format : String) -> NSDate {
+        
+        //ref http://stackoverflow.com/questions/24777496/how-can-i-convert-string-date-to-nsdate answered Jul 16 '14 at 10:05
+        let dateFormatter = NSDateFormatter()
+
+        dateFormatter.locale = NSLocale.currentLocale()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+
+//        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.dateFromString(label)!
+        
+    }
+
 }
