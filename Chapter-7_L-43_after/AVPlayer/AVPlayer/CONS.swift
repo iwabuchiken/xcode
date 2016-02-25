@@ -73,6 +73,9 @@ class CONS {
     
     }
     
-    
+    /*
+        BMView-related
+    */
+    static var current_time : Int = 0
     
 }

@@ -135,6 +135,9 @@ class PlayerViewController: AVPlayerViewController {
     
     try! AVAudioSession.sharedInstance().setActive(false)
     
+    // set --> current time
+    CONS.current_time = bm.bm_time
+    
 //    // save records
 //    save_BM()
     

@@ -1,9 +1,9 @@
-xcode_Memo
-D-2
+xcode_Player
+D-3
 
-s-3#1/steps.2.4
+s-1#1/steps.2.2
 ---
-1. after sending mail => save latest backup time
+1. send email
 
     ==> done
 

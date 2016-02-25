@@ -25,6 +25,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var url : NSURL!
     
     var current_song : MPMediaItem?
+    
+    var current_time : Int = 0
+    
 
   // MARK: main methods
     override func viewWillAppear(animated: Bool) {
@@ -41,8 +44,32 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // regresh -> table view
         self.tableView.reloadData()
         
+        // current time
+        self.show_CurrentTime()
+        
     }
 
+    override func viewWillDisappear(animated: Bool) {
+
+        super.viewWillDisappear(animated)
+        
+        // reset => current time
+        self.current_time = 0
+        
+        // reset => current time (CONS.swift)
+        CONS.current_time = 0
+        
+    }
+
+    func show_CurrentTime() {
+        
+//        let val = Methods.conv_Seconds_2_ClockLabel(self.current_time)
+        let val = Methods.conv_Seconds_2_ClockLabel(CONS.current_time)
+        
+        self.lbl_CurrentTime.text = val
+        
+    }
+    
     func _build_BMArray() {
         
         //    let query = "title == '\(title!)'"

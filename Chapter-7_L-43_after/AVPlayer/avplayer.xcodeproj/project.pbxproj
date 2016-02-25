@@ -60,9 +60,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04D771841C7F504E0053C2FA /* models */ = {
+			isa = PBXGroup;
+			children = (
+				043FD3E81C70081700E6C342 /* BM_2.swift */,
+				04C308821C76ED2800E71881 /* Clip.swift */,
+				04E80F201C6EFDAA00EE4F88 /* BM.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		04FED8031C728683004B9022 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				046CF6D21C784C1C0049DB74 /* CONS.swift */,
+				046CF6D31C784C1C0049DB74 /* Methods.swift */,
 				04FED8041C7286A0004B9022 /* DB.swift */,
 			);
 			name = utils;
@@ -89,8 +101,6 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				046CF6D21C784C1C0049DB74 /* CONS.swift */,
-				046CF6D31C784C1C0049DB74 /* Methods.swift */,
 				04FED8031C728683004B9022 /* utils */,
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
@@ -102,9 +112,7 @@
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
-				04E80F201C6EFDAA00EE4F88 /* BM.swift */,
-				043FD3E81C70081700E6C342 /* BM_2.swift */,
-				04C308821C76ED2800E71881 /* Clip.swift */,
+				04D771841C7F504E0053C2FA /* models */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
