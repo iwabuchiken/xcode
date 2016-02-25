@@ -534,6 +534,27 @@ class Methods {
         }
     }
     
+    static func lastId_Data() -> Int {
+        
+        // get realm
+        //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//        let realm = try! Realm()
+  
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Data).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+    
     static func realm_RemoveFiles(fname : String) {
         
         let manager = NSFileManager.defaultManager()
