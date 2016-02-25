@@ -226,6 +226,10 @@
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" red="1" green="0.99778540434253138" blue="0.94264493326830845" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="start_PlayerView:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="KMK-lA-ERu"/>
+                                    <segue destination="jiz-rV-vM4" kind="presentation" identifier="segue_CurrentTime_2_PlayerView" id="yJ6-Hy-7eS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-kQ-Lhx">
                                 <rect key="frame" x="42" y="486" width="53" height="43"/>
@@ -324,6 +328,6 @@
         <image name="ico_video" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cdc-QN-XRJ"/>
+        <segue reference="yJ6-Hy-7eS"/>
     </inferredMetricsTieBreakers>
 </document>

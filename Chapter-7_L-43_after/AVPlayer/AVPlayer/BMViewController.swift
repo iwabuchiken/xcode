@@ -28,8 +28,27 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var current_time : Int = 0
     
+    var start_PlayerView_From_ClickingOn_Label_CurrentTime : Bool = false
 
   // MARK: main methods
+    @IBAction func start_PlayerView(sender: AnyObject) {
+        
+        let tmp_s = self.lbl_CurrentTime
+        
+        // start from label --> true
+        self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] performing segue...")
+
+        
+//        performSegueWithIdentifier("bm2play_Segue",sender: nil)
+//        performSegueWithIdentifier("segue_Label_2_PlayerView",sender: nil)
+        performSegueWithIdentifier("segue_CurrentTime_2_PlayerView",sender: nil)
+
+        
+        
+    }
     override func viewWillAppear(animated: Bool) {
 
         // set title to -> label
@@ -37,7 +56,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] label set => \(lbl_Title.text)")
-
+        
         // build: BM array
         _build_BMArray()
         
@@ -46,6 +65,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // current time
         self.show_CurrentTime()
+        
+        // add recognizer
+        self.addGesture_2_Label_CurrentTime()
         
     }
 
@@ -58,6 +80,11 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // reset => current time (CONS.swift)
         CONS.current_time = 0
+        
+        // reset => start_PlayerView_From_ClickingOn_Label_CurrentTime
+        // start from label --> true
+        self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true
+
         
     }
 
@@ -191,6 +218,10 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 // MARK: segue-related
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting prepareForSegue...")
+
+        
         // dispatch
         if let vc = segue.destinationViewController as? PlayerViewController {
 //            let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
@@ -206,6 +237,26 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let indexPath = tableView.indexPathForSelectedRow!
 
             let bm_current = bmArray[indexPath.row]
+            
+            // starting segue --> by clicking on the label "current time"
+            if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
+//                segue_Label_2_PlayerView
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => \(CONS.current_time)")
+
+                bm_current.bm_time = CONS.current_time
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => true")
+
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => false")
+
+            }
+            
             
 //            let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as UITableViewCell
             
@@ -232,7 +283,36 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             vc.playMusic(self.url)
             
+            // reset --> 
+            self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
+            
         }
+        
+    }
+
+    func addGesture_2_Label_CurrentTime() {
+        
+        //ref http://www.xcode-training-and-tips.com/xcode-and-swift-using-gesture-recognizers/
+        
+        let redSelector : Selector = "goRed:"
+        
+        let redGesture = UITapGestureRecognizer(target:self, action:redSelector)
+        
+        redGesture.numberOfTapsRequired = 1
+        
+        self.lbl_CurrentTime.addGestureRecognizer(redGesture)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] addGesture_2_Label_CurrentTime => done")
+        
+    }
+    
+    @IBAction func goRed(sender: AnyObject){
+        
+//        myLabel.textColor = UIColor.redColor()
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] goRed")
         
     }
     
