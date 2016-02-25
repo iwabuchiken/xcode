@@ -216,10 +216,23 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         try! realm.write {
 //            self.diary.title = self.titleTextField.text!
 //            self.diary.body = self.bodyTextView.text
-            self.diary.date = NSDate()
-            self.diary.created_at = NSDate()
+//            self.diary.date = NSDate()
+//            self.diary.created_at = NSDate()
             
-            self.realm.add(self.diary, update: false)
+            let diary_new = Diary()
+            
+            diary_new.id = Methods.lastId_Diary()
+            
+            diary_new.title = self.diary.title
+            diary_new.body = self.diary.body
+            
+            let time = NSDate()
+            
+            diary_new.created_at = time
+            diary_new.date = time
+
+//            self.realm.add(self.diary, update: false)
+            self.realm.add(diary_new, update: true)
             
         }
         

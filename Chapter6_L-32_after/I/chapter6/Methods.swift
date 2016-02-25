@@ -516,22 +516,23 @@ class Methods {
 //        }
 //    }
 //
-//    static func lastId_Clip() -> Int {
-//        
-//        // get realm
+    static func lastId_Diary() -> Int {
+        
+        // get realm
 //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-//        
-//        //        if let user = realm.objects(BM).last {
-//        if let user = realm.objects(Clip).last {
-//            
-//            return user.id + 1
-//            
-//        } else {
-//            
-//            return 1
-//            
-//        }
-//    }
+        let realm = try! Realm()
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Diary).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
     
     static func realm_RemoveFiles(fname : String) {
         
