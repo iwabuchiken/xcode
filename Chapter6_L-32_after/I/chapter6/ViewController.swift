@@ -1117,7 +1117,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // build => CSV
         //        _experiments__BuildCSV()
-        _experiments__BuildCSV(fpath_full)
+        let tmp_i = _experiments__BuildCSV(fpath_full)
+        
+        // validate
+        if tmp_i == -1 {
+
+            self.backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries()
+
+            // return
+            return;
+            
+        }
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
@@ -1140,11 +1150,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //        let ary = Methods.show_DirList__RealmFiles()
     }
     
-    func _experiments__BuildCSV(fpath_full : String) {
+    func backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] backupDiaries_ViaEmail__Ok => returning...")
+        
+        let title = "No new Diaries"
+        let message = "Quitting the process"
+        
+        //        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        let refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+
+    }
+    
+    func _experiments__BuildCSV(fpath_full : String) -> Int {
 
         /*
             latest diary date
         */
+        let tmp_s = Proj.get_LastBackup_Diary_ModifiedAt_String()
+        
+        //debug0
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.get_LastBackup_Diary_ModifiedAt_String() => \(tmp_s)")
+
+        
 //        let r_admin = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
         
 //        let query = "name = \(CONS.s_LatestBackup_Diary_ModifiedAt)"
@@ -1156,8 +1195,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let resOf_Data_LatestDiaryAt = try self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
         let resOf_Data_LatestDiaryAt = try! self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
 
-        //debug0
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => \(resOf_Data_LatestDiaryAt.count) (\(resOf_Data_LatestDiaryAt.description))")
+//        //debug0
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => \(resOf_Data_LatestDiaryAt.count) (\(resOf_Data_LatestDiaryAt.description))")
 
         //test => lastId
         let tmp_i = Methods.lastId_Data()
@@ -1185,8 +1224,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let resOf_Diaries = r.objects(Diary).sorted("created_at", ascending: false)
 
         // last upload date
-        var s_last_uploaded_at = Proj.get_LastUploaded_At()
-
+//        var s_last_uploaded_at = Proj.get_LastUploaded_At()
+        var s_last_uploaded_at = Proj.get_LastBackup_Diary_ModifiedAt_String()
+        
         if s_last_uploaded_at == "-1" {
            
             s_last_uploaded_at = "0000/00/00 00:00:00"
@@ -1225,6 +1265,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //debug0
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
 
+        /*
+            validate: any new Diary instance?
+        
+            @return
+            -1      "aryOf_Diaries.count => less than 1"
+        */
+        if aryOf_Diaries.count < 1 {
+
+            //debug0
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Diaries.count => less than 1 --> qutting the process")
+
+            return -1
+
+        }
+        
 //        //test
 //        let s_time_label = "2016/01/23 12:34:56"
 ////        let s_time_label = ""
@@ -1283,6 +1338,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // email
         
+        // return
+        return 1
         
         
     }

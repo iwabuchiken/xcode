@@ -191,68 +191,35 @@ class Proj {
         }
     }
 
-    //    static func updateData_Data__Latest_Diary_at
-//    (value : String) -> Bool {
-//        
-//        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
-//        
-//        // already in db?
-//        var query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
-//        
-//        //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
-//        var aPredicate = NSPredicate(format: query)
-//
-//        let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
-//        
-//        if res.count < 1 {
-//
-//            let data = Data()
-//            
-//            let time_label = Methods.conv_NSDate_2_DateString(NSDate())
-//            
-//            data.created_at = time_label
-//            data.modified_at = time_label
-//            
-//            data.name = CONS.s_AdminKey__Latest_Diary_at
-//            
-//            data.s_1 = value
-//            
-//            try! r.write {
-//                
-//                r.add(data, update: false)
-//                
-//                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
-//
-//            }
-//
-//        } else {
-//
-//            let data = res[0]
-//            
-//            let time_label = Methods.conv_NSDate_2_DateString(NSDate())
-//            
-//            data.modified_at = time_label
-//            
-//            data.s_1 = value
-//            
-//            try! r.write {
-//                
-////                r.add(data, update: true)
-//
-//                self.r.add(data, update: true)
-//                
-//                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
-//                
-//            }
-//            
-//            
-//        }
-//        
-//        //return
-//        return true
-//        
-//    }
-    
+    static func  get_LastBackup_Diary_ModifiedAt_String() -> String  {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+
+        let query = "name == '\(CONS.s_LatestBackup_Diary_ModifiedAt)'"
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        //        let resOf_Data_LatestDiaryAt = try self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
+        let resOf_Data_LatestDiaryAt = try! realm.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
+
+        //debug0
+        if resOf_Data_LatestDiaryAt.count > 0 {
+            
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
+
+            // return
+            return resOf_Data_LatestDiaryAt[0].s_1
+
+        } else {
+
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => =< 0")
+
+            // return
+            return "-1"
+            
+        }
+        
+    }
+   
 }
