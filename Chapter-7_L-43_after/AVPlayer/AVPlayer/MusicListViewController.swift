@@ -503,6 +503,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // 各セルの内容を返す
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     // 再利用可能な cell を得る
+//    let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
     let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
     
     // Cellに値を設定する.
@@ -544,13 +545,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         // if no BMs --> goto 'cellSegue'
         if bmArray.count < 1 {
-            
+
+            // set current time --> 0
+            CONS.current_time = 0
+
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
-            
-            performSegueWithIdentifier("cellSegue",sender: nil)
-            
-            return
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => set to 0")
+
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
+//            
+//            performSegueWithIdentifier("cellSegue",sender: nil)
+//            
+//            return
             
         }
     
