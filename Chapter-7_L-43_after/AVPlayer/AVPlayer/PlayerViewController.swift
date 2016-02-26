@@ -147,7 +147,20 @@ class PlayerViewController: AVPlayerViewController {
     
     
 //    try! AVAudioSession.sharedInstance().setActive(false)
-    try! AVAudioSession.sharedInstance().setActive(false)
+    do {
+        
+        try AVAudioSession.sharedInstance().setActive(false)
+    } catch let e as NSError {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(e.description)")
+        
+    } catch {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] other errors")
+
+    }
     
     // set --> current time
     CONS.current_time = bm.bm_time
