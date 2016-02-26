@@ -228,9 +228,6 @@
                                 </state>
                                 <connections>
                                     <action selector="start_PlayerView:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="KMK-lA-ERu"/>
-                                    <segue destination="jiz-rV-vM4" kind="popoverPresentation" identifier="segue_CurrentTime_2_PlayerView" popoverAnchorView="LFP-hW-2GA" id="yJ6-Hy-7eS">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-kQ-Lhx">
@@ -263,11 +260,34 @@
                         <outlet property="lbl_Title" destination="gVH-nc-olA" id="vQQ-J6-rK9"/>
                         <outlet property="tableView" destination="NRT-vP-VJn" id="PWH-Rc-rJg"/>
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="bm2play_Segue" id="Cdc-QN-XRJ"/>
+                        <segue destination="D4J-Qu-CFX" kind="presentation" identifier="segue_BM_2_PVC" id="qix-If-R9A"/>
+                        <segue destination="jiz-rV-vM4" kind="presentation" identifier="segue_BM_Label_2_PlayerView" id="093-j1-Jw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gh-GR-6QR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="346" y="703"/>
+        </scene>
+        <!--PVC-->
+        <scene sceneID="zgk-3x-ztA">
+            <objects>
+                <viewController id="D4J-Qu-CFX" customClass="PVC" customModule="AVPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7hH-OF-U67"/>
+                        <viewControllerLayoutGuide type="bottom" id="jyb-z3-fLz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4aq-WX-Hjx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="jiz-rV-vM4" kind="presentation" id="lp8-cQ-Qne"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqh-mG-M2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="368" y="1077"/>
         </scene>
         <!--PreferenceView Controller-->
         <scene sceneID="92M-ro-6Tn">
@@ -330,6 +350,6 @@
         <image name="ico_video" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yJ6-Hy-7eS"/>
+        <segue reference="093-j1-Jw2"/>
     </inferredMetricsTieBreakers>
 </document>

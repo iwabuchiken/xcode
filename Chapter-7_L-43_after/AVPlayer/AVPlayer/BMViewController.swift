@@ -44,7 +44,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
 //        performSegueWithIdentifier("bm2play_Segue",sender: nil)
 //        performSegueWithIdentifier("segue_Label_2_PlayerView",sender: nil)
-        performSegueWithIdentifier("segue_CurrentTime_2_PlayerView",sender: nil)
+//        performSegueWithIdentifier("segue_CurrentTime_2_PlayerView",sender: nil)
+        performSegueWithIdentifier("segue_BM_Label_2_PlayerView",sender: nil)
 
         
         
@@ -236,8 +237,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.identifier => \(segue.identifier!)")
             
-            // segue identity
-            let iden = segue.identifier!
+//            // segue identity
+//            let iden = segue.identifier!
             
             // dispatch
 //            if iden == CONS.segname_Segue_CurrentTime_2_PlayerView {
