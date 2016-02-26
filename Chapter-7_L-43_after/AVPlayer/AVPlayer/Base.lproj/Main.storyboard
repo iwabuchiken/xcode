@@ -246,6 +246,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="1" green="0.9648919330534127" blue="0.99560314791863946" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="add_BM:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="GX9-oR-Icf"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doe-qk-i4u">
                                 <rect key="frame" x="256" y="487" width="51" height="31"/>

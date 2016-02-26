@@ -75,6 +75,28 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     }
 
+    @IBAction func add_BM(sender: UIButton) {
+        
+        // bm time
+        let bm_time = Methods.conv_ClockLabel_2_Seconds(self.lbl_CurrentTime.text!)
+        
+        
+        // audio url
+        let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+        
+        Proj.add_BM(self.song_title, bm_time: bm_time, audio_url: url!)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] add bm => done")
+
+        // rebuild BM array
+        self._build_BMArray()
+        
+        // reload table view data
+        self.tableView.reloadData()
+        
+    }
+
     override func viewWillAppear(animated: Bool) {
 
         // set title to -> label
