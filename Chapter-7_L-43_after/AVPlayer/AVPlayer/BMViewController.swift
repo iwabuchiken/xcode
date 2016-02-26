@@ -216,14 +216,44 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
 // MARK: segue-related
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue
+    (segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting prepareForSegue...")
 
+        //test
+        let tmp = segue.destinationViewController
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.destinationViewController => \(tmp.description)")
+        
         
         // dispatch
         if let vc = segue.destinationViewController as? PlayerViewController {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.identifier => \(segue.identifier!)")
+            
+            // segue identity
+            let iden = segue.identifier!
+            
+            // dispatch
+            if iden == CONS.segname_Segue_CurrentTime_2_PlayerView {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => self.prepareForSegue__CurrentTime_2_PlayerView()")
+                
+                
+                self.prepareForSegue__CurrentTime_2_PlayerView(vc)
+                
+                return
+                
+            }
+            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.destinationViewController as? PlayerViewController => true")
+            
 //            let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
 //            
 //            
@@ -238,24 +268,24 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             let bm_current = bmArray[indexPath.row]
             
-            // starting segue --> by clicking on the label "current time"
-            if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
-//                segue_Label_2_PlayerView
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => \(CONS.current_time)")
-
-                bm_current.bm_time = CONS.current_time
-                
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => true")
-
-                
-            } else {
-                
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => false")
-
-            }
+//            // starting segue --> by clicking on the label "current time"
+//            if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
+////                segue_Label_2_PlayerView
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => \(CONS.current_time)")
+//
+//                bm_current.bm_time = CONS.current_time
+//                
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => true")
+//
+//                
+//            } else {
+//                
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => false")
+//
+//            }
             
             
 //            let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as UITableViewCell
@@ -286,8 +316,55 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             // reset --> 
             self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
             
-        }
+        }//if let vc = segue.destinationViewController as? PlayerViewController
         
+    }
+    
+    func prepareForSegue__CurrentTime_2_PlayerView
+    (vc : PlayerViewController) {
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] vc.player.description => \(vc.player!.description)")
+            //=>        fatal error: unexpectedly found nil while unwrapping an Optional value
+        
+
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] prepareForSegue__CurrentTime_2_PlayerView")
+//
+//        return
+
+        // current time
+        let s_current_time = self.lbl_CurrentTime.text!
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lbl_current_time => \(s_current_time)")
+
+        let bm_time = Methods.conv_ClockLabel_2_Seconds(self.lbl_CurrentTime.text!)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm_time => \(bm_time)")
+
+//        return
+        
+        // set title
+        vc.item_name = self.song_title
+        
+        // set: seek time
+        //            vc.seekTime =
+        
+        //            vc.presentViewController(vc, animated: true, completion: nil)
+        
+        //            vc.seekTime = CMTimeMake(bm_current.bm_time as Int64, 1)  //=> n.w
+        vc.seekTime = CMTimeMake(Int64(bm_time), 1)
+        
+        //            player?.seekToTime(seekTime)
+        
+        // song instance
+        vc.current_song = self.current_song
+        
+        vc.playMusic(self.url)
+
     }
 
     func addGesture_2_Label_CurrentTime() {

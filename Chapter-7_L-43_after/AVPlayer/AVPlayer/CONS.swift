@@ -78,4 +78,10 @@ class CONS {
     */
     static var current_time : Int = 0
     
+    /*
+        segue-related
+    */
+    static let segname_Segue_CurrentTime_2_PlayerView = "segue_CurrentTime_2_PlayerView"
+    
+    
 }

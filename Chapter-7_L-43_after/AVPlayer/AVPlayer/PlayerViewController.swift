@@ -55,6 +55,11 @@ class PlayerViewController: AVPlayerViewController {
     
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+   
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear()")
+
+    
   }
 
   override func viewWillDisappear(animated: Bool) {
@@ -62,6 +67,10 @@ class PlayerViewController: AVPlayerViewController {
     
     player?.pause()
 
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.description => \(player?.description)")
+    
+    
     //debug
     print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().value.description => \(player?.currentTime().value.description)")
     
@@ -133,6 +142,11 @@ class PlayerViewController: AVPlayerViewController {
     //  background play
     UIApplication.sharedApplication().endReceivingRemoteControlEvents()
     
+    //debug
+    print("[\(Methods.basename(__FILE__)):\(__LINE__)] done => UIApplication.sharedApplication().endReceivingRemoteControlEvents()")
+    
+    
+//    try! AVAudioSession.sharedInstance().setActive(false)
     try! AVAudioSession.sharedInstance().setActive(false)
     
     // set --> current time
@@ -215,6 +229,7 @@ class PlayerViewController: AVPlayerViewController {
     UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     
     player?.play()
+    
   }
   
   // 動画を再生する

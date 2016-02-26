@@ -794,5 +794,36 @@ class Methods {
         
     }
 
+    /*
+        "00:07:56"  --> 476
+    */
+    static func conv_ClockLabel_2_Seconds
+    (label : String) -> Int {
+    
+        let tokens = label.componentsSeparatedByString(":")
+        
+        // validate
+        if tokens.count != 3 {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => not 3")
+
+            return 0
+            
+        }
+        
+        //ref http://stackoverflow.com/questions/30739460/toint-removed-in-swift-2 answered Jun 9 '15 at 18:02
+        let hour2sec = Int(tokens[0])! * 60 * 60
+        let min2sec = Int(tokens[1])! * 60
+        let sec = Int(tokens[2])!
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[0] = '\(tokens[0])', tokens[1] = '\(tokens[1])', tokens[2] = '\(tokens[2])'")
+        
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] hour2sec = \(hour2sec), min2sec = \(min2sec), sec = \(sec)")
+        
+        return hour2sec + min2sec + sec
+        
+    }
     
 }
