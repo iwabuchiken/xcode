@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040D66391C7070EF0062799F /* BMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D66381C7070EF0062799F /* BMViewController.swift */; };
 		040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D663C1C70A76E0062799F /* PreferenceViewController.swift */; };
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
 		045194E51C80255B005894C5 /* PVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194E41C80255B005894C5 /* PVC.swift */; };
+		045194E91C8034C3005894C5 /* BMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194E81C8034C3005894C5 /* BMViewController.swift */; };
+		045194EB1C803566005894C5 /* Proj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194EA1C803566005894C5 /* Proj.swift */; };
 		046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D21C784C1C0049DB74 /* CONS.swift */; };
 		046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D31C784C1C0049DB74 /* Methods.swift */; };
 		04C308831C76ED2800E71881 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C308821C76ED2800E71881 /* Clip.swift */; };
@@ -27,10 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		040D66381C7070EF0062799F /* BMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewController.swift; sourceTree = "<group>"; };
 		040D663C1C70A76E0062799F /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
 		045194E41C80255B005894C5 /* PVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVC.swift; sourceTree = "<group>"; };
+		045194E81C8034C3005894C5 /* BMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewController.swift; sourceTree = "<group>"; };
+		045194EA1C803566005894C5 /* Proj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proj.swift; sourceTree = "<group>"; };
 		046CF6D21C784C1C0049DB74 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
 		046CF6D31C784C1C0049DB74 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		04C308821C76ED2800E71881 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				046CF6D21C784C1C0049DB74 /* CONS.swift */,
 				046CF6D31C784C1C0049DB74 /* Methods.swift */,
 				04FED8041C7286A0004B9022 /* DB.swift */,
+				045194EA1C803566005894C5 /* Proj.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -103,6 +106,7 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				045194E81C8034C3005894C5 /* BMViewController.swift */,
 				04FED8031C728683004B9022 /* utils */,
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
@@ -110,7 +114,6 @@
 				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
 				3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */,
 				3E230B311BC887F9000162A3 /* Main.storyboard */,
-				040D66381C7070EF0062799F /* BMViewController.swift */,
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
@@ -272,8 +275,9 @@
 				045194E51C80255B005894C5 /* PVC.swift in Sources */,
 				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
-				040D66391C7070EF0062799F /* BMViewController.swift in Sources */,
+				045194E91C8034C3005894C5 /* BMViewController.swift in Sources */,
 				040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */,
+				045194EB1C803566005894C5 /* Proj.swift in Sources */,
 				043FD3E91C70081700E6C342 /* BM_2.swift in Sources */,
 				04FED8051C7286A0004B9022 /* DB.swift in Sources */,
 				3E7E2E061BCEB1EA005415C3 /* MusicListViewController.swift in Sources */,

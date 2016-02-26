@@ -215,6 +215,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="&gt;&gt;"/>
+                                <connections>
+                                    <action selector="forwards:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="5QT-pO-rVp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFP-hW-2GA">
                                 <rect key="frame" x="214" y="420" width="46" height="40"/>

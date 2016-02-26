@@ -50,6 +50,19 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
     }
+
+    @IBAction func forwards(sender: UIButton) {
+        
+        // current
+        let time_label_current = self.lbl_CurrentTime.text!
+        
+        // new 
+        let time_label_new = Proj.timeLabel_Addup(time_label_current, addup: 20)
+        
+        self.lbl_CurrentTime.text = time_label_new
+        
+    }
+
     override func viewWillAppear(animated: Bool) {
 
         // set title to -> label
