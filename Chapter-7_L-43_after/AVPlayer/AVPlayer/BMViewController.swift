@@ -83,8 +83,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         CONS.current_time = 0
         
         // reset => start_PlayerView_From_ClickingOn_Label_CurrentTime
-        // start from label --> true
-        self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true
+//        // start from label --> true
+//        self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true
 
         
     }
@@ -254,8 +254,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //                return
                 
                 // reset -->
-                self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
-                
+//                self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
+                self.start_PlayerView_From_ClickingOn_Label_CurrentTime = false
+
             } else {
             
 //            //debug
