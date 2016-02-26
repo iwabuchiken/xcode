@@ -63,6 +63,18 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
 
+    @IBAction func subtract(sender: UIButton) {
+        
+        // current
+        let time_label_current = self.lbl_CurrentTime.text!
+        
+        // new
+        let time_label_new = Proj.timeLabel_Subtract(time_label_current, subtract:  CONS.value_Per_OneStep_Backwards, min : 0)
+        
+        self.lbl_CurrentTime.text = time_label_new
+
+    }
+
     override func viewWillAppear(animated: Bool) {
 
         // set title to -> label

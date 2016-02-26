@@ -78,6 +78,9 @@ class CONS {
     */
     static var current_time : Int = 0
     
+    static var value_Per_OneStep_Forwards   = 20  // unit=seconds
+    static var value_Per_OneStep_Backwards  = -20  // unit=seconds
+    
     /*
         segue-related
     */

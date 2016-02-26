@@ -205,6 +205,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="&lt;&lt;"/>
+                                <connections>
+                                    <action selector="subtract:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="wvO-Zp-GL0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faF-cI-oF7">
                                 <rect key="frame" x="268" y="418" width="46" height="42"/>
