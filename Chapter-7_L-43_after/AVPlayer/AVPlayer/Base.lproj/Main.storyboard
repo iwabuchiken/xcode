@@ -311,7 +311,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Debug mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM4-YV-pcj">
-                                <rect key="frame" x="30" y="103" width="173" height="58"/>
+                                <rect key="frame" x="30" y="103" width="173" height="50"/>
                                 <color key="backgroundColor" red="0.70545873749891386" green="1" blue="0.91252124430818549" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -323,10 +323,27 @@
                                     <action selector="setPref_DebugMode:" destination="8Uh-al-Q3i" eventType="valueChanged" id="xpS-GK-fsX"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add BM when back from Player" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzH-eY-zhd">
+                                <rect key="frame" x="30" y="192" width="297" height="45"/>
+                                <color key="backgroundColor" red="0.69465874632780233" green="1" blue="0.72218267042655548" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="297" id="FV3-Rh-PDI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oF5-Ai-BOg">
+                                <rect key="frame" x="233" y="255" width="51" height="31"/>
+                                <connections>
+                                    <action selector="setPref_AddBM:" destination="8Uh-al-Q3i" eventType="valueChanged" id="qbI-21-fty"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="sw_AddBM" destination="oF5-Ai-BOg" id="xYK-oN-37C"/>
                         <outlet property="sw_DebugMode" destination="3f8-0Q-K1G" id="Hh2-ov-2fk"/>
                     </connections>
                 </viewController>
