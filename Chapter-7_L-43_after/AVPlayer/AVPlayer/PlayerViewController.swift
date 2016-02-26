@@ -150,6 +150,7 @@ class PlayerViewController: AVPlayerViewController {
     do {
         
         try AVAudioSession.sharedInstance().setActive(false)
+        
     } catch let e as NSError {
         
         //debug

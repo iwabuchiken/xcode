@@ -228,7 +228,9 @@
                                 </state>
                                 <connections>
                                     <action selector="start_PlayerView:" destination="6sp-Ry-9XG" eventType="touchUpInside" id="KMK-lA-ERu"/>
-                                    <segue destination="jiz-rV-vM4" kind="presentation" identifier="segue_CurrentTime_2_PlayerView" id="yJ6-Hy-7eS"/>
+                                    <segue destination="jiz-rV-vM4" kind="popoverPresentation" identifier="segue_CurrentTime_2_PlayerView" popoverAnchorView="LFP-hW-2GA" id="yJ6-Hy-7eS">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-kQ-Lhx">

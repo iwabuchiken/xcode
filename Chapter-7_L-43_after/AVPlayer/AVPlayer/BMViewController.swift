@@ -230,7 +230,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
         // dispatch
-        if let vc = segue.destinationViewController as? PlayerViewController {
+//        if let vc = segue.destinationViewController as? PlayerViewController {
+        if var vc = segue.destinationViewController as? PlayerViewController {
 
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.identifier => \(segue.identifier!)")
@@ -243,13 +244,14 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => self.prepareForSegue__CurrentTime_2_PlayerView()")
+
+                vc = self.prepareForSegue__CurrentTime_2_PlayerView(vc)
                 
+//                self.prepareForSegue__CurrentTime_2_PlayerView(vc)
+//                
+//                return
                 
-                self.prepareForSegue__CurrentTime_2_PlayerView(vc)
-                
-                return
-                
-            }
+            } else {
             
 //            //debug
 //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.destinationViewController as? PlayerViewController => true")
@@ -311,6 +313,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             // song instance
             vc.current_song = self.current_song
             
+            }
+            
             vc.playMusic(self.url)
             
             // reset --> 
@@ -321,7 +325,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func prepareForSegue__CurrentTime_2_PlayerView
-    (vc : PlayerViewController) {
+    (vc : PlayerViewController)  -> PlayerViewController {
         
 //        //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] vc.player.description => \(vc.player!.description)")
@@ -363,7 +367,10 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // song instance
         vc.current_song = self.current_song
         
-        vc.playMusic(self.url)
+//        vc.playMusic(self.url)
+    
+        //return
+        return vc
 
     }
 
