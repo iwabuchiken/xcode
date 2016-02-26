@@ -240,7 +240,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let iden = segue.identifier!
             
             // dispatch
-            if iden == CONS.segname_Segue_CurrentTime_2_PlayerView {
+//            if iden == CONS.segname_Segue_CurrentTime_2_PlayerView {
+            if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
                 
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => self.prepareForSegue__CurrentTime_2_PlayerView()")
@@ -250,6 +251,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //                self.prepareForSegue__CurrentTime_2_PlayerView(vc)
 //                
 //                return
+                
+                // reset -->
+                self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
                 
             } else {
             
@@ -317,8 +321,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             vc.playMusic(self.url)
             
-            // reset --> 
-            self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
+//            // reset --> 
+//            self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
             
         }//if let vc = segue.destinationViewController as? PlayerViewController
         
