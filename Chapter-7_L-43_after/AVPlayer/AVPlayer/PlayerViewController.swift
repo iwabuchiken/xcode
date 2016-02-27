@@ -85,69 +85,17 @@ class PlayerViewController: AVPlayerViewController {
         save data
 
     */
-    let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
     
-    viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!), audio_url: url!)
-    
-//    // realm
-//    let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-////    let rl_tmp = Methods.get_RealmInstance("abc.realm")
-//    
-//    // BM instance
-//    let bm = BM()
-//    
-//    bm.title = item_name
-//    
-//    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
-//
-//    
-//    bm.bm_time = Int((player?.currentTime().seconds)!)
-//    let tmp_time = NSDate()
-//    
-////    bm.created_at = tmp_time
-////    bm.modified_at = tmp_time
-//    bm.created_at = Methods.conv_NSDate_2_DateString(tmp_time)
-//    bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
-//    
-//    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.modified_at => set")
-//
-//    
-//    bm.id = Methods.lastId()
-//    
-//    // audio id
 //    let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//    
-//    
-////    //debug
-////    print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-//
-//    bm.audio_id = (url?.absoluteString)!
-//
-//    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.audio_id => \(bm.audio_id)")
-//
-//    //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
-//    //ref https://mynavi-agent.jp/it/geekroid/2015/07/realm-2-realmswift-.html
-//    try! rl_tmp.write {
-//        
-////        self.realm.add(self.diary, update: true)
-//        
-//        
-//        rl_tmp.add(bm, update: true)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
-//
-//        
-//    }
+
+//    viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!), audio_url: url!)
+    viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!))
     
     //  background play
     UIApplication.sharedApplication().endReceivingRemoteControlEvents()
     
     //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] done => UIApplication.sharedApplication().endReceivingRemoteControlEvents()")
+//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] done => UIApplication.sharedApplication().endReceivingRemoteControlEvents()")
     
     
 //    try! AVAudioSession.sharedInstance().setActive(false)
@@ -177,9 +125,29 @@ class PlayerViewController: AVPlayerViewController {
   }
     
     func viewWillDisappear__SaveBM
-    (item_name : String, bm_time : Int, audio_url : NSURL) {
+//    (item_name : String, bm_time : Int, audio_url : NSURL) {
+     (item_name : String, bm_time : Int) {
     
-        Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url)
+        // validate: pref --> true
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_AddBM = defaults.valueForKey(CONS.defaultKeys.key_Pref_AddBM)
+
+        if dfltVal_AddBM?.boolValue == false {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => false; not saving BM")
+            
+            return
+            
+        }
+        
+        // url
+        let audio_url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+
+        
+        Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url!)
         
     }
     

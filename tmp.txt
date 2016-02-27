@@ -1,9 +1,9 @@
-xcode_Player
-D-3
+xcode_Memo
+D-2
 
-s-1#1/steps.2.2
+s-4#1/steps.~4
 ---
-1. send email
+1. TEST => quit process when no new diaries
 
     ==> done
 
