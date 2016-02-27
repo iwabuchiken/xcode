@@ -1135,4 +1135,61 @@ class Methods {
         
     }
 
+    static func trim_String(str : String) -> String {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] trim_String")
+
+        //debug
+        print("str => \(str)")
+        
+        let space_char = " "
+        
+        let ary = str.componentsSeparatedByString(space_char)
+        
+        var tmp = Array<String>()
+        
+        for item in ary {
+            
+//            if item != " " {
+//            if item != " " && item != "" {
+            
+            // filter => space, blank, space(wide char)
+            if item != " " && item != ""  && item != "　" {
+            
+                tmp.append(item)
+                
+            }
+            
+        }
+        
+        // build string
+        if tmp.count < 1 {
+            
+            return ""
+            
+        } else if tmp.count == 1 {
+            
+            return tmp[0]
+            
+        } else {
+            
+            let str_new = tmp.joinWithSeparator(space_char)
+            
+            //debug
+            print("str_new => \(str_new)")
+
+            return str_new
+            
+        }
+        
+        
+//        var tmp = str.componentsSeparatedByCharactersInSet(.punctuationCharacterSet()).joinWithSeparator("")
+//        
+//        var tmp_2 = tmp.componentsSeparatedByString(" ")
+//        
+//        return .filter{!$0.isEmpty}
+
+        
+    }
 }

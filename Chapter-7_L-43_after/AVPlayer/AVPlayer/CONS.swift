@@ -63,6 +63,7 @@ class CONS {
     */
     static var b_DebugMode = false
  
+ 
     enum PrefValues {
         
         static var b_AddBM = false
@@ -72,6 +73,7 @@ class CONS {
         keys
     */
     //ref http://stackoverflow.com/questions/28628225/how-do-you-save-local-storage-data-in-a-swift-application answered Feb 20 '15 at 12:15
+    //ref tut http://appventure.me/2015/10/17/advanced-practical-enum-examples/#sec-1-1
     enum defaultKeys {
     
         static let key_Set_DebugMode = "key_Set_DebugMode"

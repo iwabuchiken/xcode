@@ -113,51 +113,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
+
         super.viewWillAppear(animated)
 
-//        //debug
-//        Methods.set_Defaults("", key: CONS.key_SearchWords)
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words => set ''")
-        
-        
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        var tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
 
-//        //debug
-//        Methods.set_Defaults("")
-
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => ''")
-
-        
-        // get defaults
-//        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
-        //debug
-        let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
-        
-        //        let defaults = NSUserDefaults.standardUserDefaults()
-        //
-        ////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
-        ////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
-        //        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
-        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
 
-        // objects with conditions
-        _test_Realm_Conditions__MultipleKeywords(tmp_s)
-
+        // trim string
+        tmp_s = Methods.trim_String(tmp_s)
+            
+            // objects with conditions
+            _test_Realm_Conditions__MultipleKeywords(tmp_s)
         
-//        // objects with conditions
-//        _test_Realm_Conditions(tmp_s)
-        
-        
+        // reload data
         tableView.reloadData()
-        
-        //test
-        //ref http://stackoverflow.com/questions/19640050/custom-uitableviewcell-add-margin-between-each-cell answered Sep 11 '15 at 12:50
-//        tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
         
     }
     
@@ -177,6 +149,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            
+            //debug
+            for item in tokens {
+
+                print("item = '\(item)'")
+                
+            }
             
             // query
             var query = ""
@@ -251,6 +230,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 query = "title CONTAINS '\(tokens[0])'"
                 
                 for index in 1...(tokens.count - 1) {
+                    
+                    // validate: not blank
+                    if tokens[index] == "" {
+                        
+                        //debug
+                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[\(index)] => blank")
+
+                        continue
+                        
+                    }
                     
                     // '-' directive
                     if String(tokens[index].characters.first!) == "-" {
