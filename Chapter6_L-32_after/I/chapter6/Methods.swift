@@ -1145,6 +1145,7 @@ class Methods {
         
         let space_char = " "
         
+        //ref http://stackoverflow.com/questions/29667419/how-can-i-remove-or-replace-all-punctuation-characters-from-a-string answered Apr 16 '15 at 7:10
         let ary = str.componentsSeparatedByString(space_char)
         
         var tmp = Array<String>()
