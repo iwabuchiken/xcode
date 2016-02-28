@@ -65,6 +65,23 @@ class CONS {
     
 //    static var s_Realm_FileName__New = "db_20160219_164456.realm"
 //    static var s_Realm_FileName__New = "db_20160219_173550.realm"
+
+    /* *************************************
+        SandboxView-related
+    ************************************* */
+    static var keywords : [String] = [
+    
+        "start Memo", "end Memo",
+        "start Player", "end Player",
+        
+        "start 琴", "end 琴",
+        "start 仮眠", "end 仮眠",
+        "plan today", "plan future",
+        "plan today -DONE", "plan future -DONE",
+        
+        "start 歯磨き", "end 歯磨き",
+    ]
+    
     
     /* *************************************
         others

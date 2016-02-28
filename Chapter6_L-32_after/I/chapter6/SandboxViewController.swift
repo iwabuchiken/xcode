@@ -20,7 +20,8 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     // TableView の各セクションのセルの数を返す
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+//        return 10
+        return CONS.keywords.count
         
     }
     
@@ -31,7 +32,11 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
         // Cellに値を設定する.
-        cell.textLabel?.text = "Row \(indexPath.row)"
+//        cell.textLabel?.text = "Row \(indexPath.row)"
+        cell.textLabel?.text = CONS.keywords[indexPath.row]
+        
+        // bg color
+        cell.backgroundColor = CONS.col_green_soft
         
         // date
         //        let currentDate = NSDate()
