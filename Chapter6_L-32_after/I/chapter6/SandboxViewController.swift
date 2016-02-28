@@ -63,6 +63,22 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => row \(indexPath.row)")
+
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        
+//        let tmp_s = cell.textLabel?.text
+        let tmp_s = self.tf_SearchWords.text
+        
+        // add text
+        if tmp_s == "" {
+            
+            self.tf_SearchWords.text = cell.textLabel?.text
+            
+        } else {
+            
+            self.tf_SearchWords.text = tmp_s! + " " + (cell.textLabel?.text)!
+            
+        }
         
     }
 
