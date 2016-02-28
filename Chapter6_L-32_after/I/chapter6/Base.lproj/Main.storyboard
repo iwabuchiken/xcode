@@ -318,27 +318,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B10-IZ-E6a">
-                                <rect key="frame" x="132" y="430" width="135" height="63"/>
-                                <color key="backgroundColor" red="1" green="0.83007590982356427" blue="0.00046258820562461445" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="EUi-Jo-5PV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.31819245642594951" green="0.15212574014729641" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="backTo_ViewController:" destination="UV6-TK-gWJ" eventType="touchDragInside" id="ghs-xl-67m"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-h8-USC">
-                                <rect key="frame" x="213" y="333" width="54" height="61"/>
+                                <rect key="frame" x="237" y="256" width="54" height="48"/>
                                 <color key="backgroundColor" red="0.45430489664745433" green="0.93598460573873299" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="7ub-ML-iYk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Set"/>
                                 <connections>
                                     <action selector="set_SearchWords:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="KbZ-nc-oVo"/>
@@ -355,14 +341,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF6-wH-fEG">
-                                <rect key="frame" x="25" y="256" width="93" height="47"/>
+                                <rect key="frame" x="25" y="256" width="80" height="47"/>
                                 <color key="backgroundColor" red="0.6164148229248454" green="1" blue="0.60754687441239985" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="O4T-nB-s5g"/>
+                                    <constraint firstAttribute="width" constant="80" id="O4T-nB-s5g"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="oGg-3O-O0f"/>
                                     <constraint firstAttribute="height" constant="47" id="tkS-gt-G1C"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="close">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -370,15 +356,33 @@
                                     <action selector="close_OSKeyboard:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="keU-Zq-9LZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bA-F8-1B0">
-                                <rect key="frame" x="159" y="256" width="81" height="47"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bA-F8-1B0">
+                                <rect key="frame" x="128" y="256" width="81" height="47"/>
                                 <color key="backgroundColor" red="0.76736790546154832" green="0.57205071244162042" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="C6N-m6-dAd"/>
+                                    <constraint firstAttribute="width" constant="81" id="kFC-Eq-NqE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" red="0.1218472762189844" green="0.09083364143072524" blue="0.15878599476439792" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clear_TextField:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="qnt-jh-t3A"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B10-IZ-E6a">
+                                <rect key="frame" x="202" y="476" width="89" height="45"/>
+                                <color key="backgroundColor" red="1" green="0.83007590982356427" blue="0.00046258820562461445" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="EUi-Jo-5PV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.31819245642594951" green="0.15212574014729641" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTo_ViewController:" destination="UV6-TK-gWJ" eventType="touchDragInside" id="ghs-xl-67m"/>
                                 </connections>
                             </button>
                         </subviews>
