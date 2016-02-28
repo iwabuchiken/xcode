@@ -1,10 +1,12 @@
 xcode_Memo
-D-2
+D-4
 
-s-4#1/steps.~4
+s-1#1
 ---
-1. TEST => quit process when no new diaries
+1. fix-1: search => edit search string
+        --> "  "(multiple space chars)
 
     ==> done
+
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

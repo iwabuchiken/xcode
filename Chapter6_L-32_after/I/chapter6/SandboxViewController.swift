@@ -9,11 +9,65 @@
 import UIKit
 import AudioToolbox
 
-class SandboxViewController: UIViewController {
+class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tblview_Keywords: UITableView!
     @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
 
+// MARK: tableview-related    
+    
+    // TableView の各セクションのセルの数を返す
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 10
+        
+    }
+    
+    // 各セルの内容を返す
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        // 再利用可能な cell を得る
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
+        
+        // Cellに値を設定する.
+        cell.textLabel?.text = "Row \(indexPath.row)"
+        
+        // date
+        //        let currentDate = NSDate()
+        
+        return cell
+        
+    }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+
+    // Delete ボタンが押された時の処理を行う
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleting => row \(indexPath.row)")
+
+        }
+    }
+    
+    // セルが削除が可能なことを伝える
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCellEditingStyle {
+        
+        return UITableViewCellEditingStyle.Delete;
+        
+    }
+    
+    // 各セルを選択した時に実行される
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => row \(indexPath.row)")
+        
+    }
+
+// MARK: funcs
+    
     @IBAction func clear_TextField(sender: UIButton) {
         
         tf_SearchWords.text = ""
