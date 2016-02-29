@@ -320,7 +320,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        cell.textLabel?.text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
         cell.textLabel?.text = text
         
-        cell.detailTextLabel?.text = bmArray[indexPath.row].created_at
+//        cell.detailTextLabel?.text = bmArray[indexPath.row].created_at
+        cell.detailTextLabel?.text = bmArray[indexPath.row].memo
         
         let colorSelected = UIColor(red: 3/255, green: 134/255, blue: 27/255, alpha: 1)
         
