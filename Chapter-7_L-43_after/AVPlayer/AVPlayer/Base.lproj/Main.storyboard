@@ -256,6 +256,9 @@
                                     <constraint firstAttribute="width" constant="49" id="Dva-v6-36Q"/>
                                     <constraint firstAttribute="height" constant="31" id="Ma9-nk-67p"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="change_EditMode:" destination="6sp-Ry-9XG" eventType="valueChanged" id="rV8-dh-Wpd"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -267,6 +270,7 @@
                     <connections>
                         <outlet property="lbl_CurrentTime" destination="L0o-nM-QZd" id="RSa-Ja-X0W"/>
                         <outlet property="lbl_Title" destination="gVH-nc-olA" id="vQQ-J6-rK9"/>
+                        <outlet property="sw_EditMode" destination="doe-qk-i4u" id="iRb-6i-g39"/>
                         <outlet property="tableView" destination="NRT-vP-VJn" id="PWH-Rc-rJg"/>
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="bm2play_Segue" id="Cdc-QN-XRJ"/>
                         <segue destination="D4J-Qu-CFX" kind="presentation" identifier="segue_BM_2_PVC" id="qix-If-R9A"/>

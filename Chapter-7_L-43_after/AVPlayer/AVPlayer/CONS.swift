@@ -67,7 +67,9 @@ class CONS {
     enum PrefValues {
         
         static var b_AddBM = false
-        
+
+        static var b_BMView_EditMode = false
+
     }
     /*
         keys
@@ -79,6 +81,8 @@ class CONS {
         static let key_Set_DebugMode = "key_Set_DebugMode"
         
         static let key_Pref_AddBM = "key_Pref_AddBM"
+
+        static let key_Pref_BM_EditMemo = "key_Pref_BM_EditMemo"
     
     }
     
