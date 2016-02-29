@@ -14,6 +14,8 @@ import MediaPlayer
 
 class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var sw_EditMode: UISwitch!
+
     @IBOutlet weak var lbl_CurrentTime: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbl_Title: UILabel!
@@ -31,6 +33,37 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var start_PlayerView_From_ClickingOn_Label_CurrentTime : Bool = false
 
   // MARK: main methods
+    @IBAction func change_EditMode(sender: UISwitch) {
+        
+        // set preference
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // change view
+        if self.sw_EditMode.on == true {
+            
+//            self.sw_EditMode.on = false
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode => true")
+
+            // set defaults
+            defaults.setValue(true, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
+            
+        } else {
+
+//            self.sw_EditMode.on = true
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode => false")
+
+            // set defaults
+            defaults.setValue(false, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
+
+        }
+        
+    }
+    
+
     @IBAction func start_PlayerView(sender: AnyObject) {
         
         let tmp_s = self.lbl_CurrentTime
@@ -117,8 +150,45 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // add recognizer
         self.addGesture_2_Label_CurrentTime()
         
+        // switches
+        viewWillAppear__Setup_Switches()
+        
     }
 
+    func viewWillAppear__Setup_Switches() {
+        
+        /*
+            edit bm memos
+        */
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // get defaults value
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_Pref_BM_EditMemo = defaults.valueForKey(CONS.defaultKeys.key_Pref_BM_EditMemo)
+
+        // validate
+        if dfltVal_Pref_BM_EditMemo == nil {
+            
+            self.sw_EditMode.on = false
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Pref_BM_EditMemo => nil¥nself.sw_EditMode.on => false")
+
+        } else {
+            
+            self.sw_EditMode.on = (dfltVal_Pref_BM_EditMemo?.boolValue)!
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode.on => \((dfltVal_Pref_BM_EditMemo?.boolValue)!)")
+            
+        }
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Pref_BM_EditMemo?.description => \(dfltVal_Pref_BM_EditMemo?.description)")
+
+    }
+    
     override func viewWillDisappear(animated: Bool) {
 
         super.viewWillDisappear(animated)
