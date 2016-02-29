@@ -13,7 +13,10 @@ import RealmSwift
 import MediaPlayer
 
 class VC_EditBM: UIViewController {
-    
+
+    // realm
+    let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+
     var clip_title : String = ""
     var bm_time : Int = 0
     
@@ -44,6 +47,11 @@ class VC_EditBM: UIViewController {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] new memo => '\(memo)' (bm id => '\(id)')")
         
+        // update
+        CONS.e_VC_EditBM.bm.memo = memo!
+        
+        self.update_BM_execute()
+//        Proj.update_BM(CONS.e_VC_EditBM.bm)
         
         
 //        //self.dismissViewControllerAnimated(true, completion: nil)
@@ -61,6 +69,45 @@ class VC_EditBM: UIViewController {
 
         // setup --> views
         viewWillAppear__Setup_Views()
+        
+    }
+    
+    func update_BM_execute() {
+
+//        // realm
+//        let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+
+    //        try! realm.write {
+    //            self.diary.title = self.titleTextField.text!
+    //            self.diary.body = self.bodyTextView.text
+    //            self.diary.date = NSDate()
+    //            self.realm.add(self.diary, update: true)
+    //        }
+        
+        // time -> meta
+        let tmp_time = NSDate()
+
+        let bm = CONS.e_VC_EditBM.bm
+        
+        bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
+
+//        try! rl_tmp.write {
+        try! CONS.RealmVars.realm!.write {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
+
+            //        self.realm.add(self.diary, update: true)
+            
+//            rl_tmp.add(bm, update: true)
+//            self.rl_tmp.add(bm, update: true)
+            CONS.RealmVars.realm!.add(bm, update: true)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(bm.description)")
+            
+        }
+
         
     }
     

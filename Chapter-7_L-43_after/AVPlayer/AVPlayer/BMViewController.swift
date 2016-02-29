@@ -229,10 +229,12 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         do {
             
-            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+            CONS.RealmVars.realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
             
             //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-            let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+//            let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+            let dataArray = try CONS.RealmVars.realm!.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
             
 //            var bmArray = Array<BM>()
             

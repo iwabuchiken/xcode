@@ -97,5 +97,34 @@ class Proj {
         
         return false
     }
-    
+
+    static func update_BM
+        (bm : BM) -> Bool {
+            
+        // realm
+        let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        //    let rl_tmp = Methods.get_RealmInstance("abc.realm")
+        
+        // time -> meta
+        let tmp_time = NSDate()
+        
+        bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
+        
+        //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
+        //ref https://mynavi-agent.jp/it/geekroid/2015/07/realm-2-realmswift-.html
+        try! rl_tmp.write {
+            
+            //        self.realm.add(self.diary, update: true)
+            
+            rl_tmp.add(bm, update: true)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(bm.description)")
+            
+        }
+        
+        return true
+            
+    }
+
 }
