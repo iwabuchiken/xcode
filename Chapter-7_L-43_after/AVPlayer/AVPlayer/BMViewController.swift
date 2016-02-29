@@ -352,6 +352,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             CONS.e_VC_EditBM.bm_time = bm_current.bm_time
             
+            CONS.e_VC_EditBM.bm = bm_current
+            
             // perform segue
             performSegueWithIdentifier("segue_BM_2_EditBM",sender: nil)
             

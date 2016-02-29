@@ -173,7 +173,7 @@
                                     <action selector="update_BM:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="5p8-WF-sEd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-YA-bJq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-YA-bJq">
                                 <rect key="frame" x="54" y="130" width="194" height="45"/>
                                 <color key="backgroundColor" red="0.66664306871450507" green="0.6208278286165213" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -189,6 +189,7 @@
                                 <color key="backgroundColor" red="0.54366119903230037" green="1" blue="0.52887053315295618" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="QiW-Sq-kDP"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="YVe-Pl-qGY"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="Zzl-ro-bRH"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="csj-eo-8tP"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="kgA-Hm-YJt"/>
@@ -200,23 +201,54 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOK-tN-XLq">
+                                <rect key="frame" x="50" y="190" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="QcE-QW-ajp"/>
+                                    <constraint firstAttribute="height" constant="30" id="gpi-IM-7Zk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTf-p9-RLk">
+                                <rect key="frame" x="28" y="244" width="263" height="180"/>
+                                <color key="backgroundColor" red="0.63669813774975659" green="0.96992022702420144" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awm-ou-ctA">
+                                <rect key="frame" x="198" y="194" width="60" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.98112206749136255" blue="0.70643260220593063" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Set"/>
+                                <connections>
+                                    <action selector="close_OSKeyboard:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="cSy-p9-zCU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="7PJ-YA-bJq" secondAttribute="bottom" constant="15" id="0sv-35-Bf3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zE7-ed-8uG" secondAttribute="trailing" constant="419" id="6Kr-3z-hnD"/>
                             <constraint firstItem="7PJ-YA-bJq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="7Gl-sW-U6m"/>
+                            <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="zE7-ed-8uG" secondAttribute="bottom" constant="95" id="Os7-Oi-a7L"/>
+                            <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="190" id="SR0-tg-rqH"/>
                             <constraint firstItem="zE7-ed-8uG" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="50" id="cvw-e7-BoI"/>
                             <constraint firstItem="zE7-ed-8uG" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="kYY-Ke-frW"/>
+                            <constraint firstItem="bOK-tN-XLq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="10" id="sU8-0n-Og1"/>
+                            <constraint firstItem="bOK-tN-XLq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="30" id="zSP-3i-9o4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="lbl_BM_Time" destination="7PJ-YA-bJq" id="pDY-HO-8mW"/>
                         <outlet property="lbl_ClipTitle" destination="zE7-ed-8uG" id="rve-fy-duT"/>
+                        <outlet property="tf_Memo" destination="wTf-p9-RLk" id="BTY-oI-5ev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aj2-03-bXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-236" y="458"/>
+            <point key="canvasLocation" x="-252" y="476"/>
         </scene>
         <!--BMView Controller-->
         <scene sceneID="fZf-CE-xTZ">

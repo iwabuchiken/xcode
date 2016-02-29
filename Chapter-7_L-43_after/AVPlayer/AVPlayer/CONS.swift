@@ -103,6 +103,8 @@ class CONS {
 
         static var bm_time = 0
         
+        static var bm : BM = BM()
+        
     }
     
     /*

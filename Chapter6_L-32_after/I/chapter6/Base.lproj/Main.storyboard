@@ -90,12 +90,6 @@
                                     <action selector="save:" destination="EWV-UN-dOh" eventType="touchUpInside" id="V9o-83-KSI"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-l6-Frw">
-                                <rect key="frame" x="20" y="154" width="560" height="220"/>
-                                <color key="backgroundColor" red="1" green="0.92736022353081982" blue="0.60885077431616241" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-Yt-lLj">
                                 <rect key="frame" x="20" y="116" width="560" height="30"/>
                                 <color key="backgroundColor" red="0.7191710822907651" green="1" blue="0.92673421881951057" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,6 +265,12 @@
                                     <action selector="dup_Diary:" destination="EWV-UN-dOh" eventType="touchUpInside" id="rAJ-Ux-FD9"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gUd-l6-Frw">
+                                <rect key="frame" x="20" y="154" width="560" height="220"/>
+                                <color key="backgroundColor" red="1" green="0.92736022353081982" blue="0.60885077431616241" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
