@@ -93,6 +93,17 @@ class CONS {
     
     static var value_Per_OneStep_Forwards   = 20  // unit=seconds
     static var value_Per_OneStep_Backwards  = -20  // unit=seconds
+
+    /*
+        VC_EditBM-related
+    */
+    enum e_VC_EditBM {
+        
+        static var s_clip_title = ""
+
+        static var bm_time = 0
+        
+    }
     
     /*
         segue-related

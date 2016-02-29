@@ -337,9 +337,34 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
-        performSegueWithIdentifier("bm2play_Segue",sender: nil)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        segue_BM_2_EditBM
+        
+        /*
+            dispatch
+        */
+        if self.sw_EditMode.on == true {
+
+            // set vars
+            let bm_current = bmArray[indexPath.row]
+            
+            CONS.e_VC_EditBM.s_clip_title = self.song_title
+            
+            CONS.e_VC_EditBM.bm_time = bm_current.bm_time
+            
+            // perform segue
+            performSegueWithIdentifier("segue_BM_2_EditBM",sender: nil)
+            
+            // deselect row
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        } else {
+
+            performSegueWithIdentifier("bm2play_Segue",sender: nil)
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        }
         
     }
 

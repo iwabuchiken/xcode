@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -145,6 +146,78 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
+        <!--EditBM-->
+        <scene sceneID="SJX-ru-IwM">
+            <objects>
+                <viewController id="HJV-mZ-5hT" customClass="VC_EditBM" customModule="AVPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V5B-FM-C4z"/>
+                        <viewControllerLayoutGuide type="bottom" id="gd6-hS-8my"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="thy-Tt-7zg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-1n-rvO">
+                                <rect key="frame" x="198" y="472" width="93" height="35"/>
+                                <color key="backgroundColor" red="0.85973730018935302" green="0.32231115075671662" blue="0.86452879581151831" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="NIv-t1-ghz"/>
+                                    <constraint firstAttribute="height" constant="35" id="mcs-nH-tBJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" red="0.95960797782611529" green="1" blue="0.96069014893236626" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="update_BM:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="5p8-WF-sEd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-YA-bJq">
+                                <rect key="frame" x="54" y="130" width="194" height="45"/>
+                                <color key="backgroundColor" red="0.66664306871450507" green="0.6208278286165213" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9EK-J0-6d7"/>
+                                    <constraint firstAttribute="width" constant="194" id="BNC-WQ-ERG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zE7-ed-8uG">
+                                <rect key="frame" x="54" y="50" width="107" height="45"/>
+                                <color key="backgroundColor" red="0.54366119903230037" green="1" blue="0.52887053315295618" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="QiW-Sq-kDP"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="Zzl-ro-bRH"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="csj-eo-8tP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="kgA-Hm-YJt"/>
+                                    <constraint firstAttribute="height" constant="45" id="uuw-XG-0pB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="107" id="wIj-Id-EHO"/>
+                                    <constraint firstAttribute="width" constant="107" id="zoI-1F-Sub"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="zE7-ed-8uG" secondAttribute="trailing" constant="419" id="6Kr-3z-hnD"/>
+                            <constraint firstItem="7PJ-YA-bJq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="7Gl-sW-U6m"/>
+                            <constraint firstItem="zE7-ed-8uG" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="50" id="cvw-e7-BoI"/>
+                            <constraint firstItem="zE7-ed-8uG" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="kYY-Ke-frW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lbl_BM_Time" destination="7PJ-YA-bJq" id="pDY-HO-8mW"/>
+                        <outlet property="lbl_ClipTitle" destination="zE7-ed-8uG" id="rve-fy-duT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aj2-03-bXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-236" y="458"/>
+        </scene>
         <!--BMView Controller-->
         <scene sceneID="fZf-CE-xTZ">
             <objects>
@@ -275,6 +348,7 @@
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="bm2play_Segue" id="Cdc-QN-XRJ"/>
                         <segue destination="D4J-Qu-CFX" kind="presentation" identifier="segue_BM_2_PVC" id="qix-If-R9A"/>
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="segue_BM_Label_2_PlayerView" id="093-j1-Jw2"/>
+                        <segue destination="HJV-mZ-5hT" kind="presentation" identifier="segue_BM_2_EditBM" id="JZO-IM-eQB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gh-GR-6QR" userLabel="First Responder" sceneMemberID="firstResponder"/>

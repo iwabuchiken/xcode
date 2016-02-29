@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040096CB1C8401B200E6772F /* VC_EditBM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040096CA1C8401B200E6772F /* VC_EditBM.swift */; };
 		040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D663C1C70A76E0062799F /* PreferenceViewController.swift */; };
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
 		045194E51C80255B005894C5 /* PVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194E41C80255B005894C5 /* PVC.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040096CA1C8401B200E6772F /* VC_EditBM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_EditBM.swift; sourceTree = "<group>"; };
 		040D663C1C70A76E0062799F /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
 		045194E41C80255B005894C5 /* PVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVC.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				3E230B391BC887F9000162A3 /* Info.plist */,
 				04D771841C7F504E0053C2FA /* models */,
 				045194E41C80255B005894C5 /* PVC.swift */,
+				040096CA1C8401B200E6772F /* VC_EditBM.swift */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */,
 				045194E51C80255B005894C5 /* PVC.swift in Sources */,
 				3ECB9C121BCECDFC006B1253 /* PlayerViewController.swift in Sources */,
+				040096CB1C8401B200E6772F /* VC_EditBM.swift in Sources */,
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
 				045194E91C8034C3005894C5 /* BMViewController.swift in Sources */,
 				040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */,
