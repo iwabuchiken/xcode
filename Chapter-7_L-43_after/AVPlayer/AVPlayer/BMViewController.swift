@@ -14,6 +14,7 @@ import MediaPlayer
 
 class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var lbl_EditMode: UILabel!
     @IBOutlet weak var sw_EditMode: UISwitch!
 
     @IBOutlet weak var lbl_CurrentTime: UILabel!
@@ -49,6 +50,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             // set defaults
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
             
+            // label color
+            self.lbl_EditMode.textColor = CONS.Colors.col_Black
+            
         } else {
 
 //            self.sw_EditMode.on = true
@@ -58,6 +62,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             // set defaults
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
+
+            // label color
+            self.lbl_EditMode.textColor = CONS.Colors.col_White
 
         }
         
@@ -153,8 +160,26 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // switches
         viewWillAppear__Setup_Switches()
         
+        // views
+        _viewWillAppear__Setup_Views()
+        
     }
 
+    func _viewWillAppear__Setup_Views() {
+    
+        // "Edit mode" label
+        if self.sw_EditMode.on == true {
+            
+            self.lbl_EditMode.textColor = CONS.Colors.col_Black
+            
+        } else {
+            
+            self.lbl_EditMode.textColor = CONS.Colors.col_White
+            
+        }
+        
+    }
+    
     func viewWillAppear__Setup_Switches() {
         
         /*

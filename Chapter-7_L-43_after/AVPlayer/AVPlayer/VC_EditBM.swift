@@ -24,6 +24,68 @@ class VC_EditBM: UIViewController {
     @IBOutlet weak var lbl_ClipTitle: UILabel!
     @IBOutlet weak var tf_Memo: UITextField!
 
+    @IBAction func delete_BM(sender: UIButton) {
+        
+        // confirm
+        let s_title = "Alert"
+        
+        let choice_1 = "OK"
+        let choice_2 = "Cancel"
+        
+        //        let s_message = "(1) show realm files list (2) B (3) C"
+        //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+        let s_message = "Delete BM ?"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+            // execute
+            self._delete_BM__OK()
+            
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            
+        }))
+        
+        // show dialog
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+
+        
+    }
+
+    func _delete_BM__OK() {
+        
+        try! CONS.RealmVars.realm!.write {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
+            
+            //        self.realm.add(self.diary, update: true)
+            
+            //            rl_tmp.add(bm, update: true)
+            //            self.rl_tmp.add(bm, update: true)
+            CONS.RealmVars.realm!.delete(CONS.e_VC_EditBM.bm)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(CONS.e_VC_EditBM.bm.description)")
+            
+            // back
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }
+        
+    }
+    
     @IBAction func cancel_Controller(sender: UIButton) {
 
         // back

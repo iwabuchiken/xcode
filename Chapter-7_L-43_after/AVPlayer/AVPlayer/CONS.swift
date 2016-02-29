@@ -12,6 +12,45 @@ import RealmSwift
 
 class CONS {
 
+    enum Colors {
+
+        static var col_White = UIColor(
+            red:1.0,
+            green:1.0,
+            blue:1.0,
+            alpha:1.0)
+        
+        static var col_Black = UIColor(
+            red:0.0,
+            green:0.0,
+            blue:0.0,
+            alpha:1.0)
+
+        static var col_green_soft = UIColor(
+            red:0.2,
+            green:1.0,
+            blue:0.0,
+            alpha:1.0)
+
+        static var col_green_071000 = UIColor(
+            red:0.7,
+            green:1.0,
+            blue:0.0,
+            alpha:1.0)
+        
+        static var col_Blue_020510 = UIColor(
+            red:    0.2,
+            green:  0.5,
+            blue:   1.0,
+            alpha:  1.0)
+        
+        static var col_Blue_020710 = UIColor(
+            red:    0.2,
+            green:  0.7,
+            blue:   1.0,
+            alpha:  1.0)
+    }
+    
     static var col_green_soft = UIColor(
         red:0.2,
         green:1.0,

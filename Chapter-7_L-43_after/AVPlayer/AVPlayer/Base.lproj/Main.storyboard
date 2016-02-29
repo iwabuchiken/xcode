@@ -227,11 +227,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjz-j4-oDR">
-                                <rect key="frame" x="91" y="470" width="70" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.290644353513414" blue="0.38889606301725443" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="42" y="449" width="83" height="40"/>
+                                <color key="backgroundColor" red="0.94288199671910011" green="0.6905083004311533" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="8EH-D7-3rT"/>
-                                    <constraint firstAttribute="width" constant="50" id="n3g-GP-v0l"/>
+                                    <constraint firstAttribute="width" constant="83" id="n3g-GP-v0l"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel">
@@ -239,6 +239,20 @@
                                 </state>
                                 <connections>
                                     <action selector="cancel_Controller:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="552-ay-J7O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5D-06-Vki">
+                                <rect key="frame" x="42" y="517" width="74" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.085553660928878617" blue="0.1493847741791271" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="brw-GA-HYf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="0.98146697153067886" green="0.95634912184974508" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="delete_BM:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="61K-9D-x5Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -250,10 +264,10 @@
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="zE7-ed-8uG" secondAttribute="bottom" constant="95" id="Os7-Oi-a7L"/>
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="190" id="SR0-tg-rqH"/>
                             <constraint firstItem="zE7-ed-8uG" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="50" id="cvw-e7-BoI"/>
-                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="V5B-FM-C4z" secondAttribute="bottom" constant="450" id="iAV-fT-Hic"/>
-                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="V5B-FM-C4z" secondAttribute="bottom" constant="450" id="kXz-d1-YXR"/>
+                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="V5B-FM-C4z" secondAttribute="bottom" constant="429" id="iAV-fT-Hic"/>
+                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="V5B-FM-C4z" secondAttribute="bottom" constant="429" id="kXz-d1-YXR"/>
                             <constraint firstItem="zE7-ed-8uG" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="kYY-Ke-frW"/>
-                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="wTf-p9-RLk" secondAttribute="bottom" constant="46" id="r2a-eF-u3Z"/>
+                            <constraint firstItem="Fjz-j4-oDR" firstAttribute="top" secondItem="wTf-p9-RLk" secondAttribute="bottom" constant="25" id="r2a-eF-u3Z"/>
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="10" id="sU8-0n-Og1"/>
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="30" id="zSP-3i-9o4"/>
                         </constraints>
@@ -392,6 +406,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="lbl_CurrentTime" destination="L0o-nM-QZd" id="RSa-Ja-X0W"/>
+                        <outlet property="lbl_EditMode" destination="MF1-NT-Ocr" id="hIf-gv-QRt"/>
                         <outlet property="lbl_Title" destination="gVH-nc-olA" id="vQQ-J6-rK9"/>
                         <outlet property="sw_EditMode" destination="doe-qk-i4u" id="iRb-6i-g39"/>
                         <outlet property="tableView" destination="NRT-vP-VJn" id="PWH-Rc-rJg"/>
