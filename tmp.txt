@@ -1,10 +1,9 @@
 xcode_Memo
-D-4
+D-5
 
-s-1#1
+s-1#1/steps.3
 ---
-1. fix-1: search => edit search string
-        --> "  "(multiple space chars)
+1. click on a cell => add string to the textfield
 
     ==> done
 
