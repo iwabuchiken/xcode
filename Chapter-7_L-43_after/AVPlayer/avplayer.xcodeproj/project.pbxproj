@@ -106,8 +106,8 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				045194E81C8034C3005894C5 /* BMViewController.swift */,
 				04FED8031C728683004B9022 /* utils */,
+				045194E81C8034C3005894C5 /* BMViewController.swift */,
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
 				3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */,

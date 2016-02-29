@@ -236,7 +236,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 再利用可能な cell を得る
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
-        
+//        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "Cell")
+//        
         let text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
         
 //        //debug
@@ -244,7 +245,16 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         
         // Cellに値を設定する.
-        cell.textLabel?.text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
+//        cell.textLabel?.text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
+        cell.textLabel?.text = text
+        
+        cell.detailTextLabel?.text = bmArray[indexPath.row].created_at
+        
+        let colorSelected = UIColor(red: 3/255, green: 134/255, blue: 27/255, alpha: 1)
+        
+//        cell.detailTextLabel?.backgroundColor = CONS.col_green_soft
+        cell.detailTextLabel?.backgroundColor = colorSelected
+        
 //        cell.detailTextLabel?.text = songs[indexPath.row].albumTitle
 
 //        cell.textLabel?.text = songs[indexPath.row].title
