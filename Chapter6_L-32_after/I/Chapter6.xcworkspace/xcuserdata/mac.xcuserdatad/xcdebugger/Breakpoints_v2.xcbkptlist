@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "chapter6/SandboxViewController.swift"
-            timestampString = "478339281.707412"
+            timestampString = "478504474.317433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "show_Message(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chapter6/ViewController.swift"
-            timestampString = "478231724.883033"
+            timestampString = "478504474.317433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "_test_Realm_Conditions(_:)"
             landmarkType = "5">
          </BreakpointContent>

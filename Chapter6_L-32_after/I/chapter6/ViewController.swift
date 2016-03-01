@@ -134,7 +134,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 // MARK: realm-related
-    func _test_Realm_Conditions__MultipleKeywords(tmp_s : String) -> Void {
+    func _test_Realm_Conditions__MultipleKeywords
+    (tmp_s : String) -> Void {
         
         //debug
         if tmp_s == "" {
@@ -160,7 +161,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // query
             var query = ""
             
-            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            // search memo, too?
+            // defaults
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+            let dfltVal_Search_MemoColumn = defaults.valueForKey(CONS.defaultKeys.key_Search_MemoColumn)
+
+//            if dfltVal_Search_MemoColumn == nil || dfltVal_Search_MemoColumn == true {
+            if dfltVal_Search_MemoColumn == nil {
+            
+                query = "title CONTAINS '\(tmp_s)' OR body CONTAINS '\(tmp_s)'"
+
+//            } else if dfltVal_Search_MemoColumn == true {
+            } else if dfltVal_Search_MemoColumn?.boolValue == true {
+
+                query = "title CONTAINS '\(tmp_s)' OR body CONTAINS '\(tmp_s)'"
+                
+            } else {
+
+                query = "title CONTAINS '\(tmp_s)'"
+                
+            }
+            
+            
+//            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+            var aPredicate = NSPredicate(format: query)
             
             if tokens.count == 1 {
 
@@ -176,29 +202,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                }
                 
 //                //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
-////                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
 
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(String(tmp_s[tmp_s.startIndex.advancedBy(4)]))")    //=> /Users/mac/Desktop/works/WS/  //=> n.w.//=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
-
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[4] => \(tmp_s[tmp_s.startIndex.advancedBy(4)])")  //=> n.w. :=> 'fatal error: Can't form a Character from an empty String (lldb) '
-                
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s.startIndex.advancedBy(4) => \(tmp_s.startIndex.advancedBy(4))")
-//                //=> '4'
-                
-                
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => building")
 
-//                let q = "title NOT CONTAINS '\(tmp_s)'"
-//                let q = "NOT title CONTAINS '\(tmp_s)'"   //=> works
-              
                 if String(tmp_s.characters.first!) == "-" {
                     
                     //ref http://stackoverflow.com/questions/32575227/swift-2-0-substringwithrange answered Sep 15 '15 at 2:30
-//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] substring => \(tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(3)])")   //=> works
-                    
-//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)] => %s", tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)])
                     print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)] => ", tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)])
                     
                     aPredicate = NSPredicate(
@@ -213,13 +223,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                 } else {
 
-                    aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+                    // no op ==> using aPredicate defined earlier
+                    
+//                    aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
                     
                 }
-                
-//                aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
-//                aPredicate = NSPredicate(format: "title NOT CONTAINS %@", tmp_s)
-//                aPredicate = NSPredicate(format: q)
                 
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => built")
@@ -258,8 +266,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                 }
                 
-                //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+//                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
                 
                 //                let aPredicate = NSPredicate(query)
                 //                aPredicate = query
