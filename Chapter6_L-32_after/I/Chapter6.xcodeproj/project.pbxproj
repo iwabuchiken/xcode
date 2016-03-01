@@ -13,6 +13,7 @@
 		04CBAB6D1C7C0F5F00FDEDE2 /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */; };
 		04CBAB6F1C7C1FB200FDEDE2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBAB6E1C7C1FB200FDEDE2 /* Data.swift */; };
 		04D0EE731C6848C300268C68 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EE721C6848C200268C68 /* CONS.swift */; };
+		04D640421C851E4600A091B7 /* VC_Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D640411C851E4600A091B7 /* VC_Preference.swift */; };
 		04EA58AE1C7B340500823173 /* Proj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA58AD1C7B340500823173 /* Proj.swift */; };
 		3E16ACD61BC009DF004AE056 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16ACD51BC009DF004AE056 /* AppDelegate.swift */; };
 		3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16ACD71BC009DF004AE056 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = db.swift; path = chapter6/db.swift; sourceTree = SOURCE_ROOT; };
 		04CBAB6E1C7C1FB200FDEDE2 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = chapter6/Data.swift; sourceTree = SOURCE_ROOT; };
 		04D0EE721C6848C200268C68 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
+		04D640411C851E4600A091B7 /* VC_Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Preference.swift; path = chapter6/VC_Preference.swift; sourceTree = SOURCE_ROOT; };
 		04EA58AD1C7B340500823173 /* Proj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proj.swift; sourceTree = "<group>"; };
 		08EE451116E278EBBCBD6B3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1682D88BED352843A2E26BF8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
 				046CF6D81C784F530049DB74 /* models */,
 				046CF6D71C784F400049DB74 /* utils */,
+				04D640411C851E4600A091B7 /* VC_Preference.swift */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */,
 				04D0EE731C6848C300268C68 /* CONS.swift in Sources */,
 				04CBAB6F1C7C1FB200FDEDE2 /* Data.swift in Sources */,
+				04D640421C851E4600A091B7 /* VC_Preference.swift in Sources */,
 				04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */,
 				04EA58AE1C7B340500823173 /* Proj.swift in Sources */,
 				049246601C67651000B95ACC /* Methods.swift in Sources */,

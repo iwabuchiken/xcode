@@ -428,6 +428,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // sandbox segue?
         if segue.identifier == "sandboxSegue" {
             
+        } else if segue.identifier == "segue_Navi_2_Preference" {
+        
+        
+        
         } else {
         
         
@@ -449,6 +453,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
                 inputViewController.diary = diary
             }
+            
         }
     }
     

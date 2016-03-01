@@ -96,6 +96,12 @@ class CONS {
     */
     static var b_DebugMode = false
  
+    enum Prefs {
+        
+        static var b_Search_MemoColumn = false
+        
+    }
+    
     /*
         keys
     */
@@ -103,7 +109,9 @@ class CONS {
     enum defaultKeys {
     
         static let key_Set_DebugMode = "key_Set_DebugMode"
-    
+
+        static let key_Search_MemoColumn = "key_Search_MemoColumn"
+
     }
     
     

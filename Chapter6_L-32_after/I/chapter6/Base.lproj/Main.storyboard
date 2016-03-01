@@ -48,6 +48,11 @@
                                     <segue destination="UV6-TK-gWJ" kind="show" identifier="sandboxSegue" id="RcJ-NE-8PO"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="organize" id="9Nt-2A-d1y">
+                                <connections>
+                                    <segue destination="u7k-56-RoO" kind="show" identifier="segue_Navi_2_Preference" id="QMB-KU-gPx"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="action" id="UcJ-bX-lK4">
                                 <connections>
                                     <action selector="backupDiaries_ViaEmail:" destination="BYZ-38-t0r" id="xl1-6a-03h"/>
@@ -68,6 +73,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117" y="387"/>
+        </scene>
+        <!--Preference-->
+        <scene sceneID="Tsd-Dc-NKO">
+            <objects>
+                <viewController id="u7k-56-RoO" customClass="VC_Preference" customModule="Chapter6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kbL-bZ-0wR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Alg-Z8-PQx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AcJ-gD-WTW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vXe-TI-5k9">
+                                <rect key="frame" x="258" y="69" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Bys-K0-442"/>
+                                    <constraint firstAttribute="width" constant="49" id="Dv3-q7-qHd"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sw_Action_Search_MemoColumn:" destination="u7k-56-RoO" eventType="valueChanged" id="VxV-9V-yPP"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search 'memo' , too" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zc7-tc-APh">
+                                <rect key="frame" x="41" y="72" width="190" height="32"/>
+                                <color key="backgroundColor" red="0.68690731981849584" green="1" blue="0.59162214700456095" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="btw-3H-bRW"/>
+                                    <constraint firstAttribute="height" constant="32" id="nHj-Yz-tOF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vXe-TI-5k9" firstAttribute="top" secondItem="kbL-bZ-0wR" secondAttribute="bottom" constant="49" id="LSl-BX-DQp"/>
+                            <constraint firstItem="Zc7-tc-APh" firstAttribute="top" secondItem="AcJ-gD-WTW" secondAttribute="topMargin" constant="72" id="Qle-3c-A9P"/>
+                            <constraint firstItem="Zc7-tc-APh" firstAttribute="leading" secondItem="AcJ-gD-WTW" secondAttribute="leadingMargin" constant="21" id="cha-WO-TpE"/>
+                            <constraint firstItem="vXe-TI-5k9" firstAttribute="leading" secondItem="Zc7-tc-APh" secondAttribute="trailing" constant="27" id="jlV-Wu-j4A"/>
+                            <constraint firstItem="vXe-TI-5k9" firstAttribute="leading" secondItem="Zc7-tc-APh" secondAttribute="trailing" constant="27" id="tVr-jV-viN"/>
+                            <constraint firstItem="vXe-TI-5k9" firstAttribute="leading" secondItem="AcJ-gD-WTW" secondAttribute="leadingMargin" constant="238" id="xPv-bp-N0a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sw_Search_MemoColumn" destination="vXe-TI-5k9" id="yPN-q1-M6g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rYb-eB-33s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1466" y="314"/>
         </scene>
         <!--Input View Controller-->
         <scene sceneID="Y4u-cA-GGi">
