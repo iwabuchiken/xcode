@@ -499,9 +499,13 @@ class Methods {
         // get realm
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
+        //        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastId(): realm.objects(BM).sorted(\"id\", ascending: true).last?.description => \(realm.objects(BM).sorted("id", ascending: true).last?.description)")
+
         
 //        if let user = realm.objects(BM).last {
-        if let user = realm.objects(BM).last {
+//        if let user = realm.objects(BM).last {
+        if let user = realm.objects(BM).sorted("id", ascending: true).last {
 
             return user.id + 1
             
