@@ -697,13 +697,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_4 = "(4) Copy db (Diary)"
 
 //        let choice_5 = "(5) Update Data"
-        let choice_5 = "(5) Re-create: realm.data.realm"
+//        let choice_5 = "(5) Re-create: realm.data.realm"
 
+
+        let choice_6 = "(6) backup realm files"
+        let choice_7 = "(7) show backup files"
+        
         let choice_9 = "(9) Cancel"
 
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
-        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_9)"
+        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7) \(choice_9)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -747,13 +751,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
 
-        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
+//        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+//            
+//            // start function
+//            self._experiments__Choices__5()
+//            
+//        }))
+//        
+
+        refreshAlert.addAction(UIAlertAction(title: "6", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
             
             // start function
-            self._experiments__Choices__5()
+            self._experiments__Choices__6()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "7", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 7")
+            
+            // start function
+            self._experiments__Choices__7()
             
         }))
         
@@ -856,7 +881,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.insertData_Data_Latest_Diary_at(tmp_s)
         
     }
+
+    func _experiments__Choices__6() {
+
+        Methods.backup_RealmFiles(CONS.s_Realm_FileName__Admin)
+        
+    }
     
+    func _experiments__Choices__7() {
+        
+        Methods.show_DirList__BackupFiles()
+        
+    }
+    
+
     func _experiments__UIAlert() {
     
         //ref http://stackoverflow.com/questions/25511945/swift-alert-view-ios8-with-ok-and-cancel-button-which-button-tapped answered Aug 26 '14 at 17:51
@@ -1195,7 +1233,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let aPredicate = NSPredicate(format: query)
         
 //        let resOf_Data_LatestDiaryAt = try self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
-        let resOf_Data_LatestDiaryAt = try! self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
+//        let resOf_Data_LatestDiaryAt = try! self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
 
 //        //debug0
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => \(resOf_Data_LatestDiaryAt.count) (\(resOf_Data_LatestDiaryAt.description))")

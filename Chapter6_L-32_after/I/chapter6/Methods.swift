@@ -165,6 +165,31 @@ class Methods {
         
     }
     
+    static func show_DirList__BackupFiles() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let dpath_realm_backups = "\(dpath_realm)/\(CONS.REALM.s_Realm_Backup_Directory_Name)"
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        
+        let files = filemanager.enumeratorAtPath(dpath_realm_backups)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm_backups)")
+        
+        
+        while let file = files?.nextObject() {
+            
+            print(file)
+            
+        }
+        
+    }
+    
 
     static func show_DirList(path : String) {
         
@@ -1119,6 +1144,87 @@ class Methods {
 
     }
 
+    static func backup_RealmFiles(fname_realm : String) {
+
+        // setup: files
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let filemanager:NSFileManager = NSFileManager()
+
+        let dpath_realm_backups = "\(dpath_realm)/backups"
+        
+        /*
+            validate: backups directory
+        */
+        let tmp_b = filemanager.fileExistsAtPath(dpath_realm_backups)
+
+        if tmp_b == false {
+            
+            do {
+                
+                //ref http://stackoverflow.com/questions/32659869/ios9-swift-file-creating-nsfilemanager-createdirectoryatpath-with-nsurl answered Sep 18 '15 at 19:42
+                try filemanager.createDirectoryAtPath(dpath_realm_backups, withIntermediateDirectories: true, attributes: nil)
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dir created => \(dpath_realm_backups) ")
+
+            } catch let e as NSError! {
+                
+                // handle error
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                
+            }
+
+        
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm_backups => exists")
+
+        }
+        
+        
+        /*
+            file paths
+        */
+//        let fpath_backup_realm_admin = "\(realmPath)/bakcup.\(Methods.get_TimeLabel__Serial()).\(CONS.s_Realm_FileName__Admin)"
+//        let fpath_backup_realm_admin_dst = "\(dpath_realm)/\(CONS.s_Realm_FileName__Admin).\(Methods.get_TimeLabel__Serial()).bakcup"
+        let fpath_backup_realm_admin_dst = "\(dpath_realm_backups)/\(CONS.s_Realm_FileName__Admin).\(Methods.get_TimeLabel__Serial()).bakcup"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_dst => \(fpath_backup_realm_admin_dst)")
+
+        let fpath_backup_realm_admin_src = "\(dpath_realm)/\(CONS.s_Realm_FileName__Admin)"
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_src => \(fpath_backup_realm_admin_src)")
+
+        
+        /*
+            copy
+        */
+        
+        do {
+            
+            try filemanager.copyItemAtPath(fpath_backup_realm_admin_src, toPath: fpath_backup_realm_admin_dst)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied")
+            
+        } catch let e as NSError! {
+            
+            // handle error
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+            
+        }
+        
+        
+    }
+    
     static func conv_DateString_2_NSDate(label : String, format : String) -> NSDate {
         
         //ref http://stackoverflow.com/questions/24777496/how-can-i-convert-string-date-to-nsdate answered Jul 16 '14 at 10:05

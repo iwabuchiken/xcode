@@ -20,10 +20,10 @@ class Proj {
         let s_sort_key = "modified_at"
         let b_ascend = false
         
-        var query = "name == '\(CONS.s_AdminKey__LastBackup)'"
+        let query = "name == '\(CONS.s_AdminKey__LastBackup)'"
         
 //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
-        var aPredicate = NSPredicate(format: query)
+        let aPredicate = NSPredicate(format: query)
 
         let aryOf_Data_Filtered = DB.findAll_Data__Filtered(s_dbfile_name, predicate: aPredicate, sort_key: s_sort_key, ascend: b_ascend)
 //        let ary = DB.findAll_Data(s_dbfile_name, sort_key: s_sort_key, ascend: b_ascend)
@@ -83,7 +83,7 @@ class Proj {
         let s_sort_key = "modified_at"
         let b_ascend = false
         
-        var query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
+        let query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
         
         //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
         var aPredicate = NSPredicate(format: query)

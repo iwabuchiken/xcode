@@ -66,6 +66,14 @@ class CONS {
 //    static var s_Realm_FileName__New = "db_20160219_164456.realm"
 //    static var s_Realm_FileName__New = "db_20160219_173550.realm"
 
+    enum REALM {
+    
+        static var s_Realm_Backup_Directory_Name = "backups"
+        
+    }
+    
+    
+    
     /* *************************************
         SandboxView-related
     ************************************* */
