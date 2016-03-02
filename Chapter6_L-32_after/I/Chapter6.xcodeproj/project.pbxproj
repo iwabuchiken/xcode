@@ -10,6 +10,7 @@
 		04432E681C79841C009B47DA /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04432E671C79841C009B47DA /* Admin.swift */; };
 		049246601C67651000B95ACC /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492465F1C67650F00B95ACC /* Methods.swift */; };
 		04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */; };
+		04C067721C8736B500ACCB6E /* Hist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C067711C8736B500ACCB6E /* Hist.swift */; };
 		04CBAB6D1C7C0F5F00FDEDE2 /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */; };
 		04CBAB6F1C7C1FB200FDEDE2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBAB6E1C7C1FB200FDEDE2 /* Data.swift */; };
 		04D0EE731C6848C300268C68 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EE721C6848C200268C68 /* CONS.swift */; };
@@ -29,6 +30,7 @@
 		04432E671C79841C009B47DA /* Admin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Admin.swift; path = chapter6/Admin.swift; sourceTree = SOURCE_ROOT; };
 		0492465F1C67650F00B95ACC /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = chapter6/Methods.swift; sourceTree = SOURCE_ROOT; };
 		04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandboxViewController.swift; path = chapter6/SandboxViewController.swift; sourceTree = SOURCE_ROOT; };
+		04C067711C8736B500ACCB6E /* Hist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hist.swift; path = chapter6/Hist.swift; sourceTree = SOURCE_ROOT; };
 		04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = db.swift; path = chapter6/db.swift; sourceTree = SOURCE_ROOT; };
 		04CBAB6E1C7C1FB200FDEDE2 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = chapter6/Data.swift; sourceTree = SOURCE_ROOT; };
 		04D0EE721C6848C200268C68 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				3E634A711BC302D600D13685 /* Diary.swift */,
 				04432E671C79841C009B47DA /* Admin.swift */,
 				04CBAB6E1C7C1FB200FDEDE2 /* Data.swift */,
+				04C067711C8736B500ACCB6E /* Hist.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				3E634A721BC302D600D13685 /* Diary.swift in Sources */,
 				3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */,
 				04D0EE731C6848C300268C68 /* CONS.swift in Sources */,
+				04C067721C8736B500ACCB6E /* Hist.swift in Sources */,
 				04CBAB6F1C7C1FB200FDEDE2 /* Data.swift in Sources */,
 				04D640421C851E4600A091B7 /* VC_Preference.swift in Sources */,
 				04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */,

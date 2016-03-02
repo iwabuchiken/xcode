@@ -11,7 +11,7 @@ import AudioToolbox
 
 class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tblview_Keywords: UITableView!
+//    @IBOutlet weak var tblview_Keywords: UITableView!
     @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
 
