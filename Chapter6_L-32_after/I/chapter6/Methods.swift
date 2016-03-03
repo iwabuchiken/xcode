@@ -1144,7 +1144,68 @@ class Methods {
 
     }
 
-    static func backup_RealmFiles(fname_realm : String) {
+    static func delete_Realm_BackupFiles() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+
+        let dpath_realm_backups = "\(dpath_realm)/\(CONS.REALM.s_Realm_Backup_Directory_Name)"
+        
+        let filemanager:NSFileManager = NSFileManager()
+
+        let files = filemanager.enumeratorAtPath(dpath_realm_backups)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm_backups)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] files => \(files?.description)")
+        
+        while let file = files?.nextObject() {
+            
+            //ref prefix http://stackoverflow.com/questions/24034043/how-do-i-check-if-a-string-contains-another-string-in-swift Oct 14 '15 at 14:19
+//            if String(file).hasPrefix("db.admin") && String(file).hasSuffix("backup") {
+//            if String(file).hasPrefix("db\\.admin") && String(file).hasSuffix("backup") {
+//            if String(file).hasPrefix("db") && String(file).hasSuffix("backup") {
+//            if String(file).hasPrefix("db") && String(file).hasSuffix("bakcup") {
+            if String(file).hasPrefix("db") && String(file).hasSuffix(CONS.REALM.s_Realm_Backup_Extension) {
+            
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(String(file))")
+                
+                do {
+                    
+                    try filemanager.removeItemAtPath("\(dpath_realm_backups)/\(String(file))")
+                    
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file removed => (\(file))")
+                    
+                } catch let e as NSError! {
+                    
+                    // handle error
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) (\(file))")
+                    
+                }
+                
+                //            print("\(file) (\(files?.description))")
+                //            
+                //            print("file.name => \(file.name)")
+            } else {
+
+                //debug
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file name not applicable => (\(file.name))")
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file name not applicable => (\(file))")
+
+            }
+            
+        }
+        
+    }
+    
+    static func backup_RealmFiles
+    (fname_realm : String) {
 
         // setup: files
         let realmPath = Realm.Configuration.defaultConfiguration.path
@@ -1192,38 +1253,152 @@ class Methods {
         */
 //        let fpath_backup_realm_admin = "\(realmPath)/bakcup.\(Methods.get_TimeLabel__Serial()).\(CONS.s_Realm_FileName__Admin)"
 //        let fpath_backup_realm_admin_dst = "\(dpath_realm)/\(CONS.s_Realm_FileName__Admin).\(Methods.get_TimeLabel__Serial()).bakcup"
-        let fpath_backup_realm_admin_dst = "\(dpath_realm_backups)/\(CONS.s_Realm_FileName__Admin).\(Methods.get_TimeLabel__Serial()).bakcup"
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_dst => \(fpath_backup_realm_admin_dst)")
 
-        let fpath_backup_realm_admin_src = "\(dpath_realm)/\(CONS.s_Realm_FileName__Admin)"
-
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_src => \(fpath_backup_realm_admin_src)")
+//        let fpath_backup_realm_admin_dst = "\(dpath_realm_backups)/\(CONS.s_Realm_FileName__Admin).\(Methods.get_TimeLabel__Serial()).bakcup"
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_dst => \(fpath_backup_realm_admin_dst)")
+//
+//        let fpath_backup_realm_admin_src = "\(dpath_realm)/\(CONS.s_Realm_FileName__Admin)"
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_backup_realm_admin_src => \(fpath_backup_realm_admin_src)")
 
         
         /*
             copy
         */
+        _backup_RealmFiles__Copy(CONS.s_Realm_FileName__Admin)
         
-        do {
-            
-            try filemanager.copyItemAtPath(fpath_backup_realm_admin_src, toPath: fpath_backup_realm_admin_dst)
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied")
-            
-        } catch let e as NSError! {
-            
-            // handle error
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
-            
-        }
-        
+//        do {
+//            
+//            try filemanager.copyItemAtPath(fpath_backup_realm_admin_src, toPath: fpath_backup_realm_admin_dst)
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied")
+//            
+//        } catch let e as NSError! {
+//            
+//            // handle error
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+//            
+//        }
+//        
+//        /*
+//            'lock' file
+//        */
+//        let fpath_dst = "\(dpath_realm_backups)/\(CONS.REALM.s_Realm_FileName__Lock).\(Methods.get_TimeLabel__Serial()).bakcup"
+//        
+//        
+//        let fpath_src = "\(dpath_realm)/\(CONS.REALM.s_Realm_FileName__Lock)"
+//        
+//        /*
+//        copy
+//        */
+//        
+//        do {
+//            
+//            try filemanager.copyItemAtPath(fpath_src, toPath: fpath_dst)
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied: from [\(fpath_src)] to [\(fpath_dst)]")
+//            
+//        } catch let e as NSError! {
+//
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] copying file... => [\(fpath_src)]")
+//
+//            // handle error
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+//            
+//        }
+
         
     }
+    
+    static func _backup_RealmFiles__Copy
+    (base_file_name : String) {
+
+        /*
+            vars
+        */
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let dpath_realm_backups = "\(dpath_realm)/backups"
+
+        let filemanager:NSFileManager = NSFileManager()
+
+        let time_label = Methods.get_TimeLabel__Serial()
+        
+        var fnames_src : [String] = [
+            
+            CONS.s_Realm_FileName__Admin,
+//            CONS.REALM.s_Realm_FileName__Lock,
+            CONS.REALM.s_Realm_FileName__Log,
+            CONS.REALM.s_Realm_FileName__Log_A,
+            CONS.REALM.s_Realm_FileName__Log_B,
+            CONS.REALM.s_Realm_FileName__Note,
+
+            CONS.REALM.s_Realm_FileName__Lock
+            
+        ]
+        
+        var fnames_dst : [String] = [
+        
+            "\(CONS.s_Realm_FileName__Admin).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+//            "\(CONS.REALM.s_Realm_FileName__Lock).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+            "\(CONS.REALM.s_Realm_FileName__Log).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+            "\(CONS.REALM.s_Realm_FileName__Log_A).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+            "\(CONS.REALM.s_Realm_FileName__Log_B).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+            "\(CONS.REALM.s_Realm_FileName__Note).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+            
+            "\(CONS.REALM.s_Realm_FileName__Lock).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)"
+
+        ]
+        
+        let lenOf_names_src = fnames_src.count
+//        let lenOf_names_dst = fnames_dst.count
+        
+        /*
+            copy --> iterate
+        */
+        for var i = 0; i < lenOf_names_src; i++ {
+            
+            let fname_src = fnames_src[i]
+            let fname_dst = fnames_dst[i]
+
+            let fpath_dst = "\(dpath_realm_backups)/\(fname_dst)"
+            
+            let fpath_src = "\(dpath_realm)/\(fname_src)"
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_src: \(fpath_src) --> exists = \(filemanager.fileExistsAtPath(fpath_src))")
+
+            // copy
+            do {
+                
+                try filemanager.copyItemAtPath(fpath_src, toPath: fpath_dst)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied: \(fpath_src) --> \(fpath_dst)")
+                
+                print("file [\(fpath_dst)] --> exists = \(filemanager.fileExistsAtPath(fpath_dst))")
+                
+            } catch let e as NSError! {
+                
+                // handle error
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                
+            }
+
+        }
+
+    }//static func _backup_RealmFiles__Copy
     
     static func conv_DateString_2_NSDate(label : String, format : String) -> NSDate {
         

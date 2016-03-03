@@ -702,12 +702,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let choice_6 = "(6) backup realm files"
         let choice_7 = "(7) show backup files"
+        let choice_8 = "(8) Delete backup files"
+
         
-        let choice_9 = "(9) Cancel"
+        let choice_0 = "(0) Cancel"
 
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
-        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7) \(choice_9)"
+        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7) \(choice_8) \(choice_0)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -782,10 +784,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "9", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "8", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 8")
+            
+            // start function
+            self._experiments__Choices__8()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "0", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
             
             // execute  => close dialog
 
@@ -894,6 +906,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func _experiments__Choices__8() {
+        
+        // confirm
+        let s_title = "!!!"
+        
+        let choice_1 = "Delete backup files?"
+
+        let s_message = "\(choice_1)"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let lbl_Choice_1 = "OK"
+        let lbl_Choice_2 = "Cancel"
+        
+        refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+            // start function
+            self._experiments__Choices__8__OK()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: lbl_Choice_2, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            // start function
+            //            self._experiments__Choices__2__OK()
+            
+        }))
+        
+        
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+
+    func _experiments__Choices__8__OK() {
+        
+        // delete files
+        Methods.delete_Realm_BackupFiles()
+        
+    }
 
     func _experiments__UIAlert() {
     
@@ -1230,7 +1288,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let query = "name == \(CONS.s_LatestBackup_Diary_ModifiedAt)"
         let query = "name == '\(CONS.s_LatestBackup_Diary_ModifiedAt)'"
         
-        let aPredicate = NSPredicate(format: query)
+//        let aPredicate = NSPredicate(format: query)
         
 //        let resOf_Data_LatestDiaryAt = try self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
 //        let resOf_Data_LatestDiaryAt = try! self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
