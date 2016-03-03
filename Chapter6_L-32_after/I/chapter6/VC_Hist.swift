@@ -33,6 +33,10 @@ class VC_Hist: UIViewController {
         
         super.viewWillAppear(animated)
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+
+        
     }
 
     

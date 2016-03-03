@@ -484,7 +484,7 @@
                                     <color key="titleColor" red="0.37605310263684588" green="0.28901713253895656" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Y0K-hb-nnR" kind="show" id="fih-5m-zEN"/>
+                                    <action selector="start_HistView:" destination="UV6-TK-gWJ" eventType="touchUpInside" id="fB4-Jh-trA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -493,6 +493,7 @@
                     <connections>
                         <outlet property="main_label" destination="EJe-ST-35d" id="nj7-mZ-A20"/>
                         <outlet property="tf_SearchWords" destination="hhh-iX-ntu" id="HR9-qe-mA8"/>
+                        <segue destination="Y0K-hb-nnR" kind="show" identifier="segue_Sandbox_2_Hist" id="nvg-b5-iy2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpF-3U-MJI" userLabel="First Responder" sceneMemberID="firstResponder"/>

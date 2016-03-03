@@ -20,6 +20,8 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_HistView")
 
+        // segue
+        performSegueWithIdentifier("segue_Sandbox_2_Hist",sender: nil)
         
     }
 
