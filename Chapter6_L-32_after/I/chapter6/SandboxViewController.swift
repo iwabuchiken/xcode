@@ -15,7 +15,15 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tf_SearchWords: UITextField!
     @IBOutlet weak var main_label: UILabel!
 
-// MARK: tableview-related    
+    @IBAction func start_HistView(sender: UIButton) {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_HistView")
+
+        
+    }
+
+// MARK: tableview-related
     
     // TableView の各セクションのセルの数を返す
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -163,6 +171,12 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         // set defaults
         Methods.set_Defaults(tmp_s)
         
+        /*
+            save --> history
+        */
+        Proj.save_History(tmp_s)
+        
+        
 //        // vibrate
 //        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         
@@ -307,6 +321,14 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
+
+    // MARK: segue-related
+    // segue で画面遷移するに呼ばれる
+    override func prepareForSegue
+    (segue: UIStoryboardSegue, sender: AnyObject?){
+
+        
+    }
 
     
 }

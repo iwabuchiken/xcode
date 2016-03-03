@@ -352,6 +352,40 @@
             </objects>
             <point key="canvasLocation" x="1814" y="387"/>
         </scene>
+        <!--Hist-->
+        <scene sceneID="jzQ-PA-iLM">
+            <objects>
+                <viewController id="Y0K-hb-nnR" customClass="VC_Hist" customModule="Chapter6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rd4-AB-ouA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Edj-rY-EOb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mxH-R9-Mdy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9C-xN-IWM">
+                                <rect key="frame" x="152" y="461" width="80" height="46"/>
+                                <color key="backgroundColor" red="1" green="0.75765643369242441" blue="0.51992277183505331" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="uPa-Go-hSA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.51859045764335954" green="0.24665052924304165" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTo_SandboxView:" destination="Y0K-hb-nnR" eventType="touchUpInside" id="s6N-BX-jZ8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ya-Ls-fOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="885"/>
+        </scene>
         <!--Sandbox View Controller-->
         <scene sceneID="hCv-lx-qaE">
             <objects>
@@ -440,6 +474,17 @@
                                 </state>
                                 <connections>
                                     <action selector="backTo_ViewController:" destination="UV6-TK-gWJ" eventType="touchDragInside" id="ghs-xl-67m"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBD-D8-oBm">
+                                <rect key="frame" x="108" y="476" width="58" height="45"/>
+                                <color key="backgroundColor" red="1" green="0.58466867388994515" blue="0.31779776815154004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Hist">
+                                    <color key="titleColor" red="0.37605310263684588" green="0.28901713253895656" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Y0K-hb-nnR" kind="show" id="fih-5m-zEN"/>
                                 </connections>
                             </button>
                         </subviews>

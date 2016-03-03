@@ -221,5 +221,44 @@ class Proj {
         }
         
     }
-   
+ 
+    static func save_History(keywords : String) {
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        let time_label = Methods.get_TimeLable()
+        
+        do {
+            
+            try! realm.write {
+
+                let hist = Hist()
+
+                hist.created_at     = time_label
+                hist.modified_at    = time_label
+                hist.keywords       = keywords
+                
+                realm.add(hist, update: true)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] hist saved => '\(keywords)'")
+
+                
+    //            self.diary.title = self.titleTextField.text!
+    //            self.diary.body = self.bodyTextView.text
+    //            self.diary.date = NSDate()
+    //            self.realm.add(self.diary, update: true)
+
+            }
+            
+        } catch let e as NSError! {
+            
+            // handle error
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(keywords = \(keywords)) => error [\(e.description)]")
+            
+        }
+
+        
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0400EB621C88067B009686AB /* VC_Hist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400EB611C88067B009686AB /* VC_Hist.swift */; };
 		04432E681C79841C009B47DA /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04432E671C79841C009B47DA /* Admin.swift */; };
 		049246601C67651000B95ACC /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492465F1C67650F00B95ACC /* Methods.swift */; };
 		04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0400EB611C88067B009686AB /* VC_Hist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Hist.swift; path = chapter6/VC_Hist.swift; sourceTree = SOURCE_ROOT; };
 		04432E671C79841C009B47DA /* Admin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Admin.swift; path = chapter6/Admin.swift; sourceTree = SOURCE_ROOT; };
 		0492465F1C67650F00B95ACC /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = chapter6/Methods.swift; sourceTree = SOURCE_ROOT; };
 		04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandboxViewController.swift; path = chapter6/SandboxViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -116,6 +118,7 @@
 				046CF6D81C784F530049DB74 /* models */,
 				046CF6D71C784F400049DB74 /* utils */,
 				04D640411C851E4600A091B7 /* VC_Preference.swift */,
+				0400EB611C88067B009686AB /* VC_Hist.swift */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				3E634A701BC2FAB800D13685 /* InputViewController.swift in Sources */,
 				3E634A721BC302D600D13685 /* Diary.swift in Sources */,
+				0400EB621C88067B009686AB /* VC_Hist.swift in Sources */,
 				3E16ACD81BC009DF004AE056 /* ViewController.swift in Sources */,
 				04D0EE731C6848C300268C68 /* CONS.swift in Sources */,
 				04C067721C8736B500ACCB6E /* Hist.swift in Sources */,
