@@ -385,6 +385,8 @@
                                     <constraint firstAttribute="width" constant="291" id="5Zr-yr-VP2"/>
                                     <constraint firstAttribute="height" constant="365" id="Oxh-rR-dme"/>
                                 </constraints>
+                                <color key="separatorColor" red="0.0" green="0.048507145783681191" blue="0.91565772251308897" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.53329250287453178" green="0.52786714728118156" blue="0.91565772251308897" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y0K-hb-nnR" id="vsM-E5-w4X"/>
                                     <outlet property="delegate" destination="Y0K-hb-nnR" id="BwD-g8-MbP"/>
@@ -396,6 +398,9 @@
                             <constraint firstItem="MVa-Gn-lwg" firstAttribute="top" secondItem="Rd4-AB-ouA" secondAttribute="bottom" constant="8" id="gcJ-fq-bDu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblview_Hist" destination="MVa-Gn-lwg" id="XUF-Lp-yLX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ya-Ls-fOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

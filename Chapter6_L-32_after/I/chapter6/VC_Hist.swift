@@ -12,6 +12,7 @@ import MessageUI
 
 class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tblview_Hist: UITableView!
     /*
         vars
     */
@@ -100,6 +101,7 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         return cell
+        
     }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
     
     // Delete ボタンが押された時の処理を行う
@@ -107,7 +109,22 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
     (tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
-        
+
+            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+            
+            try! realm.write {
+                
+                realm.delete(self.aryOf_Hists[indexPath.row])
+                
+//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                
+                self._viewWillAppear__Build_HistList()
+                
+                self.tblview_Hist.reloadData()
+                
+            }
+
+            
         }
     }
     
@@ -126,6 +143,13 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => \(indexPath.row), keywords => \(self.aryOf_Hists[indexPath.row].keywords)")
         
+        // set defaults
+        // set defaults
+        Methods.set_Defaults(self.aryOf_Hists[indexPath.row].keywords)
+
+        // back to Sandbox
+        self.navigationController?.popViewControllerAnimated(true)
+
     }
 
     

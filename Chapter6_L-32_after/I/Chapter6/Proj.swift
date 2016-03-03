@@ -191,6 +191,24 @@ class Proj {
         }
     }
 
+    static func lastId_Hist() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Hist).sorted("id", ascending: true).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+
     static func  get_LastBackup_Diary_ModifiedAt_String() -> String  {
         
         // get realm
@@ -234,6 +252,8 @@ class Proj {
 
                 let hist = Hist()
 
+                hist.id = Proj.lastId_Hist()
+                
                 hist.created_at     = time_label
                 hist.modified_at    = time_label
                 hist.keywords       = keywords
@@ -261,4 +281,15 @@ class Proj {
 
         
     }
+
+    static func find_Keywords_Last() -> String {
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        let hist_last = try! realm.objects(Hist).sorted("created_at", ascending: true).last
+
+        return hist_last!.keywords
+        
+    }
+
 }

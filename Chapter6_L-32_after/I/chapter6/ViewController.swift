@@ -658,10 +658,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Delete ボタンが押された時の処理を行う
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
+
             try! realm.write {
                 self.realm.delete(self.dataArray[indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
+            
         }
     }
     

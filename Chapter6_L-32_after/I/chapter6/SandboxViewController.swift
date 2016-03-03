@@ -176,8 +176,13 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         /*
             save --> history
         */
-        Proj.save_History(tmp_s)
+        let last_keywords = Proj.find_Keywords_Last()
         
+        if tmp_s != "" && tmp_s != last_keywords {
+            
+            Proj.save_History(tmp_s)
+            
+        }
         
 //        // vibrate
 //        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
