@@ -315,5 +315,25 @@ class Proj {
         }
     }
 
+    static func find_All_Clips() -> [Clip] {
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        let resOf_Clips = realm.objects(Clip).sorted("created_at", ascending: true)
+        
+        // convert -> to array
+        var aryOf_Clips = Array<Clip>()
+        
+        for item in resOf_Clips {
+            
+            aryOf_Clips.append(item)
+            
+        }
+        
+        // return
+        return aryOf_Clips
+        
+    }
+    
 }
 

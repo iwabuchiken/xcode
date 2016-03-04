@@ -449,6 +449,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // 曲情報
   var songs = Array<MPMediaItem>()
   
+    var clips = Array<Clip>()
+    
   // MARK: view-related funcs
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
@@ -466,12 +468,23 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
   override func viewDidLoad() {
-    super.viewDidLoad()
-    songs = getSongs()
-    tableView.reloadData()
     
-//    // save songs data
-    Methods.save_SongsData(songs)
+        super.viewDidLoad()
+    
+        // setup --> music infos
+        songs = getSongs()
+    
+        self.clips = self.getClips()
+    
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.songs.count => \(self.songs.count) / self.clips.count => \(self.clips.count)")
+
+    
+        // refresh data
+        tableView.reloadData()
+    
+////    // save songs data
+//        Methods.save_SongsData(songs)
 
     
     //test
@@ -479,9 +492,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
 //    self.tableView.addGestureRecognizer(recognizer)
     
-    let recognizer = UIGestureRecognizer(target: self, action: "didSwipe")
-    
-    self.tableView.addGestureRecognizer(recognizer)
+        let recognizer = UIGestureRecognizer(target: self, action: "didSwipe")
+
+        self.tableView.addGestureRecognizer(recognizer)
     
   }
   
@@ -917,6 +930,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         array.sortInPlace{$0.title < $1.title}
         
         return array
+    }
+    
+    func getClips() -> Array<Clip> {
+
+        return Proj.find_All_Clips()
+
     }
     
     func _test_Migration() {
