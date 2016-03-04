@@ -55,29 +55,6 @@ class Proj {
         
         // realm
         let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-        //    let rl_tmp = Methods.get_RealmInstance("abc.realm")
-        
-//        // BM instance
-//        let bm = BM()
-//
-//        // title
-//        bm.title = item_name
-//
-//        // time
-//        bm.bm_time = bm_time
-//        
-//        // time -> meta
-//        let tmp_time = NSDate()
-//        
-//        bm.created_at = Methods.conv_NSDate_2_DateString(tmp_time)
-//        bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
-
-        // id
-//        bm.id = Methods.lastId()
-        
-//        // audio id
-//        let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//        bm.audio_id = (audio_url.absoluteString)
         
         //ref https://realm.io/docs/swift/latest/#adding-objects "Adding Objects"
         //ref https://mynavi-agent.jp/it/geekroid/2015/07/realm-2-realmswift-.html
@@ -184,73 +161,58 @@ class Proj {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Clips.count => \(aryOf_Clips.count) / aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count)")
 
+        // validate: any entries
+        if aryOf_Clips_NotInDB.count < 1 {
+
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no new entries. returning...")
+
+            return
+            
+        }
         
+        /*
+            save
+        */
+        count = 0
         
-//        //        for item in self.songs {
-//        for item in songs {
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
-//            
-//            let clip = Clip()
-//            
-//            clip.id = Proj.lastId_Clip()
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
-//            
-//            //            clip.title = item.title!
-//            var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
-//            //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
-//            s_tmp = item.title!.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            clip.title = s_tmp
-//            
-//            //            clip.title = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//            
-//            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//            
-//            let str = url?.absoluteString
-//            
-//            clip.audio_id = str!
-//            
-//            // created_at, modified_at
-//            let tmp = Methods.conv_NSDate_2_DateString(NSDate())
-//            
-//            clip.created_at = tmp
-//            clip.modified_at = tmp
-//            
-//            // length
-//            //debug
-//            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
-//            //            //=> Optional(641.227)
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
-//            //=>
-//            
-//            clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
-//            
-//            // is in db
-//            let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
-//            
-//            if res_b == false {
-//                
-//                // save clip info
-//                
-//                
-//                count += 1
-//                
-//            }
-//            
-//        }
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
+        let len = aryOf_Clips_NotInDB.count
+        
+        for var i = 0; i < len; i++ {
+
+            let item = aryOf_Clips_NotInDB[i]
+            
+            try! realm.write {
+                
+                //        //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] adding a new Clip...")
+                
+                // id
+                item.id = Proj.lastId_Clip()
+                
+                //        //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.id => \(item.id)")
+                
+                // time -> meta
+                let tmp_time = NSDate()
+                
+                item.created_at = Methods.conv_NSDate_2_DateString(tmp_time)
+                item.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
+                
+                realm.add(item, update: true)
+                
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => written (\(item.description)")
+                
+                // count
+                count += 1
+                
+            }
+
+        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count) / saved => \(count)")
         
     }
 
