@@ -579,7 +579,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // MARK: UITableViewDataSource プロトコルのメソッド
   // TableView の各セクションのセルの数を返す
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return songs.count
+    
+//    return songs.count
+    return self.clips.count
+    
   }
   
   // 各セルの内容を返す
@@ -589,14 +592,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
     
     // Cellに値を設定する.
-    cell.textLabel?.text = songs[indexPath.row].title
-    cell.detailTextLabel?.text = songs[indexPath.row].albumTitle
+//    cell.textLabel?.text = songs[indexPath.row].title
+//    cell.detailTextLabel?.text = songs[indexPath.row].albumTitle
+    cell.textLabel?.text = clips[indexPath.row].title
+    cell.detailTextLabel?.text = clips[indexPath.row].memos
     
     return cell
+    
   }
   
   // 各セルを選択した時に実行される
-  func tableView
+    func tableView
     (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
     /*
@@ -605,13 +611,13 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     */
         // get title
 //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
-        let title = songs[(indexPath.row)].title
+        let title = self.clips[(indexPath.row)].title
 
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
 
 //        let query = "title CONTAINS '\(title!)'"
-        let query = "title == '\(title!)'"
+        let query = "title == '\(title)'"
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
@@ -647,16 +653,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             debug mode: if on --> count BMs
 
         */
-        
-//    let defaults = NSUserDefaults.standardUserDefaults()
-//    
-//    //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-//    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-//
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode?.description)")
-        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-        let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
+       let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
@@ -667,64 +664,249 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //    if dfltVal_DebugMode?.boolValue == true {
         if dfltVal_DebugMode == true {
 
-//    if false {
-//    if PreferenceViewController().sw_DebugMode.on {
-
-        performSegueWithIdentifier("bmSegue",sender: nil)
+            performSegueWithIdentifier("bmSegue",sender: nil)
         
-    } else {
-        
-        performSegueWithIdentifier("cellSegue",sender: nil)
-        
-    }
-//    performSegueWithIdentifier("cellSegue",sender: nil)
-    
-    
+        } else {
+            
+            performSegueWithIdentifier("cellSegue",sender: nil)
+            
+        }
     
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-  }
-  
-  // MARK: segue-related methods
-  // PlayerViewController にURLを渡して再生を開始させる
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
-    
-    if let playerViewController = segue.destinationViewController as? PlayerViewController {
-      let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
         
+  }
+
+    func tableView__songs
+    (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        /*
+        if no BMs --> goto PlayerView, directly
+        
+        */
+        // get title
+        //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+        let title = songs[(indexPath.row)].title
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-      
-        playerViewController.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
         
-        // set song
-        playerViewController.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
+        //        let query = "title CONTAINS '\(title!)'"
+        let query = "title == '\(title!)'"
         
-      playerViewController.playMusic(url!)
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        let bmArray = DB.findAll_BM__Filtered(
+            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bmArray.count => \(bmArray.count)")
+        
+        // if no BMs --> goto 'cellSegue'
+        if bmArray.count < 1 {
+            
+            // set current time --> 0
+            CONS.current_time = 0
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => set to 0")
+            
+            //            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
+            //
+            //            performSegueWithIdentifier("cellSegue",sender: nil)
+            //
+            //            return
+            
+        }
+        
+        /*
+        debug mode: if on --> count BMs
+        
+        */
+        
+        //    let defaults = NSUserDefaults.standardUserDefaults()
+        //
+        //    //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        //    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        //
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode?.description)")
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
+        
+        
+        //    if b_flag {
+        // ref boolValue http://stackoverflow.com/questions/28107051/convert-string-to-bool-in-swift-via-api-or-most-swift-like-approach answered Jan 23 '15 at 10:10
+        //    if dfltVal_DebugMode?.boolValue == true {
+        if dfltVal_DebugMode == true {
+            
+            //    if false {
+            //    if PreferenceViewController().sw_DebugMode.on {
+            
+            performSegueWithIdentifier("bmSegue",sender: nil)
+            
+        } else {
+            
+            performSegueWithIdentifier("cellSegue",sender: nil)
+            
+        }
+        //    performSegueWithIdentifier("cellSegue",sender: nil)
+        
+        
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+}
 
-    } else if let viewController = segue.destinationViewController as? BMViewController {
+  // MARK: segue-related methods
+  // PlayerViewController にURLを渡して再生を開始させる
+    override func prepareForSegue
+    (segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
 
-        _prepSegue__BMView(viewController)
-        
-//        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
-//
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        if let playerViewController = segue.destinationViewController as? PlayerViewController {
+            
+//            let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            let url = self.clips[(tableView.indexPathForSelectedRow?.row)!].audio_id
+            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url => \(url)")
+          
+            playerViewController.item_name = self.clips[(tableView.indexPathForSelectedRow?.row)!].title
+            
+            // set song
+//            playerViewController.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
+            playerViewController.current_clip = self.clips[(tableView.indexPathForSelectedRow?.row)!]
+            
+          playerViewController.playMusic(NSURL(fileReferenceLiteral: url))
 
-        
+        } else if let viewController = segue.destinationViewController as? BMViewController {
+
+            _prepSegue__BMView(viewController)
+            
+        //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+        //
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+
+            
+        }
+    
+    
     }
+
+//    override func prepareForSegue__songs
+    func prepareForSegue__songs
     
-    
-  }
-    
+        (segue: UIStoryboardSegue, sender: AnyObject?) {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
+            
+            if let playerViewController = segue.destinationViewController as? PlayerViewController {
+                let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+                
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+                
+                playerViewController.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
+                
+                // set song
+                playerViewController.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
+                
+                playerViewController.playMusic(url!)
+                
+            } else if let viewController = segue.destinationViewController as? BMViewController {
+                
+                _prepSegue__BMView(viewController)
+                
+                //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
+                //
+                //        //debug
+                //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+                
+                
+            }
+            
+            
+    }
+
     func _prepSegue__BMView(vc : BMViewController) {
     
-//    //test
-//    _test_RealmRecords__BM()
+        // get title
+        let title = self.clips[(tableView.indexPathForSelectedRow?.row)!].title
+        
+        // set title => for BMView
+        vc.song_title = title
+        
+        // set: nsurl
+        let url = self.clips[(tableView.indexPathForSelectedRow?.row)!].audio_id
 
+        vc.url = NSURL(string: url)
+        
+        // MPMediaItem
+        vc.current_clip = self.clips[(tableView.indexPathForSelectedRow?.row)!]
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+    
+        /*
+            build: BM list
+
+        */
+
+        let query = "title CONTAINS '\(title)'"
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+
+
+        let aPredicate = NSPredicate(format: query)
+    
+        do {
+         
+            // find -> BMs
+            let bmArray = DB.findAll_BM__Filtered(
+                CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+
+            // put value
+            vc.bmArray = bmArray
+        
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+
+        } catch is NSException {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+        } catch let error as NSError {
+            
+            //debug
+            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        }
+  
+  }
+    
+    func _prepSegue__BMView__songs(vc : BMViewController) {
+        
+        //    //test
+        //    _test_RealmRecords__BM()
+        
         // get title
         let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
         
@@ -733,7 +915,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // set: nsurl
         let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-
+        
         vc.url = url!
         
         // MPMediaItem
@@ -741,91 +923,91 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
-    
-    /*
+        
+        /*
         build: BM list
-
-    */
-    
-//    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title) / title! => \(title!)")  //=> title => Optional("「マイナンバー制度」人民支配へ不可欠な法整備 vol.1") / title! => 「マイナンバー制度」人民支配へ不可欠な法整備 vol.1
-
-    
-//    let query = "title == '\(title!)'"
-    let query = "title CONTAINS '\(title!)'"
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
-    
-    
-    let aPredicate = NSPredicate(format: query)
-    
-//    let aPredicate = NSPredicate(format: "title == %@", title!)
-
-//    let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-    do {
         
-//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-//
-////        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-//        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
-//        
-////        //debug
-////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.description => \(dataArray.description)")
-//        
-//        var bmArray = Array<BM>()
-//        
-//        for item in dataArray {
-//            
-//            bmArray.append(item)
-//            
-//        }
+        */
         
-        // find -> BMs
-//        var bmArray = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "created_at", ascend: false)
-        let bmArray = DB.findAll_BM__Filtered(
-            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+        //    //debug
+        //    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title) / title! => \(title!)")  //=> title => Optional("「マイナンバー制度」人民支配へ不可欠な法整備 vol.1") / title! => 「マイナンバー制度」人民支配へ不可欠な法整備 vol.1
         
-        // put value
-        vc.bmArray = bmArray
         
-//        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
-        
-//        for item in bmArray {
-//            
-//            //            print("title = \(item.title) --> \(item.bm_time)")
-//            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
-//            
-//        }
-        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
-//        
-//        for item in dataArray {
-//            
-////            print("title = \(item.title) --> \(item.bm_time)")
-//            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
-//            
-//        }
-        
-
-    } catch is NSException {
+        //    let query = "title == '\(title!)'"
+        let query = "title CONTAINS '\(title!)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
         
-        //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
-    } catch let error as NSError {
         
-        //debug
-        //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+        let aPredicate = NSPredicate(format: query)
+        
+        //    let aPredicate = NSPredicate(format: "title == %@", title!)
+        
+        //    let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+        do {
+            
+            //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+            //
+            ////        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+            //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+            //
+            ////        //debug
+            ////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.description => \(dataArray.description)")
+            //
+            //        var bmArray = Array<BM>()
+            //
+            //        for item in dataArray {
+            //
+            //            bmArray.append(item)
+            //
+            //        }
+            
+            // find -> BMs
+            //        var bmArray = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "created_at", ascend: false)
+            let bmArray = DB.findAll_BM__Filtered(
+                CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+            
+            // put value
+            vc.bmArray = bmArray
+            
+            //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+            
+            //        for item in bmArray {
+            //
+            //            //            print("title = \(item.title) --> \(item.bm_time)")
+            //            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
+            //
+            //        }
+            
+            //        //debug
+            //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+            //
+            //        for item in dataArray {
+            //
+            ////            print("title = \(item.title) --> \(item.bm_time)")
+            //            print("title = \(item.title) --> \(Methods.conv_Seconds_2_ClockLabel(item.bm_time))")
+            //
+            //        }
+            
+            
+        } catch is NSException {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+        } catch let error as NSError {
+            
+            //debug
+            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        }
         
     }
-  
-  }
     
     func _test_RealmRecords__BM() {
 
