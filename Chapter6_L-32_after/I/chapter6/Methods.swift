@@ -548,12 +548,19 @@ class Methods {
         let realm = try! Realm()
         
         //        if let user = realm.objects(BM).last {
-        if let user = realm.objects(Diary).last {
-            
+//        if let user = realm.objects(Diary).last {
+        if let user = realm.objects(Diary).sorted("created_at", ascending: true).last {
+        
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] returning id => \(user.id + 1)")
+
             return user.id + 1
             
         } else {
-            
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] returning id => 1")
+
             return 1
             
         }
