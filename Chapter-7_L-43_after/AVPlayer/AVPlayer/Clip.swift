@@ -14,12 +14,12 @@ class Clip: Object {
     // 管理用 ID。プライマリーキー
     dynamic var id = 0
     
+    dynamic var created_at = ""
+    dynamic var modified_at = ""
+    
     // audio id
 //    dynamic var audio_id = 0
     dynamic var audio_id = ""
-    
-    dynamic var created_at = ""
-    dynamic var modified_at = ""
     
     dynamic var title = ""
     dynamic var memos = ""

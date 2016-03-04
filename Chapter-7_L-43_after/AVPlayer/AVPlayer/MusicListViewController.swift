@@ -20,17 +20,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
   // MARK: funcs for experiments
     @IBAction func experiments(sender: UIBarButtonItem) {
 
+        // dialog
+        self._experiments__Choices()
+        
         // experiments
 //        Methods.experiments()
         
-//        _experiments__SaveClips()
-        Methods.saveClips(self.songs)
-        
-        // backup realm files
-        Methods.realm_BackupFiles(CONS.s_Realm_FileName)
-        
-        // send emails
-        _experiments__SendEmails()
+////        _experiments__SaveClips()
+//        Methods.saveClips(self.songs)
+//        
+//        // backup realm files
+//        Methods.realm_BackupFiles(CONS.s_Realm_FileName)
+//        
+//        // send emails
+//        _experiments__SendEmails()
 
 //        // file i/o
 //        _experiments__FileIO()
@@ -126,6 +129,72 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func _experiments__Choices() {
+        
+        //        let s_title = "Choices"
+        let s_title = "Experiments"
+        
+        //        let choice_0 = "(0) Cancel"
+        
+        let choice_1 = "(1) Save clips"
+        let choice_2 = "(2) N/A"
+
+        let s_message = "\(choice_1)\n\(choice_2)"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => cancel")
+            
+            // execute  => close dialog
+            
+            
+        }))
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: "1", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+            // start function
+            self._experiments__Choices__1()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "2", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            // start function
+            self._experiments__Choices__2()
+            
+        }))
+        
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+    
+    func _experiments__Choices__1() {
+        
+        // show list
+//        Methods.saveClips(self.songs)
+        Proj.save_Clips__MediaItems(self.songs)
+        
+    }
+    
+    func _experiments__Choices__2() {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__2")
+
+        
+    }
+
     func _experiments__FileIO() {
         
         //ref http://www.learncoredata.com/how-to-save-files-to-disk/
