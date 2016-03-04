@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040096CB1C8401B200E6772F /* VC_EditBM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040096CA1C8401B200E6772F /* VC_EditBM.swift */; };
 		040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D663C1C70A76E0062799F /* PreferenceViewController.swift */; };
+		0427F4BC1C89B7E600FD31A8 /* PH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427F4BB1C89B7E600FD31A8 /* PH.swift */; };
 		043FD3E91C70081700E6C342 /* BM_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FD3E81C70081700E6C342 /* BM_2.swift */; };
 		045194E51C80255B005894C5 /* PVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194E41C80255B005894C5 /* PVC.swift */; };
 		045194E91C8034C3005894C5 /* BMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194E81C8034C3005894C5 /* BMViewController.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		040096CA1C8401B200E6772F /* VC_EditBM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_EditBM.swift; sourceTree = "<group>"; };
 		040D663C1C70A76E0062799F /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
+		0427F4BB1C89B7E600FD31A8 /* PH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PH.swift; sourceTree = "<group>"; };
 		043FD3E81C70081700E6C342 /* BM_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM_2.swift; sourceTree = "<group>"; };
 		045194E41C80255B005894C5 /* PVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVC.swift; sourceTree = "<group>"; };
 		045194E81C8034C3005894C5 /* BMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				043FD3E81C70081700E6C342 /* BM_2.swift */,
 				04C308821C76ED2800E71881 /* Clip.swift */,
 				04E80F201C6EFDAA00EE4F88 /* BM.swift */,
+				0427F4BB1C89B7E600FD31A8 /* PH.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
 				045194E91C8034C3005894C5 /* BMViewController.swift in Sources */,
 				040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */,
+				0427F4BC1C89B7E600FD31A8 /* PH.swift in Sources */,
 				045194EB1C803566005894C5 /* Proj.swift in Sources */,
 				043FD3E91C70081700E6C342 /* BM_2.swift in Sources */,
 				04FED8051C7286A0004B9022 /* DB.swift in Sources */,
