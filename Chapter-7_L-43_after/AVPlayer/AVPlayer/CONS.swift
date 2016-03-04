@@ -98,6 +98,8 @@ class CONS {
         
         static var realm : Realm?
         
+        static let s_Realm_FileName__Admin = "db.admin.20160304_235307.realm"
+        
     }
     
     

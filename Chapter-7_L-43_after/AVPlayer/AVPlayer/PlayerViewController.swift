@@ -83,50 +83,109 @@ class PlayerViewController: AVPlayerViewController {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
 
-    /*
+        /*
 
-        save data
+            save data
 
-    */
+        */
+        viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!))
     
-//    let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+        //  background play
+        UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+    
+        /*
+            save history
+        */
+        viewWillDisappear__SaveHistory(item_name, bm_time: Int((player?.currentTime().seconds)!))
 
-//    viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!), audio_url: url!)
-    viewWillDisappear__SaveBM(item_name, bm_time: Int((player?.currentTime().seconds)!))
-    
-    //  background play
-    UIApplication.sharedApplication().endReceivingRemoteControlEvents()
-    
-    //debug
-//    print("[\(Methods.basename(__FILE__)):\(__LINE__)] done => UIApplication.sharedApplication().endReceivingRemoteControlEvents()")
-    
-    
-//    try! AVAudioSession.sharedInstance().setActive(false)
-    do {
-        
-        try AVAudioSession.sharedInstance().setActive(false)
-        
-    } catch let e as NSError {
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(e.description)")
-        
-    } catch {
+        do {
+            
+            try AVAudioSession.sharedInstance().setActive(false)
+            
+        } catch let e as NSError {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(e.description)")
+            
+        } catch {
 
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] other errors")
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] other errors")
 
+        }
+    
+        // set --> current time
+        //    CONS.current_time = bm.bm_time
+        CONS.current_time = Int((player?.currentTime().seconds)!)
+    
+    }
+
+    func viewWillDisappear__SaveHistory
+        //    (item_name : String, bm_time : Int, audio_url : NSURL) {
+        (item_name : String, bm_time : Int) {
+
+            /*
+                validate: latest history --> same clip
+            */
+            let ph_latest = Proj.find_PH__Latest()
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.description => \(ph_latest.description)")
+
+            /*
+                dispatch
+                1. ph_latest.id => -1   ==> no history --> save history
+                2. ph_latest.title == item_name ==> update the record
+                3. ph_latest.title != item_name ==> different record
+                                                --> save history
+            */
+            if ph_latest.id == -1 || ph_latest.title != item_name {
+                
+                self._viewWillDisappear__SaveHistory__SavePH(item_name, bm_time: bm_time)
+                
+            } else if ph_latest.title == item_name {
+                
+            } else {
+                
+            }
+            
+//            // url
+//            //        let audio_url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+//            
+//            let audio_url = NSURL(fileURLWithPath: (self.current_clip?.audio_id)!)
+//            
+//            
+//            Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url)
+            
     }
     
-    // set --> current time
-//    CONS.current_time = bm.bm_time
-    CONS.current_time = Int((player?.currentTime().seconds)!)
-    
-//    // save records
-//    save_BM()
-    
-  }
-    
+    func _viewWillDisappear__SaveHistory__SavePH
+    (item_name : String, bm_time : Int) {
+        
+        // build: PH
+        let ph = PH()
+        
+        ph.id = Proj.lastId_PH()
+        
+        // time
+        let t_label = Methods.get_TimeLable()
+        
+        ph.created_at   = t_label
+        ph.modified_at  = t_label
+        
+        ph.title        = item_name
+        ph.audio_id     = (self.current_clip?.audio_id)!
+        
+        ph.memo         = (self.current_clip?.memos)!
+        
+        ph.current_time = bm_time
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] saving PH => (\(ph.description)")
+
+        
+    }//_viewWillDisappear__SaveHistory__SavePH
+
     func viewWillDisappear__SaveBM
 //    (item_name : String, bm_time : Int, audio_url : NSURL) {
      (item_name : String, bm_time : Int) {

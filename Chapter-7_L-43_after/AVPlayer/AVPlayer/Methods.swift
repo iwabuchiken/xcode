@@ -636,17 +636,17 @@ class Methods {
             //            realmPath.stringByAppendingPathExtension("note")!
         ]
 
-        let realmPaths_backup = [
-            "\(realmPath as String).backup",
-            "\(realmPath).lock.backup",
-            "\(realmPath).log_a.backup",
-            "\(realmPath).log_b.backup",
-            "\(realmPath).note.backup"
-            //            realmPath.stringByAppendingPathExtension("lock")!,
-            //            realmPath.stringByAppendingPathExtension("log_a")!,
-            //            realmPath.stringByAppendingPathExtension("log_b")!,
-            //            realmPath.stringByAppendingPathExtension("note")!
-        ]
+//        let realmPaths_backup = [
+//            "\(realmPath as String).backup",
+//            "\(realmPath).lock.backup",
+//            "\(realmPath).log_a.backup",
+//            "\(realmPath).log_b.backup",
+//            "\(realmPath).note.backup"
+//            //            realmPath.stringByAppendingPathExtension("lock")!,
+//            //            realmPath.stringByAppendingPathExtension("log_a")!,
+//            //            realmPath.stringByAppendingPathExtension("log_b")!,
+//            //            realmPath.stringByAppendingPathExtension("note")!
+//        ]
 
         for path in realmPaths {
 

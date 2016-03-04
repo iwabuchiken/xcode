@@ -315,6 +315,22 @@ class Proj {
         }
     }
 
+    static func lastId_PH() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+        
+        if let user = realm.objects(PH).sorted("created_at", ascending: true).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+    
     static func find_All_Clips
         (sort_column : String = "created_at", ascend : Bool = true) -> [Clip] {
         
@@ -335,6 +351,44 @@ class Proj {
         return aryOf_Clips
         
     }
-    
+
+    /*
+        @return
+        if no entries in the table
+            => returns a PH instance with id being "-1"
+    */
+    static func find_PH__Latest() -> PH {
+
+        // realm
+        let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+        
+        let sort_column = "created_at"
+        
+        let ascend = true
+        
+        let resOf_PHs = realm.objects(PH).sorted(sort_column, ascending: ascend)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_PHs.count => \(resOf_PHs.count)")
+
+        // return
+        if resOf_PHs.count < 1 {
+            
+            let ph = PH()
+            
+            ph.id = -1
+            
+            return ph
+            
+        } else {
+            
+            return resOf_PHs.last!
+            
+        }
+        
+//        return realm.objects(PH).sorted(sort_column, ascending: ascend).last!
+//        return PH()
+
+    }
 }
 
