@@ -1116,7 +1116,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func getClips() -> Array<Clip> {
 
-        return Proj.find_All_Clips()
+        // setup
+        let sort_column = "title"
+        
+        let ascend = true
+        
+        // find clips
+//        return Proj.find_All_Clips()
+        return Proj.find_All_Clips(sort_column, ascend: ascend)
 
     }
     

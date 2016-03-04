@@ -315,11 +315,12 @@ class Proj {
         }
     }
 
-    static func find_All_Clips() -> [Clip] {
+    static func find_All_Clips
+        (sort_column : String = "created_at", ascend : Bool = true) -> [Clip] {
         
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
-        let resOf_Clips = realm.objects(Clip).sorted("created_at", ascending: true)
+        let resOf_Clips = realm.objects(Clip).sorted(sort_column, ascending: true)
         
         // convert -> to array
         var aryOf_Clips = Array<Clip>()
