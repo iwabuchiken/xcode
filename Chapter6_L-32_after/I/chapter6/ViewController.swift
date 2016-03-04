@@ -34,7 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // デフォルトの Realm インスタンスを取得する
     let realm = try! Realm()
 
-    let realm_admin = try! Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+//    let realm_admin = try! Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+    let realm_admin = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
     
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
     //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
@@ -142,7 +143,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             // if the default is "" --> no filter
             dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+        
+        } else if tmp_s == "@@@" {
+        
+            let query = "title == ''"
             
+            let aPredicate = NSPredicate(format: query)
+            
+            do {
+                
+                dataArray = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+                
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                
+                //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                
+            }
             
         } else {
             
@@ -488,10 +512,134 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         _tableView__Set_BGColor_Yesterday(cell, object: object)
 
+        _tableView__Set_BGColor_2DaysAgo(cell, object: object)
         
         return cell
     }//tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-    
+
+    func _tableView__Set_BGColor_2DaysAgo
+    (cell : UITableViewCell, object : Diary) -> Void {
+            
+            //ref http://www.appcoda.com/nsdate/
+//            let ns_CurrentDate = object.date
+        let ns_CurrentDate = object.created_at
+        
+            //            let ns_Date_Today = NSDate()
+            
+            // formatter
+            let dateFormatter = NSDateFormatter()
+            
+            dateFormatter.locale = NSLocale.currentLocale()
+            
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            
+            //            let convertedDate = dateFormatter.stringFromDate(currentDate)
+            //            let dateLabel_Diary = dateFormatter.stringFromDate(currentDate)
+            let s_DateLabel_Diary = Methods.conv_NSDate_2_DateString(ns_CurrentDate)
+            
+            //
+            let ns_Date_Today = NSDate()
+            
+            let s_DateLabel_Today = dateFormatter.stringFromDate(ns_Date_Today)
+            //            let dateLabel_Now = dateFormatter.stringFromDate(NSDate())
+            
+            let s_DayLabel_Today = Methods.get_Date(s_DateLabel_Today)
+            
+            // yesterday
+            let ns_Date_Yesterday = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: -1)
+            
+            
+            let s_DateLabel_Yesterday = dateFormatter.stringFromDate(ns_Date_Yesterday)
+            
+            let s_DayLabel_Yesterday = Methods.get_Date(s_DateLabel_Yesterday)
+
+            // 2 days ago
+            let ns_Date_2DaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: -2)
+            
+            
+            let s_DateLabel_2DaysAgo = dateFormatter.stringFromDate(ns_Date_2DaysAgo)
+            
+            let s_DayLabel_2DaysAgo = Methods.get_Date(s_DateLabel_2DaysAgo)
+        
+            // this week
+            let ns_Date_ThisWeek = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: -7)
+            
+            
+            let s_DateLabel_ThisWeek = dateFormatter.stringFromDate(ns_Date_ThisWeek)
+            
+            let s_DayLabel_ThisWeek = Methods.get_Date(s_DateLabel_ThisWeek)
+        
+
+            // X days ago
+            //            let diff = -5
+            
+            //            let ns_Date_XDaysAgo = Methods.get_Date_BeforeAfter_ByDate(ns_Date_Today, diff: diff)
+            
+            
+            //            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
+            
+            //            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+            
+            // change bg color
+            if s_DateLabel_Diary >= s_DayLabel_Today {
+                
+                //                cell.backgroundColor = CONS.col_green_071000
+                
+            } else if s_DateLabel_Diary >= s_DayLabel_Yesterday {
+                
+                //                cell.backgroundColor = CONS.col_Blue_020510
+//                cell.backgroundColor = CONS.col_Blue_020710
+                
+            } else if s_DateLabel_Diary >= s_DayLabel_2DaysAgo {
+                
+                //                cell.backgroundColor = CONS.col_Blue_020510
+                cell.backgroundColor = CONS.COLORS.purple_080008
+                
+            } else if s_DateLabel_Diary >= s_DayLabel_ThisWeek {
+                
+                //                cell.backgroundColor = CONS.col_Blue_020510
+                cell.backgroundColor = CONS.COLORS.gray_080808
+                
+            }
+            
+            
+            //
+            //            //ref http://stackoverflow.com/questions/30679701/ios-swift-how-to-change-background-color-of-table-view
+            //            //        cell.backgroundColor = UIColor.clearColor()
+            //
+            //
+            //            if date_Diary >= date_Today {
+            //
+            //                // if the date is today
+            //                // if before noon
+            //                if time_Diary >= "12" {
+            //
+            //                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+            //
+            //                    cell.backgroundColor = CONS.col_green_071000
+            //
+            //                } else {
+            //
+            //                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+            //
+            //                    cell.backgroundColor = CONS.col_green_soft
+            //
+            //                }
+            //                //            cell.backgroundColor = myRedColor
+            //                //            cell.backgroundColor = CONS.col_green_soft
+            //                
+            //                
+            //            } else {
+            //                
+            //                cell.backgroundColor = UIColor.whiteColor()
+            //                
+            //            }
+            
+    }//_tableView__Set_BGColor
+
     func _tableView__Set_BGColor
     (cell : UITableViewCell, object : Diary) -> Void {
         
@@ -563,7 +711,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         (cell : UITableViewCell, object : Diary) -> Void {
             
             //ref http://www.appcoda.com/nsdate/
-            let ns_CurrentDate = object.date
+//            let ns_CurrentDate = object.date
+            let ns_CurrentDate = object.created_at
             
 //            let ns_Date_Today = NSDate()
             
@@ -691,10 +840,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func _experiments__Choices() {
         
-        let s_title = "Choices"
+//        let s_title = "Choices"
+        let s_title = "Experiments"
         
-        let choice_1 = "(1) Show realm files list\n"
-        let choice_2 = "(2) Delete csv files\n"
+//        let choice_0 = "(0) Cancel"
+        
+        let choice_1 = "(1) Show realm files list"
+        let choice_2 = "(2) Delete csv files"
         let choice_3 = "(3) Send email"
         let choice_4 = "(4) Copy db (Diary)"
 
@@ -707,14 +859,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_8 = "(8) Delete backup files"
 
         
-        let choice_0 = "(0) Cancel"
-
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
-        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7) \(choice_8) \(choice_0)"
+//        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7)\n \(choice_8) \(choice_0)"
+        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_6)\n\(choice_7)\n\(choice_8)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
+        refreshAlert.addAction(UIAlertAction(title: "0 Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+            
+            // execute  => close dialog
+            
+            
+        }))
+        
+
         refreshAlert.addAction(UIAlertAction(title: "1", style: .Default, handler: { (action: UIAlertAction!) in
 
             //debug
@@ -793,16 +955,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // start function
             self._experiments__Choices__8()
-            
-        }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "0", style: .Default, handler: { (action: UIAlertAction!) in
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
-            
-            // execute  => close dialog
-
             
         }))
         
@@ -1288,7 +1440,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        let query = "name = \(CONS.s_LatestBackup_Diary_ModifiedAt)"
 //        let query = "name == \(CONS.s_LatestBackup_Diary_ModifiedAt)"
-        let query = "name == '\(CONS.s_LatestBackup_Diary_ModifiedAt)'"
+//        let query = "name == '\(CONS.s_LatestBackup_Diary_ModifiedAt)'"
         
 //        let aPredicate = NSPredicate(format: query)
         

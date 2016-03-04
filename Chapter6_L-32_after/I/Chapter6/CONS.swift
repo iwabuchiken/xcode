@@ -35,6 +35,40 @@ class CONS {
         blue:   1.0,
         alpha:  1.0)
     
+    enum COLORS {
+
+        static var blue_020510 = UIColor(
+            red:    0.2,
+            green:  0.5,
+            blue:   1.0,
+            alpha:  1.0)
+        
+        static var blue_020710 = UIColor(
+            red:    0.2,
+            green:  0.7,
+            blue:   1.0,
+            alpha:  1.0)
+
+        static var purple_050005 = UIColor(
+            red:    0.5,
+            green:  0.0,
+            blue:   0.5,
+            alpha:  1.0)
+
+        static var purple_080008 = UIColor(
+            red:    0.8,
+            green:  0.0,
+            blue:   0.8,
+            alpha:  1.0)
+
+        static var gray_080808 = UIColor(
+            red:    0.8,
+            green:  0.8,
+            blue:   0.8,
+            alpha:  1.0)
+
+    }
+    
     static var key_SearchWords = "key_SearchWords"
  
     static var s_DirSeparator = "/"
