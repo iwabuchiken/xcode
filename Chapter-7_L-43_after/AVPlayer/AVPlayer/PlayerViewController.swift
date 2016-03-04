@@ -19,6 +19,8 @@ class PlayerViewController: AVPlayerViewController {
     
     var current_song : MPMediaItem?
     
+    var current_clip : Clip?
+    
 // MARK: View-related methods
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +48,11 @@ class PlayerViewController: AVPlayerViewController {
 ////        playerVC.player = AVPlayer(URL: NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")!)
 //        self.presentViewController(playerVC, animated: true, completion: nil)
     
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_song?.title => \(self.current_song?.title)")
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_song?.title => \(self.current_song?.title)")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_clip?.title => \(self.current_clip?.title)")
 
-    
-    
     }
     
   override func viewWillAppear(animated: Bool) {
@@ -62,23 +64,24 @@ class PlayerViewController: AVPlayerViewController {
     
   }
 
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    
-    player?.pause()
+    override func viewWillDisappear(animated: Bool) {
 
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.description => \(player?.description)")
-    
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().value.description => \(player?.currentTime().value.description)")
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
+        super.viewWillDisappear(animated)
 
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
+        player?.pause()
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.description => \(player?.description)")
+
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().value.description => \(player?.currentTime().value.description)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
 
     /*
 
@@ -144,87 +147,55 @@ class PlayerViewController: AVPlayerViewController {
         }
         
         // url
-        let audio_url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+//        let audio_url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+
+        let audio_url = NSURL(fileURLWithPath: (self.current_clip?.audio_id)!)
 
         
-        Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url!)
+        Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url)
         
     }
     
-//    func save_BM() {
-//        
-//        //ref https://realm.io/docs/swift/latest/ "Adding Objects"
-//        let realm = try! Realm()
-//        
-////        let bm = BM()
-//        let bm = BM_2()
-//        
-//        bm.title = item_name
-//        
-//        bm.bm_time = Int((player?.currentTime().seconds)!)
-//        
-//        try! realm.write {
-//            
-//            realm.add(bm)
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => saved (\(bm.title) / \(bm.bm_time))")
-//            
-//        }
-//        
-//        
-//    }
-//  
-  // 音楽を再生する
-  func playMusic(url: NSURL) {
-    player = AVPlayer(URL: url)
-    
-//    // show "done" button
-//    let playerVC = AVPlayerViewController()
-//    //        playerVC.player = AVPlayer(URL: NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")!)
-//    playerVC.player = AVPlayer(URL: url)
-//    player = playerVC.player
-//    
-//    self.presentViewController(playerVC, animated: true, completion: nil)
+    // 音楽を再生する
+    func playMusic(url: NSURL) {
 
-//    self.presentViewController(self, animated: true, completion: nil)
-        //    2016-02-15 18:56:11.585 AVPlayer[6825:2918740] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Application tried to present modal view controller on itself. Presenting controller is <AVPlayer.PlayerViewController: 0x13e846800>.'
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
-    
-    
-    //ref http://dev.digitrick.us/notes/LoopingVideoWithAVFoundation
-    var seekTime : CMTime = CMTimeMake(10, 1)
-  
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.seekTime => \(self.seekTime)")
-    
-    
-    // seek time preset?
-    if self.seekTime != nil {
-        
-        seekTime = self.seekTime!
-        
+        player = AVPlayer(URL: url)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
+
+
+        //ref http://dev.digitrick.us/notes/LoopingVideoWithAVFoundation
+        var seekTime : CMTime = CMTimeMake(10, 1)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.seekTime => \(self.seekTime)")
+
+
+        // seek time preset?
+        if self.seekTime != nil {
+            
+            seekTime = self.seekTime!
+            
+        }
+
+
+        player?.seekToTime(seekTime)
+
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] seekTime.value.value => \(seekTime.value.value)")
+
+        // background play
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+
+        try! AVAudioSession.sharedInstance().setActive(true)
+
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+
+        player?.play()
+
     }
-    
-    
-    player?.seekToTime(seekTime)
-    
-    
-    //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] seekTime.value.value => \(seekTime.value.value)")
-    
-    // background play
-    try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-    
-    try! AVAudioSession.sharedInstance().setActive(true)
-    
-    UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-    
-    player?.play()
-    
-  }
   
   // 動画を再生する
   func playMovie(playerItem: AVPlayerItem) {

@@ -28,6 +28,8 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var url : NSURL!
     
     var current_song : MPMediaItem?
+
+    var current_clip : Clip?
     
     var current_time : Int = 0
     
@@ -122,9 +124,17 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
         // audio url
-        let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+//        let url = self.current_song!.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+//        let url = NSURL(fileReferenceLiteral: (self.current_clip?.audio_id)!)
+        let url = NSURL(string : (self.current_clip?.audio_id)!)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] nsurl => set")
+        
+
         
         Proj.add_BM(self.song_title, bm_time: bm_time, audio_url: url!)
+//        Proj.add_BM(self.song_title, bm_time: bm_time, audio_url: url)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] add bm => done")
@@ -419,11 +429,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.identifier => \(segue.identifier!)")
             
-//            // segue identity
-//            let iden = segue.identifier!
-            
             // dispatch
-//            if iden == CONS.segname_Segue_CurrentTime_2_PlayerView {
             if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
                 
                 //debug
@@ -431,82 +437,31 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
                 vc = self.prepareForSegue__CurrentTime_2_PlayerView(vc)
                 
-//                self.prepareForSegue__CurrentTime_2_PlayerView(vc)
-//                
-//                return
-                
                 // reset -->
-//                self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
                 self.start_PlayerView_From_ClickingOn_Label_CurrentTime = false
 
             } else {
             
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.destinationViewController as? PlayerViewController => true")
-            
-//            let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-//            
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
-//
-//            vc.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
-            
-            // get cell text
-            //ref http://stackoverflow.com/questions/26158768/how-to-get-textlabel-of-selected-row-in-swift answered Oct 2 '14 at 10:36
-            let indexPath = tableView.indexPathForSelectedRow!
+                // get cell text
+                //ref http://stackoverflow.com/questions/26158768/how-to-get-textlabel-of-selected-row-in-swift answered Oct 2 '14 at 10:36
+                let indexPath = tableView.indexPathForSelectedRow!
 
-            let bm_current = bmArray[indexPath.row]
-            
-//            // starting segue --> by clicking on the label "current time"
-//            if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
-////                segue_Label_2_PlayerView
-//                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => \(CONS.current_time)")
-//
-//                bm_current.bm_time = CONS.current_time
-//                
-//                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => true")
-//
-//                
-//            } else {
-//                
-//                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_PlayerView_From_ClickingOn_Label_CurrentTime => false")
-//
-//            }
-            
-            
-//            let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as UITableViewCell
-            
-            //        println(currentCell.textLabel!.text)
+                let bm_current = bmArray[indexPath.row]
+                    
+                // set title
+                vc.item_name = self.song_title
 
-            
-            
-            
-            // set title
-            vc.item_name = self.song_title
-            
-            // set: seek time
-//            vc.seekTime =
-            
-//            vc.presentViewController(vc, animated: true, completion: nil)
-            
-//            vc.seekTime = CMTimeMake(bm_current.bm_time as Int64, 1)  //=> n.w
-            vc.seekTime = CMTimeMake(Int64(bm_current.bm_time), 1)
-            
-//            player?.seekToTime(seekTime)
-
-            // song instance
-            vc.current_song = self.current_song
-            
+                vc.seekTime = CMTimeMake(Int64(bm_current.bm_time), 1)
+                
+                // song instance
+                vc.current_song = self.current_song
+                
+                // clip
+                vc.current_clip = self.current_clip
+                
             }
             
             vc.playMusic(self.url)
-            
-//            // reset --> 
-//            self.start_PlayerView_From_ClickingOn_Label_CurrentTime == false
             
         }//if let vc = segue.destinationViewController as? PlayerViewController
         
@@ -515,17 +470,6 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func prepareForSegue__CurrentTime_2_PlayerView
     (vc : PlayerViewController)  -> PlayerViewController {
         
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] vc.player.description => \(vc.player!.description)")
-            //=>        fatal error: unexpectedly found nil while unwrapping an Optional value
-        
-
-        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] prepareForSegue__CurrentTime_2_PlayerView")
-//
-//        return
-
         // current time
         let s_current_time = self.lbl_CurrentTime.text!
         
@@ -542,12 +486,6 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // set title
         vc.item_name = self.song_title
         
-        // set: seek time
-        //            vc.seekTime =
-        
-        //            vc.presentViewController(vc, animated: true, completion: nil)
-        
-        //            vc.seekTime = CMTimeMake(bm_current.bm_time as Int64, 1)  //=> n.w
         vc.seekTime = CMTimeMake(Int64(bm_time), 1)
         
         //            player?.seekToTime(seekTime)
@@ -555,8 +493,6 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // song instance
         vc.current_song = self.current_song
         
-//        vc.playMusic(self.url)
-    
         //return
         return vc
 
