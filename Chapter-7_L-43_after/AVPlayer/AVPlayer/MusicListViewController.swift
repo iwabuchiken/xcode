@@ -12,7 +12,13 @@ import MessageUI
 
 class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate  {
   
-  @IBOutlet var tableView: UITableView!
+    @IBAction func startVC_PH(sender: UIBarButtonItem) {
+
+        performSegueWithIdentifier("segue_MusicList_2_PH",sender: nil)
+        
+    }
+    
+    @IBOutlet var tableView: UITableView!
 
 //    var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
 //    var dataArray = try! Realm().objects(BM_2).sorted("created_at", ascending: false)
@@ -930,6 +936,11 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //
         //        //debug
         //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+
+        } else if let viewController = segue.destinationViewController as? VC_PH {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => VC_PH")
 
             
         }

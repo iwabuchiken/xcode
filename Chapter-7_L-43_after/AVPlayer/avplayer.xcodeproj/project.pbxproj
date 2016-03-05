@@ -17,6 +17,7 @@
 		046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D21C784C1C0049DB74 /* CONS.swift */; };
 		046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D31C784C1C0049DB74 /* Methods.swift */; };
 		04C308831C76ED2800E71881 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C308821C76ED2800E71881 /* Clip.swift */; };
+		04D24A401C8AC8E40007690E /* VC_PH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D24A3F1C8AC8E40007690E /* VC_PH.swift */; };
 		04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E80F201C6EFDAA00EE4F88 /* BM.swift */; };
 		04FED8051C7286A0004B9022 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FED8041C7286A0004B9022 /* DB.swift */; };
 		3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E230B2B1BC887F9000162A3 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		046CF6D21C784C1C0049DB74 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
 		046CF6D31C784C1C0049DB74 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		04C308821C76ED2800E71881 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
+		04D24A3F1C8AC8E40007690E /* VC_PH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_PH.swift; sourceTree = "<group>"; };
 		04E80F201C6EFDAA00EE4F88 /* BM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM.swift; sourceTree = "<group>"; };
 		04FED8041C7286A0004B9022 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		3E230B281BC887F9000162A3 /* AVPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
 				045194E41C80255B005894C5 /* PVC.swift */,
+				04D24A3F1C8AC8E40007690E /* VC_PH.swift */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E230B301BC887F9000162A3 /* MovieListViewController.swift in Sources */,
+				04D24A401C8AC8E40007690E /* VC_PH.swift in Sources */,
 				046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */,
 				04C308831C76ED2800E71881 /* Clip.swift in Sources */,
 				04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */,

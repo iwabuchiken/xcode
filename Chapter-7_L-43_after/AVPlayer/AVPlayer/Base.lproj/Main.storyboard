@@ -52,6 +52,11 @@
                                     <segue destination="8Uh-al-Q3i" kind="show" identifier="prefSegue" id="TMh-w6-k60"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="bookmarks" id="yqF-TN-gFf">
+                                <connections>
+                                    <action selector="startVC_PH:" destination="9pv-A4-QxB" id="dm2-Ih-Bgk"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -59,6 +64,7 @@
                         <outlet property="tableView" destination="9fT-W7-qF3" id="f5q-Ve-hUQ"/>
                         <segue destination="jiz-rV-vM4" kind="presentation" identifier="cellSegue" id="z57-UI-us2"/>
                         <segue destination="6sp-Ry-9XG" kind="show" identifier="bmSegue" id="OgM-aH-ieb"/>
+                        <segue destination="4Bu-yp-gfG" kind="show" identifier="segue_MusicList_2_PH" id="ngw-KK-Fu5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -69,6 +75,24 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2378" y="-226"/>
+        </scene>
+        <!--VC_PH-->
+        <scene sceneID="uuU-jl-NEK">
+            <objects>
+                <viewController id="4Bu-yp-gfG" customClass="VC_PH" customModule="AVPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5GB-yr-cHZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Xj-9x-9jf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kgh-uv-JDh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxr-1f-sAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2755" y="-324"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="CCi-Ti-8Y8">
