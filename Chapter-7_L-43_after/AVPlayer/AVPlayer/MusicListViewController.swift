@@ -142,8 +142,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         let choice_4 = "(4) Show backup files"
         let choice_5 = "(5) Show the number of PHs"
-
-        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)"
+        let choice_6 = "(6) Refresh clips table"
+        
+        
+        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -208,6 +210,16 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
 
+        refreshAlert.addAction(UIAlertAction(title: "6", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
+            
+            // start function
+            self._experiments__Choices__6()
+            
+        }))
+        
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -269,6 +281,52 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
 
+    func _experiments__Choices__6() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__6")
+        
+        // show history
+        let res : [Int] = Proj.refresh_Clips_Table()
+        
+        // update --> tableview
+        self.getClips()
+        
+        self.tableView.reloadData()
+        
+        /*
+            report
+        */
+        //        let s_title = "Choices"
+        let s_title = "Experiments"
+        
+        //        let choice_0 = "(0) Cancel"
+        
+        let choice_1 = "clips in db => \(res[0])\naryOf_MediaItems.count =>  \(res[1])\n'removed_at' => \(res[2])\nelse => \(res[3])"
+
+        let s_message = "\(choice_1)"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => OK")
+            
+            // execute  => close dialog
+            
+            
+        }))
+        
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
+
+        
+    }
+    
     func _experiments__FileIO() {
         
         //ref http://www.learncoredata.com/how-to-save-files-to-disk/
@@ -1194,10 +1252,26 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let sort_column = "title"
         
         let ascend = true
+
+        // filter
+        let query = "removed_at == ''"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+
         
         // find clips
+        let resOf_Clips = Proj.find_All_Clips(sort_column, ascend: ascend, pred: aPredicate)
 //        return Proj.find_All_Clips()
-        return Proj.find_All_Clips(sort_column, ascend: ascend)
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips.count => \(resOf_Clips.count)")
+        
+        return resOf_Clips
 
     }
     

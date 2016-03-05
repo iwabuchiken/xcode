@@ -345,7 +345,7 @@ class Proj {
     }
     
     static func find_All_Clips
-        (sort_column : String = "created_at", ascend : Bool = true) -> [Clip] {
+    (sort_column : String = "created_at", ascend : Bool = true) -> [Clip] {
         
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
@@ -365,6 +365,38 @@ class Proj {
         
     }
 
+    static func find_All_Clips
+        (sort_column : String = "created_at", ascend : Bool = true, pred : NSPredicate) -> [Clip] {
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+//        let resOf_Clips = realm.objects(Clip).sorted(sort_column, ascending: true)
+        let resOf_Clips = realm.objects(Clip).filter(pred).sorted(sort_column, ascending: true)
+        
+        // convert -> to array
+        var aryOf_Clips = Array<Clip>()
+        
+        // validate: any entry
+        if resOf_Clips.count < 1 {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips.count < 1")
+
+            return aryOf_Clips
+            
+        }
+            
+        for item in resOf_Clips {
+            
+            aryOf_Clips.append(item)
+            
+        }
+        
+        // return
+        return aryOf_Clips
+        
+    }
+    
     static func find_All_PHs
     (sort_column : String = "created_at", ascend : Bool = true) -> [PH] {
             
@@ -488,6 +520,186 @@ class Proj {
         return res
         
     }
+
+    static func update_Clip(clip : Clip) -> Bool {
+        // realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        // result
+        var res = false
+        
+        try! realm.write {
+            
+            // update -> modified_at
+            let t_label = Methods.get_TimeLable()
+            
+            clip.modified_at    = t_label
+            clip.removed_at     = t_label
+            
+            realm.add(clip, update: true)
+            //            rl_tmp.add(bm, update: false)
+            
+            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            
+            //            // return
+            //            return true
+            
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+    
+    static func update_Clip__RemovedAt_Blank(clip : Clip) -> Bool {
+        // realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        // result
+        var res = false
+        
+        try! realm.write {
+            
+            // update -> modified_at
+            let t_label = Methods.get_TimeLable()
+            
+            clip.modified_at    = t_label
+            clip.removed_at     = ""
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.removed_at => ''")
+
+            realm.add(clip, update: true)
+            //            rl_tmp.add(bm, update: false)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            
+            //            // return
+            //            return true
+            
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+    
+    /*
+        @return
+            aryOf_Clips.count, aryOf_MediaItems.count, count_removed, count
+    */
+    static func refresh_Clips_Table() -> [Int] {
+        
+        // clips from --> db
+        let aryOf_Clips = Proj.find_All_Clips()
+        
+        // from MediaItems
+        let aryOf_MediaItems = Proj.getSongs()
+        
+        // build --> clip title list ~~> db
+        var aryOf_Titles_from_MediaItems = Array<String>()
+        
+        for item in aryOf_MediaItems {
+            
+            aryOf_Titles_from_MediaItems.append(item.title!)
+            
+        }
+        
+        // check
+        var count = 0
+        
+        var count_removed = 0
+        
+        for item in aryOf_Clips {
+            
+            let name = item.title
+            
+            if aryOf_Titles_from_MediaItems.contains(name) {
+                
+                // validate --> removed_at ==> ''
+                
+                Proj.update_Clip__RemovedAt_Blank(item)
+                
+                // continue
+                continue
+            
+            } else if item.removed_at != "" {
+                
+                // count
+                count_removed += 1
+                
+                // continue
+                continue
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] Clip not in MediaItems => \(name)")
+
+                // update clip
+                let time = Methods.get_TimeLable()
+                
+//                item.modified_at    = time
+//                item.removed_at     = time
+                
+                Proj.update_Clip(item)
+                
+                // count
+                count += 1
+                
+            }
+            
+        }
+        
+        // report
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
+
+        // return
+        return [aryOf_Clips.count, aryOf_MediaItems.count, count_removed, count]
+        
+    }
+
+    static func getSongs() -> Array<MPMediaItem> {
+        
+        var array = Array<MPMediaItem>()
+        
+        // アルバム情報を取得する
+        let albumsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
+        
+        //ref https://stackoverflow.duapp.com/questions/32696647/swift-sort-artistsquery-by-album answered Feb 20 at 22:12
+        albumsQuery.groupingType = MPMediaGrouping.Title
+        
+        let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        
+        // アルバム情報から曲情報を取得する
+        for album in albumItems {
+            let albumItems: [MPMediaItem] = album.items
+            for song in albumItems {
+                array.append( song )
+            }
+        }
+        
+        //sort
+        //ref http://stackoverflow.com/questions/31729337/swift-2-0-sorting-array-of-objects-by-property Rob Nov 10 '15 at 18:00
+        array.sortInPlace{$0.title < $1.title}
+        
+        return array
+        
+    }
+
 
 }
 
