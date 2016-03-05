@@ -1,12 +1,12 @@
-xcode_Memo
-D-4
+xcode_Player
+D-7
 
-s-1#1
+s-1#2/steps.3
 ---
-1. fix-1: search => edit search string
-        --> "  "(multiple space chars)
+1. save play history => when playerview starting
+2. PlayerViewController: _viewWillDisappear__SaveHistory__SavePH
 
-    ==> done
+        ==> started
 
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
