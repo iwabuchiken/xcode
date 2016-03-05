@@ -99,7 +99,17 @@ class CONS {
         static var realm : Realm?
         
         static let s_Realm_FileName__Admin = "db.admin.20160304_235307.realm"
+
+        static var s_Realm_Backup_Directory_Name = "backups"
         
+        static var s_Realm_FileName__Lock = "\(s_Realm_FileName__Admin).lock"
+        static var s_Realm_FileName__Log = "\(s_Realm_FileName__Admin).log"
+        static var s_Realm_FileName__Log_A = "\(s_Realm_FileName__Admin).log_a"
+        static var s_Realm_FileName__Log_B = "\(s_Realm_FileName__Admin).log_b"
+        static var s_Realm_FileName__Note = "\(s_Realm_FileName__Admin).note"
+        
+        static var s_Realm_Backup_Extension = "backup"
+
     }
     
     

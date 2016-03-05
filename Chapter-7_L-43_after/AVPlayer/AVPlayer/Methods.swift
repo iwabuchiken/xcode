@@ -158,7 +158,9 @@ class Methods {
         
         
         while let file = files?.nextObject() {
+            
             print(file)
+            
         }
         
         
@@ -183,6 +185,32 @@ class Methods {
         
         
     }
+    
+    static func show_DirList__BackupFiles() {
+        
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+        let dpath_realm_backups = "\(dpath_realm)/\(CONS.RealmVars.s_Realm_Backup_Directory_Name)"
+        
+        //ref http://stackoverflow.com/questions/26072796/get-list-of-files-at-path-swift answered Sep 27 '14 at 8:41
+        let filemanager:NSFileManager = NSFileManager()
+        
+        let files = filemanager.enumeratorAtPath(dpath_realm_backups)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm_backups)")
+        
+        
+        while let file = files?.nextObject() {
+            
+            print("'\(file)'")
+            
+        }
+        
+    }
+
     
   // MARK: time-related
     /*
@@ -829,5 +857,199 @@ class Methods {
         return hour2sec + min2sec + sec
         
     }
-    
+ 
+    /*
+        @return
+        -1      => can't create 'backups' directory
+        1       => backup done
+        -2      => some files are not done
+    */
+    static func backup_RealmFiles
+        (fname_realm : String) -> Int {
+            
+            // setup: files
+            let realmPath = Realm.Configuration.defaultConfiguration.path
+            
+            let dpath_realm = Methods.dirname(realmPath!)
+            
+            let filemanager:NSFileManager = NSFileManager()
+            
+            let dpath_realm_backups = "\(dpath_realm)/backups"
+            
+            /*
+            validate: backups directory
+            */
+            let tmp_b = filemanager.fileExistsAtPath(dpath_realm_backups)
+            
+            if tmp_b == false {
+                
+                do {
+                    
+                    //ref http://stackoverflow.com/questions/32659869/ios9-swift-file-creating-nsfilemanager-createdirectoryatpath-with-nsurl answered Sep 18 '15 at 19:42
+                    try filemanager.createDirectoryAtPath(dpath_realm_backups, withIntermediateDirectories: true, attributes: nil)
+                    
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] dir created => \(dpath_realm_backups) ")
+                    
+                } catch let e as NSError! {
+                    
+                    // handle error
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                    
+                    // return
+                    return -1
+                    
+                }
+                
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm_backups => exists")
+                
+            }
+            
+            
+            /*
+            file paths
+            */
+            
+            /*
+            copy
+            */
+            let res = _backup_RealmFiles__Copy(CONS.RealmVars.s_Realm_FileName__Admin)
+            
+            // return
+            if res == true {
+                
+                return 1
+                
+            } else {
+                
+                return -2
+                
+            }
+            
+    }
+
+    static func _backup_RealmFiles__Copy
+        (base_file_name : String) -> Bool {
+            
+            /*
+            vars
+            */
+            let realmPath = Realm.Configuration.defaultConfiguration.path
+            
+            let dpath_realm = Methods.dirname(realmPath!)
+            
+//            let dpath_realm_backups = "\(dpath_realm)/backups"
+            let dpath_realm_backups = "\(dpath_realm)/\(CONS.RealmVars.s_Realm_Backup_Directory_Name)"
+            
+            let filemanager:NSFileManager = NSFileManager()
+            
+            let time_label = Methods.get_TimeLabel__Serial()
+            
+            var fnames_src : [String] = [
+                
+//                CONS.s_Realm_FileName__Admin,
+                //            CONS.REALM.s_Realm_FileName__Lock,
+                CONS.RealmVars.s_Realm_FileName__Admin,
+
+                CONS.RealmVars.s_Realm_FileName__Log,
+                CONS.RealmVars.s_Realm_FileName__Log_A,
+                CONS.RealmVars.s_Realm_FileName__Log_B,
+                CONS.RealmVars.s_Realm_FileName__Note,
+                
+                CONS.RealmVars.s_Realm_FileName__Lock
+                
+            ]
+            
+            var fnames_dst : [String] = [
+                
+                "\(CONS.RealmVars.s_Realm_FileName__Admin).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)",
+                //            "\(CONS.REALM.s_Realm_FileName__Lock).\(time_label).\(CONS.REALM.s_Realm_Backup_Extension)",
+                "\(CONS.RealmVars.s_Realm_FileName__Log).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)",
+                "\(CONS.RealmVars.s_Realm_FileName__Log_A).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)",
+                "\(CONS.RealmVars.s_Realm_FileName__Log_B).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)",
+                "\(CONS.RealmVars.s_Realm_FileName__Note).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)",
+                
+                "\(CONS.RealmVars.s_Realm_FileName__Lock).\(time_label).\(CONS.RealmVars.s_Realm_Backup_Extension)"
+                
+            ]
+            
+            let lenOf_names_src = fnames_src.count
+            //        let lenOf_names_dst = fnames_dst.count
+            
+            /*
+            copy --> iterate
+            */
+            var count = 0
+            
+            for var i = 0; i < lenOf_names_src; i++ {
+                
+                let fname_src = fnames_src[i]
+                let fname_dst = fnames_dst[i]
+                
+                let fpath_dst = "\(dpath_realm_backups)/\(fname_dst)"
+                
+                let fpath_src = "\(dpath_realm)/\(fname_src)"
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_src: \(fpath_src) --> exists = \(filemanager.fileExistsAtPath(fpath_src))")
+                
+                // validate: exists
+                let res_exists = filemanager.fileExistsAtPath(fpath_src)
+                
+                if res_exists == false {
+
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_src: \(fpath_src) --> NOT exists")
+
+                    continue
+                    
+                }
+                
+                // copy
+                do {
+                    
+                    try filemanager.copyItemAtPath(fpath_src, toPath: fpath_dst)
+                    
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied: \(fpath_src) --> \(fpath_dst)")
+                    
+                    print("file [\(fpath_dst)] --> exists = \(filemanager.fileExistsAtPath(fpath_dst))")
+                    
+                    // count
+                    count += 1
+                    
+                } catch let e as NSError! {
+                    
+                    // handle error
+                    //debug
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                    
+                }
+                
+            }
+            
+            // return
+            if lenOf_names_src == count {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] backup => all files done")
+
+                return true
+                
+            } else {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] backup => some files are NOT done!")
+
+                return false
+                
+            }
+            
+    }//static func _backup_RealmFiles__Copy
+
 }

@@ -493,6 +493,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // song instance
         vc.current_song = self.current_song
         
+        // clip instance
+        vc.current_clip = self.current_clip
+        
         //return
         return vc
 

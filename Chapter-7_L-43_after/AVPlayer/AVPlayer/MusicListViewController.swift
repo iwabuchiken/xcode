@@ -137,9 +137,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let choice_0 = "(0) Cancel"
         
         let choice_1 = "(1) Save clips"
-        let choice_2 = "(2) N/A"
+        let choice_2 = "(2) Backup realm files"
+        let choice_3 = "(3) Show realm files"
 
-        let s_message = "\(choice_1)\n\(choice_2)"
+        let choice_4 = "(4) Show backup files"
+
+        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -174,6 +177,26 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
         
+        refreshAlert.addAction(UIAlertAction(title: "3", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+            
+            // start function
+            self._experiments__Choices__3()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "4", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
+            
+            // start function
+            self._experiments__Choices__4()
+            
+        }))
+
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -191,7 +214,34 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__2")
+        
+        // backup
+        Methods.backup_RealmFiles(CONS.RealmVars.s_Realm_FileName__Admin)
 
+        
+    }
+
+    func _experiments__Choices__3() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__3")
+        
+        // show list
+//        Methods.show_DirList__BackupFiles()
+        Methods.show_DirList__RealmFiles()
+        
+        
+    }
+
+    func _experiments__Choices__4() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__4")
+        
+        // show list
+        //        Methods.show_DirList__BackupFiles()
+        Methods.show_DirList__BackupFiles()
+        
         
     }
 

@@ -139,14 +139,30 @@ class PlayerViewController: AVPlayerViewController {
                 3. ph_latest.title != item_name ==> different record
                                                 --> save history
             */
-            if ph_latest.id == -1 || ph_latest.title != item_name {
+            if ph_latest.id == -1 {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.id == -1 --> saving ph...")
+
+                self._viewWillDisappear__SaveHistory__SavePH(item_name, bm_time: bm_time)
                 
+            } else if ph_latest.title != item_name {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title != item_name --> saving ph...")
+
                 self._viewWillDisappear__SaveHistory__SavePH(item_name, bm_time: bm_time)
                 
             } else if ph_latest.title == item_name {
-                
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> not saving ph...")
+
             } else {
-                
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillDisappear__SaveHistory: unknown case --> ph => \(ph_latest.description)")
+
             }
             
 //            // url
@@ -165,6 +181,9 @@ class PlayerViewController: AVPlayerViewController {
         // build: PH
         let ph = PH()
         
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => Proj.lastId_PH()")
+
         ph.id = Proj.lastId_PH()
         
         // time
@@ -174,14 +193,34 @@ class PlayerViewController: AVPlayerViewController {
         ph.modified_at  = t_label
         
         ph.title        = item_name
+
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => \(self.current_clip?.description)")
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting => self.current_clip?.audio_id")
+        
         ph.audio_id     = (self.current_clip?.audio_id)!
-        
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting => ph.memo")
+
         ph.memo         = (self.current_clip?.memos)!
-        
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph.memo => set")
+
         ph.current_time = bm_time
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] saving PH => (\(ph.description)")
+
+//        // save
+//        let res = Proj.save_PH(ph)
+//
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
 
         
     }//_viewWillDisappear__SaveHistory__SavePH

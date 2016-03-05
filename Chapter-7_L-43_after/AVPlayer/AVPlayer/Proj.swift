@@ -320,8 +320,21 @@ class Proj {
         // get realm
         let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
         
-        if let user = realm.objects(PH).sorted("created_at", ascending: true).last {
+        let resOf_PHs = realm.objects(PH).sorted("created_at", ascending: true)
+        
+        // validate
+        if resOf_PHs.count < 1 {
             
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_PHs.count < 1")
+
+            return 1
+            
+        }
+        
+//        if let user = realm.objects(PH).sorted("created_at", ascending: true).last {
+        if let user = resOf_PHs.last {
+        
             return user.id + 1
             
         } else {
@@ -390,5 +403,34 @@ class Proj {
 //        return PH()
 
     }
+
+    static func save_PH(ph : PH) -> Bool {
+        // realm
+        let rl_tmp = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+
+        var res = false
+        
+        try! rl_tmp.write {
+            
+            rl_tmp.add(ph, update: true)
+            //            rl_tmp.add(bm, update: false)
+            
+            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph => written (\(ph.description)")
+            
+//            // return
+//            return true
+        
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+
 }
 
