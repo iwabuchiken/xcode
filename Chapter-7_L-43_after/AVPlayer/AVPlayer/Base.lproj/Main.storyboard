@@ -87,7 +87,37 @@
                     <view key="view" contentMode="scaleToFill" id="Kgh-uv-JDh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jg-m7-dMc">
+                                <rect key="frame" x="136" y="513" width="65" height="38"/>
+                                <color key="backgroundColor" red="1" green="0.69591403261976503" blue="0.38956658607209638" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="P1L-Jc-d5r"/>
+                                    <constraint firstAttribute="height" constant="38" id="YeG-rg-cZa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.67330564616811284" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTo_MusicList:" destination="4Bu-yp-gfG" eventType="touchUpInside" id="7kp-aE-1jX"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MsQ-x0-wIF">
+                                <rect key="frame" x="20" y="72" width="266" height="421"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="1" green="0.44805618568189554" blue="0.28922031793846814" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.28694164537453959" green="0.31872492507270656" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4Bu-yp-gfG" id="Gkg-7F-xoE"/>
+                                    <outlet property="delegate" destination="4Bu-yp-gfG" id="DOh-pN-e2F"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.70993916873184315" green="1" blue="0.65023386789549265" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5jg-m7-dMc" firstAttribute="leading" secondItem="Kgh-uv-JDh" secondAttribute="leadingMargin" constant="116" id="fJf-Rp-dtN"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxr-1f-sAU" userLabel="First Responder" sceneMemberID="firstResponder"/>

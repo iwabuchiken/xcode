@@ -593,6 +593,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
 
+        // hide => tab bar
+        self.tabBarController?.tabBar.hidden = false
+        
 //        // test: migration
 //        _test_Migration()
         
@@ -732,13 +735,21 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     // Cellに値を設定する.
 //    cell.textLabel?.text = songs[indexPath.row].title
 //    cell.detailTextLabel?.text = songs[indexPath.row].albumTitle
-    cell.textLabel?.text = clips[indexPath.row].title
+
+    cell.textLabel?.text = "\(indexPath.row + 1)) \(clips[indexPath.row].title)"
+    
     cell.detailTextLabel?.text = clips[indexPath.row].memos
+    
+//    /*
+//        validate --> clip exists in MediaItems
+//    */
+//    let res_b = _tableView__CellForRow__ClipExists_InMediaItems(indexPath.row)
+    
     
     return cell
     
   }
-  
+    
   // 各セルを選択した時に実行される
     func tableView
     (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

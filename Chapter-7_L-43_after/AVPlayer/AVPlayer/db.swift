@@ -61,6 +61,53 @@ class DB {
             
     }
 
+    static func findAll_PHs__Filtered
+        (dbfile_name : String,
+        predicate : NSPredicate,
+        sort_key : String = "created_at",
+        ascend : Bool = true) -> Array<PH> {
+            
+            let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+            
+            //        let dataArray =  try! realm.objects(BM).sorted("created_at", ascending: false)
+            //            let dataArray =  try! realm.objects(BM).sorted(sort_key, ascending: ascend)
+            let dataArray =  try! realm.objects(PH).filter(predicate).sorted(sort_key, ascending: ascend)
+            
+            var bmArray = Array<PH>()
+            
+            for item in dataArray {
+                
+                bmArray.append(item)
+                
+            }
+            
+            return bmArray
+            
+    }
+
+    static func findAll_Clips__Filtered
+        (dbfile_name : String,
+        predicate : NSPredicate,
+        sort_key : String = "created_at",
+        ascend : Bool = true) -> Array<Clip> {
+            
+//            let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+            let realm = Methods.get_RealmInstance(dbfile_name)
+            
+            let dataArray =  try! realm.objects(Clip).filter(predicate).sorted(sort_key, ascending: ascend)
+            
+            var bmArray = Array<Clip>()
+            
+            for item in dataArray {
+                
+                bmArray.append(item)
+                
+            }
+            
+            return bmArray
+            
+    }
+
     static func isInDb__Clip_Title
         (dbname : String,  title : String) -> Bool {
         

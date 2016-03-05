@@ -402,7 +402,7 @@ class Proj {
             
             let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
             
-            let resOf_Clips = realm.objects(PH).sorted(sort_column, ascending: true)
+            let resOf_Clips = realm.objects(PH).sorted(sort_column, ascending: ascend)
             
             // convert -> to array
             var aryOf_Clips = Array<PH>()
@@ -700,6 +700,29 @@ class Proj {
         
     }
 
+    static func mediaItem_Exists
+    (title : String, audio_id : String) -> Bool {
+
+        // setup
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+
+        let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+
+        let bmArray = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate: aPredicate, sort_key: "created_at", ascend: false)
+
+//        let bmArray = DB.findAll_Clips__Filtered(
+//            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+
+        
+        return true
+        
+    }
 
 }
 
