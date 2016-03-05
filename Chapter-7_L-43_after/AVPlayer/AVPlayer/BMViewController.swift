@@ -75,7 +75,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     @IBAction func start_PlayerView(sender: AnyObject) {
         
-        let tmp_s = self.lbl_CurrentTime
+//        let tmp_s = self.lbl_CurrentTime
         
         // start from label --> true
         self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true

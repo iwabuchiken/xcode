@@ -365,6 +365,27 @@ class Proj {
         
     }
 
+    static func find_All_PHs
+    (sort_column : String = "created_at", ascend : Bool = true) -> [PH] {
+            
+            let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+            
+            let resOf_Clips = realm.objects(PH).sorted(sort_column, ascending: true)
+            
+            // convert -> to array
+            var aryOf_Clips = Array<PH>()
+            
+            for item in resOf_Clips {
+                
+                aryOf_Clips.append(item)
+                
+            }
+            
+            // return
+            return aryOf_Clips
+            
+    }
+
     /*
         @return
         if no entries in the table

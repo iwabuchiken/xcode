@@ -216,11 +216,11 @@ class PlayerViewController: AVPlayerViewController {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] saving PH => (\(ph.description)")
 
-//        // save
-//        let res = Proj.save_PH(ph)
-//
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
+        // save
+        let res = Proj.save_PH(ph)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
 
         
     }//_viewWillDisappear__SaveHistory__SavePH

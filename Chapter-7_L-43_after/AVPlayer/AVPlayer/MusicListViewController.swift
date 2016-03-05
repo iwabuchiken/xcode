@@ -141,8 +141,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let choice_3 = "(3) Show realm files"
 
         let choice_4 = "(4) Show backup files"
+        let choice_5 = "(5) Show the number of PHs"
 
-        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)"
+        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -197,6 +198,16 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
 
+        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+            
+            // start function
+            self._experiments__Choices__5()
+            
+        }))
+
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -242,6 +253,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        Methods.show_DirList__BackupFiles()
         Methods.show_DirList__BackupFiles()
         
+        
+    }
+
+    func _experiments__Choices__5() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__5")
+        
+        // show history
+        let aryOf_phs = Proj.find_All_PHs()
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_phs.count => \(aryOf_phs.count)")
         
     }
 
@@ -1110,7 +1134,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //ref https://stackoverflow.duapp.com/questions/32696647/swift-sort-artistsquery-by-album answered Feb 20 at 22:12
         albumsQuery.groupingType = MPMediaGrouping.Title
         
-        var albumItems: [MPMediaItemCollection] = albumsQuery.collections!
+        let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
         
         //ref https://stackoverflow.duapp.com/questions/32696647/swift-sort-artistsquery-by-album answered Oct 14 '15 at 15:18
 //        var artistsItemsSortedByAlbum = NSMutableArray()
@@ -1199,7 +1223,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
         
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done¥n migration => done")
@@ -1229,7 +1253,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
         
         //        var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
-        var dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
+        let dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")

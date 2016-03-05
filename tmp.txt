@@ -1,12 +1,11 @@
 xcode_Player
 D-7
 
-s-1#2/steps.3
+s-2#1/steps.1/SEGWAY-1
 ---
-1. save play history => when playerview starting
-2. PlayerViewController: _viewWillDisappear__SaveHistory__SavePH
+1. backup db files
 
-        ==> started
+        ==> done
 
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
