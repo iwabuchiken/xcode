@@ -111,6 +111,7 @@
 		3E230B2A1BC887F9000162A3 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				04D771841C7F504E0053C2FA /* models */,
 				04FED8031C728683004B9022 /* utils */,
 				045194E81C8034C3005894C5 /* BMViewController.swift */,
 				040096CA1C8401B200E6772F /* VC_EditBM.swift */,
@@ -123,7 +124,6 @@
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
-				04D771841C7F504E0053C2FA /* models */,
 				045194E41C80255B005894C5 /* PVC.swift */,
 			);
 			path = AVPlayer;

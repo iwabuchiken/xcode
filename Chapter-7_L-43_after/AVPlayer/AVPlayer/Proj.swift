@@ -453,5 +453,41 @@ class Proj {
         
     }
 
+    static func update_PH(ph : PH, bm_time : Int) -> Bool {
+        // realm
+        let rl_tmp = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+        
+        var res = false
+        
+        try! rl_tmp.write {
+            
+            // update => bm time
+            ph.current_time = bm_time
+            
+            // update -> modified_at
+            let t_label = Methods.get_TimeLable()
+            
+            ph.modified_at = t_label
+            
+            rl_tmp.add(ph, update: true)
+            //            rl_tmp.add(bm, update: false)
+            
+            //debug
+            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph => written (\(ph.description)")
+            
+            //            // return
+            //            return true
+            
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+
 }
 

@@ -129,6 +129,8 @@ class PlayerViewController: AVPlayerViewController {
             */
             let ph_latest = Proj.find_PH__Latest()
             
+
+            
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.description => \(ph_latest.description)")
 
@@ -156,7 +158,16 @@ class PlayerViewController: AVPlayerViewController {
             } else if ph_latest.title == item_name {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> not saving ph...")
+//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> not saving ph...")
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> updating ph...")
+
+//                ph_latest.current_time = bm_time
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling --> _viewWillDisappear__SaveHistory__UpdatePH")
+                
+                
+                self._viewWillDisappear__SaveHistory__UpdatePH(ph_latest, bm_time: bm_time)
 
             } else {
 
@@ -174,7 +185,30 @@ class PlayerViewController: AVPlayerViewController {
 //            Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url)
             
     }
-    
+
+    func _viewWillDisappear__SaveHistory__UpdatePH
+        (ph : PH, bm_time : Int) {
+            
+//            // time
+//            let t_label = Methods.get_TimeLable()
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph.modified_at => updating...")
+//            
+//            ph.modified_at  = t_label
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] updating PH => (\(ph.description)")
+            
+            // save
+            let res = Proj.update_PH(ph, bm_time: bm_time)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
+            
+            
+    }//_viewWillDisappear__SaveHistory__SavePH
+
     func _viewWillDisappear__SaveHistory__SavePH
     (item_name : String, bm_time : Int) {
         
