@@ -12,8 +12,93 @@ import MessageUI
 
 class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate  {
   
+    @IBAction func filter(sender: UIBarButtonItem) {
+        
+        //        let s_title = "Choices"
+        let s_title = "Filter list"
+        
+        //        let choice_0 = "(0) Cancel"
+        
+        let choice_1 = "(1) not played yet"
+        let choice_2 = "(9) All"
+       
+        
+        let s_message = "Filter clip list"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => cancel")
+            
+            // execute  => close dialog
+            
+            
+        }))
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+            // start function
+            self._filter__Choices__1()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            
+            // start function
+            self._filter__Choices__2()
+            
+        }))
+        
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+        
+    }
     
-    
+    func _filter__Choices__1() {
+        
+        self.clips.removeAll()
+        
+//        let query = "last_played_at == ''"
+        let query = "last_played_at == '' AND removed_at == ''"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        self.clips = Proj.find_All_Clips(pred: aPredicate)
+        
+        self.tableView.reloadData()
+        
+    }
+
+    func _filter__Choices__2() {
+        
+        self.clips.removeAll()
+        
+        let query = "removed_at == ''"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        let aPredicate = NSPredicate(format: query)
+
+        self.clips = Proj.find_All_Clips(pred: aPredicate)
+        
+        self.tableView.reloadData()
+        
+    }
+
     @IBAction func startVC_PH(sender: UIBarButtonItem) {
 
         performSegueWithIdentifier("segue_MusicList_2_PH",sender: nil)

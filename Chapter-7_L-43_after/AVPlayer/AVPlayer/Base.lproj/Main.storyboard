@@ -52,6 +52,11 @@
                                     <segue destination="8Uh-al-Q3i" kind="show" identifier="prefSegue" id="TMh-w6-k60"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="search" id="id3-fL-dAF">
+                                <connections>
+                                    <action selector="filter:" destination="9pv-A4-QxB" id="T6z-c6-tli"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="bookmarks" id="yqF-TN-gFf">
                                 <connections>
                                     <action selector="startVC_PH:" destination="9pv-A4-QxB" id="dm2-Ih-Bgk"/>
