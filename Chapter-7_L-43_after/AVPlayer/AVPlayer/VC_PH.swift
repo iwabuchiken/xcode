@@ -11,6 +11,7 @@ import MediaPlayer
 import RealmSwift
 import MessageUI
 
+// PH --> Player History
 class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableview_phs: UITableView!
@@ -63,6 +64,36 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     // MARK: UITableViewDataSource プロトコルのメソッド
+    // Delete ボタンが押された時の処理を行う
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+        
+            let realm = Methods.get_RealmInstance(CONS.RealmVars.s_Realm_FileName__Admin)
+            
+            try! realm.write {
+                
+                // delete -> db
+                realm.delete(self.phs[indexPath.row])
+                
+                // delete -> from list
+                self.phs.removeAtIndex(indexPath.row)
+                
+                // delete -> view cell
+                self.tableview_phs.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                
+            }
+            
+        }
+    }
+    
+    // セルが削除が可能なことを伝える
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCellEditingStyle {
+        
+        return UITableViewCellEditingStyle.Delete;
+        
+    }
+
     // TableView の各セクションのセルの数を返す
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

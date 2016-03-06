@@ -680,7 +680,7 @@ class Proj {
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] Clip not in MediaItems => \(name)")
 
                 // update clip
-                let time = Methods.get_TimeLable()
+//                let time = Methods.get_TimeLable()
                 
 //                item.modified_at    = time
 //                item.removed_at     = time
@@ -738,7 +738,7 @@ class Proj {
     (title : String, audio_id : String) -> Bool {
 
         // setup
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
 
         let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
         
