@@ -502,6 +502,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Cellに値を設定する.
         let object = dataArray[indexPath.row]
+        
+        
+        
         cell.textLabel?.text = object.title
         
         // text colors
@@ -663,6 +666,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let convertedDate = dateFormatter.stringFromDate(currentDate)
         
         //        cell.detailTextLabel?.text = object.date.description
+//        // supplement text
+//        let title = object.title
+//        
+//        //ref http://stackoverflow.com/questions/29575140/string-length-in-swift-1-2-and-swift-2-0 answered Apr 11 '15 at 7:18
+//        let len = title.characters.count
+//        
+//        if len > CONS.General.limitLen_CellText {
+//            
+                //ref http://stackoverflow.com/questions/32575227/swift-2-0-substringwithrange answered Sep 15 '15 at 2:30
+//            cell.detailTextLabel?.text = "\(convertedDate)"
+//            myString[myString.startIndex..<myString.startIndex.advancedBy(3)]
+//            
+//        } else {
+//
+//            cell.detailTextLabel?.text = convertedDate
+//            
+//        }
+        
+        
         cell.detailTextLabel?.text = convertedDate
         
         // bg color

@@ -18,6 +18,10 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     */
     var phs = Array<PH>()
 
+    var current_ph : PH = PH()
+
+    var current_clip : Clip = Clip()
+    
     @IBAction func backTo_MusicList(sender: UIButton) {
 
         self.navigationController?.popViewControllerAnimated(true)
@@ -178,8 +182,110 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => \(indexPath.row)")
 
+        /*
+            validate    --> mediaitem exists
+        */
+        let res_b = self._tableView__CellForRow__ClipExists_InMediaItems(indexPath.row)
+        
+        if res_b == false {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip doesn't exist in mediaitems => \(self.phs[indexPath.row].title)")
+
+            // show dialog
+            Methods.show_Dialog_OK(self, title: "Notice", message: "clip '\(self.phs[indexPath.row].title)' doesn't exist in mediaitems")
             
+            return
+            
+        }
+        
+        // setup
+        self.current_ph = self.phs[indexPath.row]
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_ph.description => \(self.current_ph.description)")
+
+        
+//        performSegueWithIdentifier("segue_PH_2_BMView",sender: nil)
+//        segue_PH_2_BMView
+        
     }
 
+
+    // MARK: segue-related methods
+    override func prepareForSegue
+    (segue: UIStoryboardSegue, sender: AnyObject?) {
+            
+            if let vc = segue.destinationViewController as? BMViewController {
+                
+                _prepSegue__BMView(vc)
+                
+            }
+            
+            
+    }
     
+    func _prepSegue__BMView(vc : BMViewController) {
+        
+        // get title
+//        let title = self.clips[(tableView.indexPathForSelectedRow?.row)!].title
+        let title = self.current_ph.title
+        
+        // set title => for BMView
+        vc.song_title = title
+        
+        // set: nsurl
+//        let url = self.clips[(tableView.indexPathForSelectedRow?.row)!].audio_id
+        let url = self.current_ph.audio_id
+        
+        vc.url = NSURL(string: url)
+        
+//        // MPMediaItem
+//        vc.current_clip = self.clips[(tableView.indexPathForSelectedRow?.row)!]
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+//        
+//        /*
+//        build: BM list
+//        
+//        */
+//        
+//        let query = "title CONTAINS '\(title)'"
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+//        
+//        
+//        let aPredicate = NSPredicate(format: query)
+//        
+//        do {
+//            
+//            // find -> BMs
+//            let bmArray = DB.findAll_BM__Filtered(
+//                CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+//            
+//            // put value
+//            vc.bmArray = bmArray
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+//            
+//        } catch is NSException {
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+//            
+//            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+//        } catch let error as NSError {
+//            
+//            //debug
+//            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+//            
+//        }
+//        
+    }
+
+
 }

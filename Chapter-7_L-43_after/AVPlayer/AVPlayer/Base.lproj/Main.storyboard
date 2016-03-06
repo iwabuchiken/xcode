@@ -119,6 +119,9 @@
                             <constraint firstItem="5jg-m7-dMc" firstAttribute="leading" secondItem="Kgh-uv-JDh" secondAttribute="leadingMargin" constant="116" id="fJf-Rp-dtN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="6sp-Ry-9XG" kind="show" identifier="segue_PH_2_BMView" id="qRA-Um-Yis"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxr-1f-sAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -578,6 +581,7 @@
         <image name="ico_video" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="qRA-Um-Yis"/>
         <segue reference="Ko8-7N-Kb5"/>
     </inferredMetricsTieBreakers>
 </document>

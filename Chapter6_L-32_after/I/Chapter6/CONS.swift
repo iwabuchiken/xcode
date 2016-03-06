@@ -185,6 +185,10 @@ class CONS {
 
     }
     
-    
+    enum General {
+        
+        static let limitLen_CellText : Int = 25
+        
+    }
     
 }

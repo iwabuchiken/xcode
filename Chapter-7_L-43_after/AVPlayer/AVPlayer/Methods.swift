@@ -1119,4 +1119,25 @@ class Methods {
         
     }
 
+    static func show_Dialog_OK
+        (vc : UIViewController, title : String, message : String) {
+        
+        let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => OK")
+            
+            // execute  => close dialog
+            
+            
+        }))
+
+        // show view
+        vc.presentViewController(refreshAlert, animated: true, completion: nil)
+
+        
+    }
+    
 }
