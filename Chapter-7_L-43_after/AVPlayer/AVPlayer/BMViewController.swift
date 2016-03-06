@@ -323,6 +323,35 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // hide => tab bar
         self.tabBarController?.tabBar.hidden = true
         
+        //test: swipe
+        _test__Swipe()
+        
+    }
+    
+    func _test__Swipe() {
+        
+//        let swipeDownGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeDown:")
+        let swipeLeftGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeLeft:")
+        
+        swipeLeftGesture.numberOfTouchesRequired = 1
+        
+//        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.Down
+        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left
+        
+        self.view.addGestureRecognizer(swipeLeftGesture)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe setup => done")
+
+        
+    }
+    
+    func handleSwipeLeft(sender: UITapGestureRecognizer){
+  
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe => down")
+
+//        print("Swiped down!")
         
     }
 
