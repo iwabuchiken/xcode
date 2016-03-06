@@ -120,6 +120,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableview_phs" destination="MsQ-x0-wIF" id="heG-Ua-quZ"/>
                         <segue destination="6sp-Ry-9XG" kind="show" identifier="segue_PH_2_BMView" id="qRA-Um-Yis"/>
                     </connections>
                 </viewController>

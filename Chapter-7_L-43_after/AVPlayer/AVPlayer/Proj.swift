@@ -593,6 +593,39 @@ class Proj {
         
     }
     
+    static func update_Clip__LastPlayedAt(clip : Clip) -> Bool {
+        // realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        // result
+        var res = false
+        
+        try! realm.write {
+            
+            // update -> modified_at
+            let t_label = Methods.get_TimeLable()
+            
+            clip.last_played_at    = t_label
+            
+            realm.add(clip, update: true)
+
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            
+            //            // return
+            //            return true
+            
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+    
     /*
         @return
             aryOf_Clips.count, aryOf_MediaItems.count, count_removed, count
@@ -623,6 +656,7 @@ class Proj {
             
             let name = item.title
             
+            //ref http://stackoverflow.com/questions/24102024/how-to-check-if-an-element-is-in-an-array answered Aug 19 '14 at 19:41
             if aryOf_Titles_from_MediaItems.contains(name) {
                 
                 // validate --> removed_at ==> ''
@@ -724,5 +758,45 @@ class Proj {
         
     }
 
+    static func find_Clip_from_Title_and_AudioId
+    (title : String, audio_id : String) -> Clip {
+
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        //        let resOf_Clips = realm.objects(Clip).sorted(sort_column, ascending: true)
+        
+        let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+
+        let sort_column : String = "created_at"
+        let ascend : Bool = false
+        
+        let resOf_Clips = realm.objects(Clip).filter(aPredicate).sorted(sort_column, ascending: ascend)
+        
+        // validate
+        if resOf_Clips.count < 1 {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no clip found => returning a dummy clip")
+            
+            let clip = Clip()
+            
+            clip.id = -1
+            
+            return clip
+            
+        } else {
+            
+            return resOf_Clips.last!
+            
+        }
+
+        
+    }
 }
 

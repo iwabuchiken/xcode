@@ -13,6 +13,7 @@ import MessageUI
 
 class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableview_phs: UITableView!
     /*
         vars
     */
@@ -36,6 +37,12 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     (animated: Bool) {
 
         super.viewWillAppear(true)
+
+        // build --> PH list
+        self.phs = Proj.find_All_PHs(ascend : false)
+
+        // reload
+        self.tableview_phs.reloadData()
 
         
     }
@@ -93,20 +100,35 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         /*
             text colors
         */
+        let clip = Proj.find_Clip_from_Title_and_AudioId(self.phs[indexPath.row].title, audio_id: self.phs[indexPath.row].audio_id)
+        
         if res_b == false {
         
             cell.textLabel?.textColor = CONS.Colors.col_Gray_050505
+        
+        } else if clip.length == self.phs[indexPath.row].current_time {
+            /*
+            text color => if listened to the last -->  change color
+            */
+ 
+            cell.textLabel?.textColor = CONS.Colors.col_green_soft
             
         } else {
             
             cell.textLabel?.textColor = CONS.Colors.col_Black
             
         }
+
         
-        
-        
-//        let res = Proj.mediaItem_Exists(self.phs[indexPath.row].title, audio_id: self.phs[indexPath.row].audio_id)
-        
+        //test
+
+//        //ref http://stackoverflow.com/questions/5964448/ios-uitableview-cells-with-multiple-lines answered May 11 '11 at 13:44, answered Jun 20 '15 at 23:44
+////        cell.textLabel?.numberOfLines = 0
+//        cell.textLabel?.numberOfLines = 2
+//        
+//        cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//        
+////        cell.sizeToFit()
         
         return cell
         
@@ -199,6 +221,23 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
         
+        /*
+            validate    => clip exists (in db)
+        */
+        self.current_clip = Proj.find_Clip_from_Title_and_AudioId(self.phs[indexPath.row].title, audio_id: self.phs[indexPath.row].audio_id)
+        
+        if self.current_clip.id == -1 {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip doesn't exist in db => \(self.phs[indexPath.row].title)")
+            
+            // show dialog
+            Methods.show_Dialog_OK(self, title: "Notice", message: "clip '\(self.phs[indexPath.row].title)' doesn't exist in db")
+            
+            return
+            
+        }
+        
         // setup
         self.current_ph = self.phs[indexPath.row]
 
@@ -206,7 +245,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_ph.description => \(self.current_ph.description)")
 
         
-//        performSegueWithIdentifier("segue_PH_2_BMView",sender: nil)
+        performSegueWithIdentifier("segue_PH_2_BMView",sender: nil)
 //        segue_PH_2_BMView
         
     }
@@ -216,11 +255,16 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func prepareForSegue
     (segue: UIStoryboardSegue, sender: AnyObject?) {
             
-            if let vc = segue.destinationViewController as? BMViewController {
-                
-                _prepSegue__BMView(vc)
-                
-            }
+        if let vc = segue.destinationViewController as? BMViewController {
+            
+            _prepSegue__BMView(vc)
+            
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] destination view is NOT BMView => \(segue.destinationViewController.description)")
+
+        }
             
             
     }
@@ -240,51 +284,55 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         vc.url = NSURL(string: url)
         
-//        // MPMediaItem
-//        vc.current_clip = self.clips[(tableView.indexPathForSelectedRow?.row)!]
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
-//        
-//        /*
-//        build: BM list
-//        
-//        */
-//        
-//        let query = "title CONTAINS '\(title)'"
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
-//        
-//        
-//        let aPredicate = NSPredicate(format: query)
-//        
-//        do {
-//            
-//            // find -> BMs
-//            let bmArray = DB.findAll_BM__Filtered(
-//                CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
-//            
-//            // put value
-//            vc.bmArray = bmArray
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
-//            
-//        } catch is NSException {
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
-//            
-//            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
-//        } catch let error as NSError {
-//            
-//            //debug
-//            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
-//            
-//        }
-//        
+        // MPMediaItem
+        vc.current_clip = self.current_clip
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        
+        // set --> bm time
+        CONS.current_time = self.current_ph.current_time
+        
+        
+        /*
+        build: BM list
+        
+        */
+        
+        let query = "title CONTAINS '\(title)'"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        do {
+            
+            // find -> BMs
+            let bmArray = DB.findAll_BM__Filtered(
+                CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+            
+            // put value
+            vc.bmArray = bmArray
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+            
+        } catch is NSException {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            
+            //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+        } catch let error as NSError {
+            
+            //debug
+            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            
+        }
+        
     }
 
 

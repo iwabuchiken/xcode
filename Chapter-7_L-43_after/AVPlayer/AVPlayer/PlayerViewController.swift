@@ -118,6 +118,9 @@ class PlayerViewController: AVPlayerViewController {
         //    CONS.current_time = bm.bm_time
         CONS.current_time = Int((player?.currentTime().seconds)!)
     
+        // update --> Clip::last_played_at
+        Proj.update_Clip__LastPlayedAt(self.current_clip!)
+        
     }
 
     func viewWillDisappear__SaveHistory
