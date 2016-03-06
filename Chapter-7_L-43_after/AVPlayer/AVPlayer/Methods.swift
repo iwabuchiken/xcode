@@ -1052,4 +1052,71 @@ class Methods {
             
     }//static func _backup_RealmFiles__Copy
 
+    static func get_Songs() -> Array<MPMediaItem> {
+        
+        var array = Array<MPMediaItem>()
+        
+        // アルバム情報を取得する
+        //    let albumsQuery: MPMediaQuery = MPMediaQuery.albumsQuery()
+        //        let albumsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
+        let albumsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
+        
+        //ref https://stackoverflow.duapp.com/questions/32696647/swift-sort-artistsquery-by-album answered Feb 20 at 22:12
+        albumsQuery.groupingType = MPMediaGrouping.Title
+        
+        let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
+        
+        //ref https://stackoverflow.duapp.com/questions/32696647/swift-sort-artistsquery-by-album answered Oct 14 '15 at 15:18
+        //        var artistsItemsSortedByAlbum = NSMutableArray()
+        //
+        ////        for var i = 0; i < artists.count; i++ {
+        //        for var i = 0; i < albumItems.count; i++ {
+        //
+        ////            let collection:MPMediaItemCollection = artists[i] as! MPMediaItemCollection
+        //            let collection:MPMediaItemCollection = albumItems[i]
+        //
+        //            let rowItem = collection.representativeItem!
+        //
+        //            let albumsQuery = MPMediaQuery.albumsQuery()
+        //
+        //            let albumPredicate:MPMediaPropertyPredicate = MPMediaPropertyPredicate(value: rowItem.valueForProperty((MPMediaItemPropertyAlbumArtist)), forProperty: MPMediaItemPropertyAlbumArtist)
+        //
+        //            albumsQuery.addFilterPredicate(albumPredicate)
+        //
+        //            let artistAlbums = albumsQuery.collections
+        //
+        //            artistsItemsSortedByAlbum.addObject(artistAlbums!)
+        //
+        //        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        
+        // sort
+        //        myCustomerArray.sortInPlace {(customer1:Customer, customer2:Customer) -> Bool in
+        //            customer1.id < customer2.id
+        //        }
+        //        albumItems.sortInPlace {(i1: MPMediaItem, i2:MPMediaItem) -> Bool in
+        //            i1.title < i2.title
+        //        }
+        
+        //        albumItems.sort{$0.title < $1.title}
+        
+        
+        // アルバム情報から曲情報を取得する
+        for album in albumItems {
+            let albumItems: [MPMediaItem] = album.items
+            for song in albumItems {
+                array.append( song )
+            }
+        }
+        
+        //sort
+        //ref http://stackoverflow.com/questions/31729337/swift-2-0-sorting-array-of-objects-by-property Rob Nov 10 '15 at 18:00
+        array.sortInPlace{$0.title < $1.title}
+        
+        return array
+        
+    }
+
 }

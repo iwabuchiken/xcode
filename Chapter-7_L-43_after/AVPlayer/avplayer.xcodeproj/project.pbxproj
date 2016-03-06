@@ -120,14 +120,14 @@
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
 				3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */,
-				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
+				04D24A3F1C8AC8E40007690E /* VC_PH.swift */,
 				3ECB9C111BCECDFC006B1253 /* PlayerViewController.swift */,
+				3E230B2F1BC887F9000162A3 /* MovieListViewController.swift */,
 				3E230B311BC887F9000162A3 /* Main.storyboard */,
 				3E230B341BC887F9000162A3 /* Assets.xcassets */,
 				3E230B361BC887F9000162A3 /* LaunchScreen.storyboard */,
 				3E230B391BC887F9000162A3 /* Info.plist */,
 				045194E41C80255B005894C5 /* PVC.swift */,
-				04D24A3F1C8AC8E40007690E /* VC_PH.swift */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";

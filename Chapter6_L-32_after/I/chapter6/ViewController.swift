@@ -504,6 +504,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let object = dataArray[indexPath.row]
         cell.textLabel?.text = object.title
         
+        // text colors
+//        cell.detailTextLabel?.textColor = CONS.COLORS.gray_050505
+        cell.detailTextLabel?.textColor = CONS.COLORS.gray_030303
+        
         // date
 //        let currentDate = NSDate()
         

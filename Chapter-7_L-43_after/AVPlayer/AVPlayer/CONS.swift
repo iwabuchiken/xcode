@@ -20,6 +20,12 @@ class CONS {
             blue:1.0,
             alpha:1.0)
         
+        static var col_Gray_050505 = UIColor(
+            red:0.5,
+            green:0.5,
+            blue:0.5,
+            alpha:1.0)
+        
         static var col_Black = UIColor(
             red:0.0,
             green:0.0,

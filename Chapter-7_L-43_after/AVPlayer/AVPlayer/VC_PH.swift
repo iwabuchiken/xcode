@@ -72,13 +72,34 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         cell.detailTextLabel?.text = "\(Methods.conv_Seconds_2_ClockLabel(self.phs[indexPath.row].current_time))"
         
+        cell.detailTextLabel?.textColor = CONS.Colors.col_Gray_050505
+
+        
         //        cell.detailTextLabel?.text = clips[indexPath.row].memos
         
         /*
             validate: clip exists in the MediaItems
         */
         
-        _tableView__CellForRow__ClipExists_InMediaItems(indexPath.row)
+        let res_b = _tableView__CellForRow__ClipExists_InMediaItems(indexPath.row)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item  => \(self.phs[indexPath.row].title) (exists in MediaItems => \(res_b)")
+
+        /*
+            text colors
+        */
+        if res_b == false {
+        
+            cell.textLabel?.textColor = CONS.Colors.col_Gray_050505
+            
+        } else {
+            
+            cell.textLabel?.textColor = CONS.Colors.col_Black
+            
+        }
+        
+        
         
 //        let res = Proj.mediaItem_Exists(self.phs[indexPath.row].title, audio_id: self.phs[indexPath.row].audio_id)
         
@@ -90,27 +111,63 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func _tableView__CellForRow__ClipExists_InMediaItems
     (index : Int) -> Bool {
             
-            let clip = self.phs[index]
-            
-            let title = clip.title
-            let audio_id = clip.audio_id
-            
-            let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
-            
-            let aPredicate = NSPredicate(format: query)
-            
+        let clip = self.phs[index]
+
+        let title = clip.title
+        let audio_id = clip.audio_id
+
+        let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+
+        let aPredicate = NSPredicate(format: query)
+        
         let res_b = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate : aPredicate, ascend: false)
             
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.find_All_Clips => \(res_b)")
-            aaa
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.find_All_Clips => \(res_b)")
+
+        // return
+        if res_b.count < 1 {
             
-            // return
-            return true
+            return false
             
+        }
+        
+        /*
+            exists in MediaItems?
+
+        */
+        let media_items : [MPMediaItem] = Methods.get_Songs()
+        
+//        var aryOf_MediaTitles = Array<String>()
+        
+        var judge = false   // clip is in mediaitems
+        
+        for item in media_items {
+            
+            let title_media_items = item.title!
+            
+            let tmp = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+
+            let audio_id_media_items = (tmp?.absoluteString)!
+
+            // judge
+            if title == title_media_items && audio_id == audio_id_media_items {
+                
+                judge = true
+                
+                break
+                
+            }
+
+        }
+        
+        
+        // return
+        return judge
+        
     }
     
 

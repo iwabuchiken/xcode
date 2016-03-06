@@ -61,12 +61,29 @@ class CONS {
             blue:   0.8,
             alpha:  1.0)
 
+        // gray, pale
         static var gray_080808 = UIColor(
             red:    0.8,
             green:  0.8,
             blue:   0.8,
             alpha:  1.0)
 
+        // gray
+        static var gray_050505 = UIColor(
+            red:    0.5,
+            green:  0.5,
+            blue:   0.5,
+            alpha:  1.0)
+
+        // gray, dark
+        static let gray_dark = 0.3
+        
+        static var gray_030303 = UIColor(
+            red:    0.3,
+            green:  0.3,
+            blue:   0.3,
+            alpha:  1.0)
+        
     }
     
     static var key_SearchWords = "key_SearchWords"
