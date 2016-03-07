@@ -342,7 +342,6 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe setup => done")
-
         
     }
     
@@ -351,6 +350,9 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe => down")
 
+        // segue
+        self.performSegueWithIdentifier("segue_BM_2_EditClipMemo", sender: nil)
+        
 //        print("Swiped down!")
         
     }
@@ -492,7 +494,12 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             vc.playMusic(self.url)
             
-        }//if let vc = segue.destinationViewController as? PlayerViewController
+        } else if var vc = segue.destinationViewController as? VC_Edit_ClipMemo {//if let vc = segue.destinationViewController as? PlayerViewController
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => VC_Edit_ClipMemo")
+
+        }
         
     }
     

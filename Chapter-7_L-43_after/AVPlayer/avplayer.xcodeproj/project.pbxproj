@@ -16,6 +16,7 @@
 		045194EB1C803566005894C5 /* Proj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045194EA1C803566005894C5 /* Proj.swift */; };
 		046CF6D41C784C1C0049DB74 /* CONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D21C784C1C0049DB74 /* CONS.swift */; };
 		046CF6D51C784C1C0049DB74 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CF6D31C784C1C0049DB74 /* Methods.swift */; };
+		04B869FB1C8CF57300A0F904 /* VC_Edit_ClipMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B869FA1C8CF57300A0F904 /* VC_Edit_ClipMemo.swift */; };
 		04C308831C76ED2800E71881 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C308821C76ED2800E71881 /* Clip.swift */; };
 		04D24A401C8AC8E40007690E /* VC_PH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D24A3F1C8AC8E40007690E /* VC_PH.swift */; };
 		04E80F211C6EFDAA00EE4F88 /* BM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E80F201C6EFDAA00EE4F88 /* BM.swift */; };
@@ -40,6 +41,7 @@
 		045194EA1C803566005894C5 /* Proj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proj.swift; sourceTree = "<group>"; };
 		046CF6D21C784C1C0049DB74 /* CONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONS.swift; sourceTree = "<group>"; };
 		046CF6D31C784C1C0049DB74 /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		04B869FA1C8CF57300A0F904 /* VC_Edit_ClipMemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Edit_ClipMemo.swift; sourceTree = "<group>"; };
 		04C308821C76ED2800E71881 /* Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
 		04D24A3F1C8AC8E40007690E /* VC_PH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_PH.swift; sourceTree = "<group>"; };
 		04E80F201C6EFDAA00EE4F88 /* BM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BM.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				04FED8031C728683004B9022 /* utils */,
 				045194E81C8034C3005894C5 /* BMViewController.swift */,
 				040096CA1C8401B200E6772F /* VC_EditBM.swift */,
+				04B869FA1C8CF57300A0F904 /* VC_Edit_ClipMemo.swift */,
 				040D663C1C70A76E0062799F /* PreferenceViewController.swift */,
 				3E230B2B1BC887F9000162A3 /* AppDelegate.swift */,
 				3E7E2E051BCEB1EA005415C3 /* MusicListViewController.swift */,
@@ -288,6 +291,7 @@
 				3E230B2C1BC887F9000162A3 /* AppDelegate.swift in Sources */,
 				045194E91C8034C3005894C5 /* BMViewController.swift in Sources */,
 				040D663D1C70A76E0062799F /* PreferenceViewController.swift in Sources */,
+				04B869FB1C8CF57300A0F904 /* VC_Edit_ClipMemo.swift in Sources */,
 				0427F4BC1C89B7E600FD31A8 /* PH.swift in Sources */,
 				045194EB1C803566005894C5 /* Proj.swift in Sources */,
 				043FD3E91C70081700E6C342 /* BM_2.swift in Sources */,
