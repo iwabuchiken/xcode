@@ -683,6 +683,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // hide => tab bar
         self.tabBarController?.tabBar.hidden = false
         
+        // reload
+        self.tableView.reloadData()
+        
 //        // test: migration
 //        _test_Migration()
         

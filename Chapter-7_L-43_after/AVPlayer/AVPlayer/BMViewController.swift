@@ -498,8 +498,18 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => VC_Edit_ClipMemo")
+            
+            //
+            _prepareForSegue__VC_Edit_ClipMemo(vc)
 
         }
+        
+    }
+    
+    func _prepareForSegue__VC_Edit_ClipMemo(vc : VC_Edit_ClipMemo) {
+        
+        // clip
+        vc.current_clip = self.current_clip
         
     }
     

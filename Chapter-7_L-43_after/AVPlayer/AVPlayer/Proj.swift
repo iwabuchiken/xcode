@@ -605,7 +605,8 @@ class Proj {
             // update -> modified_at
             let t_label = Methods.get_TimeLable()
             
-            clip.last_played_at    = t_label
+            clip.last_played_at = t_label
+            clip.modified_at    = t_label
             
             realm.add(clip, update: true)
 
@@ -625,7 +626,45 @@ class Proj {
         return res
         
     }
+
+    static func update_Clip__Memo
+    (clip : Clip, memo : String) -> Bool {
     
+        // realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        // result
+        var res = false
+        
+        try! realm.write {
+            
+            // update -> modified_at
+            let t_label = Methods.get_TimeLable()
+            
+            clip.modified_at    = t_label
+            
+            clip.memos          = memo
+            
+            realm.add(clip, update: true)
+            
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            
+            //            // return
+            //            return true
+            
+            // result
+            res = true
+            
+        }
+        
+        // return result
+        return res
+        
+    }
+    
+
     /*
         @return
             aryOf_Clips.count, aryOf_MediaItems.count, count_removed, count

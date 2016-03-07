@@ -19,6 +19,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HVQ-FA-QUt">
+                                <rect key="frame" x="41" y="262" width="240" height="226"/>
+                                <color key="backgroundColor" red="1" green="0.98919537788549694" blue="0.63526220643409426" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="ldc-0h-ZZs"/>
+                                    <constraint firstAttribute="height" constant="226" id="oqy-mw-ESW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bD6-kM-syk">
                                 <rect key="frame" x="41" y="84" width="240" height="90"/>
                                 <color key="backgroundColor" red="0.6746179677208507" green="1" blue="0.91931837560161245" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,61 +36,69 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfi-J2-p8L">
-                                <rect key="frame" x="41" y="192" width="59" height="30"/>
+                                <rect key="frame" x="26" y="192" width="59" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.6917751272502568" blue="0.48091398114562189" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="BnY-OB-QeQ"/>
-                                    <constraint firstAttribute="height" constant="30" id="Pma-7j-glI"/>
+                                    <constraint firstAttribute="height" constant="35" id="Pma-7j-glI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Back">
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="back">
                                     <color key="titleColor" red="0.44806783577558862" green="0.029414387361606065" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="uib_Back:" destination="DMj-7x-jxF" eventType="touchUpInside" id="qNE-uO-2Uv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="569-Oj-5Ik">
-                                <rect key="frame" x="113" y="192" width="49" height="30"/>
+                                <rect key="frame" x="93" y="192" width="57" height="36"/>
                                 <color key="backgroundColor" red="0.59864507771439723" green="1" blue="0.50834241414461334" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5d5-i6-eYH"/>
-                                    <constraint firstAttribute="width" constant="49" id="OYG-kW-Qg8"/>
+                                    <constraint firstAttribute="height" constant="36" id="5d5-i6-eYH"/>
+                                    <constraint firstAttribute="width" constant="57" id="OYG-kW-Qg8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Save"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOM-dI-g3P">
-                                <rect key="frame" x="178" y="192" width="53" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.47146483327420829" blue="0.48313777117034695" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="A9U-R2-4Vf"/>
-                                    <constraint firstAttribute="width" constant="53" id="z0h-e7-ePF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Clear">
-                                    <color key="titleColor" red="0.14191344895287961" green="0.066907200549937249" blue="0.068563747426191063" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="save"/>
+                                <connections>
+                                    <action selector="uib_Save:" destination="DMj-7x-jxF" eventType="touchUpInside" id="KbF-93-hkC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzf-W3-u5i">
-                                <rect key="frame" x="239" y="192" width="46" height="30"/>
+                                <rect key="frame" x="235" y="192" width="63" height="34"/>
                                 <color key="backgroundColor" red="0.57143733638743455" green="0.54516530211225334" blue="0.53566910306050963" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="TYB-iS-gFI"/>
-                                    <constraint firstAttribute="height" constant="30" id="sFc-RM-L8e"/>
+                                    <constraint firstAttribute="width" constant="63" id="TYB-iS-gFI"/>
+                                    <constraint firstAttribute="height" constant="34" id="sFc-RM-L8e"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="close">
                                     <color key="titleColor" red="1" green="0.95402464521959629" blue="0.93740655177862919" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="uib_Close_OSKeyboard:" destination="DMj-7x-jxF" eventType="touchUpInside" id="oV8-Bw-MXG"/>
+                                </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HVQ-FA-QUt">
-                                <rect key="frame" x="41" y="240" width="240" height="202"/>
-                                <color key="backgroundColor" red="1" green="0.98919537788549694" blue="0.63526220643409426" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOM-dI-g3P">
+                                <rect key="frame" x="164" y="192" width="58" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.47146483327420829" blue="0.48313777117034695" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="A9U-R2-4Vf"/>
+                                    <constraint firstAttribute="width" constant="58" id="z0h-e7-ePF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="clear">
+                                    <color key="titleColor" red="0.14191344895287961" green="0.066907200549937249" blue="0.068563747426191063" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="uib_Clear:" destination="DMj-7x-jxF" eventType="touchUpInside" id="WZK-iY-tKk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="tv_ClipMemo" destination="HVQ-FA-QUt" id="eng-Eo-E8B"/>
+                        <outlet property="tv_ClipTitle" destination="bD6-kM-syk" id="BcN-rC-U37"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkW-tL-xBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
