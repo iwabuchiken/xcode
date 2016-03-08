@@ -65,9 +65,11 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="byk-Zn-SrF" id="alZ-c5-cmj"/>
                         <segue destination="EWV-UN-dOh" kind="show" identifier="cellSegue" id="Mkc-VO-Glh"/>
+                        <segue destination="rYd-iQ-lXc" kind="show" identifier="segue_VC_2_Map" id="ang-3f-pJC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,6 +127,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYb-eB-33s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1466" y="314"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="IOy-Sc-6qr">
+            <objects>
+                <viewController id="rYd-iQ-lXc" customClass="VC_Map" customModule="Chapter6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bjq-cx-ovP"/>
+                        <viewControllerLayoutGuide type="bottom" id="u4I-jt-XvN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="djN-rb-eSd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WVp-I3-oOr">
+                                <rect key="frame" x="0.0" y="0.0" width="438" height="592"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="438" id="oGL-76-Gse"/>
+                                    <constraint firstAttribute="height" constant="592" id="oxj-eh-vGk"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guq-Ky-hYG">
+                                <rect key="frame" x="122" y="485" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Pin"/>
+                                <connections>
+                                    <action selector="pushedButton:" destination="rYd-iQ-lXc" eventType="touchUpInside" id="qt2-BD-ru8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="WVp-I3-oOr" id="0Wt-E8-vaz"/>
+                        <outlet property="pinButton" destination="guq-Ky-hYG" id="tDV-mh-xxl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AGs-4g-shm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1785" y="1"/>
         </scene>
         <!--Input View Controller-->
         <scene sceneID="Y4u-cA-GGi">
@@ -343,6 +384,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0EV-Yt-lLj" secondAttribute="trailing" id="wIH-LQ-VZ7"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="bodyTextView" destination="gUd-l6-Frw" id="fXq-50-YLm"/>
                         <outlet property="titleTextField" destination="0EV-Yt-lLj" id="KBY-AQ-IE8"/>
@@ -398,6 +440,7 @@
                             <constraint firstItem="MVa-Gn-lwg" firstAttribute="top" secondItem="Rd4-AB-ouA" secondAttribute="bottom" constant="8" id="gcJ-fq-bDu"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="tblview_Hist" destination="MVa-Gn-lwg" id="XUF-Lp-yLX"/>
                     </connections>
@@ -510,6 +553,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="main_label" destination="EJe-ST-35d" id="nj7-mZ-A20"/>
                         <outlet property="tf_SearchWords" destination="hhh-iX-ntu" id="HR9-qe-mA8"/>

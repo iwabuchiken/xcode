@@ -455,14 +455,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 // MARK: segue-related
     // segue で画面遷移するに呼ばれる
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+    override func prepareForSegue
+    (segue: UIStoryboardSegue, sender: AnyObject?){
 
         // sandbox segue?
         if segue.identifier == "sandboxSegue" {
             
         } else if segue.identifier == "segue_Navi_2_Preference" {
         
-        
+        } else if segue.identifier == "segue_VC_2_Map" {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => segue_VC_2_Map")
         
         } else {
         
@@ -884,6 +888,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_7 = "(7) show backup files"
         let choice_8 = "(8) Delete backup files"
 
+        let choice_9 = "(9) Map"
         
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
@@ -892,7 +897,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "0 Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
@@ -903,7 +908,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }))
         
 
-        refreshAlert.addAction(UIAlertAction(title: "1", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
 
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
@@ -981,6 +986,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // start function
             self._experiments__Choices__8()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+            
+            // start function
+            self._experiments__Choices__9()
             
         }))
         
@@ -1132,6 +1147,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         Methods.delete_Realm_BackupFiles()
         
     }
+
+    func _experiments__Choices__9() {
+
+        // segue
+        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
+        
+    }
+    
 
     func _experiments__UIAlert() {
     

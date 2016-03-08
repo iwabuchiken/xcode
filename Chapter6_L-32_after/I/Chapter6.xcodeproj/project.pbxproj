@@ -10,6 +10,7 @@
 		0400EB621C88067B009686AB /* VC_Hist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400EB611C88067B009686AB /* VC_Hist.swift */; };
 		04432E681C79841C009B47DA /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04432E671C79841C009B47DA /* Admin.swift */; };
 		049246601C67651000B95ACC /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492465F1C67650F00B95ACC /* Methods.swift */; };
+		04B96D031C8E59170057D174 /* VC_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96D021C8E59170057D174 /* VC_Map.swift */; };
 		04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */; };
 		04C067721C8736B500ACCB6E /* Hist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C067711C8736B500ACCB6E /* Hist.swift */; };
 		04CBAB6D1C7C0F5F00FDEDE2 /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */; };
@@ -31,6 +32,7 @@
 		0400EB611C88067B009686AB /* VC_Hist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Hist.swift; path = chapter6/VC_Hist.swift; sourceTree = SOURCE_ROOT; };
 		04432E671C79841C009B47DA /* Admin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Admin.swift; path = chapter6/Admin.swift; sourceTree = SOURCE_ROOT; };
 		0492465F1C67650F00B95ACC /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = chapter6/Methods.swift; sourceTree = SOURCE_ROOT; };
+		04B96D021C8E59170057D174 /* VC_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Map.swift; path = chapter6/VC_Map.swift; sourceTree = SOURCE_ROOT; };
 		04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandboxViewController.swift; path = chapter6/SandboxViewController.swift; sourceTree = SOURCE_ROOT; };
 		04C067711C8736B500ACCB6E /* Hist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hist.swift; path = chapter6/Hist.swift; sourceTree = SOURCE_ROOT; };
 		04CBAB6C1C7C0F5F00FDEDE2 /* db.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = db.swift; path = chapter6/db.swift; sourceTree = SOURCE_ROOT; };
@@ -108,15 +110,16 @@
 		3E16ACD41BC009DF004AE056 /* Chapter6 */ = {
 			isa = PBXGroup;
 			children = (
+				046CF6D71C784F400049DB74 /* utils */,
 				3E16ACD51BC009DF004AE056 /* AppDelegate.swift */,
 				3E16ACD71BC009DF004AE056 /* ViewController.swift */,
+				04B96D021C8E59170057D174 /* VC_Map.swift */,
 				3E16ACD91BC009DF004AE056 /* Main.storyboard */,
 				3E634A6F1BC2FAB800D13685 /* InputViewController.swift */,
 				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
 				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
 				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
 				046CF6D81C784F530049DB74 /* models */,
-				046CF6D71C784F400049DB74 /* utils */,
 				04D640411C851E4600A091B7 /* VC_Preference.swift */,
 				0400EB611C88067B009686AB /* VC_Hist.swift */,
 			);
@@ -276,6 +279,7 @@
 				04CBAB6D1C7C0F5F00FDEDE2 /* db.swift in Sources */,
 				3E16ACD61BC009DF004AE056 /* AppDelegate.swift in Sources */,
 				04432E681C79841C009B47DA /* Admin.swift in Sources */,
+				04B96D031C8E59170057D174 /* VC_Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
