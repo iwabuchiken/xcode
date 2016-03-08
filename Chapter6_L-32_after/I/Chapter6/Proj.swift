@@ -10,6 +10,9 @@
 import Foundation
 import RealmSwift
 
+import CoreLocation
+import MapKit
+
 class Proj {
 
     static func get_LastUploaded_At() -> String {
@@ -209,6 +212,25 @@ class Proj {
         }
     }
 
+    static func lastId_Loc() -> Int {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Loc).sorted("id", ascending: true).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+    
+
     static func  get_LastBackup_Diary_ModifiedAt_String() -> String  {
         
         // get realm
@@ -292,4 +314,56 @@ class Proj {
         
     }
 
+    /*
+        @return
+        1   => saved
+        2   => exception
+    */
+    static func save_Loc(center : CLLocationCoordinate2D) -> Int {
+        
+        let longi : CLLocationDegrees = center.longitude
+        let lat : CLLocationDegrees = center.latitude
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        let time_label = Methods.get_TimeLable()
+        
+        do {
+            
+            try! realm.write {
+                
+                let loc = Loc()
+                
+                loc.id = Proj.lastId_Loc()
+                
+                loc.created_at     = time_label
+                loc.modified_at    = time_label
+                
+                loc.longi       = Double(center.longitude.description)!
+                loc.lat       = Double(center.latitude.description)!
+                
+                realm.add(loc, update: true)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] loc saved => '\(loc.description)'")
+                
+
+            }
+            
+        } catch let e as NSError! {
+            
+            // handle error
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
+            
+            // return
+            return -1
+            
+        }
+        
+        // return
+        return 1
+
+        
+    }
 }

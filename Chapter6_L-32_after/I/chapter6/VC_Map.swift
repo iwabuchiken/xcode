@@ -74,11 +74,22 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         // 最後に取得した位置情報で CLLocationCoordinate2D を作成する
         let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
         
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting... => \(center.)")
 
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude... => \(lastLocation!.latitude)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude + 10 => \(lastLocation!.latitude + 10)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Double(lastLocation!.latitude) => \(Double(lastLocation!.latitude))")
         
-        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude.value => \(lastLocation!.latitude.value)")
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude.description => \(lastLocation!.latitude.description)")
+
         // 地図のセンターに設定する
         mapView.setCenterCoordinate(center, animated: true)
         
@@ -90,6 +101,12 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
         // 地図にピンを立てる
         mapView.addAnnotation(pin)
+        
+        
+        // save data
+        Proj.save_Loc(center)
+        
+        
     }
     
     // 位置情報が更新された時に呼ばれる
@@ -99,6 +116,8 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         let locations: NSArray = locations as NSArray
         let location: CLLocation = locations.lastObject as! CLLocation
         lastLocation = location.coordinate
+        
+        
         
         if let location = lastLocation {
             
