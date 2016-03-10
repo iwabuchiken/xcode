@@ -11,8 +11,13 @@ import UIKit
 import RealmSwift
 import MessageUI
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+        //import UIKit
+        //import CoreLocation
+        //import MapKit
 
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+//    UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
     /*
         vars
     */
@@ -20,6 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var fpath_realm_csv = ""
     var fname_realm_csv = ""
+
+    var imageArray: Array<UIImage> = Array<UIImage>()
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -873,11 +880,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let s_title = "Choices"
         let s_title = "Experiments"
         
-//        let choice_0 = "(0) Cancel"
+        let choice_0 = "Cancel"
         
         let choice_1 = "(1) Show realm files list"
         let choice_2 = "(2) Delete csv files"
-        let choice_3 = "(3) Send email"
+//        let choice_3 = "(3) Send email"
         let choice_4 = "(4) Copy db (Diary)"
 
 //        let choice_5 = "(5) Update Data"
@@ -893,11 +900,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3) \(choice_4) \(choice_6) \(choice_7)\n \(choice_8) \(choice_0)"
-        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_6)\n\(choice_7)\n\(choice_8)"
+//        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_6)\n\(choice_7)\n\(choice_8)"
+        let s_message = "what do you wanna do ?"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
@@ -918,7 +926,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "2", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
@@ -928,17 +936,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "3", style: .Default, handler: { (action: UIAlertAction!) in
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+//        refreshAlert.addAction(UIAlertAction(title: choice_3, style: .Default, handler: { (action: UIAlertAction!) in
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+//
+//            // start function
+//            self._experiments__Choices__3()
+//
+//        }))
 
-            // start function
-            self._experiments__Choices__3()
-
-        }))
-
-        refreshAlert.addAction(UIAlertAction(title: "4", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_4, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
@@ -959,7 +967,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        }))
 //        
 
-        refreshAlert.addAction(UIAlertAction(title: "6", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_6, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
@@ -969,7 +977,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "7", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_7, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 7")
@@ -979,7 +987,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "8", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_8, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 8")
@@ -989,15 +997,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
-            
-            // start function
-            self._experiments__Choices__9()
-            
-        }))
+//        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
+//            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+//            
+//            // start function
+//            self._experiments__Choices__9()
+//            
+//        }))
         
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
@@ -1296,80 +1304,113 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-    @IBAction func backupDiaries_ViaEmail(sender: UIBarButtonItem) {
+    @IBAction func backupDiaries_ViaEmail
+    (sender: UIBarButtonItem) {
       
-//        //test => Data
-//        let tmp_s = "2016/01/01 00:00:00"
-//        self.updateData_Data__Latest_Diary_at(tmp_s)
+        //        let s_title = "Choices"
+        let s_title = "Features"
+
+        let s_message = "see what you can do"
+        
+        let choice_0 = "Cancel"
+        
+        let choice_1 = "(1) send data via email"
+        let choice_2 = "(2) Map"
+        let choice_3 = "(3) Photo"
+
+        // controller
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
         /*
-            confirm dialog
-
+            choices
         */
-        backupDiaries_ViaEmail__Delegate()
+        // choice 0
+        refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            // start function
+            self.backupDiaries_ViaEmail__Ok()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
 
-//        let title = "Send data via email"
-//        let message = "Diary data in csv format"
-//        
-////        var refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
-//        var refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
-//        
-//        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-//            print("Handle Ok logic here")
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
-//            
-//            // start email
-//            self.backupDiaries_ViaEmail__Ok()
-//            
-//        }))
-//        
-//        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-//            print("Handle Cancel Logic here")
-//        }))
-//        
-//        presentViewController(refreshAlert, animated: true, completion: nil)
-//
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
-//        
-//        // build csv
-//        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
-//        let realmPath = Realm.Configuration.defaultConfiguration.path
-//        
-//        let dpath_realm = Methods.dirname(realmPath!)
-//        
-//        let fname = "realm_data_\(Methods.get_TimeLabel__Serial()).csv"
-//        
-//        let fpath_full = "\(dpath_realm)/\(fname)"
-//        //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
-//        
-//        // build => CSV
-//        //        _experiments__BuildCSV()
-//        _experiments__BuildCSV(fpath_full)
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
-//        
-//        
-//        // email
-//        self.fpath_realm_csv = fpath_full
-//        self.fname_realm_csv = fname
-//        
-//        _experiments__SendEmails()
-//        
-//        //        dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
-//        
-//        
-//        //        // dir list
-//        //        let ary = Methods.show_DirList__RealmFiles()
-
+            // start map
+            self._experiments__Choices__9()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_3, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            // start map
+            self.backupDiaries_ViaEmail__Choice_3()
+            
+        }))
+        
+        // show view
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
     }
 
+    func backupDiaries_ViaEmail__Choice_3() {
+        
+        // カメラが使えるか確認する
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            
+            // ImagePicker を表示する
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
+            cameraPicker.delegate = self
+            self.presentViewController(cameraPicker, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    func imagePickerController(imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            // 画像用の配列にいれる
+            imageArray.append(pickedImage)
+        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] imageArray.count => \(self.imageArray.count)")
+
+        
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        
+//        // 最後に取得した位置情報で CLLocationCoordinate2D を作成する
+//        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
+//        
+//        // 最後に取得した位置情報を中心に地図を表示させる
+//        mapView.setCenterCoordinate(center, animated: true)
+//        
+//        // ピン（MKPointAnnotation）を作成する
+//        let pin: MKPointAnnotation = MKPointAnnotation()
+//        
+//        // 最後に取得した位置情報を設定する
+//        pin.coordinate = center
+//        
+//        // title と subtitle は Callout(吹き出し) に表示される
+//        pin.title = "\(mapView.annotations.count)"
+//        pin.subtitle = "\(lastLocation!.latitude), \(lastLocation!.longitude)"
+//        
+//        // 地図にピンを立てる
+//        mapView.addAnnotation(pin)
+        
+    }
+    
+    // ImagePicker でキャンセルされた場合に呼ばれる
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
     func backupDiaries_ViaEmail__Delegate() {
         
         let title = "Send data via email"
@@ -1689,6 +1730,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //        mailComposerVC.setSubject("Sending you an in-app e-mail...")
             
             mailComposerVC.setSubject("myself] xcode_Memo \(Methods.get_TimeLable())")
+            
+            // address
+            mailComposerVC.setToRecipients(["iwabuchi.k.2010@gmail.com"])
             
 //            mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
             mailComposerVC.setMessageBody(self.message_email, isHTML: false)
@@ -2085,5 +2129,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                }
     }
 
+// MARK: orientation
+    //ref http://stackoverflow.com/questions/29950456/how-to-lock-orientation-just-for-one-view-controller answered Apr 29 '15 at 17:25
+//    override func supportedInterfaceOrientations() -> Int {
+//        
+//        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+//        
+//    }
+        ///Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/Chapter6/ViewController.swift:2090:19: Method does not override any method from its superclass
+    
+    override func shouldAutorotate() -> Bool{
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] shouldAutorotate")
+
+        
+        return false
+    }
+    
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait
+    }
 }
 

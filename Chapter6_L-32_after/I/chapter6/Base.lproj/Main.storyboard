@@ -38,6 +38,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="zNm-AQ-gXs">
                         <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="UCY-X5-nT0">
+                                <connections>
+                                    <action selector="experiments:" destination="BYZ-38-t0r" id="OLm-M4-YMt"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="UcJ-bX-lK4">
+                                <connections>
+                                    <action selector="backupDiaries_ViaEmail:" destination="BYZ-38-t0r" id="xl1-6a-03h"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="organize" id="9Nt-2A-d1y">
+                                <connections>
+                                    <segue destination="u7k-56-RoO" kind="show" identifier="segue_Navi_2_Preference" id="QMB-KU-gPx"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="add" id="N3j-Kd-UL8">
                                 <connections>
                                     <segue destination="EWV-UN-dOh" kind="show" identifier="addSegue" id="mN5-4w-7oI"/>
@@ -46,21 +61,6 @@
                             <barButtonItem systemItem="play" id="Her-yO-Xcm">
                                 <connections>
                                     <segue destination="UV6-TK-gWJ" kind="show" identifier="sandboxSegue" id="RcJ-NE-8PO"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="organize" id="9Nt-2A-d1y">
-                                <connections>
-                                    <segue destination="u7k-56-RoO" kind="show" identifier="segue_Navi_2_Preference" id="QMB-KU-gPx"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="action" id="UcJ-bX-lK4">
-                                <connections>
-                                    <action selector="backupDiaries_ViaEmail:" destination="BYZ-38-t0r" id="xl1-6a-03h"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="compose" id="UCY-X5-nT0">
-                                <connections>
-                                    <action selector="experiments:" destination="BYZ-38-t0r" id="OLm-M4-YMt"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -569,6 +569,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M1a-Rj-QWW" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="duM-OW-wnY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
