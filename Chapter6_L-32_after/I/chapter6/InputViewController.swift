@@ -146,14 +146,60 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func save(sender: UIButton) {
+
+        /*
+            go back?
+        */
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        var dfltVal_key_GoBack_WhenSaved = defaults.valueForKey(CONS.defaultKeys.key_GoBack_WhenSaved)
+        
+        // validate
+        if dfltVal_key_GoBack_WhenSaved == nil {
+            
+            // default --> true
+            dfltVal_key_GoBack_WhenSaved = true
+            
+        }
+
+        /*
+            vibrate?
+        */
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        var dfltVal_key_Vibrate_WhenSaved = defaults.valueForKey(CONS.defaultKeys.key_Vibrate_WhenSaved)
+        
+        // validate
+        if dfltVal_key_Vibrate_WhenSaved == nil {
+            
+            // default --> true
+            dfltVal_key_Vibrate_WhenSaved = true
+            
+        }
+        
         try! realm.write {
             self.diary.title = self.titleTextField.text!
             self.diary.body = self.bodyTextView.text
             self.diary.date = NSDate()
             self.realm.add(self.diary, update: true)
+            
+            // vibrate
+            
+            if dfltVal_key_Vibrate_WhenSaved?.boolValue == true {
+                
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                
+            }
+            
         }
         
-        self.navigationController?.popViewControllerAnimated(true)
+        // go back to the source view
+        if dfltVal_key_GoBack_WhenSaved?.boolValue == true {
+        
+            self.navigationController?.popViewControllerAnimated(true)
+            
+        }
+        
     }
     
     /*

@@ -170,6 +170,10 @@ class CONS {
     enum Prefs {
         
         static var b_Search_MemoColumn = false
+
+        static var b_GoBack_WhenSaved = true
+
+        static var b_Vibrate_WhenSaved = true
         
     }
     
@@ -183,6 +187,10 @@ class CONS {
 
         static let key_Search_MemoColumn = "key_Search_MemoColumn"
 
+        static let key_GoBack_WhenSaved = "key_GoBack_WhenSaved"
+
+        static let key_Vibrate_WhenSaved = "key_Vibrate_WhenSaved"
+        
     }
     
     enum General {
