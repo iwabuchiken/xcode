@@ -1140,9 +1140,67 @@ class Methods {
         
     }
  
-    static func validate_Format__ClockLabel(str : String) {
+    static func validate_Format__ClockLabel(str : String) -> Bool {
+
+        //ref http://stackoverflow.com/questions/27880650/swift-extract-regex-matchesanswered Jan 10 '15 at 20:12
+        do {
+            
+            let reg_pattern : String = "^\\d\\d:\\d\\d:\\d\\d$"
+            
+            let regex = try NSRegularExpression(pattern: reg_pattern, options: [])
+            
+            let nsString = str as NSString
+            
+            let results = regex.matchesInString(str, options: [], range: NSMakeRange(0, nsString.length))
+            
+            // judge
+            if results.count == 1 {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] match once => return true")
+                
+                return true
+                
+            } else if results.count == 0 {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] match 0 => return false")
+                
+                return false
+                
+            } else {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] result is => \(results.description) --> return false")
+                
+                return false
+
+            }
+            
+//            //debug
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.count => \(results.count)")
+//
+//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.description => \(results.description)")
+//            
+//            // enumerate
+//            let enumerator = results.map { nsString.substringWithRange($0.range)}
+//            
+//            for item in enumerator {
+//                
+//                print("item => '\(item)'")
+//                
+//            }
+            
+
+        } catch let error as NSError {
+            
+            print("invalid regex: \(error.localizedDescription)")
+
+            return false
+            
+        }
         
-        
+//        return true
         
     }
     

@@ -124,9 +124,21 @@ class VC_EditBM: UIViewController {
 //        // update
 //        CONS.e_VC_EditBM.bm.memo = memo!
         
-        self.update_BM_execute()
+        let res = self.update_BM_execute()
 //        Proj.update_BM(CONS.e_VC_EditBM.bm)
         
+        // valid: valid format?
+        if res == false {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] invalid bm time format --> exiting the method")
+
+            // show message
+            Methods.show_Dialog_OK(self, title: "Invlaid time format", message: self.tf_BM_Time.text!)
+            
+            return
+            
+        }
         
 //        //self.dismissViewControllerAnimated(true, completion: nil)
 //        self.navigationController?.popViewControllerAnimated(true)
@@ -146,8 +158,10 @@ class VC_EditBM: UIViewController {
         
     }
     
-    func update_BM_execute() {
+    func update_BM_execute() -> Bool {
 
+        var result = true
+        
         try! CONS.RealmVars.realm!.write {
             
             //debug
@@ -173,27 +187,36 @@ class VC_EditBM: UIViewController {
                 //debug
                 print("[\(Methods.basename(__FILE__)):\(__LINE__)] invalid format => \((self.tf_BM_Time.text)!)")
                 
-                return
+//                return false
                 
-            }
+                result = false
+                
+                
+                
+            } else {
             
-            let bm_time = Methods.conv_ClockLabel_2_Seconds((self.tf_BM_Time.text)!)
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => bm_time => \(bm_time)")
+                // bm time
+                let bm_time = Methods.conv_ClockLabel_2_Seconds((self.tf_BM_Time.text)!)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => bm_time => \(bm_time)")
 
+                CONS.e_VC_EditBM.bm.bm_time = bm_time
+                
+                //        self.realm.add(self.diary, update: true)
+                
+                //            rl_tmp.add(bm, update: true)
+                //            self.rl_tmp.add(bm, update: true)
+                CONS.RealmVars.realm!.add(CONS.e_VC_EditBM.bm, update: true)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => added (\(CONS.e_VC_EditBM.bm.description)")
+                
+            }//if valid == false
             
-            //        self.realm.add(self.diary, update: true)
-            
-            //            rl_tmp.add(bm, update: true)
-            //            self.rl_tmp.add(bm, update: true)
-            CONS.RealmVars.realm!.add(CONS.e_VC_EditBM.bm, update: true)
-            
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => added (\(CONS.e_VC_EditBM.bm.description)")
-            
-        }
+        }//try! CONS.RealmVars.realm!.write
 
+        return result
         
     }
 
