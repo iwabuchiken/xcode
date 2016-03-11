@@ -1482,4 +1482,19 @@ class Methods {
 
         
     }
+
+    /*
+        @return
+        /var/mobile/Containers/Data/Application/664E713C-5768-4227-9651-50E6920C5D42/Documents
+    */
+    //ref https://www.hackingwithswift.com/example-code/media/how-to-save-a-uiimage-to-a-file-using-uiimagepngrepresentation
+    static func getDocumentsDirectory() -> NSString {
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+        
+    }
+
+
 }

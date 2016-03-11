@@ -866,7 +866,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegueWithIdentifier("cellSegue",sender: nil)
     }
 
-// MARK: navigation buttons
+// MARK: experiments
     @IBAction func experiments(sender: UIBarButtonItem) {
 
 //        _experiments__Get_LastBackupAt()
@@ -1307,6 +1307,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
+// MARK: backup diaries
     @IBAction func backupDiaries_ViaEmail
     (sender: UIBarButtonItem) {
       
@@ -1358,62 +1359,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
-    func backupDiaries_ViaEmail__Choice_3() {
-        
-        // カメラが使えるか確認する
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            
-            // ImagePicker を表示する
-            let cameraPicker = UIImagePickerController()
-            cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
-            cameraPicker.delegate = self
-            self.presentViewController(cameraPicker, animated: true, completion: nil)
-            
-        }
-        
-    }
-    
-    func imagePickerController(imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            // 画像用の配列にいれる
-            imageArray.append(pickedImage)
-        }
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] imageArray.count => \(self.imageArray.count)")
-
-        
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        
-//        // 最後に取得した位置情報で CLLocationCoordinate2D を作成する
-//        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
-//        
-//        // 最後に取得した位置情報を中心に地図を表示させる
-//        mapView.setCenterCoordinate(center, animated: true)
-//        
-//        // ピン（MKPointAnnotation）を作成する
-//        let pin: MKPointAnnotation = MKPointAnnotation()
-//        
-//        // 最後に取得した位置情報を設定する
-//        pin.coordinate = center
-//        
-//        // title と subtitle は Callout(吹き出し) に表示される
-//        pin.title = "\(mapView.annotations.count)"
-//        pin.subtitle = "\(lastLocation!.latitude), \(lastLocation!.longitude)"
-//        
-//        // 地図にピンを立てる
-//        mapView.addAnnotation(pin)
-        
-    }
-    
-    // ImagePicker でキャンセルされた場合に呼ばれる
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-
-    
     func backupDiaries_ViaEmail__Delegate() {
         
         let title = "Send data via email"
@@ -1466,9 +1411,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // validate
         if tmp_i == -1 {
-
+            
             self.backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries()
-
+            
             // return
             return;
             
@@ -1482,8 +1427,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.fpath_realm_csv = fpath_full
         self.fname_realm_csv = fname
         
-//        //test
-//        self.mailComposeController__MailSent()
+        //        //test
+        //        self.mailComposeController__MailSent()
         
         // send email
         _experiments__SendEmails()
@@ -1515,8 +1460,97 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }))
         
         presentViewController(refreshAlert, animated: true, completion: nil)
-
+        
     }
+    
+
+    func backupDiaries_ViaEmail__Choice_3() {
+        
+        // カメラが使えるか確認する
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            
+            // ImagePicker を表示する
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
+            cameraPicker.delegate = self
+            self.presentViewController(cameraPicker, animated: true, completion: nil)
+            
+        }
+        
+    }
+
+// MARK: image picker
+    func imagePickerController(imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            // 画像用の配列にいれる
+            imageArray.append(pickedImage)
+        }
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] imageArray.count => \(self.imageArray.count)")
+
+        
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        
+        /*
+            save image to file
+        */
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] getDocumentsDirectory()! => \(Methods.getDocumentsDirectory())")
+
+        let doc_root = Methods.getDocumentsDirectory()
+        
+        //ref https://www.hackingwithswift.com/example-code/media/how-to-save-a-uiimage-to-a-file-using-uiimagepngrepresentation
+        let data = UIImagePNGRepresentation(imageArray[0])
+        
+        let fpath = doc_root.stringByAppendingPathComponent("image_\(Methods.get_TimeLabel__Serial()).png")
+        
+        var result = data!.writeToFile(fpath, atomically: true)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] result => \(result)")
+        
+        // save to camera roll
+        //ref http://iostechsolutions.blogspot.jp/2014/11/swift-take-pictures-and-save-to-camera.html
+        UIImageWriteToSavedPhotosAlbum(imageArray[0], nil, nil, nil)
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] UIImageWriteToSavedPhotosAlbum  => done: result => \(result)")
+
+//        if true {
+//            
+//            
+//            
+//        }
+        
+//        // 最後に取得した位置情報で CLLocationCoordinate2D を作成する
+//        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
+//        
+//        // 最後に取得した位置情報を中心に地図を表示させる
+//        mapView.setCenterCoordinate(center, animated: true)
+//        
+//        // ピン（MKPointAnnotation）を作成する
+//        let pin: MKPointAnnotation = MKPointAnnotation()
+//        
+//        // 最後に取得した位置情報を設定する
+//        pin.coordinate = center
+//        
+//        // title と subtitle は Callout(吹き出し) に表示される
+//        pin.title = "\(mapView.annotations.count)"
+//        pin.subtitle = "\(lastLocation!.latitude), \(lastLocation!.longitude)"
+//        
+//        // 地図にピンを立てる
+//        mapView.addAnnotation(pin)
+        
+    }
+    
+    // ImagePicker でキャンセルされた場合に呼ばれる
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     
     func _experiments__BuildCSV(fpath_full : String) -> Int {
 
