@@ -11,9 +11,16 @@ import RealmSwift
 import AudioToolbox
 
 //ref https://akira-watson.com/iphone/textfield.html "UITextFieldDelegate をViewControllerに設定して"
-class InputViewController: UIViewController, UITextFieldDelegate {
+class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+    
+    // controls
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
+
+    /*
+        vars
+    */
+    var current_editor = ""     // "tv" (textview), "tf" (textfield)
     
     let realm = try! Realm()
     var diary: Diary!
@@ -22,7 +29,89 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     //ref http://stackoverflow.com/questions/29839069/how-make-vibrate-twice-my-iphone-when-i-click-on-a-button-ios-swift-xcode answered Sep 9 '15 at 16:23
     var counter = 0
     var timer : NSTimer?
+
+    //ref http://stackoverflow.com/questions/30918732/how-to-determine-which-textfield-is-active-swift answered Jun 18 '15 at 14:56
+    var activeTextField = UITextField()
     
+    @IBAction func action_b_CloseOSKeyboard(sender: UIButton) {
+
+        //ref https://akira-watson.com/iphone/textfield.html "ボタン等でendEditing()"
+        self.view.endEditing(true)
+    
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        self.activeTextField = textField
+
+        // set value
+        self.current_editor = "tf"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] textFieldDidBeginEditing")
+
+    }
+    
+    //ref http://stackoverflow.com/questions/29465025/how-do-you-run-a-section-of-code-when-the-user-taps-the-uitextview-in-swift answered Apr 6 '15 at 3:55
+    var activeTextView = UITextView()
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        self.activeTextView = textView
+        
+        // set value
+        self.current_editor = "tv"
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] textViewDidBeginEditing")
+        
+    }
+    
+    // MARK: - Actions
+    
+    
+    
+    @IBAction func action_b_InputDateLabel(sender: UIButton) {
+
+//        // get current text
+//        let tf_active = self.activeTextField
+
+        // validate
+        if self.current_editor == "" {
+            
+            self.current_editor = "tv"  // default --> textview (body)
+            
+        }
+        
+        // dispatch
+        if self.current_editor == "tv" {
+
+            var text_current = self.bodyTextView.text
+            
+            text_current = text_current + Methods.get_TimeLabel__Serial()
+            
+            self.bodyTextView.text = text_current
+            
+        } else if self.current_editor == "tf" {
+            
+            var text_current = self.titleTextField.text
+            
+            text_current = text_current! + Methods.get_TimeLabel__Serial()
+            
+            self.titleTextField.text = text_current
+            
+        }
+        
+        // vib
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tf_active?.description => \(tf_active.description)")
+
+        
+        
+    }
+
     @IBAction func copy_Title(sender: UIButton) {
     
         let title = titleTextField.text!
@@ -122,6 +211,10 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
         // delegate
         titleTextField.delegate = self
+        
+        //delegate
+        //ref http://stackoverflow.com/questions/29465025/how-do-you-run-a-section-of-code-when-the-user-taps-the-uitextview-in-swift answered Apr 6 '15 at 3:55
+        self.bodyTextView.delegate = self
         
         // Do any additional setup after loading the view.
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary.title => \(diary.title)")

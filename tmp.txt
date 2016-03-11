@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 xcode_Player
 D-8
 
@@ -6,4 +7,15 @@ s-2#2/steps.5.4
 1. save memo
 
         ==> done
+=======
+xcode_Memo
+D-11
+
+s-1#2
+---
+1. introduce => photo feature
+
+        ==> done
+
+>>>>>>> D_Memo__D-12_MISC-2
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
