@@ -1,11 +1,10 @@
-xcode_Player
-D-7
+xcode_Memo
+D-11
 
-s-2#1/steps.1/SEGWAY-1
+s-1#2
 ---
-1. backup db files
+1. introduce => photo feature
 
         ==> done
-
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

@@ -494,6 +494,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         diary.id = dataArray.max("id")! + 1
                 }
             
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting diary...")
+                
                 inputViewController.diary = diary
             }
             

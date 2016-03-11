@@ -225,7 +225,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-pG-nWl">
-                                <rect key="frame" x="256" y="72" width="69" height="30"/>
+                                <rect key="frame" x="216" y="72" width="69" height="30"/>
                                 <color key="backgroundColor" red="0.74446149553209318" green="1" blue="0.67048023780921207" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="保存"/>
@@ -272,13 +272,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqk-PI-2Ov">
-                                <rect key="frame" x="24" y="72" width="58" height="30"/>
+                                <rect key="frame" x="24" y="72" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.57401905629853067" green="0.57946254423144794" blue="0.82622300392670156" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="58" id="jFe-sQ-lGq"/>
+                                    <constraint firstAttribute="width" constant="50" id="jFe-sQ-lGq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Back">
+                                <state key="normal" title="B">
                                     <color key="titleColor" red="1" green="0.87323347737663815" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -347,14 +347,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-ku-GVs">
-                                <rect key="frame" x="162" y="72" width="57" height="33"/>
+                                <rect key="frame" x="147" y="72" width="49" height="33"/>
                                 <color key="backgroundColor" red="1" green="0.59490686617934441" blue="0.56129908336207546" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="57" id="DL0-ak-dfC"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57" id="zJA-Zt-ang"/>
+                                    <constraint firstAttribute="width" constant="49" id="DL0-ak-dfC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="zJA-Zt-ang"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Copy">
+                                <state key="normal" title="C">
                                     <color key="titleColor" red="0.24147277544156506" green="0.3026218913612565" blue="0.27843710200598748" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -395,7 +395,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHD-kw-KEa">
-                                <rect key="frame" x="236" y="72" width="58" height="30"/>
+                                <rect key="frame" x="211" y="72" width="58" height="30"/>
                                 <color key="backgroundColor" red="0.82136523034161835" green="0.39112976823276291" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="itU-cH-Y2T"/>
@@ -414,6 +414,36 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1p-fb-23k">
+                                <rect key="frame" x="267" y="440" width="46" height="41"/>
+                                <color key="backgroundColor" red="1" green="0.61440331338765553" blue="0.25001022787485672" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="5sM-17-QGU"/>
+                                    <constraint firstAttribute="width" constant="46" id="oDi-6H-RVq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="D">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="action_b_InputDateLabel:" destination="EWV-UN-dOh" eventType="touchUpInside" id="Loj-p4-rWa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjn-di-1Vs">
+                                <rect key="frame" x="277" y="72" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.32339580233371523" green="0.32375264976688622" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="N9b-Ta-3jO"/>
+                                    <constraint firstAttribute="width" constant="46" id="X2X-75-Fu1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="CK">
+                                    <color key="titleColor" red="0.98563919786616194" green="1" blue="0.97432869369618103" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="action_b_CloseOSKeyboard:" destination="EWV-UN-dOh" eventType="touchUpInside" id="kmE-fP-zG7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
