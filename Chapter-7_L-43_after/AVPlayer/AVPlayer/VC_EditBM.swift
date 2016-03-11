@@ -20,9 +20,11 @@ class VC_EditBM: UIViewController {
     var clip_title : String = ""
     var bm_time : Int = 0
     
-    @IBOutlet weak var lbl_BM_Time: UILabel!
+//    @IBOutlet weak var lbl_BM_Time: UILabel!
     @IBOutlet weak var lbl_ClipTitle: UILabel!
     @IBOutlet weak var tf_Memo: UITextField!
+
+    @IBOutlet weak var tf_BM_Time: UITextField!
 
     @IBAction func delete_BM(sender: UIButton) {
         
@@ -146,50 +148,6 @@ class VC_EditBM: UIViewController {
     
     func update_BM_execute() {
 
-//        // realm
-//        let rl_tmp = Methods.get_RealmInstance(CONS.s_Realm_FileName)
-
-    //        try! realm.write {
-    //            self.diary.title = self.titleTextField.text!
-    //            self.diary.body = self.bodyTextView.text
-    //            self.diary.date = NSDate()
-    //            self.realm.add(self.diary, update: true)
-    //        }
-        
-//        // time -> meta
-//        let tmp_time = NSDate()
-//
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => modifying...")
-//
-//        CONS.e_VC_EditBM.bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
-
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => modified")
-
-//        try! rl_tmp.write {
-        
-//        CONS.RealmVars.realm!.beginWrite()
-
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] beginWrite() => called")
-
-//        try! CONS.RealmVars.realm!.write {
-//
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
-//
-//            //        self.realm.add(self.diary, update: true)
-//            
-////            rl_tmp.add(bm, update: true)
-////            self.rl_tmp.add(bm, update: true)
-//            CONS.RealmVars.realm!.delete(CONS.e_VC_EditBM.bm)
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => deleted (\(CONS.e_VC_EditBM.bm.description)")
-//            
-//        }
-
         try! CONS.RealmVars.realm!.write {
             
             //debug
@@ -206,6 +164,23 @@ class VC_EditBM: UIViewController {
             // update
 //            CONS.e_VC_EditBM.bm.memo = memo!
             CONS.e_VC_EditBM.bm.memo = self.tf_Memo.text!
+
+            // bm time
+            let valid = Methods.validate_Format__ClockLabel((self.tf_BM_Time.text)!)
+
+            if valid == false {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] invalid format => \((self.tf_BM_Time.text)!)")
+                
+                return
+                
+            }
+            
+            let bm_time = Methods.conv_ClockLabel_2_Seconds((self.tf_BM_Time.text)!)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => bm_time => \(bm_time)")
 
             
             //        self.realm.add(self.diary, update: true)
@@ -272,8 +247,9 @@ class VC_EditBM: UIViewController {
         // view: title
         self.lbl_ClipTitle.text = self.clip_title
         
-        // view --> bm time
-        self.lbl_BM_Time.text = Methods.conv_Seconds_2_ClockLabel(self.bm_time)
+//        // view --> bm time
+//        self.lbl_BM_Time.text = Methods.conv_Seconds_2_ClockLabel(self.bm_time)
+        self.tf_BM_Time.text = Methods.conv_Seconds_2_ClockLabel(self.bm_time)
         
         // memo
         self.tf_Memo.text = CONS.e_VC_EditBM.bm.memo

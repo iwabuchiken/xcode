@@ -335,17 +335,6 @@
                                     <action selector="update_BM:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="5p8-WF-sEd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PJ-YA-bJq">
-                                <rect key="frame" x="54" y="130" width="194" height="45"/>
-                                <color key="backgroundColor" red="0.66664306871450507" green="0.6208278286165213" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="9EK-J0-6d7"/>
-                                    <constraint firstAttribute="width" constant="194" id="BNC-WQ-ERG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zE7-ed-8uG">
                                 <rect key="frame" x="54" y="50" width="107" height="45"/>
                                 <color key="backgroundColor" red="0.54366119903230037" green="1" blue="0.52887053315295618" alpha="1" colorSpace="calibratedRGB"/>
@@ -417,12 +406,20 @@
                                     <action selector="delete_BM:" destination="HJV-mZ-5hT" eventType="touchUpInside" id="61K-9D-x5Q"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uPT-jj-pAm">
+                                <rect key="frame" x="50" y="123" width="196" height="30"/>
+                                <color key="backgroundColor" red="0.74471071579825887" green="0.76392672790624994" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="c9l-L2-d3c"/>
+                                    <constraint firstAttribute="width" constant="196" id="kbp-2B-d7C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="7PJ-YA-bJq" secondAttribute="bottom" constant="15" id="0sv-35-Bf3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zE7-ed-8uG" secondAttribute="trailing" constant="419" id="6Kr-3z-hnD"/>
-                            <constraint firstItem="7PJ-YA-bJq" firstAttribute="leading" secondItem="thy-Tt-7zg" secondAttribute="leadingMargin" constant="34" id="7Gl-sW-U6m"/>
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="zE7-ed-8uG" secondAttribute="bottom" constant="95" id="Os7-Oi-a7L"/>
                             <constraint firstItem="bOK-tN-XLq" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="190" id="SR0-tg-rqH"/>
                             <constraint firstItem="zE7-ed-8uG" firstAttribute="top" secondItem="thy-Tt-7zg" secondAttribute="topMargin" constant="50" id="cvw-e7-BoI"/>
@@ -436,8 +433,8 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="lbl_BM_Time" destination="7PJ-YA-bJq" id="pDY-HO-8mW"/>
                         <outlet property="lbl_ClipTitle" destination="zE7-ed-8uG" id="rve-fy-duT"/>
+                        <outlet property="tf_BM_Time" destination="uPT-jj-pAm" id="QQ3-1i-Mj9"/>
                         <outlet property="tf_Memo" destination="wTf-p9-RLk" id="BTY-oI-5ev"/>
                     </connections>
                 </viewController>
