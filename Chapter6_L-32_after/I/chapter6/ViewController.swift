@@ -11,6 +11,9 @@ import UIKit
 import RealmSwift
 import MessageUI
 
+
+import Photos
+
         //import UIKit
         //import CoreLocation
         //import MapKit
@@ -898,7 +901,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_7 = "(7) show backup files"
         let choice_8 = "(8) Delete backup files"
 
-        let choice_9 = "(9) Map"
+        let choice_9 = "(9) Show camera roll files"
+        
+//        let choice_9 = "(9) Map"
         
 //        let s_message = "(1) show realm files list (2) B (3) C"
 //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
@@ -1000,15 +1005,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }))
         
-//        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
-//            
-//            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
-//            
-//            // start function
-//            self._experiments__Choices__9()
-//            
-//        }))
+        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+            
+            // start function
+            self._experiments__Choices__9()
+            
+        }))
         
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
@@ -1161,8 +1166,108 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func _experiments__Choices__9() {
 
-        // segue
-        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
+        // list
+        let assets = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+        
+        var results = Array<AnyObject>()
+        
+        assets.enumerateObjectsUsingBlock { (obj, idx, bool) -> Void in
+            
+            results.append(obj)
+            
+        }
+        
+        //debug
+        if results.count > 0 {
+
+            if results.count < 3 {
+                
+    //            let ast = results[0] as! PHAsset
+                let ast = results.last as! PHAsset
+                
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.last => \(ast.description)")
+                
+                print("results.count => \(results.count)")
+                    //results.count => 229
+                
+              
+                print("results.last.mediaSubtypes => \(ast.mediaSubtypes)")
+                    //            PHAssetMediaSubtype(rawValue: 0)
+                
+                print("ast.location?.description => \(ast.location?.description)")
+                    //            Optional("<+35.33013833,+139.35009667> +/- 0.00m (speed 0.00 mps / course 159.75) @ 2001/01/01 9時00分00秒 日本標準時")
+
+                print("ast.pixelHeight => \(ast.pixelHeight)")
+                
+            } else  {
+            
+                for var i = 0; i < 3; i++ {
+
+                    let ast = results[i] as! PHAsset
+                    
+                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] results[\(i)] => \(ast.description)")
+                        //                    results[2] => <PHAsset: 0x1511b2bc0> CB40E44D-F630-4CD3-8256-4B603888EF75/L0/001 mediaType=1/0, sourceType=1, (4032x3024), creationDate=2016-02-16 08:57:48 +0000, location=1, hidden=0, favorite=0
+                    
+                    print("results.count => \(results.count)")
+                        //results.count => 229
+                    
+                    
+                    print("results.last.mediaSubtypes => \(ast.mediaSubtypes)")
+                        //            PHAssetMediaSubtype(rawValue: 0)
+                    
+                    print("ast.location?.description => \(ast.location?.description)")
+                        //            Optional("<+35.33013833,+139.35009667> +/- 0.00m (speed 0.00 mps / course 159.75) @ 2001/01/01 9時00分00秒 日本標準時")
+                    
+                    print("ast.pixelHeight => \(ast.pixelHeight) / ast.pixelWidth => \(ast.pixelWidth)")
+                    //                    ast.pixelHeight => 3024 / ast.pixelWidth => 4032
+                    
+                    //ref
+                    var retimage = UIImage()
+
+                    let manager = PHImageManager.defaultManager()
+                    
+//                    manager.requestImageForAsset(ast, targetSize: CGSize(width: ast.pixelWidth, height: ast.pixelHeight), contentMode: .AspectFit, options: nil, resultHandler: {
+//                    manager.requestImageForAsset(ast, targetSize: CGSize(width: ast.pixelWidth, height: ast.pixelHeight), contentMode: .AspectFill, options: nil, resultHandler: {
+//                    manager.requestImageForAsset(ast as PHAsset, targetSize: CGSize(width: ast.pixelWidth, height: ast.pixelHeight), contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: {
+                    
+//                    let w = 200
+//                    let h = 200
+                    let w = 200 as CGFloat
+                    let h = 200 as CGFloat
+                    
+                    manager.requestImageForAsset(ast as PHAsset, targetSize: CGSize(width: w, height: h), contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: {
+                    
+                        (result, info)->Void in
+                        
+                        retimage = result!
+//                        println("This happens after")
+//                        println(retimage)
+//                        callReturnImage(retimage) // <- create this method
+                        
+                    })
+                    
+                    print("image => \(retimage.description)")
+
+                    // save image
+                    UIImageWriteToSavedPhotosAlbum(retimage, nil, nil, nil)
+//
+//                    print("image saved to => camera roll")
+                    
+                    print("")
+                    
+                }
+                
+            }
+            
+        } else {
+
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results => =< 0")
+
+        }
+
+        
+//        // segue
+//        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
         
     }
     
@@ -1471,7 +1576,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // ImagePicker を表示する
             let cameraPicker = UIImagePickerController()
+            
             cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
+//            cameraPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
             cameraPicker.delegate = self
             self.presentViewController(cameraPicker, animated: true, completion: nil)
             
