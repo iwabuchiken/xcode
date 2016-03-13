@@ -1,11 +1,10 @@
 xcode_Memo
-D-12
+D-11
 
-s-2#1
+s-2#1/steps.2
 ---
-1. InputView: new button
-    => add date label (serial format)
+1. get file name from camera roll
 
-        ==> done
+        ==> going
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S

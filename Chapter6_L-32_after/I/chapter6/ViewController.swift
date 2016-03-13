@@ -1608,49 +1608,56 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        //debug
 //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] getDocumentsDirectory()! => \(Methods.getDocumentsDirectory())")
 
-        let doc_root = Methods.getDocumentsDirectory()
-        
-        //ref https://www.hackingwithswift.com/example-code/media/how-to-save-a-uiimage-to-a-file-using-uiimagepngrepresentation
-        let data = UIImagePNGRepresentation(imageArray[0])
-        
-        let fpath = doc_root.stringByAppendingPathComponent("image_\(Methods.get_TimeLabel__Serial()).png")
-        
-        var result = data!.writeToFile(fpath, atomically: true)
-        
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] result => \(result)")
-        
+//        let doc_root = Methods.getDocumentsDirectory()
+//        
+//        //ref https://www.hackingwithswift.com/example-code/media/how-to-save-a-uiimage-to-a-file-using-uiimagepngrepresentation
+//        let data = UIImagePNGRepresentation(imageArray[0])
+//        
+//        let fpath = doc_root.stringByAppendingPathComponent("image_\(Methods.get_TimeLabel__Serial()).png")
+//        
+//        var result = data!.writeToFile(fpath, atomically: true)
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] result => \(result)")
+//        
         // save to camera roll
         //ref http://iostechsolutions.blogspot.jp/2014/11/swift-take-pictures-and-save-to-camera.html
         UIImageWriteToSavedPhotosAlbum(imageArray[0], nil, nil, nil)
 
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] UIImageWriteToSavedPhotosAlbum  => done: result => \(result)")
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] UIImageWriteToSavedPhotosAlbum  => done: result => \(result)")
 
-//        if true {
-//            
-//            
-//            
-//        }
+        /*
+            save diary
+        */
+        let realm = try! Realm()
         
-//        // 最後に取得した位置情報で CLLocationCoordinate2D を作成する
-//        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
-//        
-//        // 最後に取得した位置情報を中心に地図を表示させる
-//        mapView.setCenterCoordinate(center, animated: true)
-//        
-//        // ピン（MKPointAnnotation）を作成する
-//        let pin: MKPointAnnotation = MKPointAnnotation()
-//        
-//        // 最後に取得した位置情報を設定する
-//        pin.coordinate = center
-//        
-//        // title と subtitle は Callout(吹き出し) に表示される
-//        pin.title = "\(mapView.annotations.count)"
-//        pin.subtitle = "\(lastLocation!.latitude), \(lastLocation!.longitude)"
-//        
-//        // 地図にピンを立てる
-//        mapView.addAnnotation(pin)
+        try! realm.write {
+            
+            let diary_new = Diary()
+            
+            diary_new.id = Methods.lastId_Diary()
+
+//            let title = "@photo \(Methods.get_TimeLable())"
+            let title = "@photo \(Methods.get_TimeLabel__Serial())"
+            
+            diary_new.title = title
+            
+            diary_new.body = ""
+            
+            let time = NSDate()
+            
+            diary_new.created_at = time
+            diary_new.date = time
+            
+            //            self.realm.add(self.diary, update: false)
+            self.realm.add(diary_new, update: true)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] photo memo => created")
+
+        }
+
         
     }
     
