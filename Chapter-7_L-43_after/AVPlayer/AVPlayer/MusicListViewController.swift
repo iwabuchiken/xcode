@@ -237,7 +237,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let choice_5 = "(5) Show the number of PHs"
         let choice_6 = "(6) Refresh clips table"
         
-        let choice_7 = "(7) Refresh clips table"
+        let choice_7 = "(7) Backup BMs"
         
 //        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
         let s_message = "choises"
@@ -515,6 +515,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     /*
         @param
             fpath_full  => file path to the csv file to be created
+        @return
+            -1      => no BMs found in db
+            -2      => no filtered BMs
     */
     func _experiments__BuildCSV(fpath_full : String) -> Int {
 
@@ -530,7 +533,99 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
 	
-aaa
+        // validate --> any entry
+        if resOf_BMs.count < 1 {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs; returning")
+
+            return -1
+            
+        }
+        
+        /*
+            get value --> modified_at of the BM last saved in db
+        */
+        var last_modified_at = Proj.get_LastBackup_BM_ModifiedAt_String()
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_modified_at => \(last_modified_at)")
+
+        /*
+            build list --> filtered
+        */
+        var aryOf_BMs__filtered = Array<BM>()
+
+        // filter string
+        if last_modified_at == "-1" {
+            
+            last_modified_at = "0000/00/00 00:00:00"
+            
+        }
+
+        // size of the result array
+        let lenOf_ResOf_Diaries = resOf_BMs.count
+        
+        // counter
+        var i_count = 0
+        
+        // filter
+        for var i = 0; i < lenOf_ResOf_Diaries; i++ {
+            
+            let d = resOf_BMs[i]
+            
+            let modified_at = d.modified_at
+            
+            if modified_at > last_modified_at {
+                
+                aryOf_BMs__filtered.append(d)
+                
+                i_count += 1
+                
+            }
+            
+        }
+
+        // validate --> any filtered BMs
+        if aryOf_BMs__filtered.count < 1 {
+            
+            //debug0
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_BMs__filtered.count => less than 1 --> qutting the process")
+            
+            return -2
+            
+        }
+        
+        /*
+            get value --> latest modified_at in the filtered BM array
+        */
+        let latest_BM = aryOf_BMs__filtered.sort{$0.modified_at < $1.modified_at}.last
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] latest_BM?.description => \(latest_BM?.description)")
+        
+        let latest_BM_modified_at = latest_BM?.modified_at
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] latest_BM_modified_at! => \(latest_BM_modified_at!)")
+
+        /*
+            conv --> [BM] to [String]
+        */
+        let aryOf_CSV_Lines__BM = Proj.conv_BMs_2_CSV(aryOf_BMs__filtered)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_CSV_Lines__BM.count => \(aryOf_CSV_Lines__BM.count)")
+        
+        /*
+            write to file
+        */
+        // write to csv
+        Proj.writeTo_File__CSV_ForBackup__BMs(fpath_full, lines: aryOf_CSV_Lines__BM, latest_BM_modified_at : latest_BM_modified_at!)
+        
+        // report
+        Methods.show_DirList__RealmFiles()
+
         
         // return
         return 1

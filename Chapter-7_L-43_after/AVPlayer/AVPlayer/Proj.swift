@@ -869,6 +869,120 @@ class Proj {
         
     }
 
+    static func conv_BMs_2_CSV
+        //    (resOf_Diaries : [Results<Diary>]) -> [String] {
+        (aryOf_BMs : [BM]) -> [String] {
+            
+            // vars
+            var lines = Array<String>()
+            
+            // iterate
+            let numOf_items = aryOf_BMs.count
+            
+            //ref http://www.raywenderlich.com/117456/swift-tutorial-repeating-steps-with-loops
+            //        for item in resOf_Diaries {
+            for var i = 0; i < numOf_items; i++ {
+                
+                // item
+                let item = aryOf_BMs[i]
+                
+                // title
+                let title = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+                
+                // memo
+                let memo = "\"\(Methods.conv_String_2_EscapedString(item.memo))\""
+
+                // bm time
+                let bm_time = item.bm_time
+                
+                // audio id
+                let audio_id = item.audio_id
+                
+                //
+                let str_1 = "\(item.id),\(title),\(memo),\(audio_id),\(bm_time)"
+
+                // time labels
+                let str_2 = "\"\(item.created_at)\",\"\(item.modified_at)\""
+                
+                // whole string
+                let line = "\(str_1),\(str_2)"
+                
+                // append
+                lines.append(line)
+                
+            }
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_BMs => \(aryOf_BMs.count) / lines => \(lines.count)")
+            
+            
+            //        return Array<String>()
+            return lines
+            
+    }
+
+    static func writeTo_File__CSV_ForBackup__BMs
+        (fpath_full : String, lines : [String], latest_BM_modified_at : String) -> Void {
+
+            /*
+                meta infos
+            */
+            // content string
+            var content = ""
+            
+            // build: content
+            let numOf_items = lines.count
+            
+            // write => meta info
+            let date_label = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            //            let latest_diary = CONS.s_Latest_Diary_at
+            
+//            content += "created_at=\(date_label),num_of_diaries=\(numOf_items),latest_diary_at=\(CONS.s_Latest_Diary_at)"
+            content += "created_at=\(date_label),num_of_diaries=\(numOf_items),latest_diary_at=\(latest_BM_modified_at)"
+            
+            content += "\n"
+            
+            // write => header
+            content += "id,titile,memo,audio_id,bm_time,created_at,modified_at"
+//            let str_1 = "\(item.id),\(title),\(memo),\(audio_id),\(bm_time)"
+//            
+//            // time labels
+//            let str_2 = "\"\(item.created_at)\",\"\(item.modified_at)\""
+
+            
+            content += "\n"
+            
+            /*
+                write
+            */
+            //            for line in lines {
+            for var i = 0; i < numOf_items; i++ {
+                
+                // line
+                let line = lines[i]
+                
+                content += "\(line)\n"
+
+            }
+            
+            do {
+                
+                //            try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+                try "\(content)".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+                
+            } catch {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(fpath_full)")
+                
+                
+            }
+            
+    }
 
 
 }
