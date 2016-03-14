@@ -97,6 +97,10 @@ class CONS {
 //    static var s_Realm_FileName = "db_20160219_210510.realm"
     static var s_Realm_FileName = "db_20160220_002443.realm"
 
+    static var s_Realm_FileName__Admin = "db.admin.20160314_093539.realm"
+    
+    static var s_LatestBackup_BM_ModifiedAt = "s_LatestBackup_BM_ModifiedAt"
+    
 //    static var s_Realm_FileName__New = "db_20160219_164456.realm"
 //    static var s_Realm_FileName__New = "db_20160219_173550.realm"
     
@@ -174,6 +178,11 @@ class CONS {
         segue-related
     */
     static let segname_Segue_CurrentTime_2_PlayerView = "segue_CurrentTime_2_PlayerView"
-    
+ 
+    /* *************************************
+    others
+    ************************************* */
+    static var s_Latest_Diary_at = ""
+
     
 }

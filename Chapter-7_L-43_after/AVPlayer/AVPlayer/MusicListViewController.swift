@@ -237,8 +237,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let choice_5 = "(5) Show the number of PHs"
         let choice_6 = "(6) Refresh clips table"
         
+        let choice_7 = "(7) Refresh clips table"
         
-        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
+//        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
+        let s_message = "choises"
         
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -253,7 +255,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         }))
         
         
-        refreshAlert.addAction(UIAlertAction(title: "1", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
@@ -263,7 +265,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "2", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
@@ -273,7 +275,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "3", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_3, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
@@ -283,7 +285,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "4", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_4, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
@@ -293,7 +295,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
 
-        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_5, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
@@ -303,7 +305,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
 
-        refreshAlert.addAction(UIAlertAction(title: "6", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: choice_6, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
@@ -312,7 +314,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             self._experiments__Choices__6()
             
         }))
-        
+
+        refreshAlert.addAction(UIAlertAction(title: choice_7, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 7")
+            
+            // start function
+            self._experiments__Choices__7()
+            
+        }))
+
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -419,7 +431,113 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         
     }
-    
+
+    func _experiments__Choices__7() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__7")
+
+        //
+        self._backup_BMs_ViaEmail()
+        
+    }
+
+    func _backup_BMs_ViaEmail() {
+        
+        let title = "Send data via email"
+        let message = "BM data in csv format"
+        
+        let refreshAlert = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            
+            // start email
+            self.backup_BMs_ViaEmail__Ok()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+    }
+
+    func backup_BMs_ViaEmail__Ok() {
+        
+        // build csv
+        //ref http://www.learncoredata.com/how-to-save-files-to-disk/
+        let realmPath = Realm.Configuration.defaultConfiguration.path
+        
+        let dpath_realm = Methods.dirname(realmPath!)
+        
+//        let fname = "realm_data_Player.\(Methods.get_TimeLabel__Serial()).csv"
+        let fname = "realm_data.Player.\(Methods.get_TimeLabel__Serial()).csv"
+        
+        let fpath_full = "\(dpath_realm)/\(fname)"
+        //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+        
+        // build => CSV
+        //        _experiments__BuildCSV()
+        let tmp_i = _experiments__BuildCSV(fpath_full)
+        
+//        // validate
+//        if tmp_i == -1 {
+//            
+//            self.backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries()
+//            
+//            // return
+//            return;
+//            
+//        }
+//        
+//        //debug
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+//        
+//        
+//        // email: setup vars
+//        self.fpath_realm_csv = fpath_full
+//        self.fname_realm_csv = fname
+        
+//        // send email
+//        _experiments__SendEmails()
+        
+    }
+
+    /*
+        @param
+            fpath_full  => file path to the csv file to be created
+    */
+    func _experiments__BuildCSV(fpath_full : String) -> Int {
+
+        /*
+            build: all BMs in db    --> L1
+        */
+        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
+        //            let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
+        let resOf_BMs = try r.objects(BM).sorted("id", ascending: true)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+	
+aaa
+        
+        // return
+        return 1
+        
+        
+    }
+
     func _experiments__FileIO() {
         
         //ref http://www.learncoredata.com/how-to-save-files-to-disk/

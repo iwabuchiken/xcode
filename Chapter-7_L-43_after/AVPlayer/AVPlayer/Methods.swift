@@ -1203,5 +1203,120 @@ class Methods {
 //        return true
         
     }
+ 
+    
+    static func lastId_Data() -> Int {
+        
+        // get realm
+        //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        //        let realm = try! Realm()
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Data).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
+
+    static func conv_Diaries_2_CSV
+        //    (resOf_Diaries : [Results<Diary>]) -> [String] {
+        (resOf_Diaries : Results<BM>) -> [String] {
+            
+            
+            
+            //        let obj = resOf_Diaries[0]
+            
+            // vars
+            var lines = Array<String>()
+            
+            //        //debug
+            //        let limit = 10
+            //
+            //        var count = 0
+            
+            // iterate
+            let numOf_items = resOf_Diaries.count
+            
+            //ref http://www.raywenderlich.com/117456/swift-tutorial-repeating-steps-with-loops
+            //        for item in resOf_Diaries {
+            for var i = 0; i < numOf_items; i++ {
+                
+                // item
+                let item = resOf_Diaries[i]
+                
+                // title
+                let title = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+                
+                //            // ',' contained?
+                // ref http://stackoverflow.com/questions/24034043/how-do-i-check-if-a-string-contains-another-string-in-swift answered Jun 11 '14 at 11:34
+                //            if (title.rangeOfString(",") != nil) {
+                //
+                //                title = "\"\(title)\""
+                //
+                //            }
+                
+                // body
+                //            let body = "\"\(Methods.conv_String_2_EscapedString(item.title))\""
+                let memo = "\"\(Methods.conv_String_2_EscapedString(item.memo))\""
+                
+                let bm_time = item.bm_time
+                
+                let audio_id = item.audio_id
+                
+                //            let str_1 = "\(item.id),\(item.title),\(item.body)"
+                let str_1 = "\(item.id),\(title),\(memo),\(audio_id),\(bm_time)"
+                
+                //            let str_2 = "\"\(Methods.conv_NSDate_2_DateString(item.date))\",\"\(Methods.conv_NSDate_2_DateString(item.created_at))\""
+                let str_2 = "\"\(item.created_at)\",\"\(item.modified_at)\""
+                
+                let line = "\(str_1),\(str_2)"
+                
+                //            //debug
+                //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
+                
+                // append
+                lines.append(line)
+                
+                //            //debug
+                //            count += 1
+                //            
+                //            if count > limit {
+                //                
+                //                break
+                //                
+                //            }
+                
+            }
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(resOf_Diaries.count) / lines => \(lines.count)")
+            
+            
+            //        return Array<String>()
+            return lines
+            
+    }
+
+    static func conv_String_2_EscapedString(str : String) -> String {
+        
+        
+        let s_tmp = str.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        //ref http://stackoverflow.com/questions/25591241/swift-remove-character-from-string answered Aug 31 '14 at 10:55
+        //ref escape "'" http://stackoverflow.com/questions/30170908/swift-how-to-print-character-in-a-string answered May 11 '15 at 14:54
+        
+        return s_tmp.stringByReplacingOccurrencesOfString("\'", withString: "\\\'", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        
+    }
+
     
 }

@@ -837,5 +837,39 @@ class Proj {
 
         
     }
+
+    static func  get_LastBackup_BM_ModifiedAt_String() -> String  {
+        
+        // get realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        let query = "name == '\(CONS.s_LatestBackup_BM_ModifiedAt)'"
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        //        let resOf_Data_LatestDiaryAt = try self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
+        let resOf_Data_LatestDiaryAt = try! realm.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
+        
+        //debug0
+        if resOf_Data_LatestDiaryAt.count > 0 {
+            
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
+            
+            // return
+            return resOf_Data_LatestDiaryAt[0].s_1
+            
+        } else {
+            
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => =< 0")
+            
+            // return
+            return "-1"
+            
+        }
+        
+    }
+
+
+
 }
 
