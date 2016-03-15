@@ -12,6 +12,15 @@ import MessageUI
 
 class MusicListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate  {
   
+    /*
+        vars
+    */
+    var message_email = ""
+    
+    var fpath_realm_csv = ""
+    var fname_realm_csv = ""
+
+    
     @IBAction func filter(sender: UIBarButtonItem) {
         
         //        let s_title = "Choices"
@@ -489,26 +498,44 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        _experiments__BuildCSV()
         let tmp_i = _experiments__BuildCSV(fpath_full)
         
-//        // validate
-//        if tmp_i == -1 {
-//            
-//            self.backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries()
-//            
-//            // return
-//            return;
-//            
-//        }
-//        
-//        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
-//        
-//        
-//        // email: setup vars
-//        self.fpath_realm_csv = fpath_full
-//        self.fname_realm_csv = fname
+        // validate
+        if tmp_i < 1 {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__BuildCSV => \(tmp_i); returning...")
+            
+            var title = ""
+            var message = ""
+            
+            if tmp_i == -1 {
+
+                title = "Notice"
+                message = "no BMs found in db"
+
+            } else if tmp_i == -2 {
+
+                title = "Notice"
+                message = "No new BMs"
+
+            }
+
+            // show message
+            Methods.show_Dialog_OK(self, title: title, message: message)
+
+            // return
+            return;
+            
+        }
         
-//        // send email
-//        _experiments__SendEmails()
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
+        
+        // email: setup vars
+        self.fpath_realm_csv = fpath_full
+        self.fname_realm_csv = fname
+        
+        // send email
+        _experiments__SendEmails()
         
     }
 
@@ -528,7 +555,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
         //            let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
-        let resOf_BMs = try r.objects(BM).sorted("id", ascending: true)
+//        let resOf_BMs = try r.objects(BM).sorted("id", ascending: true)
+        let resOf_BMs = try r.objects(BM).sorted("modified_at", ascending: false)
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
@@ -626,6 +654,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // report
         Methods.show_DirList__RealmFiles()
 
+        /*
+            set value --> 
+        */
+        CONS.s_Latest_BM_at = latest_BM_modified_at!
         
         // return
         return 1
@@ -689,12 +721,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
-        mailComposerVC.setToRecipients(["someone@somewhere.com"])
+//        mailComposerVC.setToRecipients(["someone@somewhere.com"])
+        mailComposerVC.setToRecipients(["iwabuchi.k.2010@gmail.com"])
 //        mailComposerVC.setSubject("Sending you an in-app e-mail...")
 
         mailComposerVC.setSubject("myself] xcode_Player \(Methods.get_TimeLable())")
         
-        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+//        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        mailComposerVC.setMessageBody(self.message_email, isHTML: false)
         
         // attach file
 //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
@@ -703,7 +737,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let dpath_realm = Methods.dirname(realmPath!)
         
 //        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
-        let fpath_realm = "\(dpath_realm)/realm_data_20160220_155221.csv"
+//        let fpath_realm = "\(dpath_realm)/realm_data_20160220_155221.csv"
+        let fpath_realm = self.fpath_realm_csv
 
 //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
 //        if let filePath = NSBundle.mainBundle().pathForResource(fpath_realm, ofType: "realm") {
@@ -733,7 +768,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
             // attach data
             //ref http://kellyegan.net/sending-files-using-swift/
-            mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: "swifts")
+//            mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: "swifts")
+            mailComposerVC.addAttachmentData(fileData, mimeType: "application/octet-stream", fileName: self.fname_realm_csv)
 
         } else {
             
@@ -754,10 +790,209 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+//    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] mailComposeController => called")
+        
+        //ref http://stackoverflow.com/questions/24311073/mfmailcomposeviewcontroller-in-swift answered Aug 26 '15 at 17:04
+        switch result.rawValue {
+            
+        case MFMailComposeResultSent.rawValue:
+            
+            print("Mail sent")
+            
+            // after sending mail => save latest backup time
+            self._mailComposeController__MailSent()
+            
+            break
+            
+        case MFMailComposeResultCancelled.rawValue:
+            
+            print("Mail cancelled")
+            
+        case MFMailComposeResultSaved.rawValue:
+            
+            print("Mail saved")
+            
+            // confirm
+            let s_title = "Reminder"
+            
+            let choice_1 = "last_backup_at => will not be recorded"
+            //        let choice_2 = "(2) Delete csv files\n"
+            //        let choice_3 = "(3) Send email"
+            
+            //        let s_message = "(1) show realm files list (2) B (3) C"
+            //        let s_message = "\(choice_1) \(choice_2) \(choice_3)"
+            let s_message = "\(choice_1)"
+            
+            let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let lbl_Choice_1 = "OK"
+            //            let lbl_Choice_2 = "Cancel"
+            
+            refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                
+                //                // start function
+                //                self._experiments__Choices__2__OK()
+                
+                // dismiss view
+//                self.mailComposeController__DismissView()
+                controller.dismissViewControllerAnimated(true, completion: nil)
+                
+                
+            }))
+            
+            // show view
+            //            presentViewController(refreshAlert, animated: true, completion: nil)
+            controller.presentViewController(refreshAlert, animated: true, completion: nil)
+            
+            return
+            //            break
+            
+        case MFMailComposeResultFailed.rawValue:
+            
+            print("Mail sent failure: \(error!.localizedDescription)")
+            
+        default:
+            break
+        }
+
+        
         controller.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
+    func _mailComposeController__MailSent() {
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
+        
+        
+        
+        /*
+        update value
+        */
+        
+        self._updateData_Data__Latest_Diary_at(CONS.s_Latest_BM_at)
+        
+    }
+
+    func _updateData_Data__Latest_Diary_at(value : String) {
+        
+        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        //        data.name = CONS.s_AdminKey__Latest_Diary_at
+//        data.name = CONS.s_LatestBackup_Diary_ModifiedAt
+        let new_id = Methods.lastId_Data()
+        
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new_id => \(new_id)")
+        
+        //        data.id = 2
+        //        data.id = 4
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        
+        try! r.write {
+            
+            // Data
+            let data = Data()
+            
+            let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            data.created_at = time_label
+            data.modified_at = time_label
+            
+            data.name = CONS.s_LatestBackup_BM_ModifiedAt
+            
+            data.s_1 = value
+            
+            data.id = Methods.lastId_Data()
+            
+            r.add(data, update: false)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+            
+        }
+        
+        
+        //
+        //                // already in db?
+        //                var query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
+        //
+        //                //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+        //                var aPredicate = NSPredicate(format: query)
+        //
+        //                let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
+        //
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => \(res.count)")
+        //
+        //
+        //                if res.count < 1 {
+        //
+        //                    let data = Data()
+        //
+        //                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+        //
+        //                    data.created_at = time_label
+        //                    data.modified_at = time_label
+        //
+        //                    data.name = CONS.s_AdminKey__Latest_Diary_at
+        //
+        //                    data.s_1 = value
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //
+        //
+        //                    try! realm_admin.write {
+        //
+        //                        self.realm_admin.add(data, update: false)
+        //
+        //                        //debug
+        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+        //
+        //                    }
+        //
+        //                } else {
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => more than 1")
+        //
+        //                    let data = res[0]
+        //
+        //                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+        //
+        //                    data.modified_at = time_label
+        //
+        //                    data.s_1 = value
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //
+        //                    try! realm_admin.write {
+        //                        
+        //                        self.realm_admin.add(data, update: true)
+        //                        
+        //                        //debug
+        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
+        //                        
+        //                    }
+        //                    
+        //                    
+        //                }
+    }
+
     func _experiments__SaveClips() {
         
         var count = 0

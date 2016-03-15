@@ -182,7 +182,8 @@ class CONS {
     /* *************************************
     others
     ************************************* */
-    static var s_Latest_Diary_at = ""
+//    static var s_Latest_Diary_at = ""
+    static var s_Latest_BM_at = ""      // to be saved in the defaults
 
     
 }
