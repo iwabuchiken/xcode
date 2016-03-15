@@ -878,8 +878,119 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         update value
         */
         
-//        self.updateData_Data__Latest_Diary_at(CONS.s_Latest_Diary_at)
+        self._updateData_Data__Latest_Diary_at(CONS.s_Latest_BM_at)
         
+    }
+
+    func _updateData_Data__Latest_Diary_at(value : String) {
+        
+        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        //        data.name = CONS.s_AdminKey__Latest_Diary_at
+//        data.name = CONS.s_LatestBackup_Diary_ModifiedAt
+        let new_id = Methods.lastId_Data()
+        
+        
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new_id => \(new_id)")
+        
+        //        data.id = 2
+        //        data.id = 4
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        
+        try! r.write {
+            
+            // Data
+            let data = Data()
+            
+            let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+            
+            data.created_at = time_label
+            data.modified_at = time_label
+            
+            data.name = CONS.s_LatestBackup_BM_ModifiedAt
+            
+            data.s_1 = value
+            
+            data.id = Methods.lastId_Data()
+            
+            r.add(data, update: false)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+            
+        }
+        
+        
+        //
+        //                // already in db?
+        //                var query = "name == '\(CONS.s_AdminKey__Latest_Diary_at)'"
+        //
+        //                //        var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
+        //                var aPredicate = NSPredicate(format: query)
+        //
+        //                let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
+        //
+        //        //debug
+        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => \(res.count)")
+        //
+        //
+        //                if res.count < 1 {
+        //
+        //                    let data = Data()
+        //
+        //                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+        //
+        //                    data.created_at = time_label
+        //                    data.modified_at = time_label
+        //
+        //                    data.name = CONS.s_AdminKey__Latest_Diary_at
+        //
+        //                    data.s_1 = value
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //
+        //
+        //                    try! realm_admin.write {
+        //
+        //                        self.realm_admin.add(data, update: false)
+        //
+        //                        //debug
+        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+        //
+        //                    }
+        //
+        //                } else {
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => more than 1")
+        //
+        //                    let data = res[0]
+        //
+        //                    let time_label = Methods.conv_NSDate_2_DateString(NSDate())
+        //
+        //                    data.modified_at = time_label
+        //
+        //                    data.s_1 = value
+        //
+        //                    //debug
+        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //
+        //                    try! realm_admin.write {
+        //                        
+        //                        self.realm_admin.add(data, update: true)
+        //                        
+        //                        //debug
+        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
+        //                        
+        //                    }
+        //                    
+        //                    
+        //                }
     }
 
     func _experiments__SaveClips() {
