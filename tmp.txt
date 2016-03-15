@@ -1,11 +1,12 @@
-xcode_Memo
-D-11
+xcode_Player
+D-9
 
-s-2#1/steps.2
+s-1#1
 ---
-1. get file name from camera roll
+1. edit BM => edit current time, too
 
-        ==> going
+        ==> done
+
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
 
