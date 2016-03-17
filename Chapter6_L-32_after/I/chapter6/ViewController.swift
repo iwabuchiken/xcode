@@ -84,40 +84,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // get defaults
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
         
-        //        let defaults = NSUserDefaults.standardUserDefaults()
-        //
-        ////        defaults.setValue(tmp_s, forKey: CONS.key_SearchWords)
-        ////        let tmp_s : String? = (defaults.stringForKey(CONS.key_SearchWords))   //=> 'Optional(...)'
-        //        let tmp_s : String = defaults.stringForKey(CONS.key_SearchWords)!   //=> '那覇'
-        
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
         
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
-        
-        //ref http://swift-salaryman.com/debug.php
-        //        print(self)
-        
-        //ref https://developer.apple.com/swift/blog/?id=15
-        //        print("\(self) =>  \(__FILE__):\(__LINE__)")
-        
-        //        // show dir list
-        //        show_DirList()
-        
-        //        //test
-        //        out_Message("abc/def")  // Methods.swift
-        
-        //        //test
-        //        Diary.show_ClassName()
-        
-        //test
-        //        Methods.out_Message("abc/def/ghi")
-        
-        //        Methods().out_Message("abc/def/ghi")
-        //        Methods.basename("abc/def/ghi")
-        
         
     }
     
