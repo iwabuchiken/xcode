@@ -1266,9 +1266,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         
-//        // segue
-//        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
-        
+        // segue
+        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
+
     }
     
 
@@ -1448,7 +1448,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
 
             // start map
-            self._experiments__Choices__9()
+//            self._experiments__Choices__9()
+            self._start_Map()
             
         }))
         
@@ -1464,6 +1465,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+    func _start_Map() {
+    
+        // segue
+        self.performSegueWithIdentifier("segue_VC_2_Map", sender: nil)
+
+        
+    }
+    
     func backupDiaries_ViaEmail__Delegate() {
         
         let title = "Send data via email"

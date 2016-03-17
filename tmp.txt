@@ -1,12 +1,12 @@
 xcode_Player
-D-9
+D-10
 
-s-1#1
+s-1#1/steps.~8
 ---
-1. edit BM => edit current time, too
+1. updateData_Data__Latest_Diary_at(CONS.s_Latest_Diary_at)
+    --> TEST
 
         ==> done
-
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
 
