@@ -874,11 +874,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: UITableViewDataSource プロトコルのメソッド
     // Delete ボタンが押された時の処理を行う
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == UITableViewCellEditingStyle.Delete {
 
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteing cell...")
+
             try! realm.write {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm process => started")
+
                 self.realm.delete(self.dataArray[indexPath.row])
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.delete => done")
+
+                // update -> numOf_Cells
+                self.numOf_Cells -= 1
+                
+                // validate
+                if self.numOf_Cells < 0 {
+                    
+                    self.numOf_Cells = 0
+                    
+                }
+
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] row => deleted")
+
+//                // update -> numOf_Cells
+//                self.numOf_Cells -= 1
+//                
+//                // validate
+//                if self.numOf_Cells < 0 {
+//                    
+//                   self.numOf_Cells = 0
+//                    
+//                }
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm process => ended")
+
             }
             
         }
