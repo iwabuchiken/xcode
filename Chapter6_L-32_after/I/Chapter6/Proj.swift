@@ -366,4 +366,32 @@ class Proj {
 
         
     }
+
+    static func get_Limit_on_NumOf_Diaries() -> Int {
+        
+        // get value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+
+        // validate
+        if lim?.intValue < 1 || lim?.intValue > 10000 {
+            
+            lim = 10000
+            
+        }
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> \(lim?.intValue)")
+        
+        return Int((lim?.intValue)!)
+//        return lim?.intValue
+//        return 10000
+//        return CONS.VC.limitOn_NumOf_Cells
+        
+    }
+
+
+
 }

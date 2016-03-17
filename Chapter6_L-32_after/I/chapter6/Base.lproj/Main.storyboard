@@ -152,6 +152,42 @@
                                     <action selector="sw_Action_Search_MemoColumn:" destination="u7k-56-RoO" eventType="valueChanged" id="VxV-9V-yPP"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dan-KY-3De">
+                                <rect key="frame" x="211" y="313" width="53" height="36"/>
+                                <color key="backgroundColor" red="0.47794742450419481" green="0.51240150356240011" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="CA4-y4-asy"/>
+                                    <constraint firstAttribute="height" constant="36" id="ca5-23-Uu4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="set">
+                                    <color key="titleColor" red="0.9975881540139766" green="1" blue="0.97040538758369499" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="action_Set_LimitOn_NumOfCells:" destination="u7k-56-RoO" eventType="touchUpInside" id="Ky5-gw-udB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="num of cells" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhH-j5-vEQ">
+                                <rect key="frame" x="29" y="273" width="165" height="38"/>
+                                <color key="backgroundColor" red="0.75961223821989532" green="0.7542572964315466" blue="0.75799329115069525" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="PkF-1I-XvD"/>
+                                    <constraint firstAttribute="width" constant="165" id="PoR-aV-pHa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-Eq-Q7x">
+                                <rect key="frame" x="29" y="313" width="141" height="30"/>
+                                <color key="backgroundColor" red="0.98162839262522972" green="1" blue="0.61548785075331947" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FYa-4j-4bh"/>
+                                    <constraint firstAttribute="width" constant="141" id="hJY-zl-4PR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -167,6 +203,7 @@
                         <outlet property="sw_GoBack_WhenSaved" destination="yUJ-Tm-KK6" id="QEZ-Cc-Sav"/>
                         <outlet property="sw_Search_MemoColumn" destination="vXe-TI-5k9" id="yPN-q1-M6g"/>
                         <outlet property="sw_Vibrate_WhenSaved" destination="D2K-xR-pZd" id="1lQ-gg-f6s"/>
+                        <outlet property="tf_LimitOn_NumOf_Cells" destination="D5B-Eq-Q7x" id="yUS-OE-nUY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYb-eB-33s" userLabel="First Responder" sceneMemberID="firstResponder"/>

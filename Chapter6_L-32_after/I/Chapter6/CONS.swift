@@ -190,12 +190,23 @@ class CONS {
         static let key_GoBack_WhenSaved = "key_GoBack_WhenSaved"
 
         static let key_Vibrate_WhenSaved = "key_Vibrate_WhenSaved"
-        
+
+        static let key_Deault_LimitOn_NumOfCells = "key_Deault_LimitOn_NumOfCells"
+
     }
     
     enum General {
         
         static let limitLen_CellText : Int = 25
+        
+    }
+    
+    /*
+        ViewController-related
+    */
+    enum VC {
+        
+        static var limitOn_NumOf_Cells = 10
         
     }
     

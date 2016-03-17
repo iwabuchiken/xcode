@@ -46,6 +46,11 @@ class Diary: Object {
         return "id"
     }
     
+    // initializer
+//    required init() {}
+
+//    public required init() {}
+    
     static func show_ClassName() ->Void {
         
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] Diary class")

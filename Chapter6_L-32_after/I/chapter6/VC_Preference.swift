@@ -8,14 +8,53 @@
 
 import UIKit
 import RealmSwift
+import AudioToolbox
 
 class VC_Preference: UIViewController {
 
+    @IBOutlet weak var tf_LimitOn_NumOf_Cells: UITextField!
     @IBOutlet weak var sw_Vibrate_WhenSaved: UISwitch!
     @IBOutlet weak var sw_GoBack_WhenSaved: UISwitch!
     @IBOutlet weak var sw_Search_MemoColumn: UISwitch!
 
 // MARK: actions
+
+    @IBAction func action_Set_LimitOn_NumOfCells(sender: UIButton) {
+
+        // get value
+        var lim = Int(self.tf_LimitOn_NumOf_Cells.text!)
+        
+        // validate
+        if lim > 10000 {
+            
+            lim = 10000
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> modified to 10000")
+
+        }
+        
+        // set value --> defaults
+        // set default
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //            defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
+        defaults.setValue(lim!, forKey: CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Deault_LimitOn_NumOfCells => set to --> \(lim)")
+
+        // close keyboard
+        
+        self.view.endEditing(true)
+    
+        //
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        
+        // update
+        self.tf_LimitOn_NumOf_Cells.text = "\(lim!)"
+        
+    }
 
     @IBAction func sw_action_Vibrate_WhenSaved(sender: UISwitch) {
         
@@ -142,9 +181,25 @@ class VC_Preference: UIViewController {
         // switches
         self._setup_Switches()
         
+        // text fields
+        self._setup_TextFields()
         
     }
 
+    func _setup_TextFields() {
+    
+        // value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+//        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        var lim = defaults.integerForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        
+        // set
+        self.tf_LimitOn_NumOf_Cells.text = "\(lim)"
+        
+    }
+    
     func _setup_Switches() {
         
         // Search memo column

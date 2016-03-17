@@ -31,6 +31,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var imageArray: Array<UIImage> = Array<UIImage>()
     
+    // number of cells
+    var numOf_Cells = 0
+    
     @IBOutlet weak var tableView: UITableView!
 
     //test: colors
@@ -108,6 +111,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // objects with conditions
             _test_Realm_Conditions__MultipleKeywords(tmp_s)
+        
+        // number of cells
+        let limit = Proj.get_Limit_on_NumOf_Diaries()
+        
+        if limit < self.dataArray.count {
+        
+            self.numOf_Cells = limit
+            
+        } else {
+            
+            self.numOf_Cells = self.dataArray.count
+            
+        }
+        
         
         // reload data
         tableView.reloadData()
@@ -187,7 +204,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 query = "title CONTAINS '\(tmp_s)'"
                 
             }
-            
             
 //            var aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
             var aPredicate = NSPredicate(format: query)
@@ -321,6 +337,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
             
         }
+        
+//        /*
+//        limit   --> number of diaries
+//        */
+//        let limit = Proj.get_Limit_on_NumOf_Diaries()
+//
+//        if limit == -1 {
+//            
+//            // no op
+//            
+//        } else {
+//            
+//            // if the result array  is larger than limit
+//            //      --> modify the length
+//            let lenOf_DataArray = self.dataArray.count
+//            
+//            if limit < lenOf_DataArray {
+//
+////                let tmpAry = Results<Diary>()
+////                let tmpAry = Results<Diary>()
+////                
+////                for i in 0..<limit {
+////                    
+////                    tmpAry.append(self.dataArray[i])
+////                    
+////                }
+////                
+////                // reset array
+////                self.dataArray = tmpAry
+//                
+//            }
+//            
+//        }
+
+//        /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/chapter6/ViewController.swift:342:30: 'Results<Diary>' cannot be constructed because it has no accessible initializers
+        
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
@@ -479,7 +531,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: UITableViewDataSource プロトコルのメソッド
     // TableView の各セクションのセルの数を返す
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        
+//        return dataArray.count
+        return self.numOf_Cells
+        
     }
     
     // 各セルの内容を返す
