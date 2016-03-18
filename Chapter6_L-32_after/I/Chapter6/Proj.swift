@@ -321,8 +321,8 @@ class Proj {
     */
     static func save_Loc(center : CLLocationCoordinate2D) -> Int {
         
-        let longi : CLLocationDegrees = center.longitude
-        let lat : CLLocationDegrees = center.latitude
+//        let longi : CLLocationDegrees = center.longitude
+//        let lat : CLLocationDegrees = center.latitude
         
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
         

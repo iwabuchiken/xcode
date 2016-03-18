@@ -143,12 +143,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let numOf_NewDiaries = Proj.get_NumOf__NewDiaries()
             
+            let numOf_NewDiaries__Default = Methods.getDefaults_Integer(CONS.defaultKeys.key_Default__NumOf_NewDiaries)
+            
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries)")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries) / numOf_NewDiaries__Default => \(numOf_NewDiaries__Default)")
 
             // remind
-            if numOf_NewDiaries >= 10 {
-                
+//            if numOf_NewDiaries >= 10 {
+            if numOf_NewDiaries >= numOf_NewDiaries__Default {
+            
                 let upload = self.show_Dialog__Remind_NewDiaries(numOf_NewDiaries)
                 
             } else {

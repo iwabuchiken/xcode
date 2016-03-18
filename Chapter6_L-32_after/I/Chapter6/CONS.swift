@@ -177,6 +177,8 @@ class CONS {
         
         static var b_Remind_NewDiaries = false
         
+        static let numOf_NewDiaries__Limit_Upper = 100
+        
     }
     
     /*
@@ -197,6 +199,8 @@ class CONS {
 
         static let key_Default__Remind_NewDiaries = "key_Default__Remind_NewDiaries"
 
+        static let key_Default__NumOf_NewDiaries = "key_Default__NumOf_NewDiaries"
+        
     }
     
     enum General {

@@ -434,6 +434,20 @@ class Methods {
         
     }
     
+    static func getDefaults_Integer(dflt_key : String) -> Int {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        //        let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+//        let dfltVal_DebugMode = defaults.valueForKey(dflt_key)
+        let dfltVal_DebugMode = defaults.integerForKey(dflt_key)
+        
+//        return (dfltVal_DebugMode?.boolValue)!
+        return dfltVal_DebugMode
+        
+    }
+    
 
     
     // iPhone 内から曲情報を取得する

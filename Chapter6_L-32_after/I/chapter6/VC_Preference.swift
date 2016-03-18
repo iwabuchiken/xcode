@@ -11,6 +11,11 @@ import RealmSwift
 import AudioToolbox
 
 class VC_Preference: UIViewController {
+    
+    
+    
+    
+    @IBOutlet weak var tf_NumOf_NewDiaries: UITextField!
 
     @IBOutlet weak var sw_Remind_NewDiaries: UISwitch!
     @IBOutlet weak var tf_LimitOn_NumOf_Cells: UITextField!
@@ -19,6 +24,49 @@ class VC_Preference: UIViewController {
     @IBOutlet weak var sw_Search_MemoColumn: UISwitch!
 
 // MARK: actions
+    @IBAction func bt_action_Close_Keyboard(sender: UIButton) {
+
+        //ref https://akira-watson.com/iphone/textfield.html "ボタン等でendEditing()"
+        self.view.endEditing(true)
+    
+    }
+
+    @IBAction func bt_Set_NumOf_NewDiaries(sender: UIButton) {
+
+        // get value
+        var lim = Int(self.tf_NumOf_NewDiaries.text!)
+        
+        // validate
+        if lim > CONS.Prefs.numOf_NewDiaries__Limit_Upper {
+            
+            lim = CONS.Prefs.numOf_NewDiaries__Limit_Upper
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> modified to \(CONS.Prefs.numOf_NewDiaries__Limit_Upper)")
+            
+        }
+        
+        // set value --> defaults
+        // set default
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //            defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
+        defaults.setValue(lim!, forKey: CONS.defaultKeys.key_Default__NumOf_NewDiaries)
+        
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default__NumOf_NewDiaries => set to --> \(lim)")
+        
+        // close keyboard
+        
+        self.view.endEditing(true)
+        
+        //
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        
+        // update
+        self.tf_NumOf_NewDiaries.text = "\(lim!)"
+
+    }
 
     @IBAction func sw_action_Remind_NewDiaries(sender: UISwitch) {
         
@@ -225,16 +273,50 @@ class VC_Preference: UIViewController {
 
     func _setup_TextFields() {
     
+        //
+        self._setup_TextFields__LimitOn_NumOf_Cells()
+        
+        //
+        self._setup_TextFields__NumOf_NewDiaries()
+        
+//        // value
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        
+//        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+////        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+//        let lim = defaults.integerForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+//        
+//        // set
+//        self.tf_LimitOn_NumOf_Cells.text = "\(lim)"
+        
+    }
+    
+    func _setup_TextFields__NumOf_NewDiaries() {
+        
         // value
         let defaults = NSUserDefaults.standardUserDefaults()
         
         //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
-//        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
-        var lim = defaults.integerForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        //        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        let lim = defaults.integerForKey(CONS.defaultKeys.key_Default__NumOf_NewDiaries)
+        
+        // set
+        self.tf_NumOf_NewDiaries.text = "\(lim)"
+        
+    }
+    
+    func _setup_TextFields__LimitOn_NumOf_Cells() {
+
+        // value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        //        var lim = defaults.valueForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
+        let lim = defaults.integerForKey(CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
         
         // set
         self.tf_LimitOn_NumOf_Cells.text = "\(lim)"
-        
+
     }
     
     func _setup_Switches() {
