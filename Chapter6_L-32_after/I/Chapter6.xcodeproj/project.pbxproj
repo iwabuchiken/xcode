@@ -118,13 +118,13 @@
 				3E16ACD51BC009DF004AE056 /* AppDelegate.swift */,
 				3E16ACD71BC009DF004AE056 /* ViewController.swift */,
 				04B96D021C8E59170057D174 /* VC_Map.swift */,
-				3E16ACD91BC009DF004AE056 /* Main.storyboard */,
-				3E634A6F1BC2FAB800D13685 /* InputViewController.swift */,
-				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
-				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
-				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
 				04D640411C851E4600A091B7 /* VC_Preference.swift */,
 				0400EB611C88067B009686AB /* VC_Hist.swift */,
+				04BEC9531C65D6D7005A99DF /* SandboxViewController.swift */,
+				3E634A6F1BC2FAB800D13685 /* InputViewController.swift */,
+				3E16ACD91BC009DF004AE056 /* Main.storyboard */,
+				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
+				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";

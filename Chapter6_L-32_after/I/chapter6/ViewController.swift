@@ -129,6 +129,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // reload data
         tableView.reloadData()
         
+        // reind new diaries
+        self._viewWillAppear__Remind_NewDiaries()
+        
+    }
+    
+    func _viewWillAppear__Remind_NewDiaries() {
+        
+        // default value
+        let pref = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Default__Remind_NewDiaries)
+        
+        if pref == true {
+            
+            let numOf_NewDiaries = Proj.get_NumOf__NewDiaries()
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries)")
+
+            // remind
+            if numOf_NewDiaries >= 10 {
+                
+                let upload = self.show_Dialog__Remind_NewDiaries(numOf_NewDiaries)
+                
+            } else {
+
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries); not reminding...")
+
+            }
+            
+            
+        }
+        
     }
     
 // MARK: realm-related
@@ -2375,5 +2407,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         return UIInterfaceOrientation.Portrait
     }
+
+
+    func show_Dialog__Remind_NewDiaries(num : Int) {
+            
+            //        let s_title = "Choices"
+            let s_title = "New diaries exisits"
+            
+            let s_message = "\(num) new ones. Upload?"
+            
+            let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let choice_0 = "OK"
+            
+            let choice_1 = "No"
+            
+            refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+                
+                // execute  => close dialog
+                self.backupDiaries_ViaEmail__Ok()
+                
+            }))
+            
+            
+            refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                
+            }))
+            
+            // show view
+            self.presentViewController(refreshAlert, animated: true, completion: nil)
+            
+    }
+
+
 }
 

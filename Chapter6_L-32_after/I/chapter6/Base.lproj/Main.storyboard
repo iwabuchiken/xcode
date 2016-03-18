@@ -99,12 +99,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Go back when saved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-5S-oYN">
-                                <rect key="frame" x="29" y="135" width="192" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Go back when saved" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-5S-oYN">
+                                <rect key="frame" x="29" y="135" width="192" height="47"/>
                                 <color key="backgroundColor" red="1" green="0.94253053259168684" blue="0.26471465436432318" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="192" id="4MA-fj-EHI"/>
-                                    <constraint firstAttribute="height" constant="30" id="E03-N3-pND"/>
+                                    <constraint firstAttribute="height" constant="47" id="E03-N3-pND"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="192" id="VJg-EO-4bw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -175,7 +175,7 @@
                                     <constraint firstAttribute="width" constant="165" id="PoR-aV-pHa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-Eq-Q7x">
@@ -188,6 +188,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTs-C1-jWI">
+                                <rect key="frame" x="236" y="372" width="51" height="31"/>
+                                <connections>
+                                    <action selector="sw_action_Remind_NewDiaries:" destination="u7k-56-RoO" eventType="valueChanged" id="N4b-w7-7Jz"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Remind if new diaries" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-DD-1RO">
+                                <rect key="frame" x="29" y="372" width="175" height="49"/>
+                                <color key="backgroundColor" red="0.44073474429978066" green="1" blue="0.39198773450290081" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="flU-aj-QHc"/>
+                                    <constraint firstAttribute="width" constant="175" id="gOx-2x-cNB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -201,6 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="sw_GoBack_WhenSaved" destination="yUJ-Tm-KK6" id="QEZ-Cc-Sav"/>
+                        <outlet property="sw_Remind_NewDiaries" destination="tTs-C1-jWI" id="ygI-50-uJe"/>
                         <outlet property="sw_Search_MemoColumn" destination="vXe-TI-5k9" id="yPN-q1-M6g"/>
                         <outlet property="sw_Vibrate_WhenSaved" destination="D2K-xR-pZd" id="1lQ-gg-f6s"/>
                         <outlet property="tf_LimitOn_NumOf_Cells" destination="D5B-Eq-Q7x" id="yUS-OE-nUY"/>

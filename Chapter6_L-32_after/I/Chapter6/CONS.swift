@@ -175,6 +175,8 @@ class CONS {
 
         static var b_Vibrate_WhenSaved = true
         
+        static var b_Remind_NewDiaries = false
+        
     }
     
     /*
@@ -192,6 +194,8 @@ class CONS {
         static let key_Vibrate_WhenSaved = "key_Vibrate_WhenSaved"
 
         static let key_Deault_LimitOn_NumOfCells = "key_Deault_LimitOn_NumOfCells"
+
+        static let key_Default__Remind_NewDiaries = "key_Default__Remind_NewDiaries"
 
     }
     

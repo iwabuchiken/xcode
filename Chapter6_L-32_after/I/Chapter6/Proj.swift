@@ -392,6 +392,120 @@ class Proj {
         
     }
 
+    static func get_NumOf__NewDiaries() -> Int {
+        
+        // realm
+        let r = try! Realm()
+        
+        //        let resOf_Diaries = try! r.objects(Diary).sorted("created_at", ascending: false)
+        let resOf_Diaries = r.objects(Diary).sorted("created_at", ascending: false)
 
+        // last upload date
+        var s_last_uploaded_at = Proj.get_LastBackup_Diary_ModifiedAt_String()
+        
+        if s_last_uploaded_at == "-1" {
+            
+            s_last_uploaded_at = "0000/00/00 00:00:00"
+            //            s_last_uploaded_at = "2016/02/20 00:00:00"
+            
+            //debug0
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => '-1'; re-setting to => \(s_last_uploaded_at)")
+
+        } else {
+            
+            //debug0
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => \(s_last_uploaded_at)")
+            
+        }
+
+        // build
+        // build list of diaries
+//        var aryOf_Diaries = Array<Diary>()
+        
+        let lenOf_ResOf_Diaries = resOf_Diaries.count
+        
+        var i_count = 0
+        
+        for var i = 0; i < lenOf_ResOf_Diaries; i++ {
+            
+            let d = resOf_Diaries[i]
+            
+            let modified_at = Methods.conv_NSDate_2_DateString(d.date)
+            
+            if modified_at > s_last_uploaded_at {
+                
+//                aryOf_Diaries.append(d)
+                
+                i_count += 1
+                
+            }
+            
+            
+            
+        }
+        
+//        //debug0
+//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
+
+        // return
+        if i_count < 1 {
+            
+            //debug0
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] i_count => less than 1")
+            
+            return 0
+            
+        } else {
+            
+            return i_count
+            
+        }
+
+    }
+
+    /*
+        @return
+        ok  => 1
+        no  => -1
+    */
+    static func show_Dialog__Remind_NewDiaries
+    (vc : UIViewController, num : Int) {
+        
+        //        let s_title = "Choices"
+        let s_title = "New diaries exisits"
+        
+        let s_message = "\(num) new ones. Upload?"
+        
+        let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let choice_0 = "OK"
+        
+        let choice_1 = "No"
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+            
+            // execute  => close dialog
+
+            
+        }))
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            
+
+            
+        }))
+        
+        // show view
+        vc.presentViewController(refreshAlert, animated: true, completion: nil)
+
+    }
+    
 
 }
