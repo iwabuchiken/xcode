@@ -204,7 +204,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rU-2f-pPJ">
-                                <rect key="frame" x="12" y="352" width="311" height="198"/>
+                                <rect key="frame" x="12" y="352" width="311" height="216"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Remind if new diaries" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-DD-1RO">
                                         <rect key="frame" x="8" y="13" width="175" height="49"/>
@@ -251,7 +251,7 @@
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add location diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twn-wQ-zk3">
-                                        <rect key="frame" x="8" y="95" width="183" height="35"/>
+                                        <rect key="frame" x="8" y="141" width="183" height="35"/>
                                         <color key="backgroundColor" red="0.29317350938036624" green="1" blue="0.31415755215242436" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="183" id="IH5-IN-Zp4"/>
@@ -263,7 +263,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="6gb-eW-L2V"/>
+                                    <constraint firstAttribute="height" constant="216" id="6gb-eW-L2V"/>
                                     <constraint firstAttribute="width" constant="311" id="ZjY-2j-pUS"/>
                                 </constraints>
                             </scrollView>
