@@ -188,44 +188,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Remind if new diaries" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-DD-1RO">
-                                <rect key="frame" x="29" y="372" width="175" height="49"/>
-                                <color key="backgroundColor" red="0.44073474429978066" green="1" blue="0.39198773450290081" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="flU-aj-QHc"/>
-                                    <constraint firstAttribute="width" constant="175" id="gOx-2x-cNB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTs-C1-jWI">
-                                <rect key="frame" x="236" y="372" width="51" height="31"/>
-                                <connections>
-                                    <action selector="sw_action_Remind_NewDiaries:" destination="u7k-56-RoO" eventType="valueChanged" id="N4b-w7-7Jz"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s33-mL-mLz">
-                                <rect key="frame" x="218" y="451" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.33227914962991634" green="0.38967714584064805" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="set">
-                                    <color key="titleColor" red="0.96938776195491871" green="1" blue="0.98946527940355633" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="bt_Set_NumOf_NewDiaries:" destination="u7k-56-RoO" eventType="touchUpInside" id="zvp-1g-KBy"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LMT-Yu-roG">
-                                <rect key="frame" x="29" y="454" width="151" height="30"/>
-                                <color key="backgroundColor" red="0.96597557609896179" green="1" blue="0.60310179944725162" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="151" id="8Fl-nK-7kW"/>
-                                    <constraint firstAttribute="height" constant="30" id="mY4-Xb-Z0v"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTs-bY-ZFS">
                                 <rect key="frame" x="270" y="317" width="46" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.62492757364385143" blue="0.13028533930407815" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,23 +203,70 @@
                                     <action selector="bt_action_Close_Keyboard:" destination="u7k-56-RoO" eventType="touchUpInside" id="YK5-yi-UYv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add location diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twn-wQ-zk3">
-                                <rect key="frame" x="29" y="506" width="183" height="35"/>
-                                <color key="backgroundColor" red="0.29317350938036624" green="1" blue="0.31415755215242436" alpha="1" colorSpace="calibratedRGB"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rU-2f-pPJ">
+                                <rect key="frame" x="12" y="352" width="311" height="198"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Remind if new diaries" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-DD-1RO">
+                                        <rect key="frame" x="8" y="13" width="175" height="49"/>
+                                        <color key="backgroundColor" red="0.44073474429978066" green="1" blue="0.39198773450290081" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="flU-aj-QHc"/>
+                                            <constraint firstAttribute="width" constant="175" id="gOx-2x-cNB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTs-C1-jWI">
+                                        <rect key="frame" x="217" y="22" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="sw_action_Remind_NewDiaries:" destination="u7k-56-RoO" eventType="valueChanged" id="N4b-w7-7Jz"/>
+                                        </connections>
+                                    </switch>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LMT-Yu-roG">
+                                        <rect key="frame" x="8" y="81" width="151" height="30"/>
+                                        <color key="backgroundColor" red="0.96597557609896179" green="1" blue="0.60310179944725162" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="151" id="8Fl-nK-7kW"/>
+                                            <constraint firstAttribute="height" constant="30" id="mY4-Xb-Z0v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s33-mL-mLz">
+                                        <rect key="frame" x="217" y="78" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.33227914962991634" green="0.38967714584064805" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="set">
+                                            <color key="titleColor" red="0.96938776195491871" green="1" blue="0.98946527940355633" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="bt_Set_NumOf_NewDiaries:" destination="u7k-56-RoO" eventType="touchUpInside" id="zvp-1g-KBy"/>
+                                        </connections>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="034-3M-83O">
+                                        <rect key="frame" x="214" y="145" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="action_SW_LocationDiary:" destination="u7k-56-RoO" eventType="valueChanged" id="HAu-5z-rYd"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add location diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twn-wQ-zk3">
+                                        <rect key="frame" x="8" y="95" width="183" height="35"/>
+                                        <color key="backgroundColor" red="0.29317350938036624" green="1" blue="0.31415755215242436" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="183" id="IH5-IN-Zp4"/>
+                                            <constraint firstAttribute="height" constant="35" id="pAK-d0-M5F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="183" id="IH5-IN-Zp4"/>
-                                    <constraint firstAttribute="height" constant="35" id="pAK-d0-M5F"/>
+                                    <constraint firstAttribute="height" constant="128" id="6gb-eW-L2V"/>
+                                    <constraint firstAttribute="width" constant="311" id="ZjY-2j-pUS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="034-3M-83O">
-                                <rect key="frame" x="236" y="508" width="51" height="31"/>
-                                <connections>
-                                    <action selector="action_SW_LocationDiary:" destination="u7k-56-RoO" eventType="valueChanged" id="HAu-5z-rYd"/>
-                                </connections>
-                            </switch>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
