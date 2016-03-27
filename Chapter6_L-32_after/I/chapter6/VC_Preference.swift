@@ -12,7 +12,10 @@ import AudioToolbox
 
 class VC_Preference: UIViewController {
     
+    @IBAction func action_SW_LocationDiary(sender: UISwitch) {
+    }
     
+    @IBOutlet weak var sw_LocationDiary: UISwitch!
     
     
     @IBOutlet weak var tf_NumOf_NewDiaries: UITextField!

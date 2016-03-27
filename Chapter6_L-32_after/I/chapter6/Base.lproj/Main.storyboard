@@ -241,6 +241,23 @@
                                     <action selector="bt_action_Close_Keyboard:" destination="u7k-56-RoO" eventType="touchUpInside" id="YK5-yi-UYv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add location diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twn-wQ-zk3">
+                                <rect key="frame" x="29" y="506" width="183" height="35"/>
+                                <color key="backgroundColor" red="0.29317350938036624" green="1" blue="0.31415755215242436" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="183" id="IH5-IN-Zp4"/>
+                                    <constraint firstAttribute="height" constant="35" id="pAK-d0-M5F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="034-3M-83O">
+                                <rect key="frame" x="236" y="508" width="51" height="31"/>
+                                <connections>
+                                    <action selector="action_SW_LocationDiary:" destination="u7k-56-RoO" eventType="valueChanged" id="HAu-5z-rYd"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -254,6 +271,7 @@
                     </view>
                     <connections>
                         <outlet property="sw_GoBack_WhenSaved" destination="yUJ-Tm-KK6" id="QEZ-Cc-Sav"/>
+                        <outlet property="sw_LocationDiary" destination="034-3M-83O" id="IO8-qd-MjC"/>
                         <outlet property="sw_Remind_NewDiaries" destination="tTs-C1-jWI" id="ygI-50-uJe"/>
                         <outlet property="sw_Search_MemoColumn" destination="vXe-TI-5k9" id="yPN-q1-M6g"/>
                         <outlet property="sw_Vibrate_WhenSaved" destination="D2K-xR-pZd" id="1lQ-gg-f6s"/>
