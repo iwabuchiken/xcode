@@ -230,6 +230,24 @@ class Proj {
         }
     }
     
+    static func lastId_Diary() -> Int {
+        
+        // get realm
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        let realm = try! Realm()
+        
+        
+        //        if let user = realm.objects(BM).last {
+        if let user = realm.objects(Diary).sorted("id", ascending: true).last {
+            
+            return user.id + 1
+            
+        } else {
+            
+            return 1
+            
+        }
+    }
 
     static func  get_LastBackup_Diary_ModifiedAt_String() -> String  {
         
@@ -364,6 +382,54 @@ class Proj {
         // return
         return 1
 
+        
+    }
+
+    static func save_Diary(title : String, memo : String) -> Int {
+
+        // setup -> realm
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        // time label
+//        let time_label = Methods.get_TimeLable()
+        let time_label = NSDate()
+        
+        do {
+            
+            try! realm.write {
+                
+                let diary = Diary()
+                
+                diary.id = Proj.lastId_Diary()
+                
+                diary.created_at     = time_label
+                diary.date    = time_label
+                
+                diary.title = title
+                diary.body = memo
+                
+                realm.add(diary, update: true)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary saved => '\(diary.description)'")
+                
+                
+            }
+            
+        } catch let e as NSError! {
+            
+            // handle error
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(title = \(title)) => error [\(e.description)]")
+            
+            // return
+            return -1
+            
+        }
+        
+        // return
+        return 1
+        
         
     }
 

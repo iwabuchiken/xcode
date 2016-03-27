@@ -64,6 +64,15 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         mapView.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+//        // show num of locs
+//        let locs = Proj.ge
+//        aa
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,6 +115,47 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         // save data
         Proj.save_Loc(center)
         
+        
+        // save diary
+        self._pushedButton__SaveDiary(center);
+    
+    
+    }
+    
+    /*
+        @return
+        -1      can't save
+        0       preference --> not save diary
+        1       saved
+    */
+    func _pushedButton__SaveDiary(loc : CLLocationCoordinate2D) -> Int {
+        
+        // judge -> pref value
+        let pref = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Default_Add_LocationDiary)
+        
+        if (pref == true) {
+
+            let title = "@loc"
+            
+            let memo = "\(Methods.get_TimeLable())\nlongi=\(Double(loc.longitude.description)!)\nlat=\(Double(loc.latitude.description)!)\n"
+            
+            let res_i = Proj.save_Diary(title, memo: memo)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary saved => '\(title)' / '\(memo)'")
+
+            
+        } else {
+
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] pref set to => false")
+
+            return 0
+            
+        }
+        
+        // return
+        return -1
         
     }
     
