@@ -12,8 +12,6 @@ import AudioToolbox
 
 class VC_Preference: UIViewController {
     
-    @IBAction func action_SW_LocationDiary(sender: UISwitch) {
-    }
     
     @IBOutlet weak var sw_LocationDiary: UISwitch!
     
@@ -27,6 +25,43 @@ class VC_Preference: UIViewController {
     @IBOutlet weak var sw_Search_MemoColumn: UISwitch!
 
 // MARK: actions
+    @IBAction func action_SW_LocationDiary(sender: UISwitch) {
+
+        if self.sw_LocationDiary.on == true {
+            
+            // set the global var
+            //            CONS.Prefs.b_Search_MemoColumn = true
+            CONS.Prefs.b_LocationDiary = true
+            
+            // set preference
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            //            defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
+            defaults.setValue(true, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary => set true")
+            
+        } else {
+            
+            // set the global var
+            //            CONS.Prefs.b_Search_MemoColumn = true
+            CONS.Prefs.b_LocationDiary = false
+            
+            // set preference
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            //            defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
+            defaults.setValue(false, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary => set false")
+            
+        }
+
+    
+    }
+
     @IBAction func bt_action_Close_Keyboard(sender: UIButton) {
 
         //ref https://akira-watson.com/iphone/textfield.html "ボタン等でendEditing()"
@@ -333,8 +368,61 @@ class VC_Preference: UIViewController {
         
         self._setup_Switch__Remind_NewDiaries()
 
+        self._setup_Switch__Add_LocationDiary()
+        
+        
     }
 
+    func _setup_Switch__Add_LocationDiary() {
+        
+        // set switch to
+        // set preference
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
+        let dfltVal_key_Default_Add_LocationDiary = defaults.valueForKey(CONS.defaultKeys.key_Default_Add_LocationDiary)
+        
+        // validate: nil
+        if dfltVal_key_Default_Add_LocationDiary == nil {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => nil")
+            
+            // set the switch --> on
+            self.sw_LocationDiary.on = true
+            
+            // set value --> true
+            defaults.setValue(true, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary set => true")
+            
+        } else {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => NOT nil (value => \(dfltVal_key_Default_Add_LocationDiary?.description)")
+            
+            // set switch --> accor. to the default value
+            if dfltVal_key_Default_Add_LocationDiary?.boolValue == true {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => true")
+                
+                self.sw_LocationDiary.on = true
+                
+            } else {
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => NOT true")
+                
+                self.sw_LocationDiary.on = false
+                
+            }
+            
+        }
+        
+    }
+    
     func _setup_Switch__Remind_NewDiaries() {
         
         // set switch to

@@ -176,6 +176,8 @@ class CONS {
         static var b_Vibrate_WhenSaved = true
         
         static var b_Remind_NewDiaries = false
+
+        static var b_LocationDiary = false
         
         static let numOf_NewDiaries__Limit_Upper = 100
         
@@ -200,6 +202,8 @@ class CONS {
         static let key_Default__Remind_NewDiaries = "key_Default__Remind_NewDiaries"
 
         static let key_Default__NumOf_NewDiaries = "key_Default__NumOf_NewDiaries"
+
+        static let key_Default_Add_LocationDiary = "key_Default_Add_LocationDiary"
         
     }
     
