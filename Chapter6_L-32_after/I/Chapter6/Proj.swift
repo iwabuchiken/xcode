@@ -332,6 +332,18 @@ class Proj {
         
     }
 
+    static func find_All_Locs
+    (column : String = "created_at", ascend : Bool = true) -> Results<Loc> {
+        
+//        let realm = try! Realm()
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+        let locs = try! realm.objects(Loc).sorted(column, ascending: ascend)
+        
+        return locs
+        
+    }
+    
     /*
         @return
         1   => saved
@@ -353,6 +365,8 @@ class Proj {
                 let loc = Loc()
                 
                 loc.id = Proj.lastId_Loc()
+                
+                
                 
                 loc.created_at     = time_label
                 loc.modified_at    = time_label
@@ -385,11 +399,66 @@ class Proj {
         
     }
 
+    /*
+    @return
+    1   => saved
+    2   => exception
+    */
+    static func save_Loc
+    (center : CLLocationCoordinate2D, time_label : String) -> Int {
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        
+//        let time_label = Methods.get_TimeLable()
+        let time_label = time_label
+        
+        do {
+            
+            try! realm.write {
+                
+                let loc = Loc()
+                
+                loc.id = Proj.lastId_Loc()
+                
+                
+                
+                loc.created_at     = time_label
+                loc.modified_at    = time_label
+                
+                loc.longi       = Double(center.longitude.description)!
+                loc.lat       = Double(center.latitude.description)!
+                
+                realm.add(loc, update: true)
+                
+                //debug
+                print("[\(Methods.basename(__FILE__)):\(__LINE__)] loc saved => '\(loc.description)'")
+                
+                
+            }
+            
+        } catch let e as NSError! {
+            
+            // handle error
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
+            
+            // return
+            return -1
+            
+        }
+        
+        // return
+        return 1
+        
+        
+    }
+
     static func save_Diary(title : String, memo : String) -> Int {
 
         // setup -> realm
-        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
-        
+//        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
+        let realm = try! Realm()
+
         // time label
 //        let time_label = Methods.get_TimeLable()
         let time_label = NSDate()

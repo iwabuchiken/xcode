@@ -68,11 +68,20 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
         super.viewWillAppear(animated)
         
-//        // show num of locs
-//        let locs = Proj.ge
-//        aa
+        // show num of locs
+        self._viewWillAppear__Show_NumOf_Locs()
+        
     }
 
+    func _viewWillAppear__Show_NumOf_Locs() {
+
+        let locs = Proj.find_All_Locs()
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] locs.count => \(locs.count)")
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,11 +122,14 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
         
         // save data
-        Proj.save_Loc(center)
+        let time_label = Methods.get_TimeLable()
+        
+//        Proj.save_Loc(center)
+        Proj.save_Loc(center, time_label: time_label)
         
         
         // save diary
-        self._pushedButton__SaveDiary(center);
+        self._pushedButton__SaveDiary(center, time_label: time_label);
     
     
     }
@@ -128,7 +140,8 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         0       preference --> not save diary
         1       saved
     */
-    func _pushedButton__SaveDiary(loc : CLLocationCoordinate2D) -> Int {
+    func _pushedButton__SaveDiary
+    (loc : CLLocationCoordinate2D, time_label : String) -> Int {
         
         // judge -> pref value
         let pref = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Default_Add_LocationDiary)
@@ -137,12 +150,13 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
             let title = "@loc"
             
-            let memo = "\(Methods.get_TimeLable())\nlongi=\(Double(loc.longitude.description)!)\nlat=\(Double(loc.latitude.description)!)\n"
+//            let memo = "\(Methods.get_TimeLable())\nlongi=\(Double(loc.longitude.description)!)\nlat=\(Double(loc.latitude.description)!)\n"
+            let memo = "\(time_label)\nlongi=\(Double(loc.longitude.description)!)\nlat=\(Double(loc.latitude.description)!)\n"
             
             let res_i = Proj.save_Diary(title, memo: memo)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary saved => '\(title)' / '\(memo)'")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'save_Diary() result => \(res_i) --> '\(title)' / '\(memo)'")
 
             
         } else {
