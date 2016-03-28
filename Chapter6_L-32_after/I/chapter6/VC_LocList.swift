@@ -12,6 +12,9 @@ import MapKit
 
 class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+// MARK: vars
+    var locs = Proj.find_All_Locs()
+    
     // MARK: view-related
     override func viewDidLoad() {
         
@@ -30,6 +33,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
 
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] locs => \(self.locs.count)")
         
     }
 
@@ -38,7 +43,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //        return dataArray.count
-        return 10
+//        return 10
+        return self.locs.count
         
     }
     
@@ -47,7 +53,12 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // 再利用可能な cell を得る
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
-        cell.textLabel?.text = "cell is \(indexPath.description)"
+//        cell.textLabel?.text = "lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)"
+        cell.textLabel?.text = "lat=\(Double(locs[indexPath.row].lat.description)!)/longi=\(Double(locs[indexPath.row].longi.description)!)"
+        
+//        Double(loc.latitude.description)!
+        // description
+        cell.detailTextLabel?.text = "\(locs[indexPath.row].created_at)"
         
         return cell
         
@@ -58,7 +69,7 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteing cell...")
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteing cell --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
             
         }
     }
@@ -73,7 +84,9 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // 各セルを選択した時に実行される
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        performSegueWithIdentifier("cellSegue",sender: nil)
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path=\(indexPath.row) --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
+
         
     }
     
