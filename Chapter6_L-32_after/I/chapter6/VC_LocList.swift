@@ -81,7 +81,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // セルが削除が可能なことを伝える
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCellEditingStyle {
         
-        return UITableViewCellEditingStyle.Delete;
+//        return UITableViewCellEditingStyle.Delete;
+        return UITableViewCellEditingStyle.Insert;
         
     }
     

@@ -89,13 +89,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AxQ-br-fXn">
-                                <rect key="frame" x="0.0" y="12" width="560" height="500"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AxQ-br-fXn">
+                                <rect key="frame" x="0.0" y="43" width="321" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="560" id="cbi-KX-gwL"/>
-                                    <constraint firstAttribute="height" constant="500" id="ip2-aG-Rr0"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="Tmn-Zh-veC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="257" id="WRF-LJ-yfQ"/>
+                                    <constraint firstAttribute="width" constant="321" id="cbi-KX-gwL"/>
+                                    <constraint firstAttribute="height" constant="452" id="ip2-aG-Rr0"/>
                                 </constraints>
+                                <color key="separatorColor" red="0.069738400537392886" green="0.042401170448535863" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.21094813678866065" green="1" blue="0.11243242344075643" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.17841091693066768" blue="0.23529606675245596" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="NSn-p6-pPE" id="xdz-7H-T0N"/>
                                     <outlet property="delegate" destination="NSn-p6-pPE" id="mb8-qT-bPW"/>
@@ -105,6 +110,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AxQ-br-fXn" firstAttribute="leading" secondItem="YX8-hf-tlO" secondAttribute="leadingMargin" constant="-20" id="Fse-91-hYq"/>
+                            <constraint firstItem="AxQ-br-fXn" firstAttribute="top" secondItem="YX8-hf-tlO" secondAttribute="topMargin" constant="43" id="uCQ-QZ-SDj"/>
                         </constraints>
                     </view>
                 </viewController>
