@@ -13,7 +13,7 @@ import MapKit
 class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 // MARK: vars
-    var locs = Proj.find_All_Locs()
+    var locs = Proj.find_All_Locs(ascend : false)
     
     // MARK: view-related
     override func viewDidLoad() {
@@ -54,7 +54,11 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
 //        cell.textLabel?.text = "lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)"
-        cell.textLabel?.text = "lat=\(Double(locs[indexPath.row].lat.description)!)/longi=\(Double(locs[indexPath.row].longi.description)!)"
+//        cell.textLabel?.text = "lat=\(Double(locs[indexPath.row].lat.description)!)/longi=\(Double(locs[indexPath.row].longi.description)!)"
+//        cell.textLabel?.text = "lat=\(String(format : "%.4f", Double(locs[indexPath.row].lat.description)!))/longi=\(Double(locs[indexPath.row].longi.description)!)"
+        //ref http://stackoverflow.com/questions/24051314/precision-string-format-specifier-in-swift answered Jun 5 '14 at 8:55
+        //ref(also) http://stackoverflow.com/questions/27338573/rounding-a-double-value-to-x-number-of-decimal-places-in-swift answered Dec 7 '14 at 8:34
+        cell.textLabel?.text = "\(String(format : "%.5f", Double(locs[indexPath.row].longi.description)!)) / \(String(format : "%.5f", Double(locs[indexPath.row].lat.description)!))"
         
 //        Double(loc.latitude.description)!
         // description
