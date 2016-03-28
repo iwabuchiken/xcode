@@ -535,6 +535,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //debug
             print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => segue_VC_2_Map")
         
+        } else if segue.identifier == "segue_VC_2_LocList" {
+            
+            //debug
+            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => segue_VC_2_LocList")
+            
         } else {
         
         
@@ -560,7 +565,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 inputViewController.diary = diary
             }
             
-        }
+        }//if segue.identifier == "sandboxSegue"
+        
     }
     
     // MARK: UITableViewDataSource プロトコルのメソッド
@@ -1526,6 +1532,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let choice_2 = "(2) Map"
         let choice_3 = "(3) Photo"
 
+        let choice_4 = "(4) Loc list"
+
         // controller
         let refreshAlert = UIAlertController(title: s_title, message: s_message, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -1556,6 +1564,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // start map
             self.backupDiaries_ViaEmail__Choice_3()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: choice_4, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            // start map
+            self.backupDiaries_ViaEmail__Choice_4()
             
         }))
         
@@ -1695,6 +1710,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+    func backupDiaries_ViaEmail__Choice_4() {
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] showing loc list...")
+        
+        // perfom
+        performSegueWithIdentifier("segue_VC_2_LocList",sender: nil)
+        
+    }
+    
 // MARK: image picker
     func imagePickerController(imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
