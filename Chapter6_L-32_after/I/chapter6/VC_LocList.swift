@@ -113,7 +113,7 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let vc_target : VC_ShowLoc = segue.destinationViewController as! VC_ShowLoc
 
             // set loc
-            vc_target.loc = self.loc_chosen
+            vc_target.loc = self.loc_chosen!
             
         }
     }

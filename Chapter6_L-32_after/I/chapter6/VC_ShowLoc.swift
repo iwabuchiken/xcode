@@ -80,6 +80,23 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] map setup => done")
 	
+//        // default zoom
+//        self._set_DefaultZoom()
+        
+    }
+    
+    func _set_DefaultZoom(center : CLLocationCoordinate2D) {
+        
+        //ref http://stackoverflow.com/questions/33115802/how-do-i-zoom-in-on-a-location-using-mapkit-in-swift-2-x-code "How about the following code?"
+        let span = MKCoordinateSpan(latitudeDelta: 0.0001, longitudeDelta: 0.0001)
+
+//        let coordinate = placemark.location!.coordinate
+        
+//        let region = MKCoordinateRegion(center: coordinate, span: span)
+        let region = MKCoordinateRegion(center: center, span: span)
+        
+        self.mapView.setRegion(region, animated: true)
+        
     }
     
     // 入力画面から戻ってきた時に TableView を更新させる
@@ -92,6 +109,7 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.loc.description => \(self.loc.description)")
+        
         
         // set pin
         self._viewWillAppear__SetPin()
@@ -120,7 +138,8 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         // 地図にピンを立てる
         mapView.addAnnotation(pin)
 
-        
+        // zoom
+        self._set_DefaultZoom(center)
         
     }
     

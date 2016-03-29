@@ -90,14 +90,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-a8-BMi">
-                                <rect key="frame" x="20" y="64" width="560" height="336"/>
+                                <rect key="frame" x="20" y="64" width="560" height="486"/>
                                 <color key="backgroundColor" red="0.17640517216600715" green="0.1032146520750854" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vKU-a8-BMi" firstAttribute="top" secondItem="OJ5-fD-WF6" secondAttribute="bottom" id="3vc-gW-7Ko"/>
-                            <constraint firstItem="28a-ZP-gba" firstAttribute="top" secondItem="vKU-a8-BMi" secondAttribute="bottom" constant="200" id="D79-gH-4P7"/>
+                            <constraint firstItem="28a-ZP-gba" firstAttribute="top" secondItem="vKU-a8-BMi" secondAttribute="bottom" constant="50" id="D7Q-bo-gR7"/>
+                            <constraint firstItem="28a-ZP-gba" firstAttribute="top" secondItem="vKU-a8-BMi" secondAttribute="bottom" constant="50" id="HHm-0w-wSS"/>
                             <constraint firstItem="vKU-a8-BMi" firstAttribute="leading" secondItem="KPb-x2-men" secondAttribute="leadingMargin" id="IjO-Me-It5"/>
                             <constraint firstItem="vKU-a8-BMi" firstAttribute="top" secondItem="OJ5-fD-WF6" secondAttribute="bottom" id="b9f-d8-9b6"/>
                             <constraint firstItem="vKU-a8-BMi" firstAttribute="leading" secondItem="KPb-x2-men" secondAttribute="leadingMargin" id="cqN-iy-IFf"/>
