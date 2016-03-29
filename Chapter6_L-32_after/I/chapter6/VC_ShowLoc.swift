@@ -21,7 +21,8 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 
 
     // loc
-    var loc : Loc?
+//    var loc : Loc?
+    var loc : Loc = Loc()
 //    var longi : Double! = 0;
 //    var lat : Double! = 0;
     
@@ -90,7 +91,7 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.loc?.description => \(self.loc?.description)")
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.loc.description => \(self.loc.description)")
         
         // set pin
         self._viewWillAppear__SetPin()
@@ -99,6 +100,26 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 
     func _viewWillAppear__SetPin() {
     
+//        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lastLocation!.latitude, lastLocation!.longitude)
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(self.loc.lat.description)!, Double(self.loc.longi.description)!)
+//        Double(locs[indexPath.row].longi.description)!
+
+        //debug
+        print("[\(Methods.basename(__FILE__)):\(__LINE__)] center.longitude.description => \(center.longitude.description) / center.latitude.description => \(center.latitude.description)")
+
+        
+        // 地図のセンターに設定する
+        mapView.setCenterCoordinate(center, animated: true)
+        
+        // ピン（MKPointAnnotation）を作成する
+        let pin: MKPointAnnotation = MKPointAnnotation()
+        
+        // 最後に取得した位置情報を設定する
+        pin.coordinate = center
+        
+        // 地図にピンを立てる
+        mapView.addAnnotation(pin)
+
         
         
     }
