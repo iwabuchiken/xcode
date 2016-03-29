@@ -77,6 +77,30 @@
             </objects>
             <point key="canvasLocation" x="1117" y="387"/>
         </scene>
+        <!--Show Loc-->
+        <scene sceneID="Swc-Oe-Ng1">
+            <objects>
+                <viewController id="D9R-Q4-77G" customClass="VC_ShowLoc" customModule="Chapter6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OJ5-fD-WF6"/>
+                        <viewControllerLayoutGuide type="bottom" id="28a-ZP-gba"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KPb-x2-men">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-a8-BMi">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.17640517216600715" green="0.1032146520750854" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vrh-dR-RO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="914" y="-351"/>
+        </scene>
         <!--Loc List-->
         <scene sceneID="Kxw-xt-VGN">
             <objects>
@@ -113,6 +137,9 @@
                             <constraint firstItem="AxQ-br-fXn" firstAttribute="top" secondItem="YX8-hf-tlO" secondAttribute="topMargin" constant="43" id="uCQ-QZ-SDj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="D9R-Q4-77G" kind="show" identifier="segue_LocList_2_ShowLoc" id="Kbv-Y6-NeV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nll-6x-7zg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,7 +327,7 @@
                                             <constraint firstAttribute="height" constant="35" id="pAK-d0-M5F"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

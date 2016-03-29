@@ -14,6 +14,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 // MARK: vars
     var locs = Proj.find_All_Locs(ascend : false)
+
+    var loc_chosen : Loc?
     
     // MARK: view-related
     override func viewDidLoad() {
@@ -81,8 +83,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // セルが削除が可能なことを伝える
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCellEditingStyle {
         
-//        return UITableViewCellEditingStyle.Delete;
-        return UITableViewCellEditingStyle.Insert;
+        return UITableViewCellEditingStyle.Delete;
+//        return UITableViewCellEditingStyle.Insert;
         
     }
     
@@ -92,14 +94,28 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //debug
         print("[\(Methods.basename(__FILE__)):\(__LINE__)] path=\(indexPath.row) --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
 
+        // set loc
+        self.loc_chosen = self.locs[indexPath.row]
+        
+        // segue
+        performSegueWithIdentifier("segue_LocList_2_ShowLoc",sender: nil)
         
     }
     
     // MARK: segue-related
     // segue で画面遷移するに呼ばれる
     override func prepareForSegue
-        (segue: UIStoryboardSegue, sender: AnyObject?){
+    (segue: UIStoryboardSegue, sender: AnyObject?){
 
+        if segue.identifier == "segue_LocList_2_ShowLoc" {
+            
+            // get vc
+            let vc_target : VC_ShowLoc = segue.destinationViewController as! VC_ShowLoc
+
+            // set loc
+            vc_target.loc = self.loc_chosen
+            
+        }
     }
 
     

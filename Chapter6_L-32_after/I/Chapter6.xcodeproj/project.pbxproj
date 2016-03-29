@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0400EB621C88067B009686AB /* VC_Hist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400EB611C88067B009686AB /* VC_Hist.swift */; };
 		04432E681C79841C009B47DA /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04432E671C79841C009B47DA /* Admin.swift */; };
+		048991011CAA0A01007849E1 /* VC_ShowLoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048991001CAA0A01007849E1 /* VC_ShowLoc.swift */; };
 		049246601C67651000B95ACC /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492465F1C67650F00B95ACC /* Methods.swift */; };
 		04A9E8191CA8A9D4004DBB00 /* VC_LocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A9E8181CA8A9D4004DBB00 /* VC_LocList.swift */; };
 		04B96D031C8E59170057D174 /* VC_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B96D021C8E59170057D174 /* VC_Map.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		0400EB611C88067B009686AB /* VC_Hist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Hist.swift; path = chapter6/VC_Hist.swift; sourceTree = SOURCE_ROOT; };
 		04432E671C79841C009B47DA /* Admin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Admin.swift; path = chapter6/Admin.swift; sourceTree = SOURCE_ROOT; };
+		048991001CAA0A01007849E1 /* VC_ShowLoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_ShowLoc.swift; path = chapter6/VC_ShowLoc.swift; sourceTree = SOURCE_ROOT; };
 		0492465F1C67650F00B95ACC /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Methods.swift; path = chapter6/Methods.swift; sourceTree = SOURCE_ROOT; };
 		04A9E8181CA8A9D4004DBB00 /* VC_LocList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_LocList.swift; path = chapter6/VC_LocList.swift; sourceTree = SOURCE_ROOT; };
 		04B96D021C8E59170057D174 /* VC_Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VC_Map.swift; path = chapter6/VC_Map.swift; sourceTree = SOURCE_ROOT; };
@@ -128,6 +130,7 @@
 				3E16ACDC1BC009DF004AE056 /* Assets.xcassets */,
 				3E16ACDE1BC009DF004AE056 /* LaunchScreen.storyboard */,
 				04A9E8181CA8A9D4004DBB00 /* VC_LocList.swift */,
+				048991001CAA0A01007849E1 /* VC_ShowLoc.swift */,
 			);
 			path = Chapter6;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				04A9E8191CA8A9D4004DBB00 /* VC_LocList.swift in Sources */,
 				04D0EE731C6848C300268C68 /* CONS.swift in Sources */,
 				04C067721C8736B500ACCB6E /* Hist.swift in Sources */,
+				048991011CAA0A01007849E1 /* VC_ShowLoc.swift in Sources */,
 				04CBAB6F1C7C1FB200FDEDE2 /* Data.swift in Sources */,
 				04D640421C851E4600A091B7 /* VC_Preference.swift in Sources */,
 				04BEC9541C65D6D7005A99DF /* SandboxViewController.swift in Sources */,
