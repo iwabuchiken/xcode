@@ -1,12 +1,12 @@
-xcode_Player
-D-10
+xcode_Memo
+D-16
 
-s-1#1/steps.~8
+s-2#3
 ---
-1. updateData_Data__Latest_Diary_at(CONS.s_Latest_Diary_at)
-    --> TEST
+1. 小数点　５桁
 
         ==> done
+
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
 

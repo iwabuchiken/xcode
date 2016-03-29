@@ -89,13 +89,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-a8-BMi">
-                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vKU-a8-BMi">
+                                <rect key="frame" x="20" y="64" width="560" height="336"/>
                                 <color key="backgroundColor" red="0.17640517216600715" green="0.1032146520750854" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vKU-a8-BMi" firstAttribute="top" secondItem="OJ5-fD-WF6" secondAttribute="bottom" id="3vc-gW-7Ko"/>
+                            <constraint firstItem="28a-ZP-gba" firstAttribute="top" secondItem="vKU-a8-BMi" secondAttribute="bottom" constant="200" id="D79-gH-4P7"/>
+                            <constraint firstItem="vKU-a8-BMi" firstAttribute="leading" secondItem="KPb-x2-men" secondAttribute="leadingMargin" id="IjO-Me-It5"/>
+                            <constraint firstItem="vKU-a8-BMi" firstAttribute="top" secondItem="OJ5-fD-WF6" secondAttribute="bottom" id="b9f-d8-9b6"/>
+                            <constraint firstItem="vKU-a8-BMi" firstAttribute="leading" secondItem="KPb-x2-men" secondAttribute="leadingMargin" id="cqN-iy-IFf"/>
+                            <constraint firstItem="vKU-a8-BMi" firstAttribute="top" secondItem="OJ5-fD-WF6" secondAttribute="bottom" id="ewE-4I-byG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vKU-a8-BMi" secondAttribute="trailing" id="kFf-w2-IKe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vKU-a8-BMi" secondAttribute="trailing" id="wNX-ss-FeP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="vKU-a8-BMi" id="jEq-Vc-Gif"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vrh-dR-RO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
