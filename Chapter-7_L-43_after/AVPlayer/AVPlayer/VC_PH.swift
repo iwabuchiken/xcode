@@ -53,7 +53,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewDidLoad")
+        print("[\(Methods.basename(#file))\(#line)] viewDidLoad")
 
         // hide => tab bar
         self.tabBarController?.tabBar.hidden = true
@@ -126,7 +126,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let res_b = _tableView__CellForRow__ClipExists_InMediaItems(indexPath.row)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item  => \(self.phs[indexPath.row].title) (exists in MediaItems => \(res_b)")
+        print("[\(Methods.basename(#file)):\(#line)] item  => \(self.phs[indexPath.row].title) (exists in MediaItems => \(res_b)")
 
         /*
             text colors
@@ -176,14 +176,21 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
         let aPredicate = NSPredicate(format: query)
         
-        let res_b = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate : aPredicate, ascend: false)
-            
+//        let res_b = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate : aPredicate, ascend: false)
+//        let res_b = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate: aPredicate, sort_key : "created_at", ascend : false)
+        
+        let res_b = DB.findAll_Clips__Filtered(CONS.s_Realm_FileName, predicate: aPredicate, sort_key: "created_at", ascend: false)
+        
+//        dbfile_name : String,
+//        predicate : NSPredicate,
+//        sort_key : String = "created_at",
+//        ascend : Bool = true
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.find_All_Clips => \(res_b)")
+        print("[\(Methods.basename(#file)):\(#line)] Proj.find_All_Clips => \(res_b)")
 
         // return
         if res_b.count < 1 {
@@ -233,7 +240,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
     (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => \(indexPath.row)")
+        print("[\(Methods.basename(#file)):\(#line)] selected => \(indexPath.row)")
 
         /*
             validate    --> mediaitem exists
@@ -243,7 +250,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if res_b == false {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip doesn't exist in mediaitems => \(self.phs[indexPath.row].title)")
+            print("[\(Methods.basename(#file)):\(#line)] clip doesn't exist in mediaitems => \(self.phs[indexPath.row].title)")
 
             // show dialog
             Methods.show_Dialog_OK(self, title: "Notice", message: "clip '\(self.phs[indexPath.row].title)' doesn't exist in mediaitems")
@@ -260,7 +267,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if self.current_clip.id == -1 {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip doesn't exist in db => \(self.phs[indexPath.row].title)")
+            print("[\(Methods.basename(#file)):\(#line)] clip doesn't exist in db => \(self.phs[indexPath.row].title)")
             
             // show dialog
             Methods.show_Dialog_OK(self, title: "Notice", message: "clip '\(self.phs[indexPath.row].title)' doesn't exist in db")
@@ -273,7 +280,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.current_ph = self.phs[indexPath.row]
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_ph.description => \(self.current_ph.description)")
+        print("[\(Methods.basename(#file)):\(#line)] self.current_ph.description => \(self.current_ph.description)")
 
         
         performSegueWithIdentifier("segue_PH_2_BMView",sender: nil)
@@ -293,7 +300,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] destination view is NOT BMView => \(segue.destinationViewController.description)")
+            print("[\(Methods.basename(#file)):\(#line)] destination view is NOT BMView => \(segue.destinationViewController.description)")
 
         }
             
@@ -319,7 +326,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         vc.current_clip = self.current_clip
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
         
         // set --> bm time
         CONS.current_time = self.current_ph.current_time
@@ -333,7 +340,7 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = "title CONTAINS '\(title)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -348,19 +355,19 @@ class VC_PH: UIViewController, UITableViewDelegate, UITableViewDataSource {
             vc.bmArray = bmArray
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+            print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(bmArray.count)")
             
         } catch is NSException {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
             
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
         } catch let error as NSError {
             
             //debug
-            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
             
         }
         

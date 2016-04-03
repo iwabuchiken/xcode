@@ -48,7 +48,7 @@ class Data: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Admin class")
+        print("[\(Methods.basename(#file)):\(#line)] Admin class")
         
     }
     

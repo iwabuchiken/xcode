@@ -61,7 +61,7 @@ class Proj {
         try! rl_tmp.write {
 
             //        //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] adding a new BM...")
+            print("[\(Methods.basename(#file)):\(#line)] adding a new BM...")
             
             //        self.realm.add(self.diary, update: true)
             // BM instance
@@ -71,7 +71,7 @@ class Proj {
             bm.id = Methods.lastId()
 
             //        //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.id => \(bm.id)")
+            print("[\(Methods.basename(#file)):\(#line)] bm.id => \(bm.id)")
 
             
             // title
@@ -93,8 +93,8 @@ class Proj {
 //            rl_tmp.add(bm, update: false)
             
             //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (\(bm.description)")
+//            print("[\(Methods.basename(#file)):\(#line)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(#file)):\(#line)] bm => written (\(bm.description)")
           
             
         }
@@ -124,7 +124,7 @@ class Proj {
             rl_tmp.add(bm, update: true)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(bm.description)")
+            print("[\(Methods.basename(#file)):\(#line)] bm => updated (\(bm.description)")
             
         }
         
@@ -159,12 +159,12 @@ class Proj {
         
         // report
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Clips.count => \(aryOf_Clips.count) / aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_Clips.count => \(aryOf_Clips.count) / aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count)")
 
         // validate: any entries
         if aryOf_Clips_NotInDB.count < 1 {
 
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no new entries. returning...")
+            print("[\(Methods.basename(#file)):\(#line)] no new entries. returning...")
 
             return
             
@@ -186,13 +186,13 @@ class Proj {
             try! realm.write {
                 
                 //        //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] adding a new Clip...")
+                print("[\(Methods.basename(#file)):\(#line)] adding a new Clip...")
                 
                 // id
                 item.id = Proj.lastId_Clip()
                 
                 //        //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm.id => \(item.id)")
+                print("[\(Methods.basename(#file)):\(#line)] bm.id => \(item.id)")
                 
                 // time -> meta
                 let tmp_time = NSDate()
@@ -202,7 +202,7 @@ class Proj {
                 
                 realm.add(item, update: true)
                 
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => written (\(item.description)")
+                print("[\(Methods.basename(#file)):\(#line)] clip => written (\(item.description)")
                 
                 // count
                 count += 1
@@ -212,7 +212,7 @@ class Proj {
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count) / saved => \(count)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count) / saved => \(count)")
         
     }
 
@@ -231,7 +231,7 @@ class Proj {
             clip.id = Proj.lastId_Clip()
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.id => \(clip.id)")
             
             //            clip.title = item.title!
             var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -258,15 +258,15 @@ class Proj {
             
             // length
             //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+            //            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
             //            //=> Optional(641.227)
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
             //=>
             
             clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.description => \(clip.description)")
             
             // append
             aryOf_Clips.append(clip)
@@ -290,7 +290,7 @@ class Proj {
 
         // report
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] items.count => \(items.count) / aryOf_Clips.count => \(aryOf_Clips.count)")
+        print("[\(Methods.basename(#file)):\(#line)] items.count => \(items.count) / aryOf_Clips.count => \(aryOf_Clips.count)")
 
         // return
         return aryOf_Clips
@@ -326,7 +326,7 @@ class Proj {
         if resOf_PHs.count < 1 {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_PHs.count < 1")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_PHs.count < 1")
 
             return 1
             
@@ -380,7 +380,7 @@ class Proj {
         if resOf_Clips.count < 1 {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips.count < 1")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Clips.count < 1")
 
             return aryOf_Clips
             
@@ -435,7 +435,7 @@ class Proj {
         let resOf_PHs = realm.objects(PH).sorted(sort_column, ascending: ascend)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_PHs.count => \(resOf_PHs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_PHs.count => \(resOf_PHs.count)")
 
         // return
         if resOf_PHs.count < 1 {
@@ -469,8 +469,8 @@ class Proj {
             //            rl_tmp.add(bm, update: false)
             
             //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph => written (\(ph.description)")
+            //            print("[\(Methods.basename(#file)):\(#line)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(#file)):\(#line)] ph => written (\(ph.description)")
             
 //            // return
 //            return true
@@ -505,8 +505,8 @@ class Proj {
             //            rl_tmp.add(bm, update: false)
             
             //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph => written (\(ph.description)")
+            //            print("[\(Methods.basename(#file)):\(#line)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(#file)):\(#line)] ph => written (\(ph.description)")
             
             //            // return
             //            return true
@@ -540,8 +540,8 @@ class Proj {
             //            rl_tmp.add(bm, update: false)
             
             //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            //            print("[\(Methods.basename(#file)):\(#line)] bm => written (bm_time => \(bm.bm_time) (\(bm.title))")
+            print("[\(Methods.basename(#file)):\(#line)] clip => updated (\(clip.description)")
             
             //            // return
             //            return true
@@ -572,13 +572,13 @@ class Proj {
             clip.removed_at     = ""
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.removed_at => ''")
+            print("[\(Methods.basename(#file)):\(#line)] clip.removed_at => ''")
 
             realm.add(clip, update: true)
             //            rl_tmp.add(bm, update: false)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip => updated (\(clip.description)")
             
             //            // return
             //            return true
@@ -612,7 +612,7 @@ class Proj {
 
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip => updated (\(clip.description)")
             
             //            // return
             //            return true
@@ -649,7 +649,7 @@ class Proj {
             
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => updated (\(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip => updated (\(clip.description)")
             
             //            // return
             //            return true
@@ -716,7 +716,7 @@ class Proj {
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] Clip not in MediaItems => \(name)")
+                print("[\(Methods.basename(#file)):\(#line)] Clip not in MediaItems => \(name)")
 
                 // update clip
 //                let time = Methods.get_TimeLable()
@@ -735,7 +735,7 @@ class Proj {
         
         // report
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
+        print("[\(Methods.basename(#file)):\(#line)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
 
         // return
         return [aryOf_Clips.count, aryOf_MediaItems.count, count_removed, count]
@@ -755,7 +755,7 @@ class Proj {
         let albumItems: [MPMediaItemCollection] = albumsQuery.collections!
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        print("[\(Methods.basename(#file)):\(#line)] albumItems.count => \(albumItems.count)")
         
         // アルバム情報から曲情報を取得する
         for album in albumItems {
@@ -782,7 +782,7 @@ class Proj {
         let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -807,7 +807,7 @@ class Proj {
         let query = "title == '\(title)' AND audio_id = '\(audio_id)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -821,7 +821,7 @@ class Proj {
         if resOf_Clips.count < 1 {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no clip found => returning a dummy clip")
+            print("[\(Methods.basename(#file)):\(#line)] no clip found => returning a dummy clip")
             
             let clip = Clip()
             
@@ -853,14 +853,14 @@ class Proj {
         //debug0
         if resOf_Data_LatestDiaryAt.count > 0 {
             
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
             
             // return
             return resOf_Data_LatestDiaryAt[0].s_1
             
         } else {
             
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => =< 0")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Data_LatestDiaryAt.count => =< 0")
             
             // return
             return "-1"
@@ -913,7 +913,7 @@ class Proj {
             }
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_BMs => \(aryOf_BMs.count) / lines => \(lines.count)")
+            print("[\(Methods.basename(#file)):\(#line)] aryOf_BMs => \(aryOf_BMs.count) / lines => \(lines.count)")
             
             
             //        return Array<String>()
@@ -972,12 +972,12 @@ class Proj {
                 try "\(content)".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+                print("[\(Methods.basename(#file)):\(#line)] file written => \(fpath_full)")
                 
             } catch {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred => \(fpath_full)")
+                print("[\(Methods.basename(#file)):\(#line)] error occurred => \(fpath_full)")
                 
                 
             }

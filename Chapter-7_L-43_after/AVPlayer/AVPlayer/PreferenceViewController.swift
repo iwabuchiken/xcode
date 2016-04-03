@@ -20,7 +20,7 @@ class PreferenceViewController: UIViewController {
         if sw_AddBM.on {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] Pref: AddBM => on (\(sw_AddBM.on))")
+            print("[\(Methods.basename(#file)):\(#line)] Pref: AddBM => on (\(sw_AddBM.on))")
             
             // set the global var
 //            CONS.b_DebugMode = true
@@ -32,13 +32,13 @@ class PreferenceViewController: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Pref_AddBM)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Pref_AddBM => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Pref_AddBM => set true")
             
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] Pref: AddBM => off (\(sw_AddBM.on))")
+            print("[\(Methods.basename(#file)):\(#line)] Pref: AddBM => off (\(sw_AddBM.on))")
             
             // set the global var
 //            CONS.b_DebugMode = false
@@ -50,7 +50,7 @@ class PreferenceViewController: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Pref_AddBM)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Pref_AddBM => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Pref_AddBM => set false")
             
         }
 
@@ -62,7 +62,7 @@ class PreferenceViewController: UIViewController {
         if sw_DebugMode.on {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] debug mode => on (\(sw_DebugMode.on))")
+            print("[\(Methods.basename(#file)):\(#line)] debug mode => on (\(sw_DebugMode.on))")
             
             // set the global var
             CONS.b_DebugMode = true
@@ -73,13 +73,13 @@ class PreferenceViewController: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Set_DebugMode)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Set_DebugMode => true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Set_DebugMode => true")
 
             
         } else {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] debug mode => off (\(sw_DebugMode.on))")
+            print("[\(Methods.basename(#file)):\(#line)] debug mode => off (\(sw_DebugMode.on))")
 
             // set the global var
             CONS.b_DebugMode = false
@@ -90,7 +90,7 @@ class PreferenceViewController: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Set_DebugMode)
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Set_DebugMode => false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Set_DebugMode => false")
 
         }
         
@@ -124,13 +124,13 @@ class PreferenceViewController: UIViewController {
         let dfltVal_AddBM = defaults.valueForKey(CONS.defaultKeys.key_Pref_AddBM)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM?.description => \(dfltVal_AddBM?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM?.description => \(dfltVal_AddBM?.description)")
 
         // validate: nil
         if dfltVal_AddBM == nil {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => nil")
 
             // set the switch --> on
             self.sw_AddBM.on = true
@@ -139,25 +139,25 @@ class PreferenceViewController: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Pref_AddBM)
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM set => true")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM set => true")
 
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => NOT nil (value => \(dfltVal_AddBM?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => NOT nil (value => \(dfltVal_AddBM?.description)")
 
             // set switch --> accor. to the default value
             if dfltVal_AddBM?.boolValue == true {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => true")
 
                 self.sw_AddBM.on = true
                 
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => NOT true")
 
                 self.sw_AddBM.on = false
                 
@@ -179,14 +179,14 @@ class PreferenceViewController: UIViewController {
         //        dfltVal_DebugMode = dfltVal_DebugMode?.boolValue
         
 //        //debug
-//        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode => \(dfltVal_DebugMode)")
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode => \(dfltVal_DebugMode)")
+//        //        print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode => \(dfltVal_DebugMode)")
+//        print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode => \(dfltVal_DebugMode)")
         
         // judge
         if dfltVal_DebugMode?.boolValue == true {
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode => true")
+//            print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode => true")
             
             // set swith => on
             sw_DebugMode.setOn(true, animated: true)
@@ -194,7 +194,7 @@ class PreferenceViewController: UIViewController {
         } else {
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode => false")
+//            print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode => false")
 //            
             // set swith => off
             sw_DebugMode.setOn(false, animated: true)

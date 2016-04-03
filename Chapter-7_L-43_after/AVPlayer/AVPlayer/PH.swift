@@ -39,7 +39,7 @@ class PH: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] PH class")
+        print("[\(Methods.basename(#file)):\(#line)] PH class")
         
     }
     

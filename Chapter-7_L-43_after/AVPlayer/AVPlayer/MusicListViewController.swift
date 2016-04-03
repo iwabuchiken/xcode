@@ -39,7 +39,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => cancel")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => cancel")
             
             // execute  => close dialog
             
@@ -50,7 +50,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
             // start function
             self._filter__Choices__1()
@@ -60,7 +60,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             // start function
             self._filter__Choices__2()
@@ -81,7 +81,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let query = "last_played_at == '' AND removed_at == ''"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         let aPredicate = NSPredicate(format: query)
         
@@ -98,7 +98,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let query = "removed_at == ''"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         let aPredicate = NSPredicate(format: query)
 
@@ -143,7 +143,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs.count => \(resOf_BMs.count)")
         
         
 //        /*
@@ -163,7 +163,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let fname_realm = "db_20160219_173550.realm"
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+//        print("[\(Methods.basename(#file)):\(#line)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
 //        
 ////        let realmPath = String("dpath_realm" + "/" + fname_realm)
 ////        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
@@ -189,18 +189,18 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        for path in realmPaths {
 //            
 //	        //debug
-//	        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+//	        print("[\(Methods.basename(#file)):\(#line)] path => \(path)")
 //            
 //            do {
 //                try manager.removeItemAtPath(path)
 //                
 //                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+//                print("[\(Methods.basename(#file)):\(#line)] path removed => \(path)")
 //                
 //            } catch {
 //                // handle error
 //                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+//                print("[\(Methods.basename(#file)):\(#line)] remove path => error (\(path))")
 //
 //            }
 //        }
@@ -213,20 +213,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments... (realm file = \(CONS.s_Realm_FileName))")
+//        print("[\(Methods.basename(#file)):\(#line)] experiments... (realm file = \(CONS.s_Realm_FileName))")
 //
 //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
 //
 //        let dataArray = try! realm.objects(BM).sorted("created_at", ascending: false)
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] dataArray => \(dataArray.count)")
 //        
 //        // clips
 //        let resOf_Clips = try! realm.objects(Clip).sorted("created_at", ascending: false)
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips => \(resOf_Clips.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_Clips => \(resOf_Clips.count)")
 
         
     }
@@ -247,6 +247,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let choice_6 = "(6) Refresh clips table"
         
         let choice_7 = "(7) Backup BMs"
+        let choice_8 = "(8) fix => 安保氏、他"
         
 //        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
         let s_message = "choises"
@@ -256,7 +257,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => cancel")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => cancel")
             
             // execute  => close dialog
             
@@ -267,7 +268,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
             // start function
             self._experiments__Choices__1()
@@ -277,7 +278,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             // start function
             self._experiments__Choices__2()
@@ -287,7 +288,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_3, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 3")
             
             // start function
             self._experiments__Choices__3()
@@ -297,7 +298,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_4, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 4")
             
             // start function
             self._experiments__Choices__4()
@@ -307,7 +308,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_5, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 5")
             
             // start function
             self._experiments__Choices__5()
@@ -317,7 +318,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_6, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 6")
             
             // start function
             self._experiments__Choices__6()
@@ -327,13 +328,23 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: choice_7, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 7")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 7")
             
             // start function
             self._experiments__Choices__7()
             
         }))
 
+        refreshAlert.addAction(UIAlertAction(title: choice_8, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 8")
+            
+            // start function
+            self._experiments__Choices__8()
+            
+        }))
+        
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -350,7 +361,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _experiments__Choices__2() {
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__2")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__2")
         
         // backup
         Methods.backup_RealmFiles(CONS.RealmVars.s_Realm_FileName__Admin)
@@ -361,7 +372,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _experiments__Choices__3() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__3")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__3")
         
         // show list
 //        Methods.show_DirList__BackupFiles()
@@ -373,7 +384,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _experiments__Choices__4() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__4")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__4")
         
         // show list
         //        Methods.show_DirList__BackupFiles()
@@ -385,20 +396,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _experiments__Choices__5() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__5")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__5")
         
         // show history
         let aryOf_phs = Proj.find_All_PHs()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_phs.count => \(aryOf_phs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_phs.count => \(aryOf_phs.count)")
         
     }
 
     func _experiments__Choices__6() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__6")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__6")
         
         // show history
         let res : [Int] = Proj.refresh_Clips_Table()
@@ -425,7 +436,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => OK")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => OK")
             
             // execute  => close dialog
             
@@ -436,7 +447,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         presentViewController(refreshAlert, animated: true, completion: nil)
 
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
+//        print("[\(Methods.basename(#file)):\(#line)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
 
         
     }
@@ -444,13 +455,36 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _experiments__Choices__7() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__Choices__7")
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__7")
 
         //
         self._backup_BMs_ViaEmail()
         
     }
 
+    func _experiments__Choices__8() {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__8")
+        
+        //
+//        self._backup_BMs_ViaEmail()
+        self._fix__Abo_And_Others()
+        
+    }
+    
+    func _fix__Abo_And_Others() {
+        
+        let title = "安保徹講演(2013.06.09星陵会館) Toru Abo"
+        
+        let res = DB.delete_BMs__ByTitle(title)
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] deleted => \(title) ---> num of deleted bms: \(res)")
+
+        
+    }//_fix__Abo_And_Others
+    
     func _backup_BMs_ViaEmail() {
         
         let title = "Send data via email"
@@ -462,7 +496,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Handle Ok logic here")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            print("[\(Methods.basename(#file)):\(#line)] clicked => Ok button")
             
             // start email
             self.backup_BMs_ViaEmail__Ok()
@@ -492,7 +526,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+        print("[\(Methods.basename(#file)):\(#line)] fpath_full => \(fpath_full)")
         
         // build => CSV
         //        _experiments__BuildCSV()
@@ -502,7 +536,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         if tmp_i < 1 {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] _experiments__BuildCSV => \(tmp_i); returning...")
+            print("[\(Methods.basename(#file)):\(#line)] _experiments__BuildCSV => \(tmp_i); returning...")
             
             var title = ""
             var message = ""
@@ -528,7 +562,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
+        print("[\(Methods.basename(#file)):\(#line)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
         
         // email: setup vars
         self.fpath_realm_csv = fpath_full
@@ -559,13 +593,13 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let resOf_BMs = try r.objects(BM).sorted("modified_at", ascending: false)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs.count => \(resOf_BMs.count)")
 	
         // validate --> any entry
         if resOf_BMs.count < 1 {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs; returning")
+            print("[\(Methods.basename(#file)):\(#line)] no BMs; returning")
 
             return -1
             
@@ -577,7 +611,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         var last_modified_at = Proj.get_LastBackup_BM_ModifiedAt_String()
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_modified_at => \(last_modified_at)")
+        print("[\(Methods.basename(#file)):\(#line)] last_modified_at => \(last_modified_at)")
 
         /*
             build list --> filtered
@@ -618,7 +652,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         if aryOf_BMs__filtered.count < 1 {
             
             //debug0
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_BMs__filtered.count => less than 1 --> qutting the process")
+            print("[\(Methods.basename(#file)):\(#line)] aryOf_BMs__filtered.count => less than 1 --> qutting the process")
             
             return -2
             
@@ -630,12 +664,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let latest_BM = aryOf_BMs__filtered.sort{$0.modified_at < $1.modified_at}.last
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] latest_BM?.description => \(latest_BM?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] latest_BM?.description => \(latest_BM?.description)")
         
         let latest_BM_modified_at = latest_BM?.modified_at
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] latest_BM_modified_at! => \(latest_BM_modified_at!)")
+        print("[\(Methods.basename(#file)):\(#line)] latest_BM_modified_at! => \(latest_BM_modified_at!)")
 
         /*
             conv --> [BM] to [String]
@@ -643,7 +677,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let aryOf_CSV_Lines__BM = Proj.conv_BMs_2_CSV(aryOf_BMs__filtered)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_CSV_Lines__BM.count => \(aryOf_CSV_Lines__BM.count)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_CSV_Lines__BM.count => \(aryOf_CSV_Lines__BM.count)")
         
         /*
             write to file
@@ -679,7 +713,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             try "yes".writeToFile(fpath_full, atomically: true, encoding: NSUTF8StringEncoding)
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] file written => \(fpath_full)")
+            print("[\(Methods.basename(#file)):\(#line)] file written => \(fpath_full)")
 
             // report
             Methods.show_DirList__RealmFiles()
@@ -687,7 +721,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         } catch {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error occurred")
+            print("[\(Methods.basename(#file)):\(#line)] error occurred")
 
             
         }
@@ -745,14 +779,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         if let filePath = NSBundle.mainBundle().pathForResource("db_20160220_002443", ofType: "realm") {
         
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path to attached file => \(filePath)")
+            print("[\(Methods.basename(#file)):\(#line)] path to attached file => \(filePath)")
 
 //            print("File path loaded.")
         
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] can't generate path => \(fpath_realm)")
+            print("[\(Methods.basename(#file)):\(#line)] can't generate path => \(fpath_realm)")
 
     
         }
@@ -762,8 +796,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         if let fileData = NSData(contentsOfFile: fpath_realm) {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created")
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
+            print("[\(Methods.basename(#file)):\(#line)] data created")
+//            print("[\(Methods.basename(#file)):\(#line)] data created => \(fileData.description)")
 //            println("File data loaded.")
 
             // attach data
@@ -774,7 +808,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => NOT")
+            print("[\(Methods.basename(#file)):\(#line)] data created => NOT")
 
         }
     
@@ -794,7 +828,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
     
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] mailComposeController => called")
+        print("[\(Methods.basename(#file)):\(#line)] mailComposeController => called")
         
         //ref http://stackoverflow.com/questions/24311073/mfmailcomposeviewcontroller-in-swift answered Aug 26 '15 at 17:04
         switch result.rawValue {
@@ -835,7 +869,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
                 
                 //                // start function
                 //                self._experiments__Choices__2__OK()
@@ -870,7 +904,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     func _mailComposeController__MailSent() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
+        print("[\(Methods.basename(#file)):\(#line)] CONS.s_Latest_BM_at => \(CONS.s_Latest_BM_at)")
         
         
         
@@ -893,13 +927,13 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new_id => \(new_id)")
+        print("[\(Methods.basename(#file)):\(#line)] new_id => \(new_id)")
         
         //        data.id = 2
         //        data.id = 4
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
         
         try! r.write {
             
@@ -920,7 +954,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             r.add(data, update: false)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+            print("[\(Methods.basename(#file)):\(#line)] new data saved => \(data.description)")
             
         }
         
@@ -935,7 +969,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //                let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
         //
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => \(res.count)")
+        //        print("[\(Methods.basename(#file)):\(#line)] res.count => \(res.count)")
         //
         //
         //                if res.count < 1 {
@@ -952,7 +986,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //                    data.s_1 = value
         //
         //                    //debug
-        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //                    print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
         //
         //
         //                    try! realm_admin.write {
@@ -960,14 +994,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //                        self.realm_admin.add(data, update: false)
         //
         //                        //debug
-        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+        //                        print("[\(Methods.basename(#file)):\(#line)] new data saved => \(data.description)")
         //
         //                    }
         //
         //                } else {
         //
         //                    //debug
-        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => more than 1")
+        //                    print("[\(Methods.basename(#file)):\(#line)] res.count => more than 1")
         //
         //                    let data = res[0]
         //
@@ -978,14 +1012,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //                    data.s_1 = value
         //
         //                    //debug
-        //                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        //                    print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
         //
         //                    try! realm_admin.write {
         //                        
         //                        self.realm_admin.add(data, update: true)
         //                        
         //                        //debug
-        //                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
+        //                        print("[\(Methods.basename(#file)):\(#line)] data updated => \(data.description)")
         //                        
         //                    }
         //                    
@@ -1000,14 +1034,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         for item in self.songs {
             
 	        //debug
-	        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
+	        print("[\(Methods.basename(#file)):\(#line)] item.title => \(item.title)")
             
             let clip = Clip()
             
             clip.id = Methods.lastId_Clip()
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.id => \(clip.id)")
             
             clip.title = item.title!
             
@@ -1025,15 +1059,15 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
             // length
             //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+//            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
 //            //=> Optional(641.227)
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
             //=>
             
             clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.description => \(clip.description)")
             
             // is in db
             let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
@@ -1050,7 +1084,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(self.songs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] not in db => \(count) / total = \(self.songs.count)")
         
         
     }
@@ -1070,7 +1104,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let fname_realm = fname
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        print("[\(Methods.basename(#file)):\(#line)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
         
         //        let realmPath = String("dpath_realm" + "/" + fname_realm)
         //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
@@ -1096,18 +1130,18 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         for path in realmPaths {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+            print("[\(Methods.basename(#file)):\(#line)] path => \(path)")
             
             do {
                 try manager.removeItemAtPath(path)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+                print("[\(Methods.basename(#file)):\(#line)] path removed => \(path)")
                 
             } catch {
                 // handle error
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+                print("[\(Methods.basename(#file)):\(#line)] remove path => error (\(path))")
                 
             }
         }
@@ -1156,7 +1190,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.clips = self.getClips()
     
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.songs.count => \(self.songs.count) / self.clips.count => \(self.clips.count)")
+        print("[\(Methods.basename(#file)):\(#line)] self.songs.count => \(self.songs.count) / self.clips.count => \(self.clips.count)")
 
     
         // refresh data
@@ -1183,10 +1217,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let s1 = data[0]
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
+//        print("[\(Methods.basename(#file)):\(#line)] s1.title => \(s1.title)")
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+//        print("[\(Methods.basename(#file)):\(#line)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
 //        
 //        
 //        
@@ -1204,10 +1238,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func handle_LongPress(sender: UILongPressGestureRecognizer) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] long pressed (\(Methods.get_TimeLable()))")
+        print("[\(Methods.basename(#file)):\(#line)] long pressed (\(Methods.get_TimeLable()))")
         
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
+        //        print("[\(Methods.basename(#file)):\(#line)] title => (\(Methods.get_TimeLable()))" + songs[(tableView.indexPathForSelectedRow?.row)!].title!)
         
         
         //ref http://stackoverflow.com/questions/30839275/how-to-select-a-table-row-during-a-long-press-in-swift answered Jun 15 '15 at 7:33
@@ -1216,30 +1250,30 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let indexPath = tableView.indexPathForRowAtPoint(touchPoint)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] indexPath?.item => \(indexPath?.item)" ) //=> works
+        print("[\(Methods.basename(#file)):\(#line)] indexPath?.item => \(indexPath?.item)" ) //=> works
         
         //        // get item at the index
         //        let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
         //
-        //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell => created" ) //=> english title --> "fatal error: unexpectedly found nil while unwrapping an Optional value"
+        //                print("[\(Methods.basename(#file)):\(#line)] currentCell => created" ) //=> english title --> "fatal error: unexpectedly found nil while unwrapping an Optional value"
         
         
         //        //debug
-        ////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel!.text)" ) //=> works
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] currentCell.textLabel!.text => \(currentCell.textLabel?.text)" ) //=> works
+        ////        print("[\(Methods.basename(#file)):\(#line)] currentCell.textLabel!.text => \(currentCell.textLabel!.text)" ) //=> works
+        //        print("[\(Methods.basename(#file)):\(#line)] currentCell.textLabel!.text => \(currentCell.textLabel?.text)" ) //=> works
         //
         //        //test
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tableView.indexPathForSelectedRow?.row => \(tableView.indexPathForSelectedRow?.row)" ) //=>
+        //        print("[\(Methods.basename(#file)):\(#line)] tableView.indexPathForSelectedRow?.row => \(tableView.indexPathForSelectedRow?.row)" ) //=>
         //
         //        //test
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] songs.count => \(songs.count)" ) //=>
+        //        print("[\(Methods.basename(#file)):\(#line)] songs.count => \(songs.count)" ) //=>
         //        
         
     }
     
     func didSwipe(recognizer: UIGestureRecognizer) {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped!")
+        print("[\(Methods.basename(#file)):\(#line)] swiped!")
         
         //        if recognizer.state == UIGestureRecognizerState.Ended {
         //            let swipeLocation = recognizer.locationInView(self.tableView)
@@ -1247,7 +1281,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //                if let swipedCell = self.tableView.cellForRowAtIndexPath(swipedIndexPath) {
         //                    // Swipe happened. Do stuff!
         //                    //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swiped! => \(swipedCell.description)")
+        //        print("[\(Methods.basename(#file)):\(#line)] swiped! => \(swipedCell.description)")
         //
         //                }
         //            }
@@ -1301,13 +1335,13 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let title = self.clips[(indexPath.row)].title
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
 
 //        let query = "title CONTAINS '\(title!)'"
         let query = "title == '\(title)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -1316,7 +1350,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bmArray.count => \(bmArray.count)")
+        print("[\(Methods.basename(#file)):\(#line)] bmArray.count => \(bmArray.count)")
 
         // if no BMs --> goto 'cellSegue'
         if bmArray.count < 1 {
@@ -1325,14 +1359,22 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             CONS.current_time = 0
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => set to 0")
+            print("[\(Methods.basename(#file)):\(#line)] CONS.current_time => set to 0")
 
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
+//            print("[\(Methods.basename(#file)):\(#line)] no BMs => start cellSegue")
 //            
 //            performSegueWithIdentifier("cellSegue",sender: nil)
 //            
 //            return
+            
+        } else {
+            
+            //debug
+            // bm url and song url --> same?
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] bmArray[0].audio_id => \(bmArray[0].audio_id) / self.clips[(indexPath.row)].audio_id => \(self.clips[(indexPath.row)].audio_id)")
+            
             
         }
     
@@ -1343,7 +1385,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
        let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
         
         
 //    if b_flag {
@@ -1375,13 +1417,13 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let title = songs[(indexPath.row)].title
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
         
         //        let query = "title CONTAINS '\(title!)'"
         let query = "title == '\(title!)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -1390,7 +1432,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bmArray.count => \(bmArray.count)")
+        print("[\(Methods.basename(#file)):\(#line)] bmArray.count => \(bmArray.count)")
         
         // if no BMs --> goto 'cellSegue'
         if bmArray.count < 1 {
@@ -1399,14 +1441,22 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             CONS.current_time = 0
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.current_time => set to 0")
+            print("[\(Methods.basename(#file)):\(#line)] CONS.current_time => set to 0")
             
             //            //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] no BMs => start cellSegue")
+            //            print("[\(Methods.basename(#file)):\(#line)] no BMs => start cellSegue")
             //
             //            performSegueWithIdentifier("cellSegue",sender: nil)
             //
             //            return
+            
+        } else {
+            
+            //debug
+            // bm url and song url --> same?
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] bmArray[0].audio_id => \(bmArray[0].audio_id) / self.clips[(indexPath.row)].audio_id => \(self.clips[(indexPath.row)].audio_id)")
+            
             
         }
         
@@ -1421,12 +1471,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //    let dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
         //
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode?.description)")
+        //        print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode?.description)")
         //        var dfltVal_DebugMode = defaults.valueForKey(CONS.defaultKeys.key_Set_DebugMode)
         let dfltVal_DebugMode = Methods.getDefaults_Boolean(CONS.defaultKeys.key_Set_DebugMode)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_DebugMode?.description => \(dfltVal_DebugMode.description)")
         
         
         //    if b_flag {
@@ -1448,7 +1498,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
 }
 
   // MARK: segue-related methods
@@ -1457,7 +1507,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     (segue: UIStoryboardSegue, sender: AnyObject?) {
     
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
+        print("[\(Methods.basename(#file)):\(#line)] destinationViewController => (\(segue.destinationViewController.description))")
 
         if let playerViewController = segue.destinationViewController as? PlayerViewController {
             
@@ -1465,9 +1515,9 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             let url = self.clips[(tableView.indexPathForSelectedRow?.row)!].audio_id
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+//            print("[\(Methods.basename(#file)):\(#line)] url?.absoluteString => \(url?.absoluteString)")
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] url => \(url)")
+            print("[\(Methods.basename(#file)):\(#line)] url => \(url)")
           
             playerViewController.item_name = self.clips[(tableView.indexPathForSelectedRow?.row)!].title
             
@@ -1484,12 +1534,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
         //
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        //        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
 
         } else if let viewController = segue.destinationViewController as? VC_PH {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => VC_PH")
+            print("[\(Methods.basename(#file)):\(#line)] segueing to => VC_PH")
 
             
         }
@@ -1503,14 +1553,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         (segue: UIStoryboardSegue, sender: AnyObject?) {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] destinationViewController => (\(segue.destinationViewController.description))")
+            print("[\(Methods.basename(#file)):\(#line)] destinationViewController => (\(segue.destinationViewController.description))")
             
             if let playerViewController = segue.destinationViewController as? PlayerViewController {
                 let url = songs[(tableView.indexPathForSelectedRow?.row)!].valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
                 
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+                print("[\(Methods.basename(#file)):\(#line)] url?.absoluteString => \(url?.absoluteString)")
                 
                 playerViewController.item_name = songs[(tableView.indexPathForSelectedRow?.row)!].title
                 
@@ -1526,7 +1576,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
                 //        let title = songs[(tableView.indexPathForSelectedRow?.row)!].title
                 //
                 //        //debug
-                //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+                //        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
                 
                 
             }
@@ -1545,13 +1595,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // set: nsurl
         let url = self.clips[(tableView.indexPathForSelectedRow?.row)!].audio_id
 
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] url => \(url)")
+        
+        
         vc.url = NSURL(string: url)
         
         // MPMediaItem
         vc.current_clip = self.clips[(tableView.indexPathForSelectedRow?.row)!]
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
     
         /*
             build: BM list
@@ -1561,7 +1615,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let query = "title CONTAINS '\(title)'"
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
 
         let aPredicate = NSPredicate(format: query)
@@ -1572,23 +1626,31 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             let bmArray = DB.findAll_BM__Filtered(
                 CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
 
+            //debug
+            if (bmArray.count > 0) {
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] bmArray[0].title => \(bmArray[0].title)/ bmArray[0].audio_id => \(bmArray[0].audio_id)")
+
+            }
+            
             // put value
             vc.bmArray = bmArray
         
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+            print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(bmArray.count)")
 
         } catch is NSException {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
             
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
         } catch let error as NSError {
             
             //debug
-            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
             
         }
   
@@ -1614,7 +1676,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         vc.current_song = songs[(tableView.indexPathForSelectedRow?.row)!]
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title)")
+        print("[\(Methods.basename(#file)):\(#line)] title => \(title)")
         
         /*
         build: BM list
@@ -1622,14 +1684,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         */
         
         //    //debug
-        //    print("[\(Methods.basename(__FILE__)):\(__LINE__)] title => \(title) / title! => \(title!)")  //=> title => Optional("「マイナンバー制度」人民支配へ不可欠な法整備 vol.1") / title! => 「マイナンバー制度」人民支配へ不可欠な法整備 vol.1
+        //    print("[\(Methods.basename(#file)):\(#line)] title => \(title) / title! => \(title!)")  //=> title => Optional("「マイナンバー制度」人民支配へ不可欠な法整備 vol.1") / title! => 「マイナンバー制度」人民支配へ不可欠な法整備 vol.1
         
         
         //    let query = "title == '\(title!)'"
         let query = "title CONTAINS '\(title!)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -1645,7 +1707,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             //        let dataArray = try realm.objects(BM).filter(aPredicate).sorted("bm_time", ascending: true)
             //
             ////        //debug
-            ////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.description => \(dataArray.description)")
+            ////        print("[\(Methods.basename(#file)):\(#line)] dataArray.description => \(dataArray.description)")
             //
             //        var bmArray = Array<BM>()
             //
@@ -1665,7 +1727,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
             //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(bmArray.count)")
+            print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(bmArray.count)")
             
             //        for item in bmArray {
             //
@@ -1675,7 +1737,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             //        }
             
             //        //debug
-            //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+            //        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count)")
             //
             //        for item in dataArray {
             //
@@ -1688,14 +1750,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         } catch is NSException {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
             
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
         } catch let error as NSError {
             
             //debug
-            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
             
         }
         
@@ -1710,7 +1772,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             for item in dataArray {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")  //=>
+                print("[\(Methods.basename(#file)):\(#line)] item.title => \(item.title)")  //=>
                 
                 
             }
@@ -1718,19 +1780,19 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         } catch is NSException {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
             
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
         } catch let error as NSError {
             
             //debug
-            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
             
         } catch {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] unknown error)")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] unknown error)")  //=> build succeeded
 
             
         }
@@ -1778,7 +1840,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        print("[\(Methods.basename(#file)):\(#line)] albumItems.count => \(albumItems.count)")
         
         // sort
 //        myCustomerArray.sortInPlace {(customer1:Customer, customer2:Customer) -> Bool in
@@ -1817,7 +1879,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let query = "removed_at == ''"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -1829,7 +1891,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Clips.count => \(resOf_Clips.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_Clips.count => \(resOf_Clips.count)")
         
         return resOf_Clips
 
@@ -1860,7 +1922,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done¥n migration => done")
+        print("[\(Methods.basename(#file)):\(#line)] Realm(path: \"abc.realm\") => done¥n migration => done")
         
         
     }
@@ -1884,20 +1946,20 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         let rl_tmp = Methods.get_RealmInstance("abc.realm")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm(path: \"abc.realm\") => done")
+        print("[\(Methods.basename(#file)):\(#line)] Realm(path: \"abc.realm\") => done")
         
         //        var dataArray = try! Realm().objects(BM).sorted("created_at", ascending: false)
         let dataArray = try! rl_tmp.objects(BM).sorted("created_at", ascending: false)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        print("[\(Methods.basename(#file)):\(#line)] dataArray => \(dataArray.count)")
         //debug
         if dataArray.count > 0 {
             
             let bm = dataArray.first
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(bm?.title) (\(bm?.bm_time))")
+            print("[\(Methods.basename(#file)):\(#line)] dataArray => \(bm?.title) (\(bm?.bm_time))")
             
         }
         
@@ -1906,7 +1968,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        Methods.show_DirList(dpath_realm)
         
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(dataArray.count)")
+        //        print("[\(Methods.basename(#file)):\(#line)] dataArray => \(dataArray.count)")
         
         
         //        //test
@@ -1916,7 +1978,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let realmPath = Realm.Configuration.defaultConfiguration.path
         
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] realmPath => \(realmPath)")
+        //        print("[\(Methods.basename(#file)):\(#line)] realmPath => \(realmPath)")
         //
         //
         //        // files list
@@ -1937,14 +1999,14 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //            realm.deleteAll()
         //
         //            //debug
-        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteAll => done")
+        //            print("[\(Methods.basename(#file)):\(#line)] deleteAll => done")
         //
         ////            //test
         ////            realm.delete(BM)
         //                ///Users/mac/Desktop/works/WS/xcode/Chapter-7_L-43_after/AVPlayer/AVPlayer/MusicListViewController.swift:41:25: Cannot convert value of type '(BM).Type' (aka 'BM.Type') to expected argument type 'Object'
         //
         //            //debug
-        //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM => deleted")
+        //            print("[\(Methods.basename(#file)):\(#line)] BM => deleted")
         //
         //
         //        }     //=> works
@@ -1960,23 +2022,23 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let ary_tmp = tokens[2...3]
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[2] => \(tokens[2])")
+        print("[\(Methods.basename(#file)):\(#line)] tokens[2] => \(tokens[2])")
         
         let len = tokens.count
         
         let s_tmp = tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** s_tmp => \(s_tmp)")
+        print("[\(Methods.basename(#file)):\(#line)] tmp => \(tmp) *** s_tmp => \(s_tmp)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** Methods.dirname(tmp) => \(Methods.dirname(tmp))")
+        print("[\(Methods.basename(#file)):\(#line)] tmp => \(tmp) *** Methods.dirname(tmp) => \(Methods.dirname(tmp))")
         
         
         //        let tmp2 = Methods.dirname(tmp)
         //        
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp => \(tmp) *** tmp2 => \(tmp2)")
+        //        print("[\(Methods.basename(#file)):\(#line)] tmp => \(tmp) *** tmp2 => \(tmp2)")
         
     }
     

@@ -43,7 +43,7 @@ class VC_EditBM: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
             // execute
             self._delete_BM__OK()
@@ -53,7 +53,7 @@ class VC_EditBM: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             
         }))
@@ -70,7 +70,7 @@ class VC_EditBM: UIViewController {
         try! CONS.RealmVars.realm!.write {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
+            print("[\(Methods.basename(#file)):\(#line)] 'write' block starting...)")
             
             //        self.realm.add(self.diary, update: true)
             
@@ -79,7 +79,7 @@ class VC_EditBM: UIViewController {
             CONS.RealmVars.realm!.delete(CONS.e_VC_EditBM.bm)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(CONS.e_VC_EditBM.bm.description)")
+            print("[\(Methods.basename(#file)):\(#line)] bm => updated (\(CONS.e_VC_EditBM.bm.description)")
             
             // back
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -106,7 +106,7 @@ class VC_EditBM: UIViewController {
     @IBAction func update_BM(sender: UIButton) {
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] update_BM")
+        print("[\(Methods.basename(#file)):\(#line)] update_BM")
 
         /*
             memo
@@ -116,10 +116,10 @@ class VC_EditBM: UIViewController {
         let id = CONS.e_VC_EditBM.bm.id
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new memo => '\(memo)' (bm id => '\(id)')")
+        print("[\(Methods.basename(#file)):\(#line)] new memo => '\(memo)' (bm id => '\(id)')")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.memo => updating...")
+        print("[\(Methods.basename(#file)):\(#line)] CONS.e_VC_EditBM.bm.memo => updating...")
 
 //        // update
 //        CONS.e_VC_EditBM.bm.memo = memo!
@@ -131,7 +131,7 @@ class VC_EditBM: UIViewController {
         if res == false {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] invalid bm time format --> exiting the method")
+            print("[\(Methods.basename(#file)):\(#line)] invalid bm time format --> exiting the method")
 
             // show message
             Methods.show_Dialog_OK(self, title: "Invlaid time format", message: self.tf_BM_Time.text!)
@@ -151,7 +151,7 @@ class VC_EditBM: UIViewController {
     override func viewWillAppear(animated: Bool) {
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear")
 
         // setup --> views
         viewWillAppear__Setup_Views()
@@ -165,13 +165,13 @@ class VC_EditBM: UIViewController {
         try! CONS.RealmVars.realm!.write {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
+            print("[\(Methods.basename(#file)):\(#line)] 'write' block starting...)")
             
             // time -> meta
             let tmp_time = NSDate()
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => modifying...")
+            print("[\(Methods.basename(#file)):\(#line)] CONS.e_VC_EditBM.bm.modified_at => modifying...")
             
             CONS.e_VC_EditBM.bm.modified_at = Methods.conv_NSDate_2_DateString(tmp_time)
 
@@ -185,7 +185,7 @@ class VC_EditBM: UIViewController {
             if valid == false {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] invalid format => \((self.tf_BM_Time.text)!)")
+                print("[\(Methods.basename(#file)):\(#line)] invalid format => \((self.tf_BM_Time.text)!)")
                 
 //                return false
                 
@@ -199,7 +199,7 @@ class VC_EditBM: UIViewController {
                 let bm_time = Methods.conv_ClockLabel_2_Seconds((self.tf_BM_Time.text)!)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.e_VC_EditBM.bm.modified_at => bm_time => \(bm_time)")
+                print("[\(Methods.basename(#file)):\(#line)] CONS.e_VC_EditBM.bm.modified_at => bm_time => \(bm_time)")
 
                 CONS.e_VC_EditBM.bm.bm_time = bm_time
                 
@@ -210,7 +210,7 @@ class VC_EditBM: UIViewController {
                 CONS.RealmVars.realm!.add(CONS.e_VC_EditBM.bm, update: true)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => added (\(CONS.e_VC_EditBM.bm.description)")
+                print("[\(Methods.basename(#file)):\(#line)] bm => added (\(CONS.e_VC_EditBM.bm.description)")
                 
             }//if valid == false
             
@@ -243,7 +243,7 @@ class VC_EditBM: UIViewController {
         try! CONS.RealmVars.realm!.write {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'write' block starting...)")
+            print("[\(Methods.basename(#file)):\(#line)] 'write' block starting...)")
             
             //        self.realm.add(self.diary, update: true)
             
@@ -252,7 +252,7 @@ class VC_EditBM: UIViewController {
             CONS.RealmVars.realm!.add(bm, update: true)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm => updated (\(bm.description)")
+            print("[\(Methods.basename(#file)):\(#line)] bm => updated (\(bm.description)")
             
         }
         
@@ -278,7 +278,7 @@ class VC_EditBM: UIViewController {
         self.tf_Memo.text = CONS.e_VC_EditBM.bm.memo
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear__Setup_Views => done")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear__Setup_Views => done")
         
     }
     

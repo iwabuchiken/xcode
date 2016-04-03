@@ -35,7 +35,7 @@ class VC_Edit_ClipMemo: UIViewController {
         
       
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip updated => \(self.current_clip?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] clip updated => \(self.current_clip?.description)")
         
         // vibrate
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)

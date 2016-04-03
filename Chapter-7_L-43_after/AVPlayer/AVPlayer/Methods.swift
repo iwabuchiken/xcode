@@ -12,7 +12,7 @@ import RealmSwift
 
 //public func out_Message(str: String) ->Void {
 //    
-//    print(__FILE__)
+//    print(#file)
 //    
 //}
 
@@ -22,8 +22,8 @@ class Methods {
     
     static func out_Message(str: String) ->Void {
       
-        print("[\(__FILE__):\(__LINE__)] file => '\(__FILE__)'")
-//        print(__FILE__)
+        print("[\(#file):\(#line)] file => '\(#file)'")
+//        print(#file)
         
     }
 
@@ -106,7 +106,7 @@ class Methods {
             //ref join http://stackoverflow.com/questions/25827033/how-do-i-convert-a-swift-array-to-a-string answered Sep 13 '14 at 19:54
             return tokens[0...(len - 2)].joinWithSeparator(CONS.s_DirSeparator)
             //            //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] len => \(len)")
+            //            print("[\(Methods.basename(#file)):\(#line)] len => \(len)")
             //
             //            return ""
             
@@ -120,7 +120,7 @@ class Methods {
         //        return path
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => unknown value¥n returning path")
+        print("[\(Methods.basename(#file)):\(#line)] tokens.count => unknown value¥n returning path")
         
         return path
         
@@ -154,7 +154,7 @@ class Methods {
         let files = filemanager.enumeratorAtPath(dpath_realm)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)")
+        print("[\(Methods.basename(#file)):\(#line)] path => \(dpath_realm)")
         
         
         while let file = files?.nextObject() {
@@ -175,7 +175,7 @@ class Methods {
         let files = filemanager.enumeratorAtPath(path)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+        print("[\(Methods.basename(#file)):\(#line)] path => \(path)")
 
         
         while let file = files?.nextObject() {
@@ -200,7 +200,7 @@ class Methods {
         let files = filemanager.enumeratorAtPath(dpath_realm_backups)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm_backups)")
+        print("[\(Methods.basename(#file)):\(#line)] path => \(dpath_realm_backups)")
         
         
         while let file = files?.nextObject() {
@@ -259,7 +259,7 @@ class Methods {
         if tokens.count == 1 {
             
 //            print("path string has no ' ' char")
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path string has no ' ' char")
+            print("[\(Methods.basename(#file)):\(#line)] path string has no ' ' char")
             return date_string
             
         }
@@ -390,7 +390,7 @@ class Methods {
         defaults.synchronize()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
+        print("[\(Methods.basename(#file)):\(#line)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
         
         
     }
@@ -405,7 +405,7 @@ class Methods {
         defaults.synchronize()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
+        print("[\(Methods.basename(#file)):\(#line)] defaults set => '\(tmp_s)' (key = \(CONS.key_SearchWords))")
         
         
     }
@@ -446,14 +446,14 @@ class Methods {
         let songsQuery: MPMediaQuery = MPMediaQuery.songsQuery()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumsQuery.description => \(songsQuery.description)")
+        print("[\(Methods.basename(#file)):\(#line)] albumsQuery.description => \(songsQuery.description)")
         
         
         let albumItems: [MPMediaItemCollection] = songsQuery.collections!
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        print("[\(Methods.basename(#file)):\(#line)] albumItems.count => \(albumItems.count)")
         
         
         // アルバム情報から曲情報を取得する
@@ -465,7 +465,7 @@ class Methods {
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] array => built")
+        print("[\(Methods.basename(#file)):\(#line)] array => built")
         
         return array
     }
@@ -495,10 +495,10 @@ class Methods {
         let dpath_realm = Methods.dirname(realmPath!)
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm)")
+//        print("[\(Methods.basename(#file)):\(#line)] dpath_realm => \(dpath_realm)")
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(dpath_realm)/\(file_name)")
+//        print("[\(Methods.basename(#file)):\(#line)] path => \(dpath_realm)/\(file_name)")
         
         
         //        let rl_tmp = try! Realm(path: "abc.realm")    //=> permission denied
@@ -528,7 +528,7 @@ class Methods {
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
         
         //        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastId(): realm.objects(BM).sorted(\"id\", ascending: true).last?.description => \(realm.objects(BM).sorted("id", ascending: true).last?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] lastId(): realm.objects(BM).sorted(\"id\", ascending: true).last?.description => \(realm.objects(BM).sorted("id", ascending: true).last?.description)")
 
         
 //        if let user = realm.objects(BM).last {
@@ -576,7 +576,7 @@ class Methods {
         let fname_realm = fname
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        print("[\(Methods.basename(#file)):\(#line)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
         
         //        let realmPath = String("dpath_realm" + "/" + fname_realm)
         //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
@@ -602,18 +602,18 @@ class Methods {
         for path in realmPaths {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] path => \(path)")
+            print("[\(Methods.basename(#file)):\(#line)] path => \(path)")
             
             do {
                 try manager.removeItemAtPath(path)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path removed => \(path)")
+                print("[\(Methods.basename(#file)):\(#line)] path removed => \(path)")
                 
             } catch {
                 // handle error
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] remove path => error (\(path))")
+                print("[\(Methods.basename(#file)):\(#line)] remove path => error (\(path))")
                 
             }
         }
@@ -640,7 +640,7 @@ class Methods {
         let fname_realm = fname
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
+        print("[\(Methods.basename(#file)):\(#line)] dpath_realm => \(dpath_realm) *** fname_realm => \(fname_realm)")
         
         //        let realmPath = String("dpath_realm" + "/" + fname_realm)
         //        let realmPath = NSString.init("\(dpath_realm)/\(fname_realm)")
@@ -683,12 +683,12 @@ class Methods {
             if res_b == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file exists => \(path)")
+                print("[\(Methods.basename(#file)):\(#line)] file exists => \(path)")
 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] file NOT exists => \(path)")
+                print("[\(Methods.basename(#file)):\(#line)] file NOT exists => \(path)")
 
             }
             
@@ -711,33 +711,33 @@ class Methods {
         let s1 = data[0]
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.title => \(s1.title)")
+        print("[\(Methods.basename(#file)):\(#line)] s1.title => \(s1.title)")
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
+//        print("[\(Methods.basename(#file)):\(#line)] s1.lastPlayedDate => \(Methods.conv_NSDate_2_DateString(s1.lastPlayedDate!))")
         
         //test
         let res = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: s1.title!)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] is in db => \(res)")
+        print("[\(Methods.basename(#file)):\(#line)] is in db => \(res)")
         
         //debug: url
         let url = s1.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] url?.absoluteString => \(url?.absoluteString)")
+        print("[\(Methods.basename(#file)):\(#line)] url?.absoluteString => \(url?.absoluteString)")
         
         let s_id = url?.absoluteString.componentsSeparatedByString("=")[1]
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_id => \(s_id)")
+        print("[\(Methods.basename(#file)):\(#line)] s_id => \(s_id)")
         
         } catch {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error")
+            print("[\(Methods.basename(#file)):\(#line)] error")
             
             
         }
@@ -749,7 +749,7 @@ class Methods {
         let resOf_BMs = DB.findAll_BM(CONS.s_Realm_FileName, sort_key: "id", ascend: false)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs.count => \(resOf_BMs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs.count => \(resOf_BMs.count)")
 
         
     }
@@ -762,14 +762,14 @@ class Methods {
         for item in songs {
         
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
+            print("[\(Methods.basename(#file)):\(#line)] item.title => \(item.title)")
             
             let clip = Clip()
             
             clip.id = Methods.lastId_Clip()
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.id => \(clip.id)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.id => \(clip.id)")
             
 //            clip.title = item.title!
             var s_tmp = item.title!.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -796,15 +796,15 @@ class Methods {
             
             // length
             //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
+            //            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration))")
             //            //=> Optional(641.227)
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
+            print("[\(Methods.basename(#file)):\(#line)] item.valueForProperty(MPMediaItemPropertyPlaybackDuration) => \(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)!)")
             //=>
             
             clip.length = Int(item.valueForProperty(MPMediaItemPropertyPlaybackDuration)! as! NSNumber)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip.description => \(clip.description)")
+            print("[\(Methods.basename(#file)):\(#line)] clip.description => \(clip.description)")
             
             // is in db
             let res_b = DB.isInDb__Clip_Title(CONS.s_Realm_FileName, title: clip.title)
@@ -821,7 +821,7 @@ class Methods {
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] not in db => \(count) / total = \(songs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] not in db => \(count) / total = \(songs.count)")
         
         
     }
@@ -838,7 +838,7 @@ class Methods {
         if tokens.count != 3 {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => not 3")
+            print("[\(Methods.basename(#file)):\(#line)] tokens.count => not 3")
 
             return 0
             
@@ -850,9 +850,9 @@ class Methods {
         let sec = Int(tokens[2])!
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[0] = '\(tokens[0])', tokens[1] = '\(tokens[1])', tokens[2] = '\(tokens[2])'")
+        print("[\(Methods.basename(#file)):\(#line)] tokens[0] = '\(tokens[0])', tokens[1] = '\(tokens[1])', tokens[2] = '\(tokens[2])'")
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] hour2sec = \(hour2sec), min2sec = \(min2sec), sec = \(sec)")
+        print("[\(Methods.basename(#file)):\(#line)] hour2sec = \(hour2sec), min2sec = \(min2sec), sec = \(sec)")
         
         return hour2sec + min2sec + sec
         
@@ -889,13 +889,13 @@ class Methods {
                     try filemanager.createDirectoryAtPath(dpath_realm_backups, withIntermediateDirectories: true, attributes: nil)
                     
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] dir created => \(dpath_realm_backups) ")
+                    print("[\(Methods.basename(#file)):\(#line)] dir created => \(dpath_realm_backups) ")
                     
                 } catch let e as NSError! {
                     
                     // handle error
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                    print("[\(Methods.basename(#file)):\(#line)] error => \(e.description) ")
                     
                     // return
                     return -1
@@ -906,7 +906,7 @@ class Methods {
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dpath_realm_backups => exists")
+                print("[\(Methods.basename(#file)):\(#line)] dpath_realm_backups => exists")
                 
             }
             
@@ -996,7 +996,7 @@ class Methods {
                 let fpath_src = "\(dpath_realm)/\(fname_src)"
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_src: \(fpath_src) --> exists = \(filemanager.fileExistsAtPath(fpath_src))")
+                print("[\(Methods.basename(#file)):\(#line)] fpath_src: \(fpath_src) --> exists = \(filemanager.fileExistsAtPath(fpath_src))")
                 
                 // validate: exists
                 let res_exists = filemanager.fileExistsAtPath(fpath_src)
@@ -1004,7 +1004,7 @@ class Methods {
                 if res_exists == false {
 
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_src: \(fpath_src) --> NOT exists")
+                    print("[\(Methods.basename(#file)):\(#line)] fpath_src: \(fpath_src) --> NOT exists")
 
                     continue
                     
@@ -1016,7 +1016,7 @@ class Methods {
                     try filemanager.copyItemAtPath(fpath_src, toPath: fpath_dst)
                     
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] file copied: \(fpath_src) --> \(fpath_dst)")
+                    print("[\(Methods.basename(#file)):\(#line)] file copied: \(fpath_src) --> \(fpath_dst)")
                     
                     print("file [\(fpath_dst)] --> exists = \(filemanager.fileExistsAtPath(fpath_dst))")
                     
@@ -1027,7 +1027,7 @@ class Methods {
                     
                     // handle error
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description) ")
+                    print("[\(Methods.basename(#file)):\(#line)] error => \(e.description) ")
                     
                 }
                 
@@ -1037,14 +1037,14 @@ class Methods {
             if lenOf_names_src == count {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] backup => all files done")
+                print("[\(Methods.basename(#file)):\(#line)] backup => all files done")
 
                 return true
                 
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] backup => some files are NOT done!")
+                print("[\(Methods.basename(#file)):\(#line)] backup => some files are NOT done!")
 
                 return false
                 
@@ -1090,7 +1090,7 @@ class Methods {
         //        }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] albumItems.count => \(albumItems.count)")
+        print("[\(Methods.basename(#file)):\(#line)] albumItems.count => \(albumItems.count)")
         
         // sort
         //        myCustomerArray.sortInPlace {(customer1:Customer, customer2:Customer) -> Bool in
@@ -1127,7 +1127,7 @@ class Methods {
         refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => OK")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => OK")
             
             // execute  => close dialog
             
@@ -1157,30 +1157,30 @@ class Methods {
             if results.count == 1 {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] match once => return true")
+                print("[\(Methods.basename(#file)):\(#line)] match once => return true")
                 
                 return true
                 
             } else if results.count == 0 {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] match 0 => return false")
+                print("[\(Methods.basename(#file)):\(#line)] match 0 => return false")
                 
                 return false
                 
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] result is => \(results.description) --> return false")
+                print("[\(Methods.basename(#file)):\(#line)] result is => \(results.description) --> return false")
                 
                 return false
 
             }
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.count => \(results.count)")
+//            print("[\(Methods.basename(#file)):\(#line)] results.count => \(results.count)")
 //
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.description => \(results.description)")
+//            print("[\(Methods.basename(#file)):\(#line)] results.description => \(results.description)")
 //            
 //            // enumerate
 //            let enumerator = results.map { nsString.substringWithRange($0.range)}
@@ -1280,7 +1280,7 @@ class Methods {
                 let line = "\(str_1),\(str_2)"
                 
                 //            //debug
-                //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] line => \(line)")
+                //            print("[\(Methods.basename(#file)):\(#line)] line => \(line)")
                 
                 // append
                 lines.append(line)
@@ -1297,7 +1297,7 @@ class Methods {
             }
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(resOf_Diaries.count) / lines => \(lines.count)")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Diaries => \(resOf_Diaries.count) / lines => \(lines.count)")
             
             
             //        return Array<String>()

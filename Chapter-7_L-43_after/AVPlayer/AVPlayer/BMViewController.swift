@@ -47,7 +47,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //            self.sw_EditMode.on = false
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode => true")
+            print("[\(Methods.basename(#file)):\(#line)] self.sw_EditMode => true")
 
             // set defaults
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
@@ -60,7 +60,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //            self.sw_EditMode.on = true
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode => false")
+            print("[\(Methods.basename(#file)):\(#line)] self.sw_EditMode => false")
 
             // set defaults
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Pref_BM_EditMemo)
@@ -81,7 +81,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.start_PlayerView_From_ClickingOn_Label_CurrentTime = true
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] performing segue...")
+        print("[\(Methods.basename(#file)):\(#line)] performing segue...")
 
         
 //        performSegueWithIdentifier("bm2play_Segue",sender: nil)
@@ -129,7 +129,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let url = NSURL(string : (self.current_clip?.audio_id)!)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] nsurl => set")
+        print("[\(Methods.basename(#file)):\(#line)] nsurl => set")
         
 
         
@@ -137,7 +137,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        Proj.add_BM(self.song_title, bm_time: bm_time, audio_url: url)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] add bm => done")
+        print("[\(Methods.basename(#file)):\(#line)] add bm => done")
 
         // rebuild BM array
         self._build_BMArray()
@@ -153,7 +153,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         lbl_Title.text = self.song_title
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] label set => \(lbl_Title.text)")
+        print("[\(Methods.basename(#file)):\(#line)] label set => \(lbl_Title.text)")
         
         // build: BM array
         _build_BMArray()
@@ -208,19 +208,19 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.sw_EditMode.on = false
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Pref_BM_EditMemo => nil¥nself.sw_EditMode.on => false")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_Pref_BM_EditMemo => nil¥nself.sw_EditMode.on => false")
 
         } else {
             
             self.sw_EditMode.on = (dfltVal_Pref_BM_EditMemo?.boolValue)!
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.sw_EditMode.on => \((dfltVal_Pref_BM_EditMemo?.boolValue)!)")
+            print("[\(Methods.basename(#file)):\(#line)] self.sw_EditMode.on => \((dfltVal_Pref_BM_EditMemo?.boolValue)!)")
             
         }
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Pref_BM_EditMemo?.description => \(dfltVal_Pref_BM_EditMemo?.description)")
+//        print("[\(Methods.basename(#file)):\(#line)] dfltVal_Pref_BM_EditMemo?.description => \(dfltVal_Pref_BM_EditMemo?.description)")
 
     }
     
@@ -257,7 +257,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let query = "title == '\(self.song_title!)'"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         
         
         let aPredicate = NSPredicate(format: query)
@@ -287,7 +287,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             //        let dataArray = try Realm().objects(BM).filter(aPredicate).sorted("created_at", ascending: false)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+            print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count)")
             
 //            for item in dataArray {
 //                
@@ -300,14 +300,14 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         } catch is NSException {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+            print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
             
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
         } catch let error as NSError {
             
             //debug
-            //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+            //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
             
         }
 
@@ -341,14 +341,14 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.addGestureRecognizer(swipeLeftGesture)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe setup => done")
+        print("[\(Methods.basename(#file)):\(#line)] swipe setup => done")
         
     }
     
     func handleSwipeLeft(sender: UITapGestureRecognizer){
   
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] swipe => down")
+        print("[\(Methods.basename(#file)):\(#line)] swipe => down")
 
         // segue
         self.performSegueWithIdentifier("segue_BM_2_EditClipMemo", sender: nil)
@@ -379,7 +379,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let text = Methods.conv_Seconds_2_ClockLabel(bmArray[indexPath.row].bm_time)
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm_time => \(text)")
+//        print("[\(Methods.basename(#file)):\(#line)] bm_time => \(text)")
 
         
         // Cellに値を設定する.
@@ -444,13 +444,13 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     (segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting prepareForSegue...")
+        print("[\(Methods.basename(#file)):\(#line)] starting prepareForSegue...")
 
         //test
         let tmp = segue.destinationViewController
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.destinationViewController => \(tmp.description)")
+        print("[\(Methods.basename(#file)):\(#line)] segue.destinationViewController => \(tmp.description)")
         
         
         // dispatch
@@ -458,13 +458,13 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if var vc = segue.destinationViewController as? PlayerViewController {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segue.identifier => \(segue.identifier!)")
+            print("[\(Methods.basename(#file)):\(#line)] segue.identifier => \(segue.identifier!)")
             
             // dispatch
             if self.start_PlayerView_From_ClickingOn_Label_CurrentTime == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => self.prepareForSegue__CurrentTime_2_PlayerView()")
+                print("[\(Methods.basename(#file)):\(#line)] calling => self.prepareForSegue__CurrentTime_2_PlayerView()")
 
                 vc = self.prepareForSegue__CurrentTime_2_PlayerView(vc)
                 
@@ -497,7 +497,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else if var vc = segue.destinationViewController as? VC_Edit_ClipMemo {//if let vc = segue.destinationViewController as? PlayerViewController
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => VC_Edit_ClipMemo")
+            print("[\(Methods.basename(#file)):\(#line)] segueing to => VC_Edit_ClipMemo")
             
             //
             _prepareForSegue__VC_Edit_ClipMemo(vc)
@@ -520,12 +520,12 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let s_current_time = self.lbl_CurrentTime.text!
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lbl_current_time => \(s_current_time)")
+        print("[\(Methods.basename(#file)):\(#line)] lbl_current_time => \(s_current_time)")
 
         let bm_time = Methods.conv_ClockLabel_2_Seconds(self.lbl_CurrentTime.text!)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] bm_time => \(bm_time)")
+        print("[\(Methods.basename(#file)):\(#line)] bm_time => \(bm_time)")
 
 //        return
         
@@ -560,7 +560,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.lbl_CurrentTime.addGestureRecognizer(redGesture)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] addGesture_2_Label_CurrentTime => done")
+        print("[\(Methods.basename(#file)):\(#line)] addGesture_2_Label_CurrentTime => done")
         
     }
     
@@ -569,7 +569,7 @@ class BMViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        myLabel.textColor = UIColor.redColor()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] goRed")
+        print("[\(Methods.basename(#file)):\(#line)] goRed")
         
     }
     

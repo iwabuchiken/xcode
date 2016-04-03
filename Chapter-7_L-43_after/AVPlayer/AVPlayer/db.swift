@@ -114,7 +114,7 @@ class DB {
             let query = "title == '\(title)'"
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+//            print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
             
             
             let aPredicate = NSPredicate(format: query)
@@ -147,7 +147,7 @@ class DB {
     (dbname_old : String, dbname_new : String) -> Int {
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaultConfiguration.path => \(Realm.Configuration.defaultConfiguration.path as! NSString)")
+//        print("[\(Methods.basename(#file)):\(#line)] defaultConfiguration.path => \(Realm.Configuration.defaultConfiguration.path as! NSString)")
         
         
         let realm = Methods.get_RealmInstance(dbname_old)
@@ -157,10 +157,10 @@ class DB {
         let resOf_BMs_old =  try! realm.objects(BM).sorted("id", ascending: true)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs_old.count => \(resOf_BMs_old.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs_old.count => \(resOf_BMs_old.count)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs_old[0].description => \(resOf_BMs_old[0].description)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs_old[0].description => \(resOf_BMs_old[0].description)")
         
         /*
             migrate
@@ -206,10 +206,10 @@ class DB {
 //        let resOf_BMs_new =  try! realm_new.objects(BM_2).sorted("id", ascending: true)
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs_new.count => \(resOf_BMs_new.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs_new.count => \(resOf_BMs_new.count)")
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_BMs_new[0].description => \(resOf_BMs_new[0].description)")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_BMs_new[0].description => \(resOf_BMs_new[0].description)")
         
         
         /*
@@ -218,7 +218,7 @@ class DB {
 //        for item in resOf_BMs_old {
 //
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] item.title => \(item.title)")
+//            print("[\(Methods.basename(#file)):\(#line)] item.title => \(item.title)")
 //
 //            
 //        }
@@ -227,5 +227,101 @@ class DB {
         return -1
 
     }
-    
+
+    /*
+        @return
+        -1      => no bms
+    */
+    static func delete_BMs__ByTitle(title : String) -> Int {
+
+        var count = 0   // num of deletion
+        
+        let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
+        
+        let query = "title == '\(title)'"
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
+        
+        
+        let aPredicate = NSPredicate(format: query)
+        
+        let bmArray = DB.findAll_BM__Filtered(
+            CONS.s_Realm_FileName,  predicate: aPredicate, sort_key: "created_at", ascend: false)
+        
+        // validate --> any entry?
+        if bmArray.count < 1 {
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] no bms for --> \(title)")
+
+            // return
+            return -1
+            
+        } else {
+
+            // temp array
+            var tmpArray : [BM] = Array<BM>()
+            
+            var len = bmArray.count
+            
+//            for i in [0..<len] {
+            for item in bmArray {
+            
+                tmpArray.append(item)
+                
+            }
+            
+            
+//            for bm in bmArray {
+//            for var i in [0..<len] {
+//            for var i in 0...(len-1) {
+            for var i in 1...(len-1) {
+            
+                let b = bmArray[i]
+                
+                do {
+                
+                    try! realm.write {
+
+                        //debug
+                        print("[\(Methods.basename(#file)):\(#line)] bm deleting... --> \(title) <\(Methods.conv_Seconds_2_ClockLabel(b.bm_time))>")
+                        
+
+                        realm.delete(b)
+                        
+                        //debug
+                        print("[\(Methods.basename(#file)):\(#line)] bm deleted --> \(title) <\(Methods.conv_Seconds_2_ClockLabel(b.bm_time))>")
+                        
+                        count += 1
+                        
+                    }
+                   
+//                } catch let error as RLMException {
+//                    
+//                aaa
+                    
+                    
+                } catch is NSException {
+                    
+                    //debug
+                    print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
+                    
+                        //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+                } catch let error as NSError {
+                    
+                    //debug
+                    //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                    print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
+                    
+                }
+            
+            }//for bm in bmArray
+            
+        }
+
+        //return
+        return count
+        
+    }//delete_BMs__ByTitle
 }

@@ -121,7 +121,7 @@ class PlayerViewController: AVPlayerViewController {
         // update --> Clip::last_played_at
         Proj.update_Clip__LastPlayedAt(self.current_clip!)
         
-    }
+    }//viewWillDisappear
 
     func viewWillDisappear__SaveHistory
         //    (item_name : String, bm_time : Int, audio_url : NSURL) {
@@ -289,13 +289,16 @@ class PlayerViewController: AVPlayerViewController {
         
         Proj.add_BM(item_name, bm_time: bm_time, audio_url: audio_url)
         
-    }
+    }//viewWillDisappear__SaveBM
     
     // 音楽を再生する
     func playMusic(url: NSURL) {
 
         player = AVPlayer(URL: url)
 
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] url => \(url)")
+        
         //debug
         print("[\(Methods.basename(#file)):\(#line)] item_name => \(item_name)")
 

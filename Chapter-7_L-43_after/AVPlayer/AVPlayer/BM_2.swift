@@ -42,7 +42,7 @@ class BM_2: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] BM class")
+        print("[\(Methods.basename(#file)):\(#line)] BM class")
         
     }
     

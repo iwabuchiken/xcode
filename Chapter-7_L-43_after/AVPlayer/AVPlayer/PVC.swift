@@ -20,7 +20,7 @@ class PVC: AVPlayerViewController {
         super.viewWillAppear(animated)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear()")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear()")
         
         
     }
@@ -31,7 +31,7 @@ class PVC: AVPlayerViewController {
         player?.pause()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player => paused")
+        print("[\(Methods.basename(#file)):\(#line)] player => paused")
         
         
     }
