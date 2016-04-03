@@ -49,9 +49,9 @@ class PlayerViewController: AVPlayerViewController {
 //        self.presentViewController(playerVC, animated: true, completion: nil)
     
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_song?.title => \(self.current_song?.title)")
+//        print("[\(Methods.basename(#file)):\(#line)] self.current_song?.title => \(self.current_song?.title)")
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.current_clip?.title => \(self.current_clip?.title)")
+        print("[\(Methods.basename(#file)):\(#line)] self.current_clip?.title => \(self.current_clip?.title)")
 
     }
     
@@ -59,7 +59,7 @@ class PlayerViewController: AVPlayerViewController {
     super.viewWillAppear(animated)
    
     //debug
-    print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear()")
+    print("[\(Methods.basename(#file)):\(#line)] viewWillAppear()")
 
     
   }
@@ -71,17 +71,17 @@ class PlayerViewController: AVPlayerViewController {
         player?.pause()
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.description => \(player?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] player?.description => \(player?.description)")
 
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().value.description => \(player?.currentTime().value.description)")
+        print("[\(Methods.basename(#file)):\(#line)] player?.currentTime().value.description => \(player?.currentTime().value.description)")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
+        print("[\(Methods.basename(#file)):\(#line)] player?.currentTime().seconds => \(player?.currentTime().seconds)")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
+        print("[\(Methods.basename(#file)):\(#line)] Int((player?.currentTime().seconds)!) => \(Int((player?.currentTime().seconds)!))")
 
         /*
 
@@ -105,12 +105,12 @@ class PlayerViewController: AVPlayerViewController {
         } catch let e as NSError {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(e.description)")
+            print("[\(Methods.basename(#file)):\(#line)] NSError => \(e.description)")
             
         } catch {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] other errors")
+            print("[\(Methods.basename(#file)):\(#line)] other errors")
 
         }
     
@@ -135,7 +135,7 @@ class PlayerViewController: AVPlayerViewController {
 
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.description => \(ph_latest.description)")
+            print("[\(Methods.basename(#file)):\(#line)] ph_latest.description => \(ph_latest.description)")
 
             /*
                 dispatch
@@ -147,27 +147,27 @@ class PlayerViewController: AVPlayerViewController {
             if ph_latest.id == -1 {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.id == -1 --> saving ph...")
+                print("[\(Methods.basename(#file)):\(#line)] ph_latest.id == -1 --> saving ph...")
 
                 self._viewWillDisappear__SaveHistory__SavePH(item_name, bm_time: bm_time)
                 
             } else if ph_latest.title != item_name {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title != item_name --> saving ph...")
+                print("[\(Methods.basename(#file)):\(#line)] ph_latest.title != item_name --> saving ph...")
 
                 self._viewWillDisappear__SaveHistory__SavePH(item_name, bm_time: bm_time)
                 
             } else if ph_latest.title == item_name {
 
                 //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> not saving ph...")
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph_latest.title == item_name --> updating ph...")
+//                print("[\(Methods.basename(#file)):\(#line)] ph_latest.title == item_name --> not saving ph...")
+                print("[\(Methods.basename(#file)):\(#line)] ph_latest.title == item_name --> updating ph...")
 
 //                ph_latest.current_time = bm_time
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling --> _viewWillDisappear__SaveHistory__UpdatePH")
+                print("[\(Methods.basename(#file)):\(#line)] calling --> _viewWillDisappear__SaveHistory__UpdatePH")
                 
                 
                 self._viewWillDisappear__SaveHistory__UpdatePH(ph_latest, bm_time: bm_time)
@@ -175,7 +175,7 @@ class PlayerViewController: AVPlayerViewController {
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillDisappear__SaveHistory: unknown case --> ph => \(ph_latest.description)")
+                print("[\(Methods.basename(#file)):\(#line)] viewWillDisappear__SaveHistory: unknown case --> ph => \(ph_latest.description)")
 
             }
             
@@ -196,18 +196,18 @@ class PlayerViewController: AVPlayerViewController {
 //            let t_label = Methods.get_TimeLable()
 //            
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph.modified_at => updating...")
+//            print("[\(Methods.basename(#file)):\(#line)] ph.modified_at => updating...")
 //            
 //            ph.modified_at  = t_label
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] updating PH => (\(ph.description)")
+            print("[\(Methods.basename(#file)):\(#line)] updating PH => (\(ph.description)")
             
             // save
             let res = Proj.update_PH(ph, bm_time: bm_time)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
+            print("[\(Methods.basename(#file)):\(#line)] Proj.save_PH(ph) => (\(res)")
             
             
     }//_viewWillDisappear__SaveHistory__SavePH
@@ -219,7 +219,7 @@ class PlayerViewController: AVPlayerViewController {
         let ph = PH()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => Proj.lastId_PH()")
+        print("[\(Methods.basename(#file)):\(#line)] calling => Proj.lastId_PH()")
 
         ph.id = Proj.lastId_PH()
         
@@ -232,32 +232,32 @@ class PlayerViewController: AVPlayerViewController {
         ph.title        = item_name
 
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] clip => \(self.current_clip?.description)")
+//        print("[\(Methods.basename(#file)):\(#line)] clip => \(self.current_clip?.description)")
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting => self.current_clip?.audio_id")
+        print("[\(Methods.basename(#file)):\(#line)] setting => self.current_clip?.audio_id")
         
         ph.audio_id     = (self.current_clip?.audio_id)!
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting => ph.memo")
+        print("[\(Methods.basename(#file)):\(#line)] setting => ph.memo")
 
         ph.memo         = (self.current_clip?.memos)!
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] ph.memo => set")
+        print("[\(Methods.basename(#file)):\(#line)] ph.memo => set")
 
         ph.current_time = bm_time
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] saving PH => (\(ph.description)")
+        print("[\(Methods.basename(#file)):\(#line)] saving PH => (\(ph.description)")
 
         // save
         let res = Proj.save_PH(ph)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.save_PH(ph) => (\(res)")
+        print("[\(Methods.basename(#file)):\(#line)] Proj.save_PH(ph) => (\(res)")
 
         
     }//_viewWillDisappear__SaveHistory__SavePH
@@ -275,7 +275,7 @@ class PlayerViewController: AVPlayerViewController {
         if dfltVal_AddBM?.boolValue == false {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => false; not saving BM")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => false; not saving BM")
             
             return
             
@@ -297,14 +297,14 @@ class PlayerViewController: AVPlayerViewController {
         player = AVPlayer(URL: url)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] item_name => \(item_name)")
+        print("[\(Methods.basename(#file)):\(#line)] item_name => \(item_name)")
 
 
         //ref http://dev.digitrick.us/notes/LoopingVideoWithAVFoundation
         var seekTime : CMTime = CMTimeMake(10, 1)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.seekTime => \(self.seekTime)")
+        print("[\(Methods.basename(#file)):\(#line)] self.seekTime => \(self.seekTime)")
 
 
         // seek time preset?
@@ -319,7 +319,8 @@ class PlayerViewController: AVPlayerViewController {
 
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] seekTime.value.value => \(seekTime.value.value)")
+//        print("[\(Methods.basename(#file)):\(#line)] seekTime.value.value => \(seekTime.value.value)")
+        print("[\(Methods.basename(#file)):\(#line)] seekTime.value.value => \(seekTime.value.description)")
 
         // background play
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
