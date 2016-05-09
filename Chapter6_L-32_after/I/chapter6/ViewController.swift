@@ -116,6 +116,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // objects with conditions
         _test_Realm_Conditions__MultipleKeywords(tmp_s)
         
+        // build --> aryOf_Diaries
+        _conv_Results_2_Array__Diaries()
+        
+        // buid dataArray --> new func
         _build_DataArray__With_Keywords(tmp_s)
         
         // number of cells
@@ -127,7 +131,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         } else {
             
-            self.numOf_Cells = self.dataArray.count
+//            self.numOf_Cells = self.dataArray.count
+            
+            self.numOf_Cells = self.aryOf_Diaries.count
             
         }
         
@@ -375,8 +381,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }//if tmp_s == ""
         
         
-        // convert Results<Diary> => Array<Diary>
-        _conv_Results_2_Array__Diaries()
+//        // convert Results<Diary> => Array<Diary>
+//        _conv_Results_2_Array__Diaries()
         
         //debug
         print("[\(Methods.basename(#file)):\(#line)] dataArray => \(String(dataArray.count))")
