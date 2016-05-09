@@ -704,7 +704,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         
         // Cellに値を設定する.
-        let object = dataArray[indexPath.row]
+//        let object = dataArray[indexPath.row]
+        let object = aryOf_Diaries[indexPath.row]
         
         
         
