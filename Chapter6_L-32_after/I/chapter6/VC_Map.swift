@@ -22,7 +22,7 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         super.viewDidLoad()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewDidLoad")
+        print("[\(Methods.basename(#file)):\(#line)] viewDidLoad")
         
         locationManager.delegate = self
         
@@ -36,26 +36,26 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         let status = CLLocationManager.authorizationStatus()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] status.rawValue => \(status.rawValue)")
+        print("[\(Methods.basename(#file)):\(#line)] status.rawValue => \(status.rawValue)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CLAuthorizationStatus.NotDetermined => \(CLAuthorizationStatus.NotDetermined.rawValue)")
+        print("[\(Methods.basename(#file)):\(#line)] CLAuthorizationStatus.NotDetermined => \(CLAuthorizationStatus.NotDetermined.rawValue)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] status == CLAuthorizationStatus.NotDetermined => \(status == CLAuthorizationStatus.NotDetermined)")
+        print("[\(Methods.basename(#file)):\(#line)] status == CLAuthorizationStatus.NotDetermined => \(status == CLAuthorizationStatus.NotDetermined)")
         
         
         if status == CLAuthorizationStatus.NotDetermined {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting... => request dialog")
+            print("[\(Methods.basename(#file)):\(#line)] starting... => request dialog")
 
             // 未認証ならリクエストダイアログ出す
             locationManager.requestWhenInUseAuthorization();
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting... => locationManager")
+        print("[\(Methods.basename(#file)):\(#line)] starting... => locationManager")
 
         
         // 位置情報の取得を開始させる
@@ -78,7 +78,7 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         let locs = Proj.find_All_Locs()
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] locs.count => \(locs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] locs.count => \(locs.count)")
 
     }
     
@@ -94,19 +94,19 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude... => \(lastLocation!.latitude)")
+        print("[\(Methods.basename(#file)):\(#line)] lastLocation!.latitude... => \(lastLocation!.latitude)")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude + 10 => \(lastLocation!.latitude + 10)")
+        print("[\(Methods.basename(#file)):\(#line)] lastLocation!.latitude + 10 => \(lastLocation!.latitude + 10)")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Double(lastLocation!.latitude) => \(Double(lastLocation!.latitude))")
+        print("[\(Methods.basename(#file)):\(#line)] Double(lastLocation!.latitude) => \(Double(lastLocation!.latitude))")
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude.value => \(lastLocation!.latitude.value)")
+//        //debug
+//        print("[\(Methods.basename(#file)):\(#line)] lastLocation!.latitude.value => \(lastLocation!.latitude.value)")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] lastLocation!.latitude.description => \(lastLocation!.latitude.description)")
+        print("[\(Methods.basename(#file)):\(#line)] lastLocation!.latitude.description => \(lastLocation!.latitude.description)")
 
         // 地図のセンターに設定する
         mapView.setCenterCoordinate(center, animated: true)
@@ -156,13 +156,13 @@ class VC_Map : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             let res_i = Proj.save_Diary(title, memo: memo)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] 'save_Diary() result => \(res_i) --> '\(title)' / '\(memo)'")
+            print("[\(Methods.basename(#file)):\(#line)] 'save_Diary() result => \(res_i) --> '\(title)' / '\(memo)'")
 
             
         } else {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] pref set to => false")
+            print("[\(Methods.basename(#file)):\(#line)] pref set to => false")
 
             return 0
             

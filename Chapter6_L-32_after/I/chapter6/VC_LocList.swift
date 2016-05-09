@@ -33,10 +33,10 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewWillAppear(animated)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear")
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] locs => \(self.locs.count)")
+        print("[\(Methods.basename(#file)):\(#line)] locs => \(self.locs.count)")
         
     }
 
@@ -74,8 +74,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
-            //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteing cell --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
+//            //debug
+//            print("[\(Methods.basename(#file)):\(#line)] deleteing cell --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
             
         }
     }
@@ -91,8 +91,8 @@ class VC_LocList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // 各セルを選択した時に実行される
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] path=\(indexPath.row) --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
+//        //debug
+//        print("[\(Methods.basename(#file)):\(#line)] path=\(indexPath.row) --> lat=\(locs[indexPath.row].lat.value)/longi=\(locs[indexPath.row].longi.value)")
 
         // set loc
         self.loc_chosen = self.locs[indexPath.row]
