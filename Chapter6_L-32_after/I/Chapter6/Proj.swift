@@ -32,7 +32,7 @@ class Proj {
 //        let ary = DB.findAll_Data(s_dbfile_name, sort_key: s_sort_key, ascend: b_ascend)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Data_Filtered.description => \(aryOf_Data_Filtered.description)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_Data_Filtered.description => \(aryOf_Data_Filtered.description)")
 
         // return
         if aryOf_Data_Filtered.count < 1 {
@@ -49,7 +49,7 @@ class Proj {
 ////        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
 //        let query = "name == '\(CONS.s_AdminKey__LastBackup)'"
 //        
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        //        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 //        
 //        let aPredicate = NSPredicate(format: query)
 //
@@ -61,7 +61,7 @@ class Proj {
 //        let adminAry = DB.findAll_Admin__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: s_sort_key, ascend: b_ascend)
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] adminAry.count => \(adminAry.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] adminAry.count => \(adminAry.count)")
 //        
 //        // return
 //        if adminAry.count < 1 {
@@ -95,7 +95,7 @@ class Proj {
         //        let ary = DB.findAll_Data(s_dbfile_name, sort_key: s_sort_key, ascend: b_ascend)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Data_Filtered.description => \(aryOf_Data_Filtered.description)")
+        print("[\(Methods.basename(#file)):\(#line)] aryOf_Data_Filtered.description => \(aryOf_Data_Filtered.description)")
         
         // return
         if aryOf_Data_Filtered.count < 1 {
@@ -112,7 +112,7 @@ class Proj {
         ////        let r = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
         //        let query = "name == '\(CONS.s_AdminKey__LastBackup)'"
         //
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+        //        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
         //
         //        let aPredicate = NSPredicate(format: query)
         //
@@ -124,7 +124,7 @@ class Proj {
         //        let adminAry = DB.findAll_Admin__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: s_sort_key, ascend: b_ascend)
         //
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] adminAry.count => \(adminAry.count)")
+        //        print("[\(Methods.basename(#file)):\(#line)] adminAry.count => \(adminAry.count)")
         //
         //        // return
         //        if adminAry.count < 1 {
@@ -155,7 +155,7 @@ class Proj {
 //        var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
 //
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray.count => \(dataArray.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count)")
 //
 //        /*
 //            Diary --> to dest db
@@ -168,7 +168,7 @@ class Proj {
 ////        let resOf_Diaries_New =  try! realm.objects(Admin).sorted(s_sort_key, ascending: b_ascend)
 ////
 ////        //debug
-////        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries_New.description => \(resOf_Diaries_New.description)")
+////        print("[\(Methods.basename(#file)):\(#line)] resOf_Diaries_New.description => \(resOf_Diaries_New.description)")
 //
 //        // return
         return -1
@@ -264,14 +264,14 @@ class Proj {
         //debug0
         if resOf_Data_LatestDiaryAt.count > 0 {
             
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Data_LatestDiaryAt[0].description => (\(resOf_Data_LatestDiaryAt[0].description))")
 
             // return
             return resOf_Data_LatestDiaryAt[0].s_1
 
         } else {
 
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => =< 0")
+            print("[\(Methods.basename(#file)):\(#line)] resOf_Data_LatestDiaryAt.count => =< 0")
 
             // return
             return "-1"
@@ -301,7 +301,7 @@ class Proj {
                 realm.add(hist, update: true)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] hist saved => '\(keywords)'")
+                print("[\(Methods.basename(#file)):\(#line)] hist saved => '\(keywords)'")
 
                 
     //            self.diary.title = self.titleTextField.text!
@@ -315,7 +315,7 @@ class Proj {
             
             // handle error
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(keywords = \(keywords)) => error [\(e.description)]")
+            print("[\(Methods.basename(#file)):\(#line)] realm.write(keywords = \(keywords)) => error [\(e.description)]")
             
         }
 
@@ -377,7 +377,7 @@ class Proj {
                 realm.add(loc, update: true)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] loc saved => '\(loc.description)'")
+                print("[\(Methods.basename(#file)):\(#line)] loc saved => '\(loc.description)'")
                 
 
             }
@@ -386,7 +386,7 @@ class Proj {
             
             // handle error
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
+            print("[\(Methods.basename(#file)):\(#line)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
             
             // return
             return -1
@@ -431,7 +431,7 @@ class Proj {
                 realm.add(loc, update: true)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] loc saved => '\(loc.description)'")
+                print("[\(Methods.basename(#file)):\(#line)] loc saved => '\(loc.description)'")
                 
                 
             }
@@ -440,7 +440,7 @@ class Proj {
             
             // handle error
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
+            print("[\(Methods.basename(#file)):\(#line)] realm.write(lat = \(center.latitude)) => error [\(e.description)]")
             
             // return
             return -1
@@ -480,7 +480,7 @@ class Proj {
                 realm.add(diary, update: true)
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary saved => '\(diary.description)'")
+                print("[\(Methods.basename(#file)):\(#line)] diary saved => '\(diary.description)'")
                 
                 
             }
@@ -489,7 +489,7 @@ class Proj {
             
             // handle error
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.write(title = \(title)) => error [\(e.description)]")
+            print("[\(Methods.basename(#file)):\(#line)] realm.write(title = \(title)) => error [\(e.description)]")
             
             // return
             return -1
@@ -518,7 +518,7 @@ class Proj {
         }
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> \(lim?.intValue)")
+        print("[\(Methods.basename(#file)):\(#line)] limit --> \(lim?.intValue)")
         
         return Int((lim?.intValue)!)
 //        return lim?.intValue
@@ -544,12 +544,12 @@ class Proj {
             //            s_last_uploaded_at = "2016/02/20 00:00:00"
             
             //debug0
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => '-1'; re-setting to => \(s_last_uploaded_at)")
+            print("[\(Methods.basename(#file)):\(#line)] s_last_uploaded_at => '-1'; re-setting to => \(s_last_uploaded_at)")
 
         } else {
             
             //debug0
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => \(s_last_uploaded_at)")
+            print("[\(Methods.basename(#file)):\(#line)] s_last_uploaded_at => \(s_last_uploaded_at)")
             
         }
 
@@ -580,13 +580,13 @@ class Proj {
         }
         
 //        //debug0
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
 
         // return
         if i_count < 1 {
             
             //debug0
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] i_count => less than 1")
+            print("[\(Methods.basename(#file)):\(#line)] i_count => less than 1")
             
             return 0
             
@@ -620,7 +620,7 @@ class Proj {
         refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 0")
             
             // execute  => close dialog
 
@@ -631,7 +631,7 @@ class Proj {
         refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
 
             

@@ -41,7 +41,7 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewWillAppear(animated)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear")
 
         // build: hist list
         _viewWillAppear__Build_HistList()
@@ -71,7 +71,7 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Hists.count => \(resOf_Hists.count) / aryOf_Hists.count => \(aryOf_Hists.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_Hists.count => \(resOf_Hists.count) / aryOf_Hists.count => \(aryOf_Hists.count)")
         
     }
     
@@ -141,7 +141,7 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
     (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => \(indexPath.row), keywords => \(self.aryOf_Hists[indexPath.row].keywords)")
+        print("[\(Methods.basename(#file)):\(#line)] selected => \(indexPath.row), keywords => \(self.aryOf_Hists[indexPath.row].keywords)")
         
         // set defaults
         // set defaults

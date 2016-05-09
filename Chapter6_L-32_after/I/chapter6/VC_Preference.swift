@@ -40,7 +40,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Default_Add_LocationDiary => set true")
             
         } else {
             
@@ -55,7 +55,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Default_Add_LocationDiary => set false")
             
         }
 
@@ -80,7 +80,7 @@ class VC_Preference: UIViewController {
             lim = CONS.Prefs.numOf_NewDiaries__Limit_Upper
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> modified to \(CONS.Prefs.numOf_NewDiaries__Limit_Upper)")
+            print("[\(Methods.basename(#file)):\(#line)] limit --> modified to \(CONS.Prefs.numOf_NewDiaries__Limit_Upper)")
             
         }
         
@@ -92,7 +92,7 @@ class VC_Preference: UIViewController {
         defaults.setValue(lim!, forKey: CONS.defaultKeys.key_Default__NumOf_NewDiaries)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default__NumOf_NewDiaries => set to --> \(lim)")
+        print("[\(Methods.basename(#file)):\(#line)] key_Default__NumOf_NewDiaries => set to --> \(lim)")
         
         // close keyboard
         
@@ -121,7 +121,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Default__Remind_NewDiaries)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default__Remind_NewDiaries => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Default__Remind_NewDiaries => set true")
             
         } else {
             
@@ -136,7 +136,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Default__Remind_NewDiaries)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default__Remind_NewDiaries => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Default__Remind_NewDiaries => set false")
             
         }
 
@@ -153,7 +153,7 @@ class VC_Preference: UIViewController {
             lim = 10000
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] limit --> modified to 10000")
+            print("[\(Methods.basename(#file)):\(#line)] limit --> modified to 10000")
 
         }
         
@@ -165,7 +165,7 @@ class VC_Preference: UIViewController {
         defaults.setValue(lim!, forKey: CONS.defaultKeys.key_Deault_LimitOn_NumOfCells)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Deault_LimitOn_NumOfCells => set to --> \(lim)")
+        print("[\(Methods.basename(#file)):\(#line)] key_Deault_LimitOn_NumOfCells => set to --> \(lim)")
 
         // close keyboard
         
@@ -194,7 +194,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Vibrate_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Vibrate_WhenSaved => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Vibrate_WhenSaved => set true")
             
             
         } else {
@@ -210,7 +210,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Vibrate_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Vibrate_WhenSaved => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Vibrate_WhenSaved => set false")
             
         }
 
@@ -231,7 +231,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_GoBack_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_GoBack_WhenSaved => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_GoBack_WhenSaved => set true")
             
             
         } else {
@@ -247,7 +247,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_GoBack_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_GoBack_WhenSaved => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_GoBack_WhenSaved => set false")
             
         }
 
@@ -267,7 +267,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Search_MemoColumn => set true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Search_MemoColumn => set true")
             
             
         } else {
@@ -281,7 +281,7 @@ class VC_Preference: UIViewController {
             defaults.setValue(false, forKey: CONS.defaultKeys.key_Search_MemoColumn)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Search_MemoColumn => set false")
+            print("[\(Methods.basename(#file)):\(#line)] key_Search_MemoColumn => set false")
             
         }
         
@@ -386,7 +386,7 @@ class VC_Preference: UIViewController {
         if dfltVal_key_Default_Add_LocationDiary == nil {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Default_Add_LocationDiary => nil")
             
             // set the switch --> on
             self.sw_LocationDiary.on = true
@@ -395,25 +395,25 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Default_Add_LocationDiary)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] key_Default_Add_LocationDiary set => true")
+            print("[\(Methods.basename(#file)):\(#line)] key_Default_Add_LocationDiary set => true")
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => NOT nil (value => \(dfltVal_key_Default_Add_LocationDiary?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries => NOT nil (value => \(dfltVal_key_Default_Add_LocationDiary?.description)")
             
             // set switch --> accor. to the default value
             if dfltVal_key_Default_Add_LocationDiary?.boolValue == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Default_Add_LocationDiary => true")
                 
                 self.sw_LocationDiary.on = true
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Default_Add_LocationDiary => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Default_Add_LocationDiary => NOT true")
                 
                 self.sw_LocationDiary.on = false
                 
@@ -436,7 +436,7 @@ class VC_Preference: UIViewController {
         if dfltVal_key_Remind_NewDiaries == nil {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries => nil")
             
             // set the switch --> on
             self.sw_Remind_NewDiaries.on = true
@@ -445,25 +445,25 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Default__Remind_NewDiaries)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries set => true")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries set => true")
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => NOT nil (value => \(dfltVal_key_Remind_NewDiaries?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries => NOT nil (value => \(dfltVal_key_Remind_NewDiaries?.description)")
             
             // set switch --> accor. to the default value
             if dfltVal_key_Remind_NewDiaries?.boolValue == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries => true")
                 
                 self.sw_Remind_NewDiaries.on = true
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Remind_NewDiaries => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Remind_NewDiaries => NOT true")
                 
                 self.sw_Remind_NewDiaries.on = false
                 
@@ -483,13 +483,13 @@ class VC_Preference: UIViewController {
         let dfltVal_key_Vibrate_WhenSaved = defaults.valueForKey(CONS.defaultKeys.key_Vibrate_WhenSaved)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM?.description => \(dfltVal_key_Vibrate_WhenSaved?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM?.description => \(dfltVal_key_Vibrate_WhenSaved?.description)")
         
         // validate: nil
         if dfltVal_key_Vibrate_WhenSaved == nil {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Vibrate_WhenSaved => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Vibrate_WhenSaved => nil")
             
             // set the switch --> on
             self.sw_Vibrate_WhenSaved.on = true
@@ -498,25 +498,25 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Vibrate_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Vibrate_WhenSaved set => true")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Vibrate_WhenSaved set => true")
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Vibrate_WhenSaved => NOT nil (value => \(dfltVal_key_Vibrate_WhenSaved?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Vibrate_WhenSaved => NOT nil (value => \(dfltVal_key_Vibrate_WhenSaved?.description)")
             
             // set switch --> accor. to the default value
             if dfltVal_key_Vibrate_WhenSaved?.boolValue == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_Vibrate_WhenSaved => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_Vibrate_WhenSaved => true")
                 
                 self.sw_Vibrate_WhenSaved.on = true
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => NOT true")
                 
                 self.sw_Vibrate_WhenSaved.on = false
                 
@@ -536,13 +536,13 @@ class VC_Preference: UIViewController {
         let dfltVal_key_GoBack_WhenSaved = defaults.valueForKey(CONS.defaultKeys.key_GoBack_WhenSaved)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM?.description => \(dfltVal_key_GoBack_WhenSaved?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM?.description => \(dfltVal_key_GoBack_WhenSaved?.description)")
         
         // validate: nil
         if dfltVal_key_GoBack_WhenSaved == nil {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_GoBack_WhenSaved => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_GoBack_WhenSaved => nil")
             
             // set the switch --> on
             self.sw_GoBack_WhenSaved.on = true
@@ -551,25 +551,25 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_GoBack_WhenSaved)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_GoBack_WhenSaved set => true")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_GoBack_WhenSaved set => true")
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_GoBack_WhenSaved => NOT nil (value => \(dfltVal_key_GoBack_WhenSaved?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_GoBack_WhenSaved => NOT nil (value => \(dfltVal_key_GoBack_WhenSaved?.description)")
             
             // set switch --> accor. to the default value
             if dfltVal_key_GoBack_WhenSaved?.boolValue == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_key_GoBack_WhenSaved => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_key_GoBack_WhenSaved => true")
                 
                 self.sw_GoBack_WhenSaved.on = true
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => NOT true")
                 
                 self.sw_GoBack_WhenSaved.on = false
                 
@@ -589,13 +589,13 @@ class VC_Preference: UIViewController {
         let dfltVal_Search_MemoColumn = defaults.valueForKey(CONS.defaultKeys.key_Search_MemoColumn)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM?.description => \(dfltVal_Search_MemoColumn?.description)")
+        print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM?.description => \(dfltVal_Search_MemoColumn?.description)")
         
         // validate: nil
         if dfltVal_Search_MemoColumn == nil {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn => nil")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => nil")
             
             // set the switch --> on
             self.sw_Search_MemoColumn.on = true
@@ -604,25 +604,25 @@ class VC_Preference: UIViewController {
             defaults.setValue(true, forKey: CONS.defaultKeys.key_Search_MemoColumn)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn set => true")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn set => true")
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_AddBM => NOT nil (value => \(dfltVal_Search_MemoColumn?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_AddBM => NOT nil (value => \(dfltVal_Search_MemoColumn?.description)")
             
             // set switch --> accor. to the default value
             if dfltVal_Search_MemoColumn?.boolValue == true {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn => true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => true")
                 
                 self.sw_Search_MemoColumn.on = true
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] dfltVal_Search_MemoColumn => NOT true")
+                print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => NOT true")
                 
                 self.sw_Search_MemoColumn.on = false
                 

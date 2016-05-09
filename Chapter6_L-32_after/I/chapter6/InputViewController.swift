@@ -48,7 +48,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.current_editor = "tf"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] textFieldDidBeginEditing")
+        print("[\(Methods.basename(#file)):\(#line)] textFieldDidBeginEditing")
 
     }
     
@@ -63,7 +63,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.current_editor = "tv"
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] textViewDidBeginEditing")
+        print("[\(Methods.basename(#file)):\(#line)] textViewDidBeginEditing")
         
     }
     
@@ -106,7 +106,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tf_active?.description => \(tf_active.description)")
+//        print("[\(Methods.basename(#file)):\(#line)] tf_active?.description => \(tf_active.description)")
 
         
         
@@ -121,7 +121,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] copied => \(UIPasteboard.generalPasteboard().string!)")
+        print("[\(Methods.basename(#file)):\(#line)] copied => \(UIPasteboard.generalPasteboard().string!)")
         
     }
     
@@ -217,9 +217,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.bodyTextView.delegate = self
         
         // Do any additional setup after loading the view.
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary.title => \(diary.title)")
-//        print(Methods.basename(__FILE__))
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] diary.id => \(diary.id)")
+        print("[\(Methods.basename(#file)):\(#line)] diary.title => \(diary.title)")
+//        print(Methods.basename(#file))
+        print("[\(Methods.basename(#file)):\(#line)] diary.id => \(diary.id)")
         
     }
     
@@ -329,7 +329,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             print("Handle Ok logic here")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            print("[\(Methods.basename(#file)):\(#line)] clicked => Ok button")
             
             self.dup_Diary__OK()
             
