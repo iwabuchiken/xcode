@@ -18,7 +18,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func start_HistView(sender: UIButton) {
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] start_HistView")
+        print("[\(Methods.basename(#file)):\(#line)] start_HistView")
 
         // segue
         performSegueWithIdentifier("segue_Sandbox_2_Hist",sender: nil)
@@ -61,7 +61,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleting => row \(indexPath.row)")
+            print("[\(Methods.basename(#file)):\(#line)] deleting => row \(indexPath.row)")
 
         }
     }
@@ -77,7 +77,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] selected => row \(indexPath.row)")
+        print("[\(Methods.basename(#file)):\(#line)] selected => row \(indexPath.row)")
 
         let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         
@@ -113,7 +113,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         
         //        //debug
-        //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        //        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear")
         
         // get defaults
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
@@ -165,10 +165,10 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        tf_SearchWords.text = "search words are => \(tmp_s)"
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words are => \(tmp_s)")
+        print("[\(Methods.basename(#file)):\(#line)] search words are => \(tmp_s)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] calling => Methods.set_Defaults")
+        print("[\(Methods.basename(#file)):\(#line)] calling => Methods.set_Defaults")
         
         // set defaults
         Methods.set_Defaults(tmp_s)
@@ -192,7 +192,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.popViewControllerAnimated(true)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] popViewControllerAnimated => done")
+        print("[\(Methods.basename(#file)):\(#line)] popViewControllerAnimated => done")
         
     }
     
@@ -241,13 +241,13 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //debug
         //ref http://stackoverflow.com/questions/30759158/using-the-split-function-in-swift-2 answered Jun 10 '15 at 14:27
-        print("[\(__FILE__)] \(docsPath as String)")
+        print("[\(#file)] \(docsPath as String)")
         
-        let tmp = (__FILE__).componentsSeparatedByString("/")
+        let tmp = (#file).componentsSeparatedByString("/")
   
         let token_1 = tmp[0]
         
-        print("[\(__FILE__):\(__LINE__)] file => '\(__FILE__)' || token_1 => '\(token_1)'")
+        print("[\(#file):\(#line)] file => '\(#file)' || token_1 => '\(token_1)'")
         
         //debug
 //        let str = "Hello Bob"
@@ -255,7 +255,7 @@ class SandboxViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        String(strSplit.first!)
 //        String(strSplit.last!)
 
-        let str = __FILE__
+        let str = #file
 //        let sp = str.characters.split("/")
         let sp = str.characters.split("/")
         

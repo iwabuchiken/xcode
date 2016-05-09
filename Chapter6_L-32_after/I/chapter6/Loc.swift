@@ -44,7 +44,7 @@ class Loc: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Hist class")
+        print("[\(Methods.basename(#file)):\(#line)] Hist class")
         
     }
     

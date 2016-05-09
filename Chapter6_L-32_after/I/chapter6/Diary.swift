@@ -25,7 +25,7 @@ class Diary: Object {
 //        dispatch_once(&once) {
 //            // Do stuff
 //            
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] a Diary => inited")
+//            print("[\(Methods.basename(#file)):\(#line)] a Diary => inited")
 //            
 //            self.title   = ""
 //            self.body    = ""
@@ -53,7 +53,7 @@ class Diary: Object {
     
     static func show_ClassName() ->Void {
         
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Diary class")
+        print("[\(Methods.basename(#file)):\(#line)] Diary class")
         
     }
     

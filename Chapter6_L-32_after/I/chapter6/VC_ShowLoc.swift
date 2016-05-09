@@ -50,26 +50,26 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         let status = CLLocationManager.authorizationStatus()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] status.rawValue => \(status.rawValue)")
+        print("[\(Methods.basename(#file)):\(#line)] status.rawValue => \(status.rawValue)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CLAuthorizationStatus.NotDetermined => \(CLAuthorizationStatus.NotDetermined.rawValue)")
+        print("[\(Methods.basename(#file)):\(#line)] CLAuthorizationStatus.NotDetermined => \(CLAuthorizationStatus.NotDetermined.rawValue)")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] status == CLAuthorizationStatus.NotDetermined => \(status == CLAuthorizationStatus.NotDetermined)")
+        print("[\(Methods.basename(#file)):\(#line)] status == CLAuthorizationStatus.NotDetermined => \(status == CLAuthorizationStatus.NotDetermined)")
         
         
         if status == CLAuthorizationStatus.NotDetermined {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting... => request dialog")
+            print("[\(Methods.basename(#file)):\(#line)] starting... => request dialog")
             
             // 未認証ならリクエストダイアログ出す
             locationManager.requestWhenInUseAuthorization();
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] starting... => locationManager")
+        print("[\(Methods.basename(#file)):\(#line)] starting... => locationManager")
         
         
         // 位置情報の取得を開始させる
@@ -78,7 +78,7 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         mapView.delegate = self
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] map setup => done")
+        print("[\(Methods.basename(#file)):\(#line)] map setup => done")
 	
 //        // default zoom
 //        self._set_DefaultZoom()
@@ -105,10 +105,10 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         super.viewWillAppear(animated)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] viewWillAppear")
+        print("[\(Methods.basename(#file)):\(#line)] viewWillAppear")
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] self.loc.description => \(self.loc.description)")
+        print("[\(Methods.basename(#file)):\(#line)] self.loc.description => \(self.loc.description)")
         
         
         // set pin
@@ -123,7 +123,7 @@ class VC_ShowLoc: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 //        Double(locs[indexPath.row].longi.description)!
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] center.longitude.description => \(center.longitude.description) / center.latitude.description => \(center.latitude.description)")
+        print("[\(Methods.basename(#file)):\(#line)] center.longitude.description => \(center.longitude.description) / center.latitude.description => \(center.latitude.description)")
 
         
         // 地図のセンターに設定する

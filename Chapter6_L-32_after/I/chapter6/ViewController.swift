@@ -55,8 +55,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
     //let dataArray = try! Realm().objects(Diary).sorted("id", ascending: false)
     
+    
+    var aryOf_Diaries = [Diary]()
+    
+    
 //    //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Realm() => done")
+//        print("[\(Methods.basename(#file)):\(#line)] Realm() => done")
     
     func show_DirList() {
         
@@ -88,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
+        print("[\(Methods.basename(#file)):\(#line)] search words (from defaults) => \(tmp_s)")
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -104,13 +108,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var tmp_s : String = Methods.get_Defaults(CONS.key_SearchWords)
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] search words (from defaults) => \(tmp_s)")
+        print("[\(Methods.basename(#file)):\(#line)] search words (from defaults) => \(tmp_s)")
 
         // trim string
         tmp_s = Methods.trim_String(tmp_s)
             
-            // objects with conditions
-            _test_Realm_Conditions__MultipleKeywords(tmp_s)
+        // objects with conditions
+        _test_Realm_Conditions__MultipleKeywords(tmp_s)
+        
+        _build_DataArray__With_Keywords(tmp_s)
         
         // number of cells
         let limit = Proj.get_Limit_on_NumOf_Diaries()
@@ -146,7 +152,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let numOf_NewDiaries__Default = Methods.getDefaults_Integer(CONS.defaultKeys.key_Default__NumOf_NewDiaries)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries) / numOf_NewDiaries__Default => \(numOf_NewDiaries__Default)")
+            print("[\(Methods.basename(#file)):\(#line)] numOf_NewDiaries => \(numOf_NewDiaries) / numOf_NewDiaries__Default => \(numOf_NewDiaries__Default)")
 
             // remind
 //            if numOf_NewDiaries >= 10 {
@@ -157,7 +163,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] numOf_NewDiaries => \(numOf_NewDiaries); not reminding...")
+                print("[\(Methods.basename(#file)):\(#line)] numOf_NewDiaries => \(numOf_NewDiaries); not reminding...")
 
             }
             
@@ -176,7 +182,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // if the default is "" --> no filter
             dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
         
-        } else if tmp_s == "@@@" {
+        } else if tmp_s == "@@@" {//if tmp_s == ""
         
             let query = "title == ''"
             
@@ -189,23 +195,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } catch is NSException {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
                 
                 //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
             } catch let error as NSError {
                 
                 //debug
-                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
                 
             }
             
-        } else {
+        } else {//if tmp_s == ""
             
             let tokens = tmp_s.componentsSeparatedByString(" ")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
             
             //debug
             for item in tokens {
@@ -251,20 +257,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                if len > 1 {
 
                     //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
-                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
-                    print("[\(Methods.basename(#file)):\(__LINE__)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
+                    //                print("[\(Methods.basename(#file)):\(#line)] tmp_s[0] => \(tmp_s.characters.first)")    //=> /Users/mac/Desktop/works/WS/xcode/
+                    print("[\(Methods.basename(#file)):\(#line)] tmp_s[0] => \(String(tmp_s.characters.first!))")    //=> /Users/mac/Desktop/works/WS/xcode/
 
 //                }
                 
 //                //ref http://stackoverflow.com/questions/32413247/swift-2-0-string-with-substringwithrange answered Sep 5 '15 at 13:01
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => building")
+                print("[\(Methods.basename(#file)):\(#line)] predicate => building")
 
                 if String(tmp_s.characters.first!) == "-" {
                     
                     //ref http://stackoverflow.com/questions/32575227/swift-2-0-substringwithrange answered Sep 15 '15 at 2:30
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)] => ", tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)])
+                    print("[\(Methods.basename(#file)):\(#line)] tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)] => ", tmp_s[tmp_s.startIndex.advancedBy((1))..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)])
                     
                     aPredicate = NSPredicate(
                                     format: "NOT title CONTAINS %@",
@@ -274,7 +280,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                                    tmp_s
                     )
                     
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] NOT directive")
+                    print("[\(Methods.basename(#file)):\(#line)] NOT directive")
                     
                 } else {
 
@@ -285,7 +291,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] predicate => built")
+                print("[\(Methods.basename(#file)):\(#line)] predicate => built")
                 
             } else if tokens.count > 1 {
                 
@@ -298,7 +304,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if tokens[index] == "" {
                         
                         //debug
-                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[\(index)] => blank")
+                        print("[\(Methods.basename(#file)):\(#line)] tokens[\(index)] => blank")
 
                         continue
                         
@@ -322,7 +328,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 
 //                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+//                print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
                 
                 //                let aPredicate = NSPredicate(query)
                 //                aPredicate = query
@@ -337,7 +343,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+            print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
             
             
 //            aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
@@ -348,71 +354,179 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 dataArray = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
                 
+//                //debug
+//                print("[\(Methods.basename(#file)):\(#line)] dataArray.description => \(dataArray.description)")
+//                
+                
             } catch is NSException {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
                 
                 //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
             } catch let error as NSError {
                 
                 //debug
-                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+                //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
                 
             }
             
-//            } catch let error as NSInvalidArgumentException {
-//
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
-//
-//                
-//            }
+        }//if tmp_s == ""
+        
+        
+        // convert Results<Diary> => Array<Diary>
+        _conv_Results_2_Array__Diaries()
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] dataArray => \(String(dataArray.count))")
+
+    }//_test_Realm_Conditions__MultipleKeywords
+    
+    func _conv_Results_2_Array__Diaries() -> Void {
+        
+        aryOf_Diaries = [Diary]()
+        
+        for i in dataArray {
             
-            //            dataArray = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+            aryOf_Diaries.append(i)
             
         }
         
-//        /*
-//        limit   --> number of diaries
-//        */
-//        let limit = Proj.get_Limit_on_NumOf_Diaries()
-//
-//        if limit == -1 {
-//            
-//            // no op
-//            
-//        } else {
-//            
-//            // if the result array  is larger than limit
-//            //      --> modify the length
-//            let lenOf_DataArray = self.dataArray.count
-//            
-//            if limit < lenOf_DataArray {
-//
-////                let tmpAry = Results<Diary>()
-////                let tmpAry = Results<Diary>()
-////                
-////                for i in 0..<limit {
-////                    
-////                    tmpAry.append(self.dataArray[i])
-////                    
-////                }
-////                
-////                // reset array
-////                self.dataArray = tmpAry
-//                
-//            }
-//            
-//        }
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
+        
+        
+    }//_conv_Results_2_Array__Diaries
+    
+    
+    func _build_DataArray__With_Keywords(tmp_s : String) -> Void {
+        
+        let query = _build_DataArray__With_Keywords__Build_Query(tmp_s);
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
-//        /Users/mac/Desktop/works/WS/xcode/Chapter6_L-32_after/I/chapter6/ViewController.swift:342:30: 'Results<Diary>' cannot be constructed because it has no accessible initializers
+        
+    }//_build_DataArray__With_Keywords
+    
+    func _build_DataArray__With_Keywords__Build_Query(tmp_s : String) -> String {
+        
+        var query = ""
+        
+        //debug
+        if tmp_s == "" {
+            
+            // if the default is "" --> no filter
+//            dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+            
+            // set => blank
+            query = ""
+            
+        } else if tmp_s == "@@@" {//if tmp_s == ""
+            
+            query = "title == ''"
+        
+        } else {//if tmp_s == ""
+            
+            let tokens = tmp_s.componentsSeparatedByString(" ")
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
+            
+            //debug
+            for item in tokens {
+                
+                print("item = '\(item)'")
+                
+            }
+
+            // build query
+            query = "multiple keywords"
+            
+            // search memo, too?
+            // defaults
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            let dfltVal_Search_MemoColumn = defaults.valueForKey(CONS.defaultKeys.key_Search_MemoColumn)
+
+            //debug
+//            print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => \(dfltVal_Search_MemoColumn?.description)")
+            print("[\(Methods.basename(#file)):\(#line)] dfltVal_Search_MemoColumn => \(dfltVal_Search_MemoColumn?.boolValue)")
+
+            // target string
+//            let string_less_NegDirective = tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)]
+            let string_less_NegDirective = tmp_s[tmp_s.startIndex.advancedBy(1)..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)]
+
+            print("[\(Methods.basename(#file)):\(#line)] string_less_NegDirective => \(string_less_NegDirective)")
+
+            
+            if tokens.count == 1 {
+                
+                let first_char = tmp_s.characters.first!
+                
+//                if String(tmp_s.characters.first!) == "-" {
+                if String(first_char) == "-" {
+                
+                    if (dfltVal_Search_MemoColumn?.boolValue == true) {
+                    
+                        query = "NOT title CONTAINS \(string_less_NegDirective) AND NOT body CONTAINS \(string_less_NegDirective)"
+                        
+                    } else {
+                        
+                        query = "NOT title CONTAINS \(string_less_NegDirective)"
+                        
+                    }
+                    
+                    print("[\(Methods.basename(#file)):\(#line)] NOT directive")
+                    
+                } else {//if String(first_char) == "-"
+                    
+                    if (dfltVal_Search_MemoColumn?.boolValue == true) {
+                        
+//                        query = "title CONTAINS \(string_less_NegDirective) OR body CONTAINS \(string_less_NegDirective)"
+                        query = "title CONTAINS \(tokens[0]) OR body CONTAINS \(tokens[0])"
+                        
+                    } else {
+                        
+                        query = "title CONTAINS \(tokens[0])"
+                        
+                    }
+                    
+                    print("[\(Methods.basename(#file)):\(#line)] OR directive")
+                    
+                }//if String(first_char) == "-"
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] predicate => built")
+                
+            } else {//if tokens.count == 1
+                
+                //test
+                query = "tokens.count > 1"
+                
+            }//if tokens.count == 1
+            
+        }//if tmp_s == ""
+        
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
+        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
+        
+        
+//        //test
+//        let aPredicate = NSPredicate(format: query)
+//        title CONTAINS
+//        
+//        let tmp_ary = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
 
-    }
+        
+        // return
+//        return "abc"
+        return query
+        
+    }//_build_DataArray__With_Keywords__Build_Query
     
     func _test_Realm_Conditions(tmp_s : String) -> Void {
         
@@ -424,7 +538,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        tmp_s = ""
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_s => forced to be ''")
+        print("[\(Methods.basename(#file)):\(#line)] tmp_s => forced to be ''")
 
         //debug
 //        if true     {
@@ -439,7 +553,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let tokens = tmp_s.componentsSeparatedByString(" ")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
             
             // query
             var query = ""
@@ -476,7 +590,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] query => \(query)")
+            print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
             
             aPredicate = NSPredicate(format: "title CONTAINS %@", tmp_s)
@@ -490,14 +604,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } catch is NSException {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSException => \(NSException.description())")
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
                 
             //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
             } catch let error as NSError {
                 
                 //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(NSException.description())")  //=> build succeeded
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] NSError => \(error.description)")  //=> build succeeded
+//                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
                 
                 
                 
@@ -515,8 +629,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let dataArray_2 = try! Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
         
         //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray_2 => \(String(dataArray_2.count))")
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] dataArray => \(String(dataArray.count))")
+//        print("[\(Methods.basename(#file)):\(#line)] dataArray_2 => \(String(dataArray_2.count))")
+        print("[\(Methods.basename(#file)):\(#line)] dataArray => \(String(dataArray.count))")
         
     }//_test_Realm_Conditions(tmp_s : String) -> Void
     
@@ -533,12 +647,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else if segue.identifier == "segue_VC_2_Map" {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => segue_VC_2_Map")
+            print("[\(Methods.basename(#file)):\(#line)] segueing to => segue_VC_2_Map")
         
         } else if segue.identifier == "segue_VC_2_LocList" {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] segueing to => segue_VC_2_LocList")
+            print("[\(Methods.basename(#file)):\(#line)] segueing to => segue_VC_2_LocList")
             
         } else {
         
@@ -560,7 +674,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] setting diary...")
+                print("[\(Methods.basename(#file)):\(#line)] setting diary...")
                 
                 inputViewController.diary = diary
             }
@@ -671,7 +785,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
             
             //            //debug
-            //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+            //            print("[\(Methods.basename(#file)):\(#line)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
             
             // change bg color
             if s_DateLabel_Diary >= s_DayLabel_Today {
@@ -707,13 +821,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //                // if before noon
             //                if time_Diary >= "12" {
             //
-            //                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+            //                    //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) >= 12")
             //
             //                    cell.backgroundColor = CONS.col_green_071000
             //
             //                } else {
             //
-            //                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+            //                    //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) < 12")
             //
             //                    cell.backgroundColor = CONS.col_green_soft
             //
@@ -793,13 +907,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // if before noon
             if time_Diary >= "12" {
                 
-                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+                //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) >= 12")
                 
                 cell.backgroundColor = CONS.col_green_071000
                 
             } else {
                 
-                //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+                //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) < 12")
                 
                 cell.backgroundColor = CONS.col_green_soft
                 
@@ -863,7 +977,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            let s_DateLabel_XDaysAgo = dateFormatter.stringFromDate(ns_Date_XDaysAgo)
             
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
+//            print("[\(Methods.basename(#file)):\(#line)] dateLabel_Diary => '\(s_DateLabel_Diary)' *** dateLabel_Now => '\(s_DateLabel_Today)' *** yesterday => '\(s_DateLabel_Yesterday)' *** \(diff) days ago => '\(s_DateLabel_XDaysAgo)'")
 
             // change bg color
             if s_DateLabel_Diary >= s_DayLabel_Today {
@@ -889,13 +1003,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                // if before noon
 //                if time_Diary >= "12" {
 //                    
-//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) >= 12")
+//                    //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) >= 12")
 //                    
 //                    cell.backgroundColor = CONS.col_green_071000
 //                    
 //                } else {
 //                    
-//                    //                print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_Diary (\(time_Diary)) < 12")
+//                    //                print("[\(Methods.basename(#file)):\(#line)] time_Diary (\(time_Diary)) < 12")
 //                    
 //                    cell.backgroundColor = CONS.col_green_soft
 //                    
@@ -919,17 +1033,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == UITableViewCellEditingStyle.Delete {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] deleteing cell...")
+            print("[\(Methods.basename(#file)):\(#line)] deleteing cell...")
 
             try! realm.write {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm process => started")
+                print("[\(Methods.basename(#file)):\(#line)] realm process => started")
 
                 self.realm.delete(self.dataArray[indexPath.row])
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm.delete => done")
+                print("[\(Methods.basename(#file)):\(#line)] realm.delete => done")
 
                 // update -> numOf_Cells
                 self.numOf_Cells -= 1
@@ -944,7 +1058,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] row => deleted")
+                print("[\(Methods.basename(#file)):\(#line)] row => deleted")
 
 //                // update -> numOf_Cells
 //                self.numOf_Cells -= 1
@@ -957,7 +1071,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                }
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] realm process => ended")
+                print("[\(Methods.basename(#file)):\(#line)] realm process => ended")
 
             }
             
@@ -1021,7 +1135,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 0")
             
             // execute  => close dialog
             
@@ -1032,7 +1146,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
          
             // start function
             self._experiments__Choices__1()
@@ -1042,7 +1156,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             // start function
             self._experiments__Choices__2()
@@ -1052,7 +1166,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        refreshAlert.addAction(UIAlertAction(title: choice_3, style: .Default, handler: { (action: UIAlertAction!) in
 //            
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 3")
+//            print("[\(Methods.basename(#file)):\(#line)] chosen => 3")
 //
 //            // start function
 //            self._experiments__Choices__3()
@@ -1062,7 +1176,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_4, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 4")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 4")
             
             // start function
             self._experiments__Choices__4()
@@ -1072,7 +1186,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        refreshAlert.addAction(UIAlertAction(title: "5", style: .Default, handler: { (action: UIAlertAction!) in
 //            
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 5")
+//            print("[\(Methods.basename(#file)):\(#line)] chosen => 5")
 //            
 //            // start function
 //            self._experiments__Choices__5()
@@ -1083,7 +1197,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_6, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 6")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 6")
             
             // start function
             self._experiments__Choices__6()
@@ -1093,7 +1207,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_7, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 7")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 7")
             
             // start function
             self._experiments__Choices__7()
@@ -1103,7 +1217,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_8, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 8")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 8")
             
             // start function
             self._experiments__Choices__8()
@@ -1113,7 +1227,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 9")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 9")
             
             // start function
             self._experiments__Choices__9()
@@ -1153,7 +1267,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
             // start function
             self._experiments__Choices__2__OK()
@@ -1163,7 +1277,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: lbl_Choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             // start function
 //            self._experiments__Choices__2__OK()
@@ -1239,7 +1353,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
             
             // start function
             self._experiments__Choices__8__OK()
@@ -1249,7 +1363,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshAlert.addAction(UIAlertAction(title: lbl_Choice_2, style: .Default, handler: { (action: UIAlertAction!) in
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 2")
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 2")
             
             // start function
             //            self._experiments__Choices__2__OK()
@@ -1290,7 +1404,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //            let ast = results[0] as! PHAsset
                 let ast = results.last as! PHAsset
                 
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] results.last => \(ast.description)")
+                print("[\(Methods.basename(#file)):\(#line)] results.last => \(ast.description)")
                 
                 print("results.count => \(results.count)")
                     //results.count => 229
@@ -1310,7 +1424,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                     let ast = results[i] as! PHAsset
                     
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] results[\(i)] => \(ast.description)")
+                    print("[\(Methods.basename(#file)):\(#line)] results[\(i)] => \(ast.description)")
                         //                    results[2] => <PHAsset: 0x1511b2bc0> CB40E44D-F630-4CD3-8256-4B603888EF75/L0/001 mediaType=1/0, sourceType=1, (4032x3024), creationDate=2016-02-16 08:57:48 +0000, location=1, hidden=0, favorite=0
                     
                     print("results.count => \(results.count)")
@@ -1366,7 +1480,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         } else {
 
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] results => =< 0")
+            print("[\(Methods.basename(#file)):\(#line)] results => =< 0")
 
         }
 
@@ -1387,7 +1501,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Handle Ok logic here")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            print("[\(Methods.basename(#file)):\(#line)] clicked => Ok button")
 
         }))
         
@@ -1414,10 +1528,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let fpath_full = "\(dpath_realm)/\(fname)"
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+            print("[\(Methods.basename(#file)):\(#line)] fpath_full => \(fpath_full)")
             
             //        //debug
-            //        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+            //        print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
             
             
             //        let lines = NSString(string: fpath_full)
@@ -1438,12 +1552,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let res = regex.description
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] res => \(res)")
+                print("[\(Methods.basename(#file)):\(#line)] res => \(res)")
                 
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+                print("[\(Methods.basename(#file)):\(#line)] content => nil")
 
             }
             
@@ -1465,10 +1579,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let fpath_full = "\(dpath_realm)/\(fname)"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+        print("[\(Methods.basename(#file)):\(#line)] fpath_full => \(fpath_full)")
 
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
         
         
 //        let lines = NSString(string: fpath_full)
@@ -1486,18 +1600,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            if tokens != nil {
             
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+                print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
 
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens[0] => \(tokens[0])")
+            print("[\(Methods.basename(#file)):\(#line)] tokens[0] => \(tokens[0])")
 
 //            }
             
         } else {
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+            print("[\(Methods.basename(#file)):\(#line)] content => nil")
 
         }
         
@@ -1506,14 +1620,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
 
         
 //        let tokens = content        
 //        let tokens = lines.componentsSeparatedByString("\n")
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens.count => \(tokens.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] tokens.count => \(tokens.count)")
 
     }
     
@@ -1599,7 +1713,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Handle Ok logic here")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            print("[\(Methods.basename(#file)):\(#line)] clicked => Ok button")
             
             // start email
             self.backupDiaries_ViaEmail__Ok()
@@ -1613,7 +1727,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         presentViewController(refreshAlert, animated: true, completion: nil)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] experiments")
+        print("[\(Methods.basename(#file)):\(#line)] experiments")
         
     }
     
@@ -1631,7 +1745,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //        let fpath_full = "\(dpath_realm)/realm_data_\(Methods.get_TimeLabel__Serial()).csv"
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] fpath_full => \(fpath_full)")
+        print("[\(Methods.basename(#file)):\(#line)] fpath_full => \(fpath_full)")
         
         // build => CSV
         //        _experiments__BuildCSV()
@@ -1648,7 +1762,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+        print("[\(Methods.basename(#file)):\(#line)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
         
         
         // email: setup vars
@@ -1671,7 +1785,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func backupDiaries_ViaEmail__Ok__Dlg_NoNewDiaries() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] backupDiaries_ViaEmail__Ok => returning...")
+        print("[\(Methods.basename(#file)):\(#line)] backupDiaries_ViaEmail__Ok => returning...")
         
         let title = "No new Diaries"
         let message = "Quitting the process"
@@ -1683,7 +1797,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Handle Ok logic here")
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] clicked => Ok button")
+            print("[\(Methods.basename(#file)):\(#line)] clicked => Ok button")
             
         }))
         
@@ -1713,7 +1827,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func backupDiaries_ViaEmail__Choice_4() {
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] showing loc list...")
+        print("[\(Methods.basename(#file)):\(#line)] showing loc list...")
         
         // perfom
         performSegueWithIdentifier("segue_VC_2_LocList",sender: nil)
@@ -1730,7 +1844,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] imageArray.count => \(self.imageArray.count)")
+        print("[\(Methods.basename(#file)):\(#line)] imageArray.count => \(self.imageArray.count)")
 
         
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
@@ -1739,7 +1853,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             save image to file
         */
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] getDocumentsDirectory()! => \(Methods.getDocumentsDirectory())")
+//        print("[\(Methods.basename(#file)):\(#line)] getDocumentsDirectory()! => \(Methods.getDocumentsDirectory())")
 
 //        let doc_root = Methods.getDocumentsDirectory()
 //        
@@ -1751,14 +1865,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        var result = data!.writeToFile(fpath, atomically: true)
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] result => \(result)")
+//        print("[\(Methods.basename(#file)):\(#line)] result => \(result)")
 //        
         // save to camera roll
         //ref http://iostechsolutions.blogspot.jp/2014/11/swift-take-pictures-and-save-to-camera.html
         UIImageWriteToSavedPhotosAlbum(imageArray[0], nil, nil, nil)
 
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] UIImageWriteToSavedPhotosAlbum  => done: result => \(result)")
+//        print("[\(Methods.basename(#file)):\(#line)] UIImageWriteToSavedPhotosAlbum  => done: result => \(result)")
 
         /*
             save diary
@@ -1787,7 +1901,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.realm.add(diary_new, update: true)
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] photo memo => created")
+            print("[\(Methods.basename(#file)):\(#line)] photo memo => created")
 
         }
 
@@ -1808,7 +1922,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tmp_s = Proj.get_LastBackup_Diary_ModifiedAt_String()
         
         //debug0
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.get_LastBackup_Diary_ModifiedAt_String() => \(tmp_s)")
+        print("[\(Methods.basename(#file)):\(#line)] Proj.get_LastBackup_Diary_ModifiedAt_String() => \(tmp_s)")
 
         
 //        let r_admin = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
@@ -1823,24 +1937,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let resOf_Data_LatestDiaryAt = try! self.realm_admin.objects(Data).filter(aPredicate).sorted("created_at", ascending: false)
 
 //        //debug0
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Data_LatestDiaryAt.count => \(resOf_Data_LatestDiaryAt.count) (\(resOf_Data_LatestDiaryAt.description))")
+//        print("[\(Methods.basename(#file)):\(#line)] resOf_Data_LatestDiaryAt.count => \(resOf_Data_LatestDiaryAt.count) (\(resOf_Data_LatestDiaryAt.description))")
 
         //test => lastId
         let tmp_i = Methods.lastId_Data()
         
         //debug0
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Methods.lastId_Data() => \(tmp_i)")
+        print("[\(Methods.basename(#file)):\(#line)] Methods.lastId_Data() => \(tmp_i)")
         
 //
 //        let tmp = try! self.realm_admin.objects(Data).sorted("created_at", ascending: false)
 //        
 //        //debug0
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp.count => \(tmp.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] tmp.count => \(tmp.count)")
 //        
 //        let tmp_2 = try! self.realm_admin.objects(Data).sorted("created_at", ascending: false).last
 //        
 //        //debug0
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tmp_2.description (last) => \(tmp_2!.description)")
+//        print("[\(Methods.basename(#file)):\(#line)] tmp_2.description (last) => \(tmp_2!.description)")
         
         /*
             get recores
@@ -1862,7 +1976,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         //debug0
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] s_last_uploaded_at => \(s_last_uploaded_at)")
+        print("[\(Methods.basename(#file)):\(#line)] s_last_uploaded_at => \(s_last_uploaded_at)")
 
         // build list of diaries
         var aryOf_Diaries = Array<Diary>()
@@ -1890,7 +2004,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         //debug0
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_Diaries => \(lenOf_ResOf_Diaries) / aryOf_Diaries.count => \(aryOf_Diaries.count)")
 
         /*
             validate: any new Diary instance?
@@ -1901,7 +2015,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if aryOf_Diaries.count < 1 {
 
             //debug0
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] aryOf_Diaries.count => less than 1 --> qutting the process")
+            print("[\(Methods.basename(#file)):\(#line)] aryOf_Diaries.count => less than 1 --> qutting the process")
 
             return -1
 
@@ -1916,7 +2030,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let s_tmp = Methods.conv_DateString_2_NSDate(Methods.conv_NSDate_2_DateString(NSDate()), format: "yyyy/MM/dd HH:mm:ss")
         
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] time_label => \(s_time_label) *** s_tmp.description => \(s_tmp.description) *** s_tmp(converted) => \(Methods.conv_NSDate_2_DateString(s_tmp))")
+//        print("[\(Methods.basename(#file)):\(#line)] time_label => \(s_time_label) *** s_tmp.description => \(s_tmp.description) *** s_tmp(converted) => \(Methods.conv_NSDate_2_DateString(s_tmp))")
 
         
         
@@ -1942,7 +2056,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         CONS.s_Latest_Diary_at = Methods.conv_NSDate_2_DateString(latest_diary.date)
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] resOf_Diaries.count => \(resOf_Diaries.count)")
+        print("[\(Methods.basename(#file)):\(#line)] resOf_Diaries.count => \(resOf_Diaries.count)")
 
         // convert Diaries --> csv : [String]
 //        let linesOf_Diaries = Methods.conv_Diaries_2_CSV(resOf_Diaries)
@@ -1988,7 +2102,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let res = Proj.get_LastUploaded_At()
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Proj.get_LastUploaded_At::res => \(res)")
+        print("[\(Methods.basename(#file)):\(#line)] Proj.get_LastUploaded_At::res => \(res)")
 
         let mailComposeViewController = configuredMailComposeViewController()
         
@@ -2037,14 +2151,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            if let filePath = NSBundle.mainBundle().pathForResource("db_20160220_002443", ofType: "realm") {
 //                
 //                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] path to attached file => \(filePath)")
+//                print("[\(Methods.basename(#file)):\(#line)] path to attached file => \(filePath)")
 //                
 //                //            print("File path loaded.")
 //                
 //            } else {
 //                
 //                //debug
-//                print("[\(Methods.basename(__FILE__)):\(__LINE__)] can't generate path => \(fpath_realm)")
+//                print("[\(Methods.basename(#file)):\(#line)] can't generate path => \(fpath_realm)")
 //                
 //                
 //            }
@@ -2054,8 +2168,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let fileData = NSData(contentsOfFile: fpath_realm) {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created")
-                //            print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => \(fileData.description)")
+                print("[\(Methods.basename(#file)):\(#line)] data created")
+                //            print("[\(Methods.basename(#file)):\(#line)] data created => \(fileData.description)")
                 //            println("File data loaded.")
                 
                 // attach data
@@ -2066,7 +2180,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] data created => NOT")
+                print("[\(Methods.basename(#file)):\(#line)] data created => NOT")
                 
             }
             
@@ -2082,10 +2196,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] mailComposeController => called")
+        print("[\(Methods.basename(#file)):\(#line)] mailComposeController => called")
 
         //ref http://stackoverflow.com/questions/24311073/mfmailcomposeviewcontroller-in-swift answered Aug 26 '15 at 17:04
         switch result.rawValue {
@@ -2126,7 +2240,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             refreshAlert.addAction(UIAlertAction(title: lbl_Choice_1, style: .Default, handler: { (action: UIAlertAction!) in
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
                 
 //                // start function
 //                self._experiments__Choices__2__OK()
@@ -2159,7 +2273,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func mailComposeController__MailSent() {
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
+        print("[\(Methods.basename(#file)):\(#line)] CONS.s_Latest_Diary_at => \(CONS.s_Latest_Diary_at)")
         
         
         
@@ -2176,7 +2290,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let last_updated = Proj.get_LastUploaded_At()
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] last_updated => \(last_updated)")
+//        print("[\(Methods.basename(#file)):\(#line)] last_updated => \(last_updated)")
         
         
 //        //test
@@ -2184,14 +2298,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let val : String? = Methods.get_Defaults(CONS.s_AdminKey__LastBackup)
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] Methods.get_Defaults => done")
+//        print("[\(Methods.basename(#file)):\(#line)] Methods.get_Defaults => done")
 //        
 //        
 //        //test
 //        if val == nil {
 //
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] val => nil")
+//            print("[\(Methods.basename(#file)):\(#line)] val => nil")
 //
 //            
 //        }
@@ -2200,24 +2314,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        do {
 //
 //            //debug
-////            try print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+////            try print("[\(Methods.basename(#file)):\(#line)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//            print("[\(Methods.basename(#file)):\(#line)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
 //
 //        } catch let e as NSError {
 //            
 //            //debug
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] error => \(e.description)")
+//            print("[\(Methods.basename(#file)):\(#line)] error => \(e.description)")
 //            
 //            
 //        }
         
 //        if val == nil {
 //            
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
+//            print("[\(Methods.basename(#file)):\(#line)] defaults:CONS.s_AdminKey__LastBackup => \(val)")
 //
 //        } else {
 //            
-//            print("[\(Methods.basename(__FILE__)):\(__LINE__)] defaults:CONS.s_AdminKey__LastBackup => nil")
+//            print("[\(Methods.basename(#file)):\(#line)] defaults:CONS.s_AdminKey__LastBackup => nil")
 //            
 //        }
         
@@ -2236,33 +2350,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if tokens_lines_0_2.count > 0 {
                         
                         //debug
-                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0_2[1] => \(tokens_lines_0_2[1])")
+                        print("[\(Methods.basename(#file)):\(#line)] tokens_lines_0_2[1] => \(tokens_lines_0_2[1])")
                         
                     } else {
 
                         //debug
-                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0_2.count => =< 0")
+                        print("[\(Methods.basename(#file)):\(#line)] tokens_lines_0_2.count => =< 0")
 
                     }
                     
                 } else {
 
                     //debug
-                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines_0.count => =< 0")
+                    print("[\(Methods.basename(#file)):\(#line)] tokens_lines_0.count => =< 0")
 
                 }
 
             } else {
 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] tokens_lines.count => =< 0")
+                print("[\(Methods.basename(#file)):\(#line)] tokens_lines.count => =< 0")
 
             }
             
         } else {
             
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] content => nil")
+            print("[\(Methods.basename(#file)):\(#line)] content => nil")
             
         }
         
@@ -2291,7 +2405,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         data.s_1 = value
 
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
 
 
         try! realm_admin.write {
@@ -2299,7 +2413,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.realm_admin.add(data, update: false)
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+            print("[\(Methods.basename(#file)):\(#line)] new data saved => \(data.description)")
 
         }
 
@@ -2327,21 +2441,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new_id => \(new_id)")
+        print("[\(Methods.basename(#file)):\(#line)] new_id => \(new_id)")
 
         data.id = Methods.lastId_Data()
 //        data.id = 2
 //        data.id = 4
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+        print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
 
         try! realm_admin.write {
 
             self.realm_admin.add(data, update: false)
 
             //debug
-            print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+            print("[\(Methods.basename(#file)):\(#line)] new data saved => \(data.description)")
 
         }
 
@@ -2356,7 +2470,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                let res = DB.findAll_Data__Filtered(CONS.s_Realm_FileName__Admin, predicate: aPredicate, sort_key: "created_at", ascend: false)
 //        
 //        //debug
-//        print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => \(res.count)")
+//        print("[\(Methods.basename(#file)):\(#line)] res.count => \(res.count)")
 //
 //        
 //                if res.count < 1 {
@@ -2373,7 +2487,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                    data.s_1 = value
 //        
 //                    //debug
-//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+//                    print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
 //                    
 //                    
 //                    try! realm_admin.write {
@@ -2381,14 +2495,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                        self.realm_admin.add(data, update: false)
 //        
 //                        //debug
-//                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] new data saved => \(data.description)")
+//                        print("[\(Methods.basename(#file)):\(#line)] new data saved => \(data.description)")
 //        
 //                    }
 //        
 //                } else {
 //
 //                    //debug
-//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] res.count => more than 1")
+//                    print("[\(Methods.basename(#file)):\(#line)] res.count => more than 1")
 //	
 //                    let data = res[0]
 //        
@@ -2399,14 +2513,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                    data.s_1 = value
 //        
 //                    //debug
-//                    print("[\(Methods.basename(__FILE__)):\(__LINE__)] writing to => realm_admin")
+//                    print("[\(Methods.basename(#file)):\(#line)] writing to => realm_admin")
 //
 //                    try! realm_admin.write {
 //                        
 //                        self.realm_admin.add(data, update: true)
 //                        
 //                        //debug
-//                        print("[\(Methods.basename(__FILE__)):\(__LINE__)] data updated => \(data.description)")
+//                        print("[\(Methods.basename(#file)):\(#line)] data updated => \(data.description)")
 //                        
 //                    }
 //                    
@@ -2426,7 +2540,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func shouldAutorotate() -> Bool{
         
         //debug
-        print("[\(Methods.basename(__FILE__)):\(__LINE__)] shouldAutorotate")
+        print("[\(Methods.basename(#file)):\(#line)] shouldAutorotate")
 
         
         return false
@@ -2453,7 +2567,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             refreshAlert.addAction(UIAlertAction(title: choice_0, style: .Default, handler: { (action: UIAlertAction!) in
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 0")
+                print("[\(Methods.basename(#file)):\(#line)] chosen => 0")
                 
                 // execute  => close dialog
                 self.backupDiaries_ViaEmail__Ok()
@@ -2464,7 +2578,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             refreshAlert.addAction(UIAlertAction(title: choice_1, style: .Default, handler: { (action: UIAlertAction!) in
                 
                 //debug
-                print("[\(Methods.basename(__FILE__)):\(__LINE__)] chosen => 1")
+                print("[\(Methods.basename(#file)):\(#line)] chosen => 1")
                 
             }))
             
