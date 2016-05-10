@@ -62,7 +62,7 @@ class VC_Hist: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // iterate
         let len = resOf_Hists.count
         
-        for var i = 0; i < len; i++ {
+        for i in 0 ..< len {
             
             let hist = resOf_Hists[i]
             

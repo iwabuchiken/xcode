@@ -51,16 +51,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let realm_admin = Methods.get_RealmInstance(CONS.s_Realm_FileName__Admin)
     
     // DB 内の日記データが格納されるリスト(日付新しいもの順でソート：降順)。以降内容をアップデートするとリスト内は自動的に更新される。
-    //let dataArray = try! Realm().objects(Diary).sorted("date", ascending: false)
     var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
-    //let dataArray = try! Realm().objects(Diary).sorted("id", ascending: false)
+
+    var dataArray_2 = try! Realm().objects(Diary).sorted("created_at", ascending: false)
     
+    var aryOf_Diaries__2 = [Diary]()
     
     var aryOf_Diaries = [Diary]()
-    
-    
-//    //debug
-//        print("[\(Methods.basename(#file)):\(#line)] Realm() => done")
+
+// MARK: funcs
     
     func show_DirList() {
         
@@ -120,7 +119,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         _conv_Results_2_Array__Diaries()
         
         // buid dataArray --> new func
-        _build_DataArray__With_Keywords(tmp_s)
+        // buid dataArray_2 --> new func
+//        _build_DataArray__With_Keywords(tmp_s)
+
+//        // build
+//        self.aryOf_Diaries = self.aryOf_Diaries__2
+        
+//        // build
+//        dataArray = dataArray_2
+//        
+//        // build --> aryOf_Diaries
+//        _conv_Results_2_Array__Diaries()
+
         
         // number of cells
         let limit = Proj.get_Limit_on_NumOf_Diaries()
@@ -408,11 +418,147 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func _build_DataArray__With_Keywords(tmp_s : String) -> Void {
         
-        let query = _build_DataArray__With_Keywords__Build_Query(tmp_s);
+        var query = _build_DataArray__With_Keywords__Build_Query(tmp_s);
         
+        // validate
+        if (query == "multiple") {
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] query => multiple")
+
+    //            query = ""
+                
+//            var aPredicate = NSPredicate(format: query)
+        
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+
+                dataArray_2 = try Realm().objects(Diary).sorted("created_at", ascending: false)
+
+//                dataArray_2 = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+                
+                //                //debug
+                //                print("[\(Methods.basename(#file)):\(#line)] dataArray.description => \(dataArray.description)")
+                //
+                
+                
+                /*
+                 *  filter
+                 */
+                // tokens
+                let tokens = tmp_s.componentsSeparatedByString(" ")
+                
+                // new array
+//                var aryOf_Diaries__2 = [Diary]()
+                
+                /*
+                 
+                    20160510 121847
+                 
+                    concern:
+                        title= "abc", body="def"
+                        --> whole="abc def"
+                        --> if a token is " d"
+                            => then, flag stays true
+                            => whereas, neither title nor body
+                                contains a string " d"
+                    note to the concern:
+                        tmp_s is sliced with the char " "
+                        --> hence, tokens don't contain any char " "
+ 
+                */
+                
+                // loop
+                for diary in dataArray_2 {
+                    
+                    let whole_string = "\(diary.title) \(diary.body)"
+                    
+                    var flag_contains = true
+                    
+                    for token in tokens {
+                        
+                        // judge
+                        if !(whole_string.containsString(token)) {
+                            
+                            flag_contains = false
+                            
+                            break
+                            
+                        }
+                        
+                    }//for token in tokens
+                    
+                    // if contains all --> push to a new array
+                    if (flag_contains == true) {
+                        
+                        //debug
+                        print("[\(Methods.basename(#file)):\(#line)] flag_contains => true (\(diary.title))")
+
+                        
+                        aryOf_Diaries__2.append(diary)
+                        
+                    }
+                    
+                    
+                }//for diary in dataArray
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] aryOf_Diaries__2.count => \(aryOf_Diaries__2.count)")
+                
+                
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
+                
+                //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+                //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
+                
+            }
+
+        } else {//if (query == "multiple")
+
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] query => NOT multiple ('\(query)')")
+
+            
+            var aPredicate = NSPredicate(format: query)
+            
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+                
+                
+                dataArray_2 = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
+                
+                
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
+                
+                //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+                //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
+                
+            }
+
+        }//if (query == "multiple")
+        
+
         //debug
         print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] dataArray_2.count => \(dataArray_2.count)")
+
+        
         
     }//_build_DataArray__With_Keywords
     
@@ -476,11 +622,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                     if (dfltVal_Search_MemoColumn?.boolValue == true) {
                     
-                        query = "NOT title CONTAINS \(string_less_NegDirective) AND NOT body CONTAINS \(string_less_NegDirective)"
+                        query = "NOT title CONTAINS '\(string_less_NegDirective)' AND NOT body CONTAINS '\(string_less_NegDirective)'"
                         
                     } else {
                         
-                        query = "NOT title CONTAINS \(string_less_NegDirective)"
+                        query = "NOT title CONTAINS '\(string_less_NegDirective)'"
                         
                     }
                     
@@ -491,11 +637,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if (dfltVal_Search_MemoColumn?.boolValue == true) {
                         
 //                        query = "title CONTAINS \(string_less_NegDirective) OR body CONTAINS \(string_less_NegDirective)"
-                        query = "title CONTAINS \(tokens[0]) OR body CONTAINS \(tokens[0])"
+                        query = "title CONTAINS '\(tokens[0])' OR body CONTAINS '\(tokens[0])'"
                         
                     } else {
                         
-                        query = "title CONTAINS \(tokens[0])"
+                        query = "title CONTAINS '\(tokens[0])'"
                         
                     }
                     
@@ -509,7 +655,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {//if tokens.count == 1
                 
                 //test
-                query = "tokens.count > 1"
+//                query = "tokens.count > 1"
+                query = "multiple"
                 
             }//if tokens.count == 1
             
@@ -1427,7 +1574,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
             } else  {
             
-                for var i = 0; i < 3; i++ {
+//                for var i = 0; i < 3; i++ {
+                for i in 0 ..< 3 {
 
                     let ast = results[i] as! PHAsset
                     
@@ -1992,7 +2140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var i_count = 0
         
-        for var i = 0; i < lenOf_ResOf_Diaries; i++ {
+        for var i = 0; i < lenOf_ResOf_Diaries; i += 1 {
             
             let d = resOf_Diaries[i]
             
