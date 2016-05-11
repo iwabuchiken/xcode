@@ -561,7 +561,7 @@ class Proj {
         
         var i_count = 0
         
-        for var i = 0; i < lenOf_ResOf_Diaries; i++ {
+        for i in 0 ..< lenOf_ResOf_Diaries {
             
             let d = resOf_Diaries[i]
             

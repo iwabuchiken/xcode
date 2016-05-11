@@ -1,13 +1,11 @@
 xcode_Memo
-D-16(m)
-
-s-3#2/steps.~4
----
-1. resize
-2. default zoom
-
-        ==> done
-
+ D-18
+ 
+ s-1#1/steps.6
+ ---
+ 1. cell values => use aryOf_Diaries
+ 
+			==> done
 
 ctrl-A > ctrl-V > ctrl-A > shift+tab > ctrl-C > ctrl+S
 

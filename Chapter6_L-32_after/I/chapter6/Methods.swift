@@ -846,7 +846,7 @@ class Methods {
             
             //ref http://www.raywenderlich.com/117456/swift-tutorial-repeating-steps-with-loops
             //        for item in resOf_Diaries {
-            for var i = 0; i < numOf_items; i += 1 {
+            for i in 0 ..< numOf_items {
                 
                 // item
                 let item = resOf_Diaries[i]
@@ -969,7 +969,7 @@ class Methods {
             
             
 //            for line in lines {
-            for var i = 0; i < numOf_items; i++ {
+            for i in 0 ..< numOf_items {
             
                 // line
                 let line = lines[i]
@@ -1058,7 +1058,7 @@ class Methods {
             content += "\n"
 
             //            for line in lines {
-            for var i = 0; i < numOf_items; i++ {
+            for i in 0 ..< numOf_items {
                 
                 // line
                 let line = lines[i]
@@ -1389,7 +1389,7 @@ class Methods {
         /*
             copy --> iterate
         */
-        for var i = 0; i < lenOf_names_src; i++ {
+        for i in 0 ..< lenOf_names_src {
             
             let fname_src = fnames_src[i]
             let fname_dst = fnames_dst[i]
