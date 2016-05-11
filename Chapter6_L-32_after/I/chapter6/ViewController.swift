@@ -54,8 +54,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dataArray = try! Realm().objects(Diary).sorted("created_at", ascending: false)
 
     var dataArray_2 = try! Realm().objects(Diary).sorted("created_at", ascending: false)
+    var dataArray_3 = try! Realm().objects(Diary).sorted("created_at", ascending: false)
     
     var aryOf_Diaries__2 = [Diary]()
+    var aryOf_Diaries__3 = [Diary]()
     
     var aryOf_Diaries = [Diary]()
 
@@ -290,7 +292,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     aPredicate = NSPredicate(
                                     format: "NOT title CONTAINS %@",
-                        tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)]
+//                        tmp_s[tmp_s.startIndex..<tmp_s.startIndex.advancedBy(tmp_s.characters.count - 1)]
+                        tmp_s[tmp_s.startIndex.advancedBy(1)..<tmp_s.startIndex.advancedBy(tmp_s.characters.count)]
+
 
 //                                tmp_s[tmp_s.startIndex..<tmp_s.characters.count - 1]
 //                                    tmp_s
@@ -476,25 +480,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let whole_string = "\(diary.title) \(diary.body)"
                     
                     var flag_contains = true
+                    var flag_passed = true
                     
                     for token in tokens {
                         
-                        // judge
-                        if !(whole_string.containsString(token)) {
+                        let first_char = String(token.characters.first!)// == "-"
+                        
+                        
+                        if (first_char == "-") {
+                        
+                            let target = token[token.startIndex.advancedBy((1))..<token.startIndex.advancedBy(token.characters.count)]
                             
-                            flag_contains = false
+                            if (whole_string.containsString(target) == true) {
+                                
+                                flag_passed = false
+                                
+                                break
+                                
+                            }
                             
-                            break
+                        } else {//if (first_char == "-")
                             
-                        }
+                            let target = token
+
+                            if (whole_string.containsString(target) == false) {
+                                
+                                flag_passed = false
+                                
+                                break
+                                
+                            }
+
+                            
+                        }//if (first_char == "-")
+                        
+                        
+//                        // judge
+//                        if !(whole_string.containsString(token)) {
+//                            
+//                            flag_contains = false
+//                            
+//                            break
+//                            
+//                        }
                         
                     }//for token in tokens
                     
                     // if contains all --> push to a new array
-                    if (flag_contains == true) {
-                        
+//                    if (flag_contains == true) {
+                    if (flag_passed == true) {
+
+                    
                         //debug
-                        print("[\(Methods.basename(#file)):\(#line)] flag_contains => true (\(diary.title) [\(diary.body)])")
+//                        print("[\(Methods.basename(#file)):\(#line)] flag_contains => true (\(diary.title) [\(diary.body)])")
+                        print("[\(Methods.basename(#file)):\(#line)] flag_passed => true (\(diary.title) [\(diary.body)])")
+
 
                         
                         aryOf_Diaries__2.append(diary)
@@ -533,9 +573,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
             do {
                 
+                // count the total
+                dataArray_3 = try Realm().objects(Diary).sorted("created_at", ascending: false)
+
                 
                 dataArray_2 = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
                 
+                // loop => build: aryOf_Diaries__2
+                self.aryOf_Diaries__2.removeAll()
+                
+                for diary in self.dataArray_2 {
+                    
+                    self.aryOf_Diaries__2.append(diary)
+                    
+                }//for diary in dataArray
+                
+
                 
             } catch is NSException {
                 
@@ -558,7 +611,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
         //debug
-        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count) / dataArray_2.count => \(dataArray_2.count) / self.aryOf_Diaries__2.count => \(self.aryOf_Diaries__2.count)")
+        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count) / dataArray_2.count => \(dataArray_2.count) / self.aryOf_Diaries__2.count => \(self.aryOf_Diaries__2.count) / toal => \(self.dataArray_3.count)")
 
         
         
@@ -651,8 +704,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                 }//if String(first_char) == "-"
                 
-                //debug
-                print("[\(Methods.basename(#file)):\(#line)] predicate => built")
+//                //debug
+//                print("[\(Methods.basename(#file)):\(#line)] predicate => built")
                 
             } else {//if tokens.count == 1
                 
