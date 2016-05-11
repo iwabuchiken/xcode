@@ -119,8 +119,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         _conv_Results_2_Array__Diaries()
         
         // buid dataArray --> new func
-        // buid dataArray_2 --> new func
-//        _build_DataArray__With_Keywords(tmp_s)
+//         buid dataArray_2 --> new func
+        _build_DataArray__With_Keywords(tmp_s)
 
 //        // build
 //        self.aryOf_Diaries = self.aryOf_Diaries__2
@@ -468,7 +468,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
  
                 */
                 
-                // loop
+                // loop => build: aryOf_Diaries__2
+                self.aryOf_Diaries__2.removeAll()
+                
                 for diary in dataArray_2 {
                     
                     let whole_string = "\(diary.title) \(diary.body)"
@@ -492,7 +494,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if (flag_contains == true) {
                         
                         //debug
-                        print("[\(Methods.basename(#file)):\(#line)] flag_contains => true (\(diary.title))")
+                        print("[\(Methods.basename(#file)):\(#line)] flag_contains => true (\(diary.title) [\(diary.body)])")
 
                         
                         aryOf_Diaries__2.append(diary)
@@ -556,7 +558,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
 
         //debug
-        print("[\(Methods.basename(#file)):\(#line)] dataArray_2.count => \(dataArray_2.count)")
+        print("[\(Methods.basename(#file)):\(#line)] dataArray.count => \(dataArray.count) / dataArray_2.count => \(dataArray_2.count) / self.aryOf_Diaries__2.count => \(self.aryOf_Diaries__2.count)")
 
         
         
