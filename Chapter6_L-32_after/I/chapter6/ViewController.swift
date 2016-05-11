@@ -114,8 +114,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // trim string
         tmp_s = Methods.trim_String(tmp_s)
             
-        // objects with conditions
-        _test_Realm_Conditions__MultipleKeywords(tmp_s)
+//        // objects with conditions
+//        _test_Realm_Conditions__MultipleKeywords(tmp_s)
         
         // build --> aryOf_Diaries
         _conv_Results_2_Array__Diaries()
@@ -124,8 +124,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //         buid dataArray_2 --> new func
         _build_DataArray__With_Keywords(tmp_s)
 
-//        // build
-//        self.aryOf_Diaries = self.aryOf_Diaries__2
+        // build
+        self.aryOf_Diaries = self.aryOf_Diaries__2
         
 //        // build
 //        dataArray = dataArray_2
@@ -137,7 +137,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // number of cells
         let limit = Proj.get_Limit_on_NumOf_Diaries()
         
-        if limit < self.dataArray.count {
+//        if limit < self.dataArray.count {
+        if limit < self.aryOf_Diaries.count {
         
             self.numOf_Cells = limit
             
@@ -437,6 +438,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
             do {
 
+                // count the total
+                dataArray_3 = try Realm().objects(Diary).sorted("created_at", ascending: false)
+
+                
                 dataArray_2 = try Realm().objects(Diary).sorted("created_at", ascending: false)
 
 //                dataArray_2 = try Realm().objects(Diary).filter(aPredicate).sorted("created_at", ascending: false)
@@ -562,7 +567,53 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
             }
 
-        } else {//if (query == "multiple")
+        }
+        
+        else if (query == "") {
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] query => ''(blank)")
+            
+            
+//            var aPredicate = NSPredicate(format: query)
+            
+            //ref https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch
+            do {
+                
+                // count the total
+                dataArray_3 = try Realm().objects(Diary).sorted("created_at", ascending: false)
+                
+                
+                dataArray_2 = try Realm().objects(Diary).sorted("created_at", ascending: false)
+                
+                // loop => build: aryOf_Diaries__2
+                self.aryOf_Diaries__2.removeAll()
+                
+                for diary in self.dataArray_2 {
+                    
+                    self.aryOf_Diaries__2.append(diary)
+                    
+                }//for diary in dataArray
+                
+                
+                
+            } catch is NSException {
+                
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] NSException => \(NSException.description())")
+                
+                //ref https://www.bignerdranch.com/blog/error-handling-in-swift-2/
+            } catch let error as NSError {
+                
+                //debug
+                //                print("[\(Methods.basename(#file)):\(#line)] NSError => \(NSException.description())")  //=> build succeeded
+                print("[\(Methods.basename(#file)):\(#line)] NSError => \(error.description)")  //=> build succeeded
+                
+            }
+
+        }//if (query == "multiple")
+        
+        else {//if (query == "multiple")
 
             //debug
             print("[\(Methods.basename(#file)):\(#line)] query => NOT multiple ('\(query)')")
@@ -720,7 +771,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         //debug
-        print("[\(Methods.basename(#file)):\(#line)] query => \(query)")
+        print("[\(Methods.basename(#file)):\(#line)] query => '\(query)'")
         
         
 //        //test
@@ -868,8 +919,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let inputViewController:InputViewController = segue.destinationViewController as! InputViewController
         
             if segue.identifier == "cellSegue" {
+                
                 let indexPath = self.tableView.indexPathForSelectedRow
-                inputViewController.diary = dataArray[indexPath!.row]
+                
+//                inputViewController.diary = dataArray[indexPath!.row]
+                inputViewController.diary = self.aryOf_Diaries[indexPath!.row]
+                
+                
             } else {
                 let diary = Diary()
 //                diary.title = "タイトル"
