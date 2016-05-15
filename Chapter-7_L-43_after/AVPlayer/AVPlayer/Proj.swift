@@ -521,6 +521,11 @@ class Proj {
         
     }
 
+    /*
+ 
+        set "removed_at" to the clip
+ 
+     */
     static func update_Clip(clip : Clip) -> Bool {
         // realm
         let realm = Methods.get_RealmInstance(CONS.s_Realm_FileName)
@@ -572,7 +577,7 @@ class Proj {
             clip.removed_at     = ""
             
             //debug
-            print("[\(Methods.basename(#file)):\(#line)] clip.removed_at => ''")
+            print("[\(Methods.basename(#file)):\(#line)] clip.removed_at set to => ''(blank)")
 
             realm.add(clip, update: true)
             //            rl_tmp.add(bm, update: false)
@@ -698,6 +703,9 @@ class Proj {
             //ref http://stackoverflow.com/questions/24102024/how-to-check-if-an-element-is-in-an-array answered Aug 19 '14 at 19:41
             if aryOf_Titles_from_MediaItems.contains(name) {
                 
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] media contains this clip => \(name)")
+
                 // validate --> removed_at ==> ''
                 
                 Proj.update_Clip__RemovedAt_Blank(item)
@@ -707,6 +715,9 @@ class Proj {
             
             } else if item.removed_at != "" {
                 
+                //debug
+                print("[\(Methods.basename(#file)):\(#line)] removed_at => not blank (\(name))")
+
                 // count
                 count_removed += 1
                 

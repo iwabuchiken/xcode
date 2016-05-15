@@ -1165,6 +1165,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // hide => tab bar
         self.tabBarController?.tabBar.hidden = false
         
+        // build clips
+        self.clips = self.getClips()
+
+        
         // reload
         self.tableView.reloadData()
         
@@ -1187,7 +1191,8 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // setup --> music infos
         songs = getSongs()
     
-        self.clips = self.getClips()
+//        // build clips
+//        self.clips = self.getClips()
     
         //debug
         print("[\(Methods.basename(#file)):\(#line)] self.songs.count => \(self.songs.count) / self.clips.count => \(self.clips.count)")
