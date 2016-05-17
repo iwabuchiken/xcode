@@ -768,7 +768,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        if let filePath = NSBundle.mainBundle().pathForResource("swifts", ofType: "wav") {
         let realmPath = Realm.Configuration.defaultConfiguration.path
         
-        let dpath_realm = Methods.dirname(realmPath!)
+//        let dpath_realm = Methods.dirname(realmPath!)
         
 //        let fpath_realm = "\(dpath_realm)/\(CONS.s_Realm_FileName)"
 //        let fpath_realm = "\(dpath_realm)/realm_data_20160220_155221.csv"
