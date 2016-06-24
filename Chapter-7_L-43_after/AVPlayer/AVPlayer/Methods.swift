@@ -1321,5 +1321,71 @@ class Methods {
         
     }
 
+// MARK: log-related ==============
+    static func _tests__WriteLog_2(content : String) {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _tests__WriteLog_2")
+        
+//        let time_label = Methods.get_TimeLabel__Serial()
+        let time_label = Methods.get_TimeLable()
+        
+//        let text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        var text = "[\(time_label):\(Methods.basename(#file)):\(#line)] \(content)\n"
+        //writing
+        //ref http://stackoverflow.com/questions/26989493/how-to-open-file-and-append-a-string-in-it-swift
+        
+        let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+        
+        let fname = "logfile.txt"
+        
+        //        var path = documents.URLByAppendingPathComponent("votes").path!
+        let path = documents.URLByAppendingPathComponent(fname).path!
+        
+        if let outputStream = NSOutputStream(toFileAtPath: path, append: true) {
+            
+            outputStream.open()
+            //            let text = "some text"
+            //ref maxLength http://stackoverflow.com/questions/26331636/writing-a-string-to-an-nsoutputstream-in-swift answered Oct 13 '14 at 4:37
+            outputStream.write(text, maxLength: text.characters.count)
+            
+            outputStream.close()
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] log written")
+            
+        } else {
+            
+            print("Unable to open file")
+            
+        }
+        
+        //        //reading
+        //        text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        //
+        //        let dir_2 = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
+        //
+        //        let path_2 = NSURL(fileURLWithPath: dir_2!).URLByAppendingPathComponent(fname)
+        //
+        //        do {
+        //
+        //            let text2 = try NSString(contentsOfURL: path_2, encoding: NSUTF8StringEncoding)
+        //
+        //            //debug
+        //            print("[\(Methods.basename(#file)):\(#line)] read log => (\(text2))")
+        //
+        //        }
+        //
+        //        catch {
+        //
+        //            /* error handling here */
+        //            //debug
+        //            print("[\(Methods.basename(#file)):\(#line)] read log => error")
+        //            
+        //        }
+        
+    }//_tests__WriteLog_2()
+    
+
     
 }

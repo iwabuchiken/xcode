@@ -248,6 +248,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let choice_7 = "(7) Backup BMs"
         let choice_8 = "(8) fix => 安保氏、他"
+        let choice_9 = "(9) read log"
         
 //        let s_message = "\(choice_1)\n\(choice_2)\n\(choice_3)\n\(choice_4)\n\(choice_5)\n\(choice_6)"
         let s_message = "choises"
@@ -344,7 +345,18 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             self._experiments__Choices__8()
             
         }))
-        
+
+        // choice: 9
+        refreshAlert.addAction(UIAlertAction(title: choice_9, style: .Default, handler: { (action: UIAlertAction!) in
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] chosen => 9")
+            
+            // start function
+            self._experiments__Choices__9()
+            
+        }))
+
         // show view
         presentViewController(refreshAlert, animated: true, completion: nil)
         
@@ -354,6 +366,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // show list
 //        Methods.saveClips(self.songs)
+        
+        //log
+        let content = "LOG: calling => Proj.save_Clips__MediaItems"
+        
+        self._tests__WriteLog_2(content)
+        
         Proj.save_Clips__MediaItems(self.songs)
         
     }
@@ -407,6 +425,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func _experiments__Choices__6() {
+
+        //log
+        var content = ""
+        
+        content = "LOG: Choice 6 => refreshing clips table..."
+        Methods._tests__WriteLog_2(content)
         
         //debug
         print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__6")
@@ -414,11 +438,29 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         // show history
         let res : [Int] = Proj.refresh_Clips_Table()
         
+        //log
+        content = "LOG: Proj.refresh_Clips_Table => \(res.count)"
+        
+        Methods._tests__WriteLog_2(content)
+
+        
         // update --> tableview
+        //log
+        content = "LOG: getting clips..."
+        Methods._tests__WriteLog_2(content)
+        
         self.getClips()
-        
+
+        //log
+        content = "LOG: clips => built"
+        Methods._tests__WriteLog_2(content)
+
         self.tableView.reloadData()
-        
+
+        //log
+        content = "LOG: reload data => done"
+        Methods._tests__WriteLog_2(content)
+
         /*
             report
         */
@@ -449,7 +491,10 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        //debug
 //        print("[\(Methods.basename(#file)):\(#line)] clips in db => \(aryOf_Clips.count) / aryOf_MediaItems.count =>  \(aryOf_MediaItems.count) / 'removed_at' => \(count_removed) / else => \(count)")
 
-        
+        //log
+        content = "LOG: Choice 6 => done"
+        Methods._tests__WriteLog_2(content)
+
     }
 
     func _experiments__Choices__7() {
@@ -472,6 +517,17 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         self._fix__Abo_And_Others()
         
     }
+    
+    func _experiments__Choices__9() {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _experiments__Choices__8")
+        
+        //
+        //        self._backup_BMs_ViaEmail()
+        self._tests__ReadLog_2()
+        
+    }//_experiments__Choices__9
     
     func _fix__Abo_And_Others() {
         
@@ -1419,9 +1475,12 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
         //debug
         print("[\(Methods.basename(#file)):\(#line)] _tests__WriteLog_2")
         
-        let time_label = Methods.get_TimeLabel__Serial()
+//        let time_label = Methods.get_TimeLabel__Serial()
+        let time_label = Methods.get_TimeLable()
 
-        var text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+//        var text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        var text = "[\(time_label):\(Methods.basename(#file)):\(#line)] \(content)\n"
+
         
         //writing
         //ref http://stackoverflow.com/questions/26989493/how-to-open-file-and-append-a-string-in-it-swift
@@ -1443,7 +1502,7 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             outputStream.close()
             
             //debug
-            print("[\(Methods.basename(#file)):\(#line)] text written => \(text)")
+            print("[\(Methods.basename(#file)):\(#line)] log written")
 
         } else {
             
@@ -1451,13 +1510,43 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
         
+//        //reading
+//        text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+//        
+//        let dir_2 = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
+//        
+//        let path_2 = NSURL(fileURLWithPath: dir_2!).URLByAppendingPathComponent(fname)
+//
+//        do {
+//            
+//            let text2 = try NSString(contentsOfURL: path_2, encoding: NSUTF8StringEncoding)
+//            
+//            //debug
+//            print("[\(Methods.basename(#file)):\(#line)] read log => (\(text2))")
+//            
+//        }
+//            
+//        catch {
+//            
+//            /* error handling here */
+//            //debug
+//            print("[\(Methods.basename(#file)):\(#line)] read log => error")
+//            
+//        }
+        
+    }//_tests__WriteLog_2()
+    
+    func _tests__ReadLog_2() {
+        
         //reading
-        text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+//        text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        
+        let fname = CONS.fname_Log
         
         let dir_2 = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
         
         let path_2 = NSURL(fileURLWithPath: dir_2!).URLByAppendingPathComponent(fname)
-
+        
         do {
             
             let text2 = try NSString(contentsOfURL: path_2, encoding: NSUTF8StringEncoding)

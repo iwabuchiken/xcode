@@ -161,6 +161,12 @@ class Proj {
         //debug
         print("[\(Methods.basename(#file)):\(#line)] aryOf_Clips.count => \(aryOf_Clips.count) / aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count)")
 
+        //log
+        let content = "LOG: aryOf_Clips_NotInDB.count => \(aryOf_Clips_NotInDB.count)"
+        
+        Methods._tests__WriteLog_2(content)
+
+        
         // validate: any entries
         if aryOf_Clips_NotInDB.count < 1 {
 

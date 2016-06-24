@@ -185,5 +185,8 @@ class CONS {
 //    static var s_Latest_Diary_at = ""
     static var s_Latest_BM_at = ""      // to be saved in the defaults
 
+// MARK: file names ===========
+    
+    static let fname_Log = "logfile.txt"
     
 }
