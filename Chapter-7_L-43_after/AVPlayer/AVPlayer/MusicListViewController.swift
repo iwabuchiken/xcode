@@ -1162,12 +1162,21 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(animated: Bool) {
 
+        //log
+        _tests__WriteLog_2("starting: viewWillAppear -----------------")
+
+        
         // hide => tab bar
         self.tabBarController?.tabBar.hidden = false
-        
+
+        //log
+        _tests__WriteLog_2("LOG: getting clips...")
+
         // build clips
         self.clips = self.getClips()
 
+        //log
+        _tests__WriteLog_2("LOG: clips => built")
         
         // reload
         self.tableView.reloadData()
@@ -1182,9 +1191,22 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        test_Subarrays()
 
         
-    }
+        /*
+            tests
+        */
+//        _tests()
+        // tests
+//        _tests__WriteLog("viewWillAppear")
+//        _tests__WriteLog_2("viewWillAppear")
+        //log
+        _tests__WriteLog_2("ending: viewWillAppear -----------------")
+        
+    }//viewWillAppear(animated: Bool)
     
   override func viewDidLoad() {
+    
+        //log
+        _tests__WriteLog_2("starting: viewDidLoad -----------------")
     
         super.viewDidLoad()
     
@@ -1214,8 +1236,247 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.tableView.addGestureRecognizer(recognizer)
     
-  }
-  
+    
+        // tests
+//        _tests()
+//        _tests__WriteLog("viewDidLoad")
+//        _tests__WriteLog_2("viewDidLoad")
+    
+        //log
+        _tests__WriteLog_2("ending: viewDidLoad -----------------")
+
+    }
+   
+    func _tests() {
+        
+        _tests__WriteLog()
+        
+    }//_tests()
+    
+    func _tests__WriteLog() {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _tests__WriteLog")
+
+//        //
+//        let dirs : [String] = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String])!
+//        
+//        //debug
+//        if (dirs.count > 0) {
+//            print("[\(Methods.basename(#file)):\(#line)] dirs[0] => \(dirs[0])")
+//            
+//        } else {
+//
+//            //debug
+//            print("[\(Methods.basename(#file)):\(#line)] dirs.count => =< 0")
+//            
+//            return
+//            
+//        }
+        
+        /*
+            write log
+        */
+        //ref http://stackoverflow.com/questions/24097826/read-and-write-data-from-text-file answered Jun 7 '14 at 14:18
+        let time_label = Methods.get_TimeLabel__Serial()
+        
+        let text = "[\(Methods.basename(#file)):\(#line):\(time_label)] log written\n"
+        
+        let fname = "logfile.txt"
+        
+        let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
+        
+        let path = NSURL(fileURLWithPath: dir!).URLByAppendingPathComponent(fname)
+        
+
+//        let path = dirs[0].stringByAppendingPathComponent(fname)
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] log file: path => \(path)")
+        
+        //writing
+        do {
+            
+            try text.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] log file => written(\(path))")
+            
+        }
+
+        catch {
+            
+            /* error handling here */
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] write log => error(\(path))")
+
+            
+        }
+        
+        //reading
+        do {
+            
+            let text2 = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => (\(text2))")
+            
+        }
+            
+        catch {
+
+            /* error handling here */
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => error")
+
+        }
+        
+    }//_tests__WriteLog()
+    
+    func _tests__WriteLog(content : String) {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _tests__WriteLog")
+        
+        //        //
+        //        let dirs : [String] = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String])!
+        //
+        //        //debug
+        //        if (dirs.count > 0) {
+        //            print("[\(Methods.basename(#file)):\(#line)] dirs[0] => \(dirs[0])")
+        //
+        //        } else {
+        //
+        //            //debug
+        //            print("[\(Methods.basename(#file)):\(#line)] dirs.count => =< 0")
+        //
+        //            return
+        //
+        //        }
+        
+        /*
+         write log
+         */
+        //ref http://stackoverflow.com/questions/24097826/read-and-write-data-from-text-file answered Jun 7 '14 at 14:18
+        let time_label = Methods.get_TimeLabel__Serial()
+        
+//        let text = "[\(Methods.basename(#file)):\(#line):\(time_label)] log written\n"
+        let text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        
+        let fname = "logfile.txt"
+        
+        let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
+        
+        let path = NSURL(fileURLWithPath: dir!).URLByAppendingPathComponent(fname)
+        
+        
+        //        let path = dirs[0].stringByAppendingPathComponent(fname)
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] log file: path => \(path)")
+        
+        //writing
+        do {
+            
+            try text.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] log file => written(\(path))")
+            
+        }
+            
+        catch {
+            
+            /* error handling here */
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] write log => error(\(path))")
+            
+            
+        }
+        
+        //reading
+        do {
+            
+            let text2 = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => (\(text2))")
+            
+        }
+            
+        catch {
+            
+            /* error handling here */
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => error")
+            
+        }
+        
+    }//_tests__WriteLog()
+    
+    func _tests__WriteLog_2(content : String) {
+        
+        //debug
+        print("[\(Methods.basename(#file)):\(#line)] _tests__WriteLog_2")
+        
+        let time_label = Methods.get_TimeLabel__Serial()
+
+        var text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        
+        //writing
+        //ref http://stackoverflow.com/questions/26989493/how-to-open-file-and-append-a-string-in-it-swift
+        
+        let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+        
+        let fname = "logfile.txt"
+
+//        var path = documents.URLByAppendingPathComponent("votes").path!
+        let path = documents.URLByAppendingPathComponent(fname).path!
+        
+        if let outputStream = NSOutputStream(toFileAtPath: path, append: true) {
+
+            outputStream.open()
+//            let text = "some text"
+            //ref maxLength http://stackoverflow.com/questions/26331636/writing-a-string-to-an-nsoutputstream-in-swift answered Oct 13 '14 at 4:37
+            outputStream.write(text, maxLength: text.characters.count)
+
+            outputStream.close()
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] text written => \(text)")
+
+        } else {
+            
+            print("Unable to open file")
+            
+        }
+        
+        //reading
+        text = "[\(Methods.basename(#file)):\(#line):\(time_label)] \(content)\n"
+        
+        let dir_2 = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first
+        
+        let path_2 = NSURL(fileURLWithPath: dir_2!).URLByAppendingPathComponent(fname)
+
+        do {
+            
+            let text2 = try NSString(contentsOfURL: path_2, encoding: NSUTF8StringEncoding)
+            
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => (\(text2))")
+            
+        }
+            
+        catch {
+            
+            /* error handling here */
+            //debug
+            print("[\(Methods.basename(#file)):\(#line)] read log => error")
+            
+        }
+        
+    }//_tests__WriteLog_2()
+    
 ////    func save_SongsData( data : Array<MPMediaItem> ) --> Void {
 //    func save_SongsData( data : [MPMediaItem] ) -> Void {
 //    

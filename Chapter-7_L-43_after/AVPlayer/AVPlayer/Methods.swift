@@ -296,6 +296,9 @@ class Methods {
         
     }
 
+    /*
+        "yyyyMMdd_HHmmss"
+     */
     static func get_TimeLabel__Serial() -> String {
         
         // date
