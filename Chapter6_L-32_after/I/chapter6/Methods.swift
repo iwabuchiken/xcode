@@ -418,7 +418,17 @@ class Methods {
         //debug
         print("[\(Methods.basename(#file)):\(#line)] calling => stringForKey")
 
-        return defaults.stringForKey(keys)!   //=> '那覇'
+        var tmp = defaults.stringForKey(keys)!
+        
+//        // validate
+//        if (tmp == nil) {
+//            
+//            tmp = ""
+//            
+//        }
+        
+//        return defaults.stringForKey(keys)!   //=> '那覇'
+        return tmp   //=> '那覇'
         
     }
 

@@ -1857,12 +1857,27 @@ class MusicListViewController: UIViewController, UITableViewDelegate, UITableVie
 
 //        albumItems.sort{$0.title < $1.title}
         
+//        // validate
+//        if (albumItems == nil) {
+//            
+//            return array
+//            
+//        }
+        
+        
+        
         
         // アルバム情報から曲情報を取得する
         for album in albumItems {
-            let albumItems: [MPMediaItem] = album.items
-            for song in albumItems {
+            
+//            let albumItems: [MPMediaItem] = album.items
+            let album_items: [MPMediaItem] = album.items
+            
+//            for song in albumItems {
+            for song in album_items {
+            
                 array.append( song )
+                
             }
         }
         

@@ -111,9 +111,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //debug
         print("[\(Methods.basename(#file)):\(#line)] search words (from defaults) => \(tmp_s)")
 
-        // trim string
-        tmp_s = Methods.trim_String(tmp_s)
+//        // validate
+//        if (tmp_s == nil) {
+//
+//            tmp_s = ""
+//            
+//        } else {
+
+            // trim string
+        if (tmp_s != "") {
             
+            tmp_s = Methods.trim_String(tmp_s)
+
+        }
+        
+//        }
+        
+//        // trim string
+//        tmp_s = Methods.trim_String(tmp_s)
+        
 //        // objects with conditions
 //        _test_Realm_Conditions__MultipleKeywords(tmp_s)
         
